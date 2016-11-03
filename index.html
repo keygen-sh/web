@@ -1,0 +1,55 @@
+<!DOCTYPE html><html><head><title>Keygen - A dead-simple product licensing API built for developers</title><meta charset="UTF-8"><meta name="viewport" content="initial-scale=1"><link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII" type="image/x-icon"><link rel="stylesheet" href="app.css"></head><body><header class="header__wrapper"><div class="header"><div class="logo"><canvas class="logo__logomark" width="64" height="64"></canvas><span class="logo__logotype effect--shuffle">Keygen</span></div><nav class="navigation"><ul><li><button class="button button--size-small" type="button" data-subscribe>Sign Up</button></li></ul></nav></div></header><main><div class="hero" data-src="background.jpg"><div class="hero__content"><h1 data-text="A dead-simple product licensing API built for hackers">A dead-simple product licensing API built for <span class="effect--hacker">developers</span></h1><button class="button" type="button" data-subscribe>Get Early Access</button></div></div><div class="pitch"><div class="pitch__content"><h2>Easily manage licenses for your products</h2><ul class="checklist"><li><i class="material-icons">check</i>Create and manage individual products</li><li><i class="material-icons">check</i>Create unique license policies per-product</li><li><i class="material-icons">check</i>Create, validate and revoke license keys</li><li><i class="material-icons">check</i>Create and manage user accounts</li></ul><div class="pitch__terminal" data-title="Bash"><pre><code class="bash"># Create a new license for a user of the `evilcorp` account
+curl https://evilcorp.keygen.sh/v1/licenses -X POST \
+  -H 'Authorization: Bearer "XrVN3ARD.3qMEarbK.hgHNh8e4Pwbiyzf4iv3PFQnreJ7Bxo"' \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -d '{
+        "license": {
+          "policy": "cKceDA9x",
+          "user": "Cw8crLuL"
+        }
+      }'</code></pre></div></div></div></main><section class="flow__wrapper"><div class="flow"><article class="flow__step"><i class="material-icons">security</i><h2>Create policies</h2><p>Control what type of licenses each product offers.</p></article><article class="flow__step"><i class="material-icons">people</i><h2>Create users</h2><p>Allow your users to login across all your products.</p></article><article class="flow__step"><i class="material-icons">verified_user</i><h2>Create licenses</h2><p>Validate product licenses quickly and effortlessly.</p></article></div></section><section class="lang"><div class="lang__content"><h2>Use your favorite languages</h2><p>Easily use the Keygen API in the programming language of your choice.
+Download and install libraries for Node.js, Go, Ruby, PHP, and more.</p></div><div class="lang__code"><pre><code class="javascript">const keygen = require("keygen")("XrVN3ARD.3qMEarbK.hgHNh8e4Pwbiyzf4iv3PFQnreJ7Bxo")
+
+// Create your first user
+const user = await keygen.users.create({
+  name: "John Doe",
+  email: "john.doe@example.com",
+  password: "secret"
+})
+
+// Create a license for the user
+const license = await user.licenses.create({
+  policy: keygen.policies.get({ name: "Product Add-On" })
+})
+
+// Validate their new license
+const { isValid } = await license.validate()
+
+if (isValid) {
+  // Do something
+} else {
+  // Do something else
+}</code></pre></div></section><section class="docs"><div class="docs__content"><h2>In-depth documentation on…</h2><ul class="checklist"><li><i class="material-icons">code</i>How to easily implement Keygen into your product</li><li><i class="material-icons">sync</i>How to handle webhooks to integrate with your payment system</li><li><i class="material-icons">done_all</i>How to set up user registration and license verification</li><li><i class="material-icons">playlist_add_check</i>And of course, a full API reference with examples</li></ul></div></section><section class="faqs"><div class="faqs__content"><h3>FAQs</h3><ul class="faqs__questions"><li><h4>When will Keygen be released?</h4><p>We are in the process of writing our documentation, getting started guides,
+and our client libraries. As soon as that is finished, we will launch
+a short beta before finally releasing Keygen out into the wild.</p></li><li><h4>Does Keygen handle payments?</h4><p>Since products handle payments in a variety of ways, we have created
+a webhook system so that you can easily integrate your payment system
+with our API, similar to how Stripe's webhook system works.</p></li><li><h4>Does Keygen offer open source plans?</h4><p>Most definitely. If you want to use Keygen for an open source project,
+send us a link to your project and we will review it to determine
+if it's elligible for a free open source plan.</p></li><li><h4>Why was Keygen created?</h4><p>With the rise of web apps and JavaScript-based desktop apps built
+on <a href="http://electron.atom.io/">Electron</a> and <a href="https://nwjs.io/">NW.js</a>,
+a void was created for an easy licensing solution like the ones
+provided by Apple and Google for their platforms. Keygen was
+created out of that void.</p></li><li><h4>Can I use Keygen for an iOS app?</h4><p>Unfortunately, it isn't possible at this time. <a href="https://developer.apple.com/app-store/review/guidelines/">Apple’s developer terms</a>
+require that purchases related to an app, such as premium content
+and add-ons are managed via their native <a href="https://developer.apple.com/in-app-purchase/">In-App Purchase API.</a></p></li><li><h4>Can I use Keygen for an Android app?</h4><p>Unfortunately, it isn't possible at this time.
+<a href="https://play.google.com/about/developer-content-policy/">Google's developer policy</a>
+requires that purchases related to an app, such as premium
+features and add-ons are managed via their native <a href="https://developer.android.com/google/play/billing/api.html">In-App Billing API.</a></p></li></ul></div></section><footer class="footer" data-src="background.jpg"><section class="cta"><div class="cta__content"><h2 data-text="Ready to get started?">Ready to get started?</h2><h3 data-text="Get in touch, or sign up today.">Get in touch, or sign up today.</h3><button class="button" type="button" data-subscribe>Get Early Access</button></div></section><div class="footer__content">© 2016 Keygen – All Rights Reserved – hello@keygen.sh</div></footer><script src="app.js"></script><script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script>var subscribeNodes = document.querySelectorAll("[data-subscribe]")
+
+Array.prototype.forEach.call(subscribeNodes, function(node) {
+  node.onclick = function() {
+    document.cookie = "MCEvilPopupClosed=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;" // Reset cookie so popup will show on click
+    require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us14.list-manage.com","uuid":"0da915687b658ef99fb6b9075","lid":"8e6c7696a2"}) })
+  }
+})</script></body></html>
