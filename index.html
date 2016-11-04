@@ -23,9 +23,16 @@ const user = await keygen.users.create({
   password: "secret"
 })
 
-// Create a license for the user
+// Create a license policy
+const policy = await keygen.policies.create({
+  product: keygen.products.get({ name: "Awesome Product" }),
+  duration: time.ms("6 months"),
+  name: "Product Add-On"
+})
+
+// Create a license for the new user
 const license = await user.licenses.create({
-  policy: keygen.policies.get({ name: "Product Add-On" })
+  policy
 })
 
 // Validate their new license
