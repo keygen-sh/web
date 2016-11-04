@@ -35,17 +35,32 @@ if (isValid) {
   // Do something
 } else {
   // Do something else
-}</code></pre></div></section><section class="docs"><div class="docs__content"><h2>In-depth documentation on…</h2><ul class="checklist"><li><i class="material-icons">code</i>How to easily implement Keygen into your product</li><li><i class="material-icons">sync</i>How to handle webhooks to integrate with your payment system</li><li><i class="material-icons">done_all</i>How to set up user registration and license verification</li><li><i class="material-icons">playlist_add_check</i>And of course, a full API reference with examples</li></ul></div></section><section class="faqs"><div class="faqs__content"><h3>FAQs</h3><ul class="faqs__questions"><li><h4>When will Keygen be released?</h4><p>We are in the process of writing our documentation, getting started guides,
+}</code></pre></div></section><section class="docs"><div class="docs__content"><h2>In-depth documentation on…</h2><ul class="checklist"><li><i class="material-icons">code</i>How to easily implement Keygen into your product</li><li><i class="material-icons">sync</i>How to handle webhooks to integrate with your payment system</li><li><i class="material-icons">done_all</i>How to set up user registration and license verification</li><li><i class="material-icons">playlist_add_check</i>And of course, a full API reference with examples</li></ul></div></section><section class="faqs"><div class="faqs__content"><h3>FAQs</h3><ul class="faqs__questions"><li><h4>What kind of product is Keygen for?</h4><p>Keygen is an online licensing API, meaning it will require an active
+internet connection to validate licenses. Keygen was designed to make
+licensing easy for desktop and web applications built on JavaScript
+and other web languages. Keygen is not focused on compiled apps, and
+does nothing to prevent a user from removing your licensing logic
+altogether if they have access to your application's code.</p></li><li><h4>Does Keygen prevent cracking?</h4><p>No. Keygen does nothing to prevent a user from removing your licensing
+logic altogether if they have access to your application's code. In
+the end, you will have to make the choice on how to deal with cracking
+by doing things such as: requiring a valid license for updates and
+support, etc.</p></li><li><h4>Does Keygen prevent sharing licenses?</h4><p>A license can be set to <code>floating</code>, which will allow the
+license to be valid across multiple machines. Keygen offers endpoints
+to track machine usage, and policies can be set to <code>strict</code>,
+which will ensure your users do not go over their machine limit. How
+and what you track for a given machine is left up to you.</p></li><li><h4>When will Keygen be released?</h4><p>We are in the process of writing our documentation, getting started guides,
 and our client libraries. As soon as that is finished, we will launch
-a short beta before finally releasing Keygen out into the wild.</p></li><li><h4>Does Keygen handle payments?</h4><p>Since products handle payments in a variety of ways, we have created
+a short beta before finally releasing Keygen out into the wild.</p></li><li><h4>Will you offer on-premise API licensing?</h4><p>Yes. We're very interested in talking with companies that would
+rather host the Keygen licensing API in-house. <a href="mailto:hello@keygen.sh">Get in touch</a>.</p></li><li><h4>Does Keygen handle payments?</h4><p>Since products handle payments in a variety of ways, we have created
 a webhook system so that you can easily integrate your payment system
 with our API, similar to how Stripe's webhook system works.</p></li><li><h4>Does Keygen offer open source plans?</h4><p>Most definitely. If you want to use Keygen for an open source project,
 send us a link to your project and we will review it to determine
-if it's elligible for a free open source plan.</p></li><li><h4>Why was Keygen created?</h4><p>With the rise of web apps and JavaScript-based desktop apps built
+if it's eligible for a free open source plan.</p></li><li><h4>Why was Keygen created?</h4><p>With the rise of web apps and JavaScript-based desktop apps built
 on <a href="http://electron.atom.io/">Electron</a> and <a href="https://nwjs.io/">NW.js</a>,
 a void was created for an easy licensing solution like the ones
 provided by Apple and Google for their platforms. Keygen was
-created out of that void.</p></li><li><h4>Can I use Keygen for an iOS app?</h4><p>Unfortunately, it isn't possible at this time. <a href="https://developer.apple.com/app-store/review/guidelines/">Apple’s developer terms</a>
+created out of that void.</p></li><li><h4>Will you offer a contingency plan?</h4><p>Yes. If Keygen ever ceases to exist, the entire API will be completely
+open sourced so that it can be self-hosted. More details soon.</p></li><li><h4>Can I use Keygen for an iOS app?</h4><p>Unfortunately, it isn't possible at this time. <a href="https://developer.apple.com/app-store/review/guidelines/">Apple’s developer terms</a>
 require that purchases related to an app, such as premium content
 and add-ons are managed via their native <a href="https://developer.apple.com/in-app-purchase/">In-App Purchase API.</a></p></li><li><h4>Can I use Keygen for an Android app?</h4><p>Unfortunately, it isn't possible at this time.
 <a href="https://play.google.com/about/developer-content-policy/">Google's developer policy</a>
