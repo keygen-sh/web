@@ -1,0 +1,891 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="initial-scale=1"><title>Documentation – API Reference</title><link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII" type="image/x-icon"><link rel="stylesheet" href="/app.css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-86857020-1', 'auto');
+ga('send', 'pageview');</script></head><body><main class="ref" id="ref"><header class="ref__header"><div class="ref__languages"><button class="ref__languages__language" type="button" data-lang="bash">Shell</button></div></header><nav class="ref__sidebar"><div class="ref__sidebar__logo"><div class="logo"><canvas class="logo__logomark" width="64" height="64"></canvas><span class="logo__logotype effect--shuffle">Keygen</span></div></div><div class="ref__sidebar__content"><div class="ref__sidebar__section"><h5>Introduction</h5><ul class="ref__sidebar__list"><li class="ref__sidebar__item"><a href="#introduction" data-target="introduction">Introduction</a></li></ul></div><div class="ref__sidebar__section"><h5>Topics</h5><ul class="ref__sidebar__list"><li class="ref__sidebar__item"><a href="#versioning" data-target="versioning">Versioning</a></li><li class="ref__sidebar__item"><a href="#errors" data-target="errors">Errors</a></li><li class="ref__sidebar__item"><a href="#authentication" data-target="authentication">Authentication</a></li><li class="ref__sidebar__item"><a href="#authorization" data-target="authorization">Authorization</a></li><li class="ref__sidebar__item"><a href="#metadata" data-target="metadata">Metadata</a></li><li class="ref__sidebar__item"><a href="#pagination" data-target="pagination">Pagination</a></li><li class="ref__sidebar__item"><a href="#idempotency" data-target="idempotency">Idempotency</a></li></ul></div><div class="ref__sidebar__section"><h5>Resources</h5><ul class="ref__sidebar__list"><li class="ref__sidebar__item"><a href="#tokens" data-target="tokens">Tokens</a><ul class="ref__sidebar__sublist"><li class="ref__sidebar__subitem"><a href="#tokens-object" data-target="tokens-object">The token object</a></li><li class="ref__sidebar__subitem"><a href="#tokens-generate" data-target="tokens-generate">Generate a token</a></li><li class="ref__sidebar__subitem"><a href="#tokens-retrieve" data-target="tokens-retrieve">Retrieve a token</a></li><li class="ref__sidebar__subitem"><a href="#tokens-regenerate" data-target="tokens-regenerate">Regenerate a token</a></li><li class="ref__sidebar__subitem"><a href="#tokens-revoke" data-target="tokens-revoke">Revoke a token</a></li><li class="ref__sidebar__subitem"><a href="#tokens-list" data-target="tokens-list">List all tokens</a></li></ul></li><li class="ref__sidebar__item"><a href="#plans" data-target="plans">Plans</a></li><li class="ref__sidebar__item"><a href="#accounts" data-target="accounts">Accounts</a></li><li class="ref__sidebar__item"><a href="#products" data-target="products">Products</a></li><li class="ref__sidebar__item"><a href="#policies" data-target="policies">Policies</a></li><li class="ref__sidebar__item"><a href="#users" data-target="users">Users</a><ul class="ref__sidebar__sublist"><li class="ref__sidebar__subitem"><a href="#users-object" data-target="users-object">The user object</a></li><li class="ref__sidebar__subitem"><a href="#users-create" data-target="users-create">Create a user</a></li><li class="ref__sidebar__subitem"><a href="#users-retrieve" data-target="users-retrieve">Retrieve a user</a></li><li class="ref__sidebar__subitem"><a href="#users-update" data-target="users-update">Update a user</a></li><li class="ref__sidebar__subitem"><a href="#users-delete" data-target="users-delete">Delete a user</a></li><li class="ref__sidebar__subitem"><a href="#users-list" data-target="users-list">List all users</a></li><li class="ref__sidebar__subitem"><a href="#users-actions" data-target="users-actions">User actions</a></li></ul></li><li class="ref__sidebar__item"><a href="#licenses" data-target="licenses">Licenses</a></li><li class="ref__sidebar__item"><a href="#machines" data-target="machines">Machines</a></li><li class="ref__sidebar__item"><a href="#keys" data-target="keys">Keys</a></li><li class="ref__sidebar__item"><a href="#webhooks" data-target="webhooks">Webhooks</a></li><li class="ref__sidebar__item"><a href="#profiles" data-target="profiles">Profiles</a></li><li class="ref__sidebar__item"><a href="#passwords" data-target="passwords">Passwords</a></li></ul></div></div></nav><div class="ref__background"></div><div class="ref__content"><section class="topic" id="introduction"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#introduction" data-target="introduction"><i class="material-icons">link</i></a>Introduction</h1><p>Welcome to Keygen&#39;s API! You can use this API to access your account&#39;s data,
+including users, products, licenses, policies and more.</p>
+<p>The API is organized around <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>
+principles. All requests <strong>must</strong> be made over TLS/SSL. In addition, all request
+and response bodies, including errors, are encoded in JSON format.</p>
+<p>We also have some specific language bindings to make the process of integrating
+Keygen into your product easier. You can switch the programming language of
+the examples with the tabs in the top right.</p>
+<p>Currently we support the following official bindings:</p>
+<ul>
+<li>Node (coming soon)</li>
+<li>Ruby (coming soon)</li>
+</ul>
+<p>If you don&#39;t see your language above, please give us a shout or contribute
+to Keygen by creating it yourself.</p>
+</div><article class="article" id="jsonapi"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#jsonapi" data-target="jsonapi"><i class="material-icons">link</i></a>JSON API</h2><p>Our API adheres to the JSON API spec (<a href="http://jsonapi.org">located here</a>)
+as closesly as makes sense for the project; we may occasionally take a few
+liberties, such as allowing the creation and updating of related resources
+through the parent resource, as opposed to only through the canonical link.</p>
+<p>In addition, our API also accepts the following mime types, as opposed to
+only accepting <code>application/vnd.api+json</code>, per the spec:</p>
+<ul>
+<li><code>application/vnd.keygen+json</code></li>
+<li><code>application/vnd.api+json</code></li>
+<li><code>application/json</code></li>
+<li><code>text/x-json</code></li>
+</ul>
+<p>Additional differences will be detailed here.</p>
+</div></article><article class="article" id="architecture"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#architecture" data-target="architecture"><i class="material-icons">link</i></a>Architecture</h2><p>How to model the communication layer between your app and Keygen.</p>
+</div><div class="division"><div class="content"><h3 id="a-direct">A) Direct</h3>
+<p>First up is the direct approach, utilizing a direct communication channel
+from your app to Keygen. This allows users to create licenses from within
+the app, while your server responds to webhook events accordingly, updating
+records to reflect any changes made server-side as well as to handle
+invoicing your users for any purchased licenses.</p>
+<p>On the topic of billing, it is recommended that your users register through
+your server, so that you can handle the initial collection of user billing
+information. We recommend using <a href="https://stripe.com">Stripe</a> for billing.
+After you&#39;ve created a user account, you can attach their Stripe <code>customer_id</code>
+to the user&#39;s <a href="#metadata"><code>metadata</code></a> attribute.</p>
+<p>If you&#39;d like to allow registration from within your app, you will need to
+collect a <a href="https://stripe.com/docs/api#tokens">Stripe token</a> and attach that
+as <code>metadata</code>, so that your server can respond to Keygen&#39;s <code>user.created</code>
+webhook event and finish the billing process. If your app is free to use,
+then registration is as simple as creating a new user.</p>
+<div class="notice notice--warning">
+  <strong>Do not attach sensitive information directly to your users using the <code>metadata</code>
+  attribute. Doing so is a violation of our terms of use.</strong> If you&#39;re using Stripe,
+  you need only attach their Stripe <code>customer_id</code>, or a <em>secure representation</em> of
+  a card (such as a <code>stripe_token</code>), which can then be used to look up their
+  information server-side when required.
+</div></div><div class="offset__wrapper"><div class="offset"><img class="zoom__image" src="/direct-arch.jpg"></div></div></div><div class="division"><div class="content"><h3 id="b-middleman">B) Middleman</h3>
+<p>Next is an alternate approach, using your server as a middleman for communication
+between your app and Keygen. This architecture allows you to more easily manage
+and validate events, instead of relying solely on listening for webhook events.</p>
+<p>In addition, this approach also allows you to store user accounts within your
+own database, instead of utilizing Keygen&#39;s user-management features. You may do
+so by associating the unique <code>id</code> of a <strong>user-less license</strong> to a user model
+within your database.</p>
+<div class="notice notice--tip">
+  <strong>Did you know that you can create a license without a user?</strong> You can do
+  so by going through the usual <a href="#licenses-create">license creation flow</a>,
+  while ommiting the user relationship. This can be used to create licenses
+  for users stored within your own database.
+</div></div><div class="offset__wrapper"><div class="offset"><img class="zoom__image" src="/middleman-arch.jpg"></div></div></div></article></section><section class="topic" id="versioning"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#versioning" data-target="versioning"><i class="material-icons">link</i></a>Versioning</h1><p>When we introduce breaking changes to the API, we will release a new numbered
+version, e.g. we will go from <code>v1</code> to <code>v2</code>. The current version is <code>v1</code>. All
+changes will be detailed within our <a href="/changelog">changelog</a>.</p>
+</div><article class="article" id="api-stability"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#api-stability" data-target="api-stability"><i class="material-icons">link</i></a>API Stability</h2><p>We <strong>will not</strong> introduce breaking changes into the API without bumping the
+current version. You can rest assured that the endpoints you&#39;re utilizing
+within your product are <em>stable</em>.</p>
+<div class="notice notice--tip">
+  Keep in mind that stable <strong>does not</strong> mean complete. We could potentially add
+  new resources and actions, but existing resources will remain unchanged.
+</div></div></article></section><section class="topic" id="errors"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#errors" data-target="errors"><i class="material-icons">link</i></a>Errors</h1><p>Our API uses conventional HTTP response codes to indicate the success or
+failure of an API request. In general, codes in the <code>2xx</code> range indicate
+success, codes in the <code>4xx</code> range indicate an error that failed given the
+information provided (e.g., a required parameter was omitted, a validation
+failed, etc.), and codes in the <code>5xx</code> range indicate an error with
+our servers (these are rare).</p>
+</div><div class="attributes" id="errors-object-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#errors-object-attrs" data-target="errors-object-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="errors-object-attrs-title"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#errors-object-attrs-title" data-target="errors-object-attrs-title"><i class="material-icons">link</i></a>title</h3><span class="attribute__type">string</span><p class="attribute__desc">A short, human-readable summary of the problem.</p></div></li><li class="attribute"><div class="attribute__info" id="errors-object-attrs-detail"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#errors-object-attrs-detail" data-target="errors-object-attrs-detail"><i class="material-icons">link</i></a>detail</h3><span class="attribute__type">string</span><p class="attribute__desc">A more detailed human-readable explanation of the problem.</p></div></li><li class="attribute"><div class="attribute__info" id="errors-object-attrs-source"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#errors-object-attrs-source" data-target="errors-object-attrs-source"><i class="material-icons">link</i></a>source</h3><span class="attribute__type">hash</span><p class="attribute__desc">An object containing references to the source of the error.</p></div></li><li class="attribute"><div class="attribute__info" id="errors-object-attrs-source.pointer"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#errors-object-attrs-source.pointer" data-target="errors-object-attrs-source.pointer"><i class="material-icons">link</i></a>source.pointer</h3><span class="attribute__type">string</span><p class="attribute__desc">A pointer to the problem data, e.g. &quot;/data&quot; for a primary data object, or &quot;/data/attributes/title&quot; for a specific attribute.</p></div></li></ul></div><div class="example__wrapper"><div class="example"><h4>Example error</h4><pre><code class="json" data-lang="bash">{
+  "errors": [
+    {
+      "title": "Unprocessable entity",
+      "detail": "must be a valid email",
+      "source": {
+        "pointer": "/data/attributes/email"
+      }
+    },
+    …
+  ]
+}
+
+</code></pre></div></div><article class="article" id="error-codes"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#error-codes" data-target="error-codes"><i class="material-icons">link</i></a>Error Codes</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Code</th>
+<th style="text-align:left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>200</code> - OK</td>
+<td style="text-align:left">Everything worked as expected.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>201</code> - Created</td>
+<td style="text-align:left">The resource was created successfully.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>202</code> - Accepted</td>
+<td style="text-align:left">The request has been accepted for processing.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>204</code> - No content</td>
+<td style="text-align:left">Everything worked as expected, but there was nothing to respond with.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>400</code> - Bad Request</td>
+<td style="text-align:left">The request was unacceptable, often due to missing or unpermitted parameters.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>401</code> - Unauthorized</td>
+<td style="text-align:left">No valid API token provided.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>403</code> - Forbidden</td>
+<td style="text-align:left">The authenticated entity does not have permission to complete the request.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>404</code> - Not Found</td>
+<td style="text-align:left">The requested resource doesn&#39;t exist.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>409</code> - Conflict</td>
+<td style="text-align:left">The request could not be completed because the resource already exists.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>422</code> - Unprocessable</td>
+<td style="text-align:left">A validation error occurred on the resource.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>429</code> - Too Many Requests</td>
+<td style="text-align:left">Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>5xx</code> - Server Errors</td>
+<td style="text-align:left">Something went wrong on our end. (These are rare.)</td>
+</tr>
+</tbody>
+</table>
+</div></article></section><section class="topic" id="authentication"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#authentication" data-target="authentication"><i class="material-icons">link</i></a>Authentication</h1><p>Requests are authenticated using a bearer token in an <code>Authorization</code> header.
+If you&#39;re using one of our <a href="#introduction">language bindings</a>, then this will
+be handled for you automatically with each request, if a session has been
+created.</p>
+<p>You can manage your tokens using the <a href="#tokens"><code>/tokens</code></a> resource. Along
+with users, a product can also authenticate using product tokens; to
+create a new product token, please see the <a href="#products"><code>/products</code></a>
+token relationship. All tokens have a <strong>2 week</strong> expiry and can be
+regenerated when desired.</p>
+<p>Most API endpoints will <strong>require</strong> authentication, and access to resources
+depends on the token bearer&#39;s <a href="#authorization">authorization and role</a>.</p>
+<div class="notice notice--warning">
+  <strong>Tokens should be treated as passwords.</strong> Different tokens carry different
+  privileges depending on the bearer of the token, so be sure to keep them
+  secret! Do not share your secret API tokens in publicly accessible areas
+  such GitHub, client-facing code, and so forth. If in doubt, please reset
+  or revoke the offending authentication token(s).
+</div>
+</div></section><section class="topic" id="authorization"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#authorization" data-target="authorization"><i class="material-icons">link</i></a>Authorization</h1><p>Access to certain resources is dependent upon a token bearer&#39;s role. Most
+of the time you will be authenticating as one of your users, which will allow
+access to a small subset of resources available to your account. In other
+cases, as when you are using the <a href="#architecture">middleman architecture</a>,
+you may be authenticating as a product, or even an admin; in these cases,
+you will have access to a wider range of resources.</p>
+<p>Many resource endpoints are automatically scoped according to the token bearer&#39;s
+role. For example, listing all licenses while authenticated as a product will
+<em>only</em> list licenses associated with that particular product. Attempting to
+access resources that the bearer does not have access to will respond
+with a <a href="#error-codes"><code>403</code> error</a>.</p>
+<div class="notice notice--warning">
+  <strong>Never hard-code authentication tokens within your client-facing product</strong>
+  – doing so could leave your product open to major exploitations by allowing
+  a malicious user the ability to fully manage your account&#39;s resources. The
+  only time you should be using your admin or product token(s) directly is
+  if you are working with Keygen <strong>server-side</strong>.
+</div></div></section><section class="topic" id="metadata"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#metadata" data-target="metadata"><i class="material-icons">link</i></a>Metadata</h1><p>Many resources including <a href="#products">products</a>, <a href="#users">users</a>, <a href="#licenses">licenses</a>,
+<a href="#machines">machines</a> and <a href="#policies">policies</a> have a <code>metadata</code> attribute.
+You can use this attribute to attach key-value data to the given resource.</p>
+<p>Metadata is useful for storing additional, structured information on an
+object. As an example, you could store your user&#39;s full name, their <code>id</code>
+within your own database (if applicable), or their Stripe <code>customer_id</code>
+for billing purposes.</p>
+<p>Since the <code>metadata</code> attribute is simply a key-value store (hash), all write
+operations will <strong>overwrite</strong> the entire hash, so be sure to <strong>merge</strong>
+existing data on your end when performing updates.</p>
+<div class="notice notice--warning">
+  <strong>Do not attach sensitive information directly to your users using the <code>metadata</code>
+  attribute. Doing so is a violation of our terms of use.</strong> If you&#39;re using Stripe,
+  you need only attach their Stripe <code>customer_id</code>, or a <em>secure representation</em> of
+  a card (such as a <code>stripe_token</code>), which can then be used to look up their
+  information server-side when required.
+</div></div></section><section class="topic" id="pagination"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#pagination" data-target="pagination"><i class="material-icons">link</i></a>Pagination</h1><p>All top-level API resources have support for bulk fetches via &quot;list&quot; API
+methods. For instance you can <a href="#users-list">list users</a>, <a href="#licenses-list">list licenses</a>,
+and <a href="#machines-list">list machines</a>. These list API methods share a common
+format, taking an optional <code>page</code> query parameter.</p>
+<p>Our API utilizes a page-based strategy via the <code>page[size]</code> and <code>page[number]</code>
+parameters. All results are returned in ascending chronological order.</p>
+</div><div class="parameters" id="pagination-object-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#pagination-object-params" data-target="pagination-object-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="pagination-object-params-page"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#pagination-object-params-page" data-target="pagination-object-params-page"><i class="material-icons">link</i></a>page</h3><span class="parameter__type">hash</span><p class="parameter__desc">Hash containing page size and page number.</p></div></li><li class="parameter"><div class="parameter__info" id="pagination-object-params-page-size"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#pagination-object-params-page-size" data-target="pagination-object-params-page-size"><i class="material-icons">link</i></a>page.size</h3><span class="parameter__type">integer</span><p class="parameter__desc">The page size. Must be a number between 1 and 100.</p></div></li><li class="parameter"><div class="parameter__info" id="pagination-object-params-page-number"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#pagination-object-params-page-number" data-target="pagination-object-params-page-number"><i class="material-icons">link</i></a>page.number</h3><span class="parameter__type">integer</span><p class="parameter__desc">The page number.</p></div></li></ul></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl https://api.keygen.sh/v1/accounts/<%= account %>/users?page[size]=25&page[number]=2 -g \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Authorization: Bearer <%= token %>'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><pre><code class="json" data-lang="bash">{
+  "data": [
+    {
+      "id": "6ed498fe-5f5f-49af-82ee-cb7400cc4522",
+      "type": "users",
+      "links": {
+        "self": "/v1/accounts/<%= account %>/users/6ed498fe-5f5f-49af-82ee-cb7400cc4522"
+      },
+      "attributes": {
+        "name": "Marty McFly",
+        "email": "marty.mcfly@example.com",
+        "metadata": {},
+        "created": "2017-01-02T19:48:50.077Z",
+        "updated": "2017-01-02T19:48:50.077Z"
+      },
+      "relationships": {
+        "account": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>"
+          }
+        },
+        "products": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/users/6ed498fe-5f5f-49af-82ee-cb7400cc4522/products"
+          }
+        },
+        "licenses": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/users/6ed498fe-5f5f-49af-82ee-cb7400cc4522/licenses"
+          }
+        },
+        "machines": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/users/6ed498fe-5f5f-49af-82ee-cb7400cc4522/machines"
+          }
+        },
+        "tokens": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/users/6ed498fe-5f5f-49af-82ee-cb7400cc4522/tokens"
+          }
+        },
+        "role": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/users/6ed498fe-5f5f-49af-82ee-cb7400cc4522/role"
+          }
+        }
+      }
+    },
+    …
+  ],
+  "links": {
+    "self": "/v1/accounts/<%= account %>/users?page[size]=25&page[number]=2",
+    "prev": "/v1/accounts/<%= account %>/users?page[size]=25&page[number]=1",
+    "next": "/v1/accounts/<%= account %>/users?page[size]=25&page[number]=3",
+    "first": "/v1/accounts/<%= account %>/users?page[size]=25&page[number]=1",
+    "last": "/v1/accounts/<%= account %>/users?page[size]=25&page[number]=4"
+  }
+}</code></pre></div></div></section><section class="topic" id="idempotency"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#idempotency" data-target="idempotency"><i class="material-icons">link</i></a>Idempotency</h1><p>Some resources, such as <a href="#webhooks-events">webhook events</a> may contain an
+idempotency token attribute. These allow you to safely retry events without
+accidentally performing the same operation twice.</p>
+</div><article class="article" id="idempotency-example"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#idempotency-example" data-target="idempotency-example"><i class="material-icons">link</i></a>Example scenario</h2><p>When a user creates a new license, you would want to make sure that the
+<code>license.created</code> webhook event that you&#39;re listening for would only be
+acted upon once, regardless of how many times you <a href="#webhooks-events-actions-retry">retry the event</a>,
+to guarantee you only charge your user for a single license.</p>
+<div class="notice notice--tip">
+  Although retrying a webhook event creates a new resource, the idempotency
+  token will stay the same.
+</div>
+</div><div class="example__wrapper"><div class="example"><h4>Example resource</h4><pre><code class="json" data-lang="bash">{
+  "data": {
+    "id": "2bc99fe1-f315-4877-ac5f-542240c4e883",
+    "type": "webhookEvents",
+    "links": {
+      "self": "/v1/accounts/<%= account %>/webhook-events/2bc99fe1-f315-4877-ac5f-542240c4e883"
+    },
+    "attributes": {
+      "idempotencyToken": "e8e0fbb598e8bcfd0e94ceb79199edc79e6ab53f4a4bbb32d7aede7964e7c328",
+      "endpoint": "https://example.com/keygen",
+      "payload": "{\"payload\":\"…\"}",
+      "status": "failed",
+      "created": "2017-01-02T20:26:53.464Z",
+      "updated": "2017-01-02T20:26:53.464Z"
+    },
+    "relationships": {
+      "account": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>"
+        }
+      }
+    }
+  }
+}
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash"># Retry the above failed webhook event resource
+curl https://api.keygen.sh/v1/accounts/<%= account %>/webhook-events/2bc99fe1-f315-4877-ac5f-542240c4e883/actions/retry \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Authorization: Bearer <%= token %>'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><pre><code class="json" data-lang="bash"># Notice that it's a new resource, yet the idempotency tokens match
+{
+  "data": {
+    "id": "1bda5fd5-6d82-49f5-b5b8-71bb432a32bb",
+    "type": "webhookEvents",
+    "links": {
+      "self": "/v1/accounts/<%= account %>/webhook-events/1bda5fd5-6d82-49f5-b5b8-71bb432a32bb"
+    },
+    "attributes": {
+      "idempotencyToken": "e8e0fbb598e8bcfd0e94ceb79199edc79e6ab53f4a4bbb32d7aede7964e7c328",
+      "endpoint": "https://example.com/keygen",
+      "payload": "{\"payload\":\"…\"}",
+      "status": "queued",
+      "created": "2017-01-02T20:30:33.809Z",
+      "updated": "2017-01-02T20:30:33.809Z"
+    },
+    "relationships": {
+      "account": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>"
+        }
+      }
+    }
+  }
+}</code></pre></div></div></article></section><section class="resource" id="tokens"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#tokens" data-target="tokens"><i class="material-icons">link</i></a>Tokens</h1></div><article class="object" id="tokens-object"><div class="description"><h2 class="anchor__wrapper object__heading"><a class="anchor" href="#tokens-object" data-target="tokens-object"><i class="material-icons">link</i></a>The token object</h2><p>Below you will find the various attributes for the token resource, as well
+as the token resource&#39;s relationships.</p>
+</div><div class="attributes" id="tokens-object-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#tokens-object-attrs" data-target="tokens-object-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-token"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-token" data-target="tokens-object-attrs-token"><i class="material-icons">link</i></a>token</h3><span class="attribute__type">string</span><span class="bubble">read only</span><p class="attribute__desc">The raw token of the token. This attribute is only available directly after token generation.</p></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-expiry"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-expiry" data-target="tokens-object-attrs-expiry"><i class="material-icons">link</i></a>expiry</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the token expires.</p></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-created"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-created" data-target="tokens-object-attrs-created"><i class="material-icons">link</i></a>created</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the token was created.</p></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-updated"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-updated" data-target="tokens-object-attrs-updated"><i class="material-icons">link</i></a>updated</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the token was last updated.</p></div></li></ul></div><div class="relationships" id="tokens-object-relationships"><h4 class="anchor__wrapper relationships__heading"><a class="anchor" href="#tokens-object-relationships" data-target="tokens-object-relationships"><i class="material-icons">link</i></a>Relationships</h4><ul class="relationships__list"><li class="relationship"><div class="relationship__info" id="tokens-object-relationships-account"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#tokens-object-relationships-account" data-target="tokens-object-relationships-account"><i class="material-icons">link</i></a>account</h3><span class="relationship__type">individual</span><p class="relationship__desc">The account that the token belongs to.</p></div></li><li class="relationship"><div class="relationship__info" id="tokens-object-relationships-bearer"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#tokens-object-relationships-bearer" data-target="tokens-object-relationships-bearer"><i class="material-icons">link</i></a>bearer</h3><span class="relationship__type">individual</span><p class="relationship__desc">The bearer of the token.</p></div></li></ul></div><div class="example__wrapper"><div class="example"><h4>Example object</h4><pre><code class="json" data-lang="bash">{
+  "data": {
+    "id": "6a7562be-b302-43d2-a550-30d6026247aa",
+    "type": "tokens",
+    "attributes": {
+      "token": "9bc31b8d19a94d82a15742678d8f2540.6a7562beb30243d2a55030d6026247aa.v1.edc19321739951dc8fe9ce7d27c703a74faabd7dee8228b8ad4ec6e69692d6959449d9694fd93eca48b33f023bd1319f14b90de1cba5001945dea6b66f598",
+      "expiry": "<%= expiry %>",
+      "created": "<%= created %>",
+      "updated": "<%= created %>"
+    },
+    "relationships": {
+      "account": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>"
+        }
+      },
+      "bearer": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298"
+        }
+      }
+    }
+  }
+}</code></pre></div></div></article><article class="method" id="tokens-generate"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#tokens-generate" data-target="tokens-generate"><i class="material-icons">link</i></a>Generate a token</h2><p>Generate a new token resource for a user. To generate a token for a product,
+see the <a href="#products-relationships-tokens">product token relationship</a>.</p>
+</div><div class="authentications" id="tokens-generate-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#tokens-generate-auths" data-target="tokens-generate-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="tokens-generate-auths-basic"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#tokens-generate-auths-basic" data-target="tokens-generate-auths-basic"><i class="material-icons">link</i></a>Basic</h3><span class="authentication__req">required</span><p class="authentication__desc">The username and password of the user.</p></div></li></ul></div><div class="parameters" id="tokens-generate-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#tokens-generate-params" data-target="tokens-generate-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="tokens-generate-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#tokens-generate-params-account" data-target="tokens-generate-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash" data-lang="bash">POST https://api.keygen.sh/v1/accounts/<%= account %>/tokens \
+  -u "{CREDENTIALS}"
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl -X POST https://api.keygen.sh/v1/accounts/<%= account %>/tokens \
+  -H 'Content-Type: application/vnd.api+json' \
+  -u "<%= email %>:<%= password %>"
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><pre><code class="json" data-lang="bash">{
+  "data": {
+    "id": "6a7562be-b302-43d2-a550-30d6026247aa",
+    "type": "tokens",
+    "attributes": {
+      "token": "9bc31b8d19a94d82a15742678d8f2540.6a7562beb30243d2a55030d6026247aa.v1.edc19321739951dc8fe9ce7d27c703a74faabd7dee8228b8ad4ec6e69692d6959449d9694fd93eca48b33f023bd1319f14b90de1cba5001945dea6b66f598",
+      "expiry": "<%= expiry %>",
+      "created": "<%= created %>",
+      "updated": "<%= created %>"
+    },
+    "relationships": {
+      "account": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>"
+        }
+      },
+      "bearer": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298"
+        }
+      }
+    }
+  }
+}</code></pre></div></div></article><article class="method" id="tokens-retrieve"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#tokens-retrieve" data-target="tokens-retrieve"><i class="material-icons">link</i></a>Retrieve a token</h2><p>Retrieves the details of an existing token.</p>
+</div><div class="authentications" id="tokens-retrieve-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#tokens-retrieve-auths" data-target="tokens-retrieve-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="tokens-retrieve-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#tokens-retrieve-auths-bearer" data-target="tokens-retrieve-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with privileges to view the resource.</p></div></li></ul></div><div class="parameters" id="tokens-retrieve-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#tokens-retrieve-params" data-target="tokens-retrieve-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="tokens-retrieve-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#tokens-retrieve-params-account" data-target="tokens-retrieve-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="tokens-retrieve-params-id"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#tokens-retrieve-params-id" data-target="tokens-retrieve-params-id"><i class="material-icons">link</i></a>id</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier of the token to be retrieved.</p></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash" data-lang="bash">GET https://api.keygen.sh/v1/accounts/<%= account %>/tokens/{ID}
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl https://api.keygen.sh/v1/accounts/<%= account %>/tokens/6a7562be-b302-43d2-a550-30d6026247aa \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Authorization: Bearer <%= token %>'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><pre><code class="json" data-lang="bash">{
+  "data": {
+    "id": "6a7562be-b302-43d2-a550-30d6026247aa",
+    "type": "tokens",
+    "attributes": {
+      "expiry": "<%= expiry %>",
+      "created": "<%= created %>",
+      "updated": "<%= created %>"
+    },
+    "relationships": {
+      "account": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>"
+        }
+      },
+      "bearer": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/products/a5a154d2-f026-40fa-bc8d-a7e3ca415298"
+        }
+      }
+    }
+  }
+}</code></pre></div></div></article><article class="method" id="tokens-regenerate"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#tokens-regenerate" data-target="tokens-regenerate"><i class="material-icons">link</i></a>Regenerate a token</h2><p>Regenerate an existing token resource.</p>
+</div><div class="authentications" id="tokens-regenerate-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#tokens-regenerate-auths" data-target="tokens-regenerate-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="tokens-regenerate-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#tokens-regenerate-auths-bearer" data-target="tokens-regenerate-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with privileges to manage the resource.</p></div></li></ul></div><div class="parameters" id="tokens-regenerate-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#tokens-regenerate-params" data-target="tokens-regenerate-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="tokens-regenerate-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#tokens-regenerate-params-account" data-target="tokens-regenerate-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="tokens-regenerate-params-id"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#tokens-regenerate-params-id" data-target="tokens-regenerate-params-id"><i class="material-icons">link</i></a>id</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier of the token to be regenerated.</p></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash" data-lang="bash">PUT https://api.keygen.sh/v1/accounts/<%= account %>/tokens/{ID}
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl -X PUT https://api.keygen.sh/v1/accounts/<%= account %>/tokens/6a7562be-b302-43d2-a550-30d6026247aa \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Authorization: Bearer <%= token %>'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><pre><code class="json" data-lang="bash">{
+  "data": {
+    "id": "6a7562be-b302-43d2-a550-30d6026247aa",
+    "type": "tokens",
+    "attributes": {
+      "token": "9bc31b8d19a94d82a15742678d8f2540.6a7562beb30243d2a55030d6026247aa.v1.0e00ffa203dcc6871c010c7d85ce13556c7ff70abcc0df4287b40dab8ade4a5fc4d4eb7bf1ccdef2dc892ad21bb57c451191c3061296c417eaf590d6ae640",
+      "expiry": "<%= expiry %>",
+      "created": "<%= created %>",
+      "updated": "<%= updated %>"
+    },
+    "relationships": {
+      "account": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>"
+        }
+      },
+      "bearer": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298"
+        }
+      }
+    }
+  }
+}</code></pre></div></div></article><article class="method" id="tokens-revoke"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#tokens-revoke" data-target="tokens-revoke"><i class="material-icons">link</i></a>Revoke a token</h2><p>Permanently revokes a token. It cannot be undone. This action also immediately
+invalidates all sessions using the given token.</p>
+</div><div class="authentications" id="tokens-revoke-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#tokens-revoke-auths" data-target="tokens-revoke-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="tokens-revoke-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#tokens-revoke-auths-bearer" data-target="tokens-revoke-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with privileges to manage the resource.</p></div></li></ul></div><div class="parameters" id="tokens-revoke-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#tokens-revoke-params" data-target="tokens-revoke-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="tokens-revoke-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#tokens-revoke-params-account" data-target="tokens-revoke-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="tokens-revoke-params-id"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#tokens-revoke-params-id" data-target="tokens-revoke-params-id"><i class="material-icons">link</i></a>id</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier of the token to be revoked.</p></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash" data-lang="bash">DELETE https://api.keygen.sh/v1/accounts/<%= account %>/tokens/{ID}
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl -X DELETE https://api.keygen.sh/v1/accounts/<%= account %>/tokens/6a7562be-b302-43d2-a550-30d6026247aa \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Authorization: Bearer <%= token %>'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><pre><code class="no-highlight">No content</code></pre></div></div></article><article class="method" id="tokens-list"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#tokens-list" data-target="tokens-list"><i class="material-icons">link</i></a>List all tokens</h2><p>Returns a list of tokens. The tokens are returned sorted by creation date,
+with the most recent tokens appearing first.</p>
+</div><div class="authentications" id="tokens-list-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#tokens-list-auths" data-target="tokens-list-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="tokens-list-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#tokens-list-auths-bearer" data-target="tokens-list-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with privileges to manage the resources.</p></div></li></ul></div><div class="parameters" id="tokens-list-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#tokens-list-params" data-target="tokens-list-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="tokens-list-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#tokens-list-params-account" data-target="tokens-list-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li></ul></div><div class="filters" id="tokens-list-filters"><h4 class="anchor__wrapper filters__heading"><a class="anchor" href="#tokens-list-filters" data-target="tokens-list-filters"><i class="material-icons">link</i></a>Filters</h4><ul class="filters__list"><li class="filter"><div class="filter__info" id="tokens-list-filters-limit"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#tokens-list-filters-limit" data-target="tokens-list-filters-limit"><i class="material-icons">link</i></a>limit</h3><span class="filter__type">integer</span><span class="filter__default">, default is<code>10</code></span><p class="filter__desc">A limit on the number of users to be returned. Limit must be a number between 1 and 100.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/tokens?limit=25</code></pre></div></li><li class="filter"><div class="filter__info" id="tokens-list-filters-page"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#tokens-list-filters-page" data-target="tokens-list-filters-page"><i class="material-icons">link</i></a>page</h3><span class="filter__type">hash</span><p class="filter__desc">Hash containing page size and page number. Page size must be a number between 1 and 100</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/tokens?page[size]=15&amp;page[number]=2</code></pre></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash" data-lang="bash">GET https://api.keygen.sh/v1/accounts/<%= account %>/tokens{FILTERS}
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl https://api.keygen.sh/v1/accounts/<%= account %>/tokens?limit=15 -g \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Authorization: Bearer <%= token %>'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><pre><code class="json" data-lang="bash">{
+  "data": [
+    {
+      "id": "6a7562be-b302-43d2-a550-30d6026247aa",
+      "type": "tokens",
+      "attributes": {
+        "expiry": "<%= expiry %>",
+        "created": "<%= created %>",
+        "updated": "<%= created %>"
+      },
+      "relationships": {
+        "account": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>"
+          }
+        },
+        "bearer": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298"
+          }
+        }
+      }
+    },
+    …
+  ]
+}</code></pre></div></div></article></section><section class="resource" id="plans"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#plans" data-target="plans"><i class="material-icons">link</i></a>Plans</h1></div></section><section class="resource" id="accounts"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#accounts" data-target="accounts"><i class="material-icons">link</i></a>Accounts</h1></div></section><section class="resource" id="products"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#products" data-target="products"><i class="material-icons">link</i></a>Products</h1></div></section><section class="resource" id="policies"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#policies" data-target="policies"><i class="material-icons">link</i></a>Policies</h1></div></section><section class="resource" id="users"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#users" data-target="users"><i class="material-icons">link</i></a>User</h1></div><article class="object" id="users-object"><div class="description"><h2 class="anchor__wrapper object__heading"><a class="anchor" href="#users-object" data-target="users-object"><i class="material-icons">link</i></a>The user object</h2><p>Below you will find the various attributes for the user resource, as well
+as the user resource&#39;s relationships. To modify a relationship, you will
+need to use the canonical link for the given resource. There are a few
+exceptions to this, <a href="#user-object-relationships-role">such as the <code>role</code> relationship</a>,
+which may be created and updated through the user endpoint directly, as a
+canonical link for it does not exist.</p>
+</div><div class="attributes" id="users-object-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#users-object-attrs" data-target="users-object-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="users-object-attrs-name"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#users-object-attrs-name" data-target="users-object-attrs-name"><i class="material-icons">link</i></a>name</h3><span class="attribute__type">string</span><p class="attribute__desc">The name of the user.</p></div></li><li class="attribute"><div class="attribute__info" id="users-object-attrs-email"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#users-object-attrs-email" data-target="users-object-attrs-email"><i class="material-icons">link</i></a>email</h3><span class="attribute__type">string</span><p class="attribute__desc">The unique email of the user.</p></div></li><li class="attribute"><div class="attribute__info" id="users-object-attrs-metadata"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#users-object-attrs-metadata" data-target="users-object-attrs-metadata"><i class="material-icons">link</i></a>metadata</h3><span class="attribute__type">hash</span><p class="attribute__desc">Hash containing user metadata.</p></div></li><li class="attribute"><div class="attribute__info" id="users-object-attrs-created"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#users-object-attrs-created" data-target="users-object-attrs-created"><i class="material-icons">link</i></a>created</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the user was created.</p></div></li><li class="attribute"><div class="attribute__info" id="users-object-attrs-updated"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#users-object-attrs-updated" data-target="users-object-attrs-updated"><i class="material-icons">link</i></a>updated</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the user was last updated.</p></div></li></ul></div><div class="relationships" id="users-object-relationships"><h4 class="anchor__wrapper relationships__heading"><a class="anchor" href="#users-object-relationships" data-target="users-object-relationships"><i class="material-icons">link</i></a>Relationships</h4><ul class="relationships__list"><li class="relationship"><div class="relationship__info" id="users-object-relationships-account"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#users-object-relationships-account" data-target="users-object-relationships-account"><i class="material-icons">link</i></a>account</h3><span class="relationship__type">individual</span><p class="relationship__desc">The account that the user belongs to.</p></div></li><li class="relationship"><div class="relationship__info" id="users-object-relationships-products"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#users-object-relationships-products" data-target="users-object-relationships-products"><i class="material-icons">link</i></a>products</h3><span class="relationship__type">collection</span><p class="relationship__desc">The products that the user is associated with.</p></div></li><li class="relationship"><div class="relationship__info" id="users-object-relationships-licenses"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#users-object-relationships-licenses" data-target="users-object-relationships-licenses"><i class="material-icons">link</i></a>licenses</h3><span class="relationship__type">collection</span><p class="relationship__desc">The licenses that the user owns.</p></div></li><li class="relationship"><div class="relationship__info" id="users-object-relationships-machines"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#users-object-relationships-machines" data-target="users-object-relationships-machines"><i class="material-icons">link</i></a>machines</h3><span class="relationship__type">collection</span><p class="relationship__desc">The machines that the user owns.</p></div></li><li class="relationship"><div class="relationship__info" id="users-object-relationships-tokens"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#users-object-relationships-tokens" data-target="users-object-relationships-tokens"><i class="material-icons">link</i></a>tokens</h3><span class="relationship__type">collection</span><p class="relationship__desc">The authentication tokens of the user.</p></div></li><li class="relationship"><div class="relationship__info" id="users-object-relationships-role"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#users-object-relationships-role" data-target="users-object-relationships-role"><i class="material-icons">link</i></a>role</h3><span class="relationship__type">individual</span><p class="relationship__desc">The role of the user.</p></div></li></ul></div><div class="example__wrapper"><div class="example"><h4>Example object</h4><pre><code class="json" data-lang="bash">{
+  "data": {
+    "id": "a5a154d2-f026-40fa-bc8d-a7e3ca415298",
+    "type": "users",
+    "attributes": {
+      "name": "John Doe",
+      "email": "jdoe@keygen.sh",
+      "metadata": {},
+      "created": "<%= created %>",
+      "updated": "<%= created %>"
+    },
+    "relationships": {
+      "account": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>"
+        }
+      },
+      "products": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/products"
+        }
+      },
+      "licenses": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/licenses"
+        }
+      },
+      "machines": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/machines"
+        }
+      },
+      "tokens": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/tokens"
+        }
+      },
+      "role": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+        }
+      }
+    }
+  }
+}</code></pre></div></div></article><article class="method" id="users-create"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#users-create" data-target="users-create"><i class="material-icons">link</i></a>Create a user</h2><p>Creates a new user resource.</p>
+</div><div class="parameters" id="users-create-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#users-create-params" data-target="users-create-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="users-create-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#users-create-params-account" data-target="users-create-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li></ul></div><div class="attributes" id="users-create-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#users-create-attrs" data-target="users-create-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="users-create-attrs-name"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#users-create-attrs-name" data-target="users-create-attrs-name"><i class="material-icons">link</i></a>name</h3><span class="attribute__type">string</span><span class="attribute__req">, required</span><p class="attribute__desc">The name of the user.</p></div></li><li class="attribute"><div class="attribute__info" id="users-create-attrs-email"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#users-create-attrs-email" data-target="users-create-attrs-email"><i class="material-icons">link</i></a>email</h3><span class="attribute__type">string</span><span class="attribute__req">, required</span><p class="attribute__desc">The unique email of the user.</p></div></li><li class="attribute"><div class="attribute__info" id="users-create-attrs-password"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#users-create-attrs-password" data-target="users-create-attrs-password"><i class="material-icons">link</i></a>password</h3><span class="attribute__type">string</span><span class="attribute__req">, required</span><p class="attribute__desc">The password for the user.</p></div></li><li class="attribute"><div class="attribute__info" id="users-create-attrs-metadata"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#users-create-attrs-metadata" data-target="users-create-attrs-metadata"><i class="material-icons">link</i></a>metadata</h3><span class="attribute__type">hash</span><span class="attribute__req">, optional</span><span class="bubble">protected</span><p class="attribute__desc">Hash containing user metadata.</p></div></li></ul></div><div class="relationships" id="users-create-relationships"><h4 class="anchor__wrapper relationships__heading"><a class="anchor" href="#users-create-relationships" data-target="users-create-relationships"><i class="material-icons">link</i></a>Relationships</h4><ul class="relationships__list"><li class="relationship"><div class="relationship__info" id="users-create-relationships-role"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#users-create-relationships-role" data-target="users-create-relationships-role"><i class="material-icons">link</i></a>role</h3><span class="relationship__type">hash</span><span class="relationship__req">, optional</span><span class="bubble">protected</span><p class="relationship__desc">The role relationship of the user.</p></div></li><li class="relationship"><div class="relationship__info" id="users-create-relationships-role-name"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#users-create-relationships-role-name" data-target="users-create-relationships-role-name"><i class="material-icons">link</i></a>role.name</h3><span class="relationship__type">string</span><span class="relationship__default">, default is<code>user</code></span><p class="relationship__desc">The role of the user. Can be either user or admin.</p></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash" data-lang="bash">POST https://api.keygen.sh/v1/accounts/<%= account %>/users \
+  -d '{ "data": { "type": "users", "attributes": {DATA}, relationships: {DATA} } }'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl -X POST https://api.keygen.sh/v1/accounts/<%= account %>/users \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Authorization: Bearer <%= token %>' \
+  -d '{
+        "data": {
+          "type": "users",
+          "attributes": {
+            "name": "John Doe",
+            "email": "jdoe@keygen.sh",
+            "password": "secret"
+          },
+          "relationships": {
+            "role": {
+              "data": { "type": "roles", "attributes": { "name": "admin" } }
+            }
+          }
+        }
+      }'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><pre><code class="json" data-lang="bash">{
+  "data": {
+    "id": "a5a154d2-f026-40fa-bc8d-a7e3ca415298",
+    "type": "users",
+    "attributes": {
+      "name": "John Doe",
+      "email": "jdoe@keygen.sh",
+      "metadata": {},
+      "created": "<%= created %>",
+      "updated": "<%= created %>"
+    },
+    "relationships": {
+      "account": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>"
+        }
+      },
+      "products": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/products"
+        }
+      },
+      "licenses": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/licenses"
+        }
+      },
+      "machines": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/machines"
+        }
+      },
+      "tokens": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/tokens"
+        }
+      },
+      "role": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+        }
+      }
+    }
+  }
+}</code></pre></div></div></article><article class="method" id="users-retrieve"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#users-retrieve" data-target="users-retrieve"><i class="material-icons">link</i></a>Retrieve a user</h2><p>Retrieves the details of an existing user.</p>
+</div><div class="parameters" id="users-retrieve-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#users-retrieve-params" data-target="users-retrieve-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="users-retrieve-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#users-retrieve-params-account" data-target="users-retrieve-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="users-retrieve-params-id"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#users-retrieve-params-id" data-target="users-retrieve-params-id"><i class="material-icons">link</i></a>id</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier of the user to be retrieved.</p></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash" data-lang="bash">GET https://api.keygen.sh/v1/accounts/<%= account %>/users/{ID}
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl https://api.keygen.sh/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298 \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Authorization: Bearer <%= token %>'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><pre><code class="json" data-lang="bash">{
+  "data": {
+    "id": "a5a154d2-f026-40fa-bc8d-a7e3ca415298",
+    "type": "users",
+    "attributes": {
+      "name": "John Doe",
+      "email": "jdoe@keygen.sh",
+      "metadata": {},
+      "created": "<%= created %>",
+      "updated": "<%= created %>"
+    },
+    "relationships": {
+      "account": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>"
+        }
+      },
+      "products": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/products"
+        }
+      },
+      "licenses": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/licenses"
+        }
+      },
+      "machines": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/machines"
+        }
+      },
+      "tokens": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/tokens"
+        }
+      },
+      "role": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+        }
+      }
+    }
+  }
+}</code></pre></div></div></article><article class="method" id="users-update"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#users-update" data-target="users-update"><i class="material-icons">link</i></a>Update a user</h2><p>Updates the specified user resource by setting the values of the parameters
+passed. Any parameters not provided will be left unchanged.</p>
+</div><div class="parameters" id="users-update-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#users-update-params" data-target="users-update-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="users-update-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#users-update-params-account" data-target="users-update-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="users-update-params-id"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#users-update-params-id" data-target="users-update-params-id"><i class="material-icons">link</i></a>id</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier of the user to be retrieved.</p></div></li></ul></div><div class="attributes" id="users-update-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#users-update-attrs" data-target="users-update-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="users-update-attrs-name"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#users-update-attrs-name" data-target="users-update-attrs-name"><i class="material-icons">link</i></a>name</h3><span class="attribute__type">string</span><span class="attribute__req">, optional</span><p class="attribute__desc">The name of the user.</p></div></li><li class="attribute"><div class="attribute__info" id="users-update-attrs-email"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#users-update-attrs-email" data-target="users-update-attrs-email"><i class="material-icons">link</i></a>email</h3><span class="attribute__type">string</span><span class="attribute__req">, optional</span><p class="attribute__desc">The unique email of the user.</p></div></li><li class="attribute"><div class="attribute__info" id="users-update-attrs-metadata"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#users-update-attrs-metadata" data-target="users-update-attrs-metadata"><i class="material-icons">link</i></a>metadata</h3><span class="attribute__type">hash</span><span class="attribute__req">, optional</span><span class="bubble">protected</span><p class="attribute__desc">Hash containing user metadata.</p></div></li></ul></div><div class="relationships" id="users-update-relationships"><h4 class="anchor__wrapper relationships__heading"><a class="anchor" href="#users-update-relationships" data-target="users-update-relationships"><i class="material-icons">link</i></a>Relationships</h4><ul class="relationships__list"><li class="relationship"><div class="relationship__info" id="users-update-relationships-role"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#users-update-relationships-role" data-target="users-update-relationships-role"><i class="material-icons">link</i></a>role</h3><span class="relationship__type">hash</span><span class="relationship__req">, optional</span><span class="bubble">protected</span><p class="relationship__desc">The role relationship of the user.</p></div></li><li class="relationship"><div class="relationship__info" id="users-update-relationships-role-name"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#users-update-relationships-role-name" data-target="users-update-relationships-role-name"><i class="material-icons">link</i></a>role.name</h3><span class="relationship__type">string</span><p class="relationship__desc">The role of the user. Can be either user or admin.</p></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash" data-lang="bash">PATCH https://api.keygen.sh/v1/accounts/<%= account %>/users/{ID} \
+  -d '{ "data": { "type": "users", "attributes": {DATA}, relationships: {DATA} } }'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl -X PATCH https://api.keygen.sh/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298 \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Authorization: Bearer <%= token %>' \
+  -d '{
+        "data": {
+          "type": "users",
+          "attributes": {
+            "metadata": {
+              "nickname": "Jack"
+            }
+          }
+        }
+      }'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><pre><code class="json" data-lang="bash">{
+  "data": {
+    "id": "a5a154d2-f026-40fa-bc8d-a7e3ca415298",
+    "type": "users",
+    "attributes": {
+      "name": "John Doe",
+      "email": "jdoe@keygen.sh",
+      "metadata": {
+        "nickname": "Jack"
+      },
+      "created": "<%= created %>",
+      "updated": "<%= updated %>"
+    },
+    "relationships": {
+      "account": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>"
+        }
+      },
+      "products": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/products"
+        }
+      },
+      "licenses": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/licenses"
+        }
+      },
+      "machines": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/machines"
+        }
+      },
+      "tokens": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/tokens"
+        }
+      },
+      "role": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+        }
+      }
+    }
+  }
+}</code></pre></div></div></article><article class="method" id="users-delete"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#users-delete" data-target="users-delete"><i class="material-icons">link</i></a>Delete a user</h2><p>Permanently deletes a user. It cannot be undone. This action also immediately
+deletes any licenses and machines that the user is associated with.</p>
+</div><div class="parameters" id="users-delete-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#users-delete-params" data-target="users-delete-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="users-delete-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#users-delete-params-account" data-target="users-delete-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="users-delete-params-id"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#users-delete-params-id" data-target="users-delete-params-id"><i class="material-icons">link</i></a>id</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier of the user to be retrieved.</p></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash" data-lang="bash">DELETE https://api.keygen.sh/v1/accounts/<%= account %>/users/{ID}
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl -X DELETE https://api.keygen.sh/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298 \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Authorization: Bearer <%= token %>'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><pre><code class="no-highlight">No content</code></pre></div></div></article><article class="method" id="users-list"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#users-list" data-target="users-list"><i class="material-icons">link</i></a>List all users</h2><p>Returns a list of users. The users are returned sorted by creation date,
+with the most recent users appearing first.</p>
+</div><div class="parameters" id="users-list-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#users-list-params" data-target="users-list-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="users-list-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#users-list-params-account" data-target="users-list-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li></ul></div><div class="filters" id="users-list-filters"><h4 class="anchor__wrapper filters__heading"><a class="anchor" href="#users-list-filters" data-target="users-list-filters"><i class="material-icons">link</i></a>Filters</h4><ul class="filters__list"><li class="filter"><div class="filter__info" id="users-list-filters-limit"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#users-list-filters-limit" data-target="users-list-filters-limit"><i class="material-icons">link</i></a>limit</h3><span class="filter__type">integer</span><span class="filter__default">, default is<code>10</code></span><p class="filter__desc">A limit on the number of users to be returned. Limit must be a number between 1 and 100.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/users?limit=25</code></pre></div></li><li class="filter"><div class="filter__info" id="users-list-filters-page"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#users-list-filters-page" data-target="users-list-filters-page"><i class="material-icons">link</i></a>page</h3><span class="filter__type">hash</span><p class="filter__desc">Hash containing page size and page number. Page size must be a number between 1 and 100</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/users?page[size]=15&amp;page[number]=2</code></pre></div></li><li class="filter"><div class="filter__info" id="users-list-filters-product"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#users-list-filters-product" data-target="users-list-filters-product"><i class="material-icons">link</i></a>product</h3><span class="filter__type">string</span><p class="filter__desc">The identifier of the product to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/users?product=c6772cd4-c89c-45fa-ab19-395087d79a2d</code></pre></div></li><li class="filter"><div class="filter__info" id="users-list-filters-roles"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#users-list-filters-roles" data-target="users-list-filters-roles"><i class="material-icons">link</i></a>roles</h3><span class="filter__type">array</span><span class="filter__default">, default is<code>user</code></span><p class="filter__desc">Array containing role names to filter by. The following roles are available: admin, user.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/users?roles[]=admin&amp;roles[]=user</code></pre></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash" data-lang="bash">GET https://api.keygen.sh/v1/accounts/<%= account %>/users{FILTERS}
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl https://api.keygen.sh/v1/accounts/<%= account %>/users?limit=15 -g \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Authorization: Bearer <%= token %>'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><pre><code class="json" data-lang="bash">{
+  "data": [
+    {
+      "id": "a5a154d2-f026-40fa-bc8d-a7e3ca415298",
+      "type": "users",
+      "attributes": {
+        "name": "John Doe",
+        "email": "jdoe@keygen.sh",
+        "metadata": {},
+        "created": "<%= created %>",
+        "updated": "<%= created %>"
+      },
+      "relationships": {
+        "account": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>"
+          }
+        },
+        "products": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/products"
+          }
+        },
+        "licenses": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/licenses"
+          }
+        },
+        "machines": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/machines"
+          }
+        },
+        "tokens": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/tokens"
+          }
+        },
+        "role": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+          }
+        }
+      }
+    },
+    …
+  ]
+}</code></pre></div></div></article><section class="method" id="users-actions"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#users-actions" data-target="users-actions"><i class="material-icons">link</i></a>User actions</h2><p>Actions for the user resource.</p>
+</div><article class="article" id="users-actions-update-password"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#users-actions-update-password" data-target="users-actions-update-password"><i class="material-icons">link</i></a>Update password</h3><p>Action to update the user&#39;s password. A user&#39;s password can <strong>only</strong> be
+updated when authenticated as the given user.</p>
+</div><div class="parameters" id="users-update-password-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#users-update-password-params" data-target="users-update-password-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="users-update-password-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#users-update-password-params-account" data-target="users-update-password-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="users-update-password-params-id"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#users-update-password-params-id" data-target="users-update-password-params-id"><i class="material-icons">link</i></a>id</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier of the user to be retrieved.</p></div></li></ul></div><div class="metas" id="users-update-password-meta"><h4 class="anchor__wrapper metas__heading"><a class="anchor" href="#users-update-password-meta" data-target="users-update-password-meta"><i class="material-icons">link</i></a>Meta</h4><ul class="metas__list"><li class="meta"><div class="meta__info" id="users-update-password-metas-oldPassword"><h3 class="anchor__wrapper meta__name"><a class="anchor" href="#users-update-password-meta-oldPassword" data-target="users-update-password-meta-oldPassword"><i class="material-icons">link</i></a>oldPassword</h3><span class="meta__type">string</span><span class="meta__req">, required</span><p class="meta__desc">The current password for the user.</p></div></li><li class="meta"><div class="meta__info" id="users-update-password-metas-newPassword"><h3 class="anchor__wrapper meta__name"><a class="anchor" href="#users-update-password-meta-newPassword" data-target="users-update-password-meta-newPassword"><i class="material-icons">link</i></a>newPassword</h3><span class="meta__type">string</span><span class="meta__req">, required</span><p class="meta__desc">The new password for the user.</p></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash" data-lang="bash">POST https://api.keygen.sh/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/actions/update-password \
+  -d '{ "meta": {DATA} }'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl -X POST https://api.keygen.sh/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/actions/update-password \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Authorization: Bearer <%= token %>' \
+  -d '{
+        "meta": {
+          "oldPassword": "password123",
+          "newPassword": "Ep66YCGTD*kc=4AFotPf;DQ3G+@9eQ"
+        }
+      }'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><pre><code class="json" data-lang="bash">{
+  "data": {
+    "id": "a5a154d2-f026-40fa-bc8d-a7e3ca415298",
+    "type": "users",
+    "attributes": {
+      "name": "John Doe",
+      "email": "jdoe@keygen.sh",
+      "metadata": {},
+      "created": "<%= created %>",
+      "updated": "<%= updated %>"
+    },
+    "relationships": {
+      "account": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>"
+        }
+      },
+      "products": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/products"
+        }
+      },
+      "licenses": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/licenses"
+        }
+      },
+      "machines": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/machines"
+        }
+      },
+      "tokens": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/tokens"
+        }
+      },
+      "role": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+        }
+      }
+    }
+  }
+}
+</code></pre></div></div></article><article class="article" id="users-actions-reset-password"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#users-actions-reset-password" data-target="users-actions-reset-password"><i class="material-icons">link</i></a>Reset password</h3><p>Action to reset the user&#39;s password. Password reset tokens expire 24 hours
+after <a href="#passwords">requesting the reset</a>.</p>
+</div><div class="parameters" id="users-reset-password-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#users-reset-password-params" data-target="users-reset-password-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="users-reset-password-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#users-reset-password-params-account" data-target="users-reset-password-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="users-reset-password-params-id"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#users-reset-password-params-id" data-target="users-reset-password-params-id"><i class="material-icons">link</i></a>id</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier of the user to be retrieved.</p></div></li></ul></div><div class="metas" id="users-reset-password-meta"><h4 class="anchor__wrapper metas__heading"><a class="anchor" href="#users-reset-password-meta" data-target="users-reset-password-meta"><i class="material-icons">link</i></a>Meta</h4><ul class="metas__list"><li class="meta"><div class="meta__info" id="users-reset-password-metas-passwordResetToken"><h3 class="anchor__wrapper meta__name"><a class="anchor" href="#users-reset-password-meta-passwordResetToken" data-target="users-reset-password-meta-passwordResetToken"><i class="material-icons">link</i></a>passwordResetToken</h3><span class="meta__type">string</span><span class="meta__req">, required</span><p class="meta__desc">The password reset token emailed to the user.</p></div></li><li class="meta"><div class="meta__info" id="users-reset-password-metas-newPassword"><h3 class="anchor__wrapper meta__name"><a class="anchor" href="#users-reset-password-meta-newPassword" data-target="users-reset-password-meta-newPassword"><i class="material-icons">link</i></a>newPassword</h3><span class="meta__type">string</span><span class="meta__req">, required</span><p class="meta__desc">The new password for the user.</p></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash" data-lang="bash">POST https://api.keygen.sh/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/actions/reset-password \
+  -d '{ "meta": {DATA} }'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl -X POST https://api.keygen.sh/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/actions/reset-password \
+  -H 'Content-Type: application/vnd.api+json' \
+  -d '{
+        "meta": {
+          "passwordResetToken": "a9f93c31b41642248db99fc04f4e8482.a5a154d2f02640fabc8da7e3ca415298.96d846eb5cfa38e7282b8eb406926c23cb38edf73c9e15847ac8760427003f5612c6efb5a9005f162462079af2303b79b84d0e78b1aba4c72a7cef7c984d5f80",
+          "newPassword": "Ep66YCGTD*kc=4AFotPf;DQ3G+@9eQ"
+        }
+      }'
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><pre><code class="json" data-lang="bash">{
+  "data": {
+    "id": "a5a154d2-f026-40fa-bc8d-a7e3ca415298",
+    "type": "users",
+    "attributes": {
+      "name": "John Doe",
+      "email": "jdoe@keygen.sh",
+      "metadata": {},
+      "created": "<%= created %>",
+      "updated": "<%= updated %>"
+    },
+    "relationships": {
+      "account": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>"
+        }
+      },
+      "products": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/products"
+        }
+      },
+      "licenses": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/licenses"
+        }
+      },
+      "machines": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/machines"
+        }
+      },
+      "tokens": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/tokens"
+        }
+      },
+      "role": {
+        "links": {
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+        }
+      }
+    }
+  }
+}</code></pre></div></div></article></section></section><section class="resource" id="licenses"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#licenses" data-target="licenses"><i class="material-icons">link</i></a>Licenses</h1></div></section><section class="resource" id="machines"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#machines" data-target="machines"><i class="material-icons">link</i></a>Machines</h1></div></section><section class="resource" id="keys"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#keys" data-target="keys"><i class="material-icons">link</i></a>Keys</h1></div></section><section class="resource" id="webhooks"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#webhooks" data-target="webhooks"><i class="material-icons">link</i></a>Webhooks</h1></div></section><section class="resource" id="profiles"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#profiles" data-target="profiles"><i class="material-icons">link</i></a>Profiles</h1></div></section><section class="resource" id="passwords"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#passwords" data-target="passwords"><i class="material-icons">link</i></a>Passwords</h1></div></section></div></main><div class="zoom__wrapper"><div class="zoom"></div></div><script src="/app.js"></script><script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script>var subscribeNodes = document.querySelectorAll("[data-subscribe]")
+
+Array.prototype.forEach.call(subscribeNodes, function(node) {
+  node.onclick = function() {
+    document.cookie = "MCEvilPopupClosed=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;" // Reset cookie so popup will show on click
+    require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us14.list-manage.com","uuid":"0da915687b658ef99fb6b9075","lid":"8e6c7696a2"}) })
+  }
+})</script></body></html>
