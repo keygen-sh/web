@@ -24,7 +24,7 @@ curl https://api.keygen.sh/v1/accounts/ecorp/licenses -X POST \
 Download and install libraries for Node.js, Go, Ruby, PHP, and more.</p></div><div class="lang__code"><pre><code class="javascript">const keygen = require("keygen")("1f2b43a8-b8a2-4b90-b248-9184368cda57")
 
 // Login and create a session
-const session = keygen.sessions.create({
+const session = await keygen.sessions.create({
   email, password
 })
 
