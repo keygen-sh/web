@@ -30,7 +30,7 @@ const session = await keygen.sessions.create({
 
 // Create a license policy
 const policy = await session.policies.create({
-  product: keygen.products.get({ name: "Awesome Product" }),
+  product: await session.products.retrieve("41855c2a-3e81-42dc-98df-59350cd6ae12"),
   duration: time.ms("6 months"),
   name: "Product Add-On"
 })
