@@ -299,31 +299,39 @@ parameters. All results are returned in ascending chronological order.</p>
         "account": {
           "links": {
             "related": "/v1/accounts/<%= account %>"
+          },
+          "data": {
+            "type": "accounts",
+            "id": "<%= account %>"
           }
         },
         "products": {
           "links": {
-            "related": "/v1/accounts/<%= account %>/users/6ed498fe-5f5f-49af-82ee-cb7400cc4522/products"
+            "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/products"
           }
         },
         "licenses": {
           "links": {
-            "related": "/v1/accounts/<%= account %>/users/6ed498fe-5f5f-49af-82ee-cb7400cc4522/licenses"
+            "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/licenses"
           }
         },
         "machines": {
           "links": {
-            "related": "/v1/accounts/<%= account %>/users/6ed498fe-5f5f-49af-82ee-cb7400cc4522/machines"
+            "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/machines"
           }
         },
         "tokens": {
           "links": {
-            "related": "/v1/accounts/<%= account %>/users/6ed498fe-5f5f-49af-82ee-cb7400cc4522/tokens"
+            "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/tokens"
           }
         },
         "role": {
           "links": {
-            "related": "/v1/accounts/<%= account %>/users/6ed498fe-5f5f-49af-82ee-cb7400cc4522/role"
+            "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+          },
+          "data": {
+            "type": "roles",
+            "id": "2eb95e0a-113e-4399-ba96-75672b2ef445"
           }
         }
       }
@@ -373,6 +381,10 @@ an identical token, signaling a retried event.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       }
     }
@@ -403,6 +415,10 @@ an identical token, signaling a retried event.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       }
     }
@@ -425,11 +441,19 @@ after generating/regenerating a token.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "bearer": {
         "links": {
           "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298"
+        },
+        "data": {
+          "type": "users",
+          "id": "a5a154d2-f026-40fa-bc8d-a7e3ca415298"
         }
       }
     }
@@ -456,11 +480,19 @@ see the <a href="#products-tokens">product token relationship</a>.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "bearer": {
         "links": {
           "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298"
+        },
+        "data": {
+          "type": "users",
+          "id": "a5a154d2-f026-40fa-bc8d-a7e3ca415298"
         }
       }
     }
@@ -484,11 +516,19 @@ see the <a href="#products-tokens">product token relationship</a>.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "bearer": {
         "links": {
-          "related": "/v1/accounts/<%= account %>/products/a5a154d2-f026-40fa-bc8d-a7e3ca415298"
+          "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298"
+        },
+        "data": {
+          "type": "users",
+          "id": "a5a154d2-f026-40fa-bc8d-a7e3ca415298"
         }
       }
     }
@@ -514,11 +554,19 @@ with a new secure token, and extend the expiry by 2 weeks.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "bearer": {
         "links": {
           "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298"
+        },
+        "data": {
+          "type": "users",
+          "id": "a5a154d2-f026-40fa-bc8d-a7e3ca415298"
         }
       }
     }
@@ -552,11 +600,19 @@ scoped to the authenticated bearer.</p>
         "account": {
           "links": {
             "related": "/v1/accounts/<%= account %>"
+          },
+          "data": {
+            "type": "accounts",
+            "id": "<%= account %>"
           }
         },
         "bearer": {
           "links": {
             "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298"
+          },
+          "data": {
+            "type": "users",
+            "id": "a5a154d2-f026-40fa-bc8d-a7e3ca415298"
           }
         }
       }
@@ -655,11 +711,19 @@ as the account resource&#39;s relationships.</p>
       "billing": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/billing"
+        },
+        "data": {
+          "type": "billings",
+          "id": "00461c96-27c3-4c68-b180-e6b7bc13dfab"
         }
       },
       "plan": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/plan"
+        },
+        "data": {
+          "type": "plans",
+          "id": "ecd0aaa1-86e7-4f06-9f82-2985585c94a3"
         }
       },
       "webhookEndpoints": {
@@ -760,11 +824,19 @@ as the account resource&#39;s relationships.</p>
       "billing": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/billing"
+        },
+        "data": {
+          "type": "billings",
+          "id": "00461c96-27c3-4c68-b180-e6b7bc13dfab"
         }
       },
       "plan": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/plan"
+        },
+        "data": {
+          "type": "plans",
+          "id": "ecd0aaa1-86e7-4f06-9f82-2985585c94a3"
         }
       },
       "webhookEndpoints": {
@@ -838,11 +910,19 @@ as the account resource&#39;s relationships.</p>
       "billing": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/billing"
+        },
+        "data": {
+          "type": "billings",
+          "id": "00461c96-27c3-4c68-b180-e6b7bc13dfab"
         }
       },
       "plan": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/plan"
+        },
+        "data": {
+          "type": "plans",
+          "id": "ecd0aaa1-86e7-4f06-9f82-2985585c94a3"
         }
       },
       "webhookEndpoints": {
@@ -926,11 +1006,19 @@ passed. Any parameters not provided will be left unchanged.</p>
       "billing": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/billing"
+        },
+        "data": {
+          "type": "billings",
+          "id": "00461c96-27c3-4c68-b180-e6b7bc13dfab"
         }
       },
       "plan": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/plan"
+        },
+        "data": {
+          "type": "plans",
+          "id": "ecd0aaa1-86e7-4f06-9f82-2985585c94a3"
         }
       },
       "webhookEndpoints": {
@@ -1090,11 +1178,19 @@ deletes all resources that the account is associated with.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "fff33d8f-11b8-428d-a949-db2b74d7c2f2"
         }
       },
       "plan": {
         "links": {
           "related": "/v1/plans/40e07d64-ecc9-40ba-a26a-c137e164fdd4"
+        },
+        "data": {
+          "type": "plans",
+          "id": "40e07d64-ecc9-40ba-a26a-c137e164fdd4"
         }
       }
     }
@@ -1130,11 +1226,19 @@ deletes all resources that the account is associated with.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "fff33d8f-11b8-428d-a949-db2b74d7c2f2"
         }
       },
       "plan": {
         "links": {
           "related": "/v1/plans/40e07d64-ecc9-40ba-a26a-c137e164fdd4"
+        },
+        "data": {
+          "type": "plans",
+          "id": "40e07d64-ecc9-40ba-a26a-c137e164fdd4"
         }
       }
     }
@@ -1236,6 +1340,10 @@ as the product resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "policies": {
@@ -1299,6 +1407,10 @@ as the product resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "policies": {
@@ -1352,6 +1464,10 @@ as the product resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "policies": {
@@ -1419,6 +1535,10 @@ passed. Any parameters not provided will be left unchanged.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "policies": {
@@ -1482,6 +1602,10 @@ scoped to the authenticated bearer.</p>
         "account": {
           "links": {
             "related": "/v1/accounts/<%= account %>"
+          },
+          "data": {
+            "type": "accounts",
+            "id": "<%= account %>"
           }
         },
         "policies": {
@@ -1533,11 +1657,19 @@ scoped to the authenticated bearer.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "bearer": {
         "links": {
           "related": "/v1/accounts/<%= account %>/products/31339351-f7f5-4bdd-8346-5d8399a1ac07"
+        },
+        "data": {
+          "type": "products",
+          "id": "31339351-f7f5-4bdd-8346-5d8399a1ac07"
         }
       }
     }
@@ -1570,11 +1702,19 @@ as the policy resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/policies/0b4b1a9a-e25a-4f14-a95e-d9dd378d6065/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "3ab38aae-bbf7-4846-9c32-af9d94bf5ad4"
         }
       },
       "pool": {
@@ -1636,11 +1776,19 @@ as the policy resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/policies/0b4b1a9a-e25a-4f14-a95e-d9dd378d6065/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "3ab38aae-bbf7-4846-9c32-af9d94bf5ad4"
         }
       },
       "pool": {
@@ -1687,11 +1835,19 @@ as the policy resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/policies/0b4b1a9a-e25a-4f14-a95e-d9dd378d6065/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "3ab38aae-bbf7-4846-9c32-af9d94bf5ad4"
         }
       },
       "pool": {
@@ -1748,11 +1904,19 @@ passed. Any parameters not provided will be left unchanged.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/policies/0b4b1a9a-e25a-4f14-a95e-d9dd378d6065/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "3ab38aae-bbf7-4846-9c32-af9d94bf5ad4"
         }
       },
       "pool": {
@@ -1810,11 +1974,19 @@ scoped to the authenticated bearer.</p>
           "account": {
             "links": {
               "related": "/v1/accounts/<%= account %>"
+            },
+            "data": {
+              "type": "accounts",
+              "id": "<%= account %>"
             }
           },
           "product": {
             "links": {
               "related": "/v1/accounts/<%= account %>/policies/0b4b1a9a-e25a-4f14-a95e-d9dd378d6065/product"
+            },
+            "data": {
+              "type": "products",
+              "id": "3ab38aae-bbf7-4846-9c32-af9d94bf5ad4"
             }
           },
           "pool": {
@@ -1856,16 +2028,28 @@ authentication tokens. This cannot be undone.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
-          "related": "/v1/accounts/<%= account %>/keys/6331bcae-73c1-4a7e-bf02-bbf77cbb81d7/product"
+          "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "1f286fb6-c9bb-498b-a4e7-6c67748b1f4f"
         }
       },
       "policy": {
         "links": {
-          "related": "/v1/accounts/<%= account %>/keys/6331bcae-73c1-4a7e-bf02-bbf77cbb81d7/policy"
+          "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/policy"
+        },
+        "data": {
+          "type": "policies",
+          "id": "a5a154d2-f026-40fa-bc8d-a7e3ca415298"
         }
       }
     }
@@ -1891,6 +2075,10 @@ canonical link for it does not exist.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "products": {
@@ -1916,6 +2104,10 @@ canonical link for it does not exist.</p>
       "role": {
         "links": {
           "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+        },
+        "data": {
+          "type": "roles",
+          "id": "2eb95e0a-113e-4399-ba96-75672b2ef445"
         }
       }
     }
@@ -1957,6 +2149,10 @@ canonical link for it does not exist.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "products": {
@@ -1982,6 +2178,10 @@ canonical link for it does not exist.</p>
       "role": {
         "links": {
           "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+        },
+        "data": {
+          "type": "roles",
+          "id": "2eb95e0a-113e-4399-ba96-75672b2ef445"
         }
       }
     }
@@ -2007,6 +2207,10 @@ canonical link for it does not exist.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "products": {
@@ -2032,6 +2236,10 @@ canonical link for it does not exist.</p>
       "role": {
         "links": {
           "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+        },
+        "data": {
+          "type": "roles",
+          "id": "2eb95e0a-113e-4399-ba96-75672b2ef445"
         }
       }
     }
@@ -2071,6 +2279,10 @@ passed. Any parameters not provided will be left unchanged.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "products": {
@@ -2096,6 +2308,10 @@ passed. Any parameters not provided will be left unchanged.</p>
       "role": {
         "links": {
           "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+        },
+        "data": {
+          "type": "roles",
+          "id": "2eb95e0a-113e-4399-ba96-75672b2ef445"
         }
       }
     }
@@ -2131,6 +2347,10 @@ scoped to the authenticated bearer.</p>
         "account": {
           "links": {
             "related": "/v1/accounts/<%= account %>"
+          },
+          "data": {
+            "type": "accounts",
+            "id": "<%= account %>"
           }
         },
         "products": {
@@ -2156,6 +2376,10 @@ scoped to the authenticated bearer.</p>
         "role": {
           "links": {
             "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+          },
+          "data": {
+            "type": "roles",
+            "id": "2eb95e0a-113e-4399-ba96-75672b2ef445"
           }
         }
       }
@@ -2192,6 +2416,10 @@ updated when authenticated as the given user.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "products": {
@@ -2217,6 +2445,10 @@ updated when authenticated as the given user.</p>
       "role": {
         "links": {
           "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+        },
+        "data": {
+          "type": "roles",
+          "id": "2eb95e0a-113e-4399-ba96-75672b2ef445"
         }
       }
     }
@@ -2250,6 +2482,10 @@ after <a href="#passwords">requesting the reset</a>.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "products": {
@@ -2275,6 +2511,10 @@ after <a href="#passwords">requesting the reset</a>.</p>
       "role": {
         "links": {
           "related": "/v1/accounts/<%= account %>/users/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+        },
+        "data": {
+          "type": "roles",
+          "id": "2eb95e0a-113e-4399-ba96-75672b2ef445"
         }
       }
     }
@@ -2300,21 +2540,37 @@ as the license resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "eb4e14a7-ea41-4ede-b3fe-5e835c17156b"
         }
       },
       "policy": {
         "links": {
           "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/policy"
+        },
+        "data": {
+          "type": "policies",
+          "id": "70af414d-6152-4ff1-892b-15a40ada6b4e"
         }
       },
       "user": {
         "links": {
           "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/user"
+        },
+        "data": {
+          "type": "users",
+          "id": "e8bf27c0-5f9c-4135-a65c-f52706c5fd4c"
         }
       },
       "machines": {
@@ -2374,21 +2630,37 @@ as the license resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "eb4e14a7-ea41-4ede-b3fe-5e835c17156b"
         }
       },
       "policy": {
         "links": {
           "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/policy"
+        },
+        "data": {
+          "type": "policies",
+          "id": "37b632f4-8e1e-4af9-8717-634765364628"
         }
       },
       "user": {
         "links": {
           "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/user"
+        },
+        "data": {
+          "type": "users",
+          "id": "015a33dd-3aca-43a9-8786-328042cce30a"
         }
       },
       "machines": {
@@ -2422,21 +2694,37 @@ as the license resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
-          "related": "/v1/accounts/<%= account %>/licenses/eef41cf5-f32e-4dab-a867-b9738d87285b/product"
+          "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "eb4e14a7-ea41-4ede-b3fe-5e835c17156b"
         }
       },
       "policy": {
         "links": {
-          "related": "/v1/accounts/<%= account %>/licenses/eef41cf5-f32e-4dab-a867-b9738d87285b/policy"
+          "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/policy"
+        },
+        "data": {
+          "type": "policies",
+          "id": "70af414d-6152-4ff1-892b-15a40ada6b4e"
         }
       },
       "user": {
         "links": {
-          "related": "/v1/accounts/<%= account %>/licenses/eef41cf5-f32e-4dab-a867-b9738d87285b/user"
+          "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/user"
+        },
+        "data": {
+          "type": "users",
+          "id": "e8bf27c0-5f9c-4135-a65c-f52706c5fd4c"
         }
       },
       "machines": {
@@ -2481,21 +2769,37 @@ passed. Any parameters not provided will be left unchanged.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "eb4e14a7-ea41-4ede-b3fe-5e835c17156b"
         }
       },
       "policy": {
         "links": {
           "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/policy"
+        },
+        "data": {
+          "type": "policies",
+          "id": "70af414d-6152-4ff1-892b-15a40ada6b4e"
         }
       },
       "user": {
         "links": {
           "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/user"
+        },
+        "data": {
+          "type": "users",
+          "id": "e8bf27c0-5f9c-4135-a65c-f52706c5fd4c"
         }
       },
       "machines": {
@@ -2541,21 +2845,37 @@ scoped to the authenticated bearer.</p>
           "account": {
             "links": {
               "related": "/v1/accounts/<%= account %>"
+            },
+            "data": {
+              "type": "accounts",
+              "id": "<%= account %>"
             }
           },
           "product": {
             "links": {
               "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/product"
+            },
+            "data": {
+              "type": "products",
+              "id": "eb4e14a7-ea41-4ede-b3fe-5e835c17156b"
             }
           },
           "policy": {
             "links": {
               "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/policy"
+            },
+            "data": {
+              "type": "policies",
+              "id": "37b632f4-8e1e-4af9-8717-634765364628"
             }
           },
           "user": {
             "links": {
               "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/user"
+            },
+            "data": {
+              "type": "users",
+              "id": "015a33dd-3aca-43a9-8786-328042cce30a"
             }
           },
           "machines": {
@@ -2621,21 +2941,37 @@ scoped to the authenticated bearer.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "eb4e14a7-ea41-4ede-b3fe-5e835c17156b"
         }
       },
       "policy": {
         "links": {
           "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/policy"
+        },
+        "data": {
+          "type": "policies",
+          "id": "70af414d-6152-4ff1-892b-15a40ada6b4e"
         }
       },
       "user": {
         "links": {
           "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/user"
+        },
+        "data": {
+          "type": "users",
+          "id": "e8bf27c0-5f9c-4135-a65c-f52706c5fd4c"
         }
       },
       "machines": {
@@ -2676,21 +3012,37 @@ as the machine resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "22b78db6-6a2e-4a7f-9369-157976148c4c"
         }
       },
       "license": {
         "links": {
           "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/license"
+        },
+        "data": {
+          "type": "licenses",
+          "id": "4097d726-6cc5-4156-8575-3a96387e19b4"
         }
       },
       "user": {
         "links": {
           "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/user"
+        },
+        "data": {
+          "type": "users",
+          "id": "15ad7012-b570-48b7-88c1-fbab68be9d05"
         }
       }
     }
@@ -2741,21 +3093,37 @@ as the machine resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "22b78db6-6a2e-4a7f-9369-157976148c4c"
         }
       },
       "license": {
         "links": {
           "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/license"
+        },
+        "data": {
+          "type": "licenses",
+          "id": "4097d726-6cc5-4156-8575-3a96387e19b4"
         }
       },
       "user": {
         "links": {
           "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/user"
+        },
+        "data": {
+          "type": "users",
+          "id": "15ad7012-b570-48b7-88c1-fbab68be9d05"
         }
       }
     }
@@ -2787,21 +3155,37 @@ as the machine resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "22b78db6-6a2e-4a7f-9369-157976148c4c"
         }
       },
       "license": {
         "links": {
           "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/license"
+        },
+        "data": {
+          "type": "licenses",
+          "id": "4097d726-6cc5-4156-8575-3a96387e19b4"
         }
       },
       "user": {
         "links": {
           "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/user"
+        },
+        "data": {
+          "type": "users",
+          "id": "15ad7012-b570-48b7-88c1-fbab68be9d05"
         }
       }
     }
@@ -2843,21 +3227,37 @@ passed. Any parameters not provided will be left unchanged.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "22b78db6-6a2e-4a7f-9369-157976148c4c"
         }
       },
       "license": {
         "links": {
           "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/license"
+        },
+        "data": {
+          "type": "licenses",
+          "id": "4097d726-6cc5-4156-8575-3a96387e19b4"
         }
       },
       "user": {
         "links": {
           "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/user"
+        },
+        "data": {
+          "type": "users",
+          "id": "15ad7012-b570-48b7-88c1-fbab68be9d05"
         }
       }
     }
@@ -2899,21 +3299,37 @@ scoped to the authenticated bearer.</p>
           "account": {
             "links": {
               "related": "/v1/accounts/<%= account %>"
+            },
+            "data": {
+              "type": "accounts",
+              "id": "<%= account %>"
             }
           },
           "product": {
             "links": {
               "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/product"
+            },
+            "data": {
+              "type": "products",
+              "id": "22b78db6-6a2e-4a7f-9369-157976148c4c"
             }
           },
           "license": {
             "links": {
               "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/license"
+            },
+            "data": {
+              "type": "licenses",
+              "id": "4097d726-6cc5-4156-8575-3a96387e19b4"
             }
           },
           "user": {
             "links": {
               "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/user"
+            },
+            "data": {
+              "type": "users",
+              "id": "15ad7012-b570-48b7-88c1-fbab68be9d05"
             }
           }
         }
@@ -2944,16 +3360,28 @@ as the key resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "1f286fb6-c9bb-498b-a4e7-6c67748b1f4f"
         }
       },
       "policy": {
         "links": {
           "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/policy"
+        },
+        "data": {
+          "type": "policies",
+          "id": "95981290-518b-4109-a611-c0001214b3c5"
         }
       }
     }
@@ -2997,16 +3425,28 @@ as the key resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "1f286fb6-c9bb-498b-a4e7-6c67748b1f4f"
         }
       },
       "policy": {
         "links": {
           "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/policy"
+        },
+        "data": {
+          "type": "policies",
+          "id": "4ba02145-d1e7-4443-8104-dd1e4236d869"
         }
       }
     }
@@ -3033,16 +3473,28 @@ as the key resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "1f286fb6-c9bb-498b-a4e7-6c67748b1f4f"
         }
       },
       "policy": {
         "links": {
           "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/policy"
+        },
+        "data": {
+          "type": "policies",
+          "id": "95981290-518b-4109-a611-c0001214b3c5"
         }
       }
     }
@@ -3079,16 +3531,28 @@ passed. Any parameters not provided will be left unchanged.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "product": {
         "links": {
           "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/product"
+        },
+        "data": {
+          "type": "products",
+          "id": "1f286fb6-c9bb-498b-a4e7-6c67748b1f4f"
         }
       },
       "policy": {
         "links": {
           "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/policy"
+        },
+        "data": {
+          "type": "policies",
+          "id": "95981290-518b-4109-a611-c0001214b3c5"
         }
       }
     }
@@ -3125,16 +3589,28 @@ scoped to the authenticated bearer.</p>
           "account": {
             "links": {
               "related": "/v1/accounts/<%= account %>"
+            },
+            "data": {
+              "type": "accounts",
+              "id": "<%= account %>"
             }
           },
           "product": {
             "links": {
               "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/product"
+            },
+            "data": {
+              "type": "products",
+              "id": "1f286fb6-c9bb-498b-a4e7-6c67748b1f4f"
             }
           },
           "policy": {
             "links": {
               "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/policy"
+            },
+            "data": {
+              "type": "policies",
+              "id": "95981290-518b-4109-a611-c0001214b3c5"
             }
           }
         }
@@ -3277,6 +3753,10 @@ as the endpoint resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       }
     }
@@ -3312,6 +3792,10 @@ as the endpoint resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       }
     }
@@ -3338,6 +3822,10 @@ as the endpoint resource&#39;s relationships.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       }
     }
@@ -3374,6 +3862,10 @@ passed. Any parameters not provided will be left unchanged.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       }
     }
@@ -3409,6 +3901,10 @@ date, with the most recent endpoints appearing first.</p>
           "account": {
             "links": {
               "related": "/v1/accounts/<%= account %>"
+            },
+            "data": {
+              "type": "accounts",
+              "id": "<%= account %>"
             }
           }
         }
@@ -3429,7 +3925,7 @@ as the event resource&#39;s relationships.</p>
   },
   "attributes": {
     "endpoint": "https://api.example.com/keygen",
-    "payload": "{\"data\":{\"id\":\"b18e3f3a-330c-4d8d-ae2e-014db21fa827\",\"type\":\"licenses\",\"links\":{\"self\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827\"},\"attributes\":{\"key\":\"024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v1\",\"expiry\":\"<%= expiry %>\",\"encrypted\":false,\"metadata\":{},\"created\":\"<%= created %>\",\"updated\":\"<%= created %>\"},\"relationships\":{\"account\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>\"}},\"product\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/product\"}},\"policy\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/policy\"}},\"user\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/user\"}},\"machines\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/machines?license=b18e3f3a-330c-4d8d-ae2e-014db21fa827\"}}}}}",
+    "payload": "{\"data\":{\"id\":\"438fc352-3fb5-4f0a-ae06-19d6f55ed5f8\",\"type\":\"licenses\",\"links\":{\"self\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8\"},\"attributes\":{\"key\":\"438fc3523fb54f0aae0619d6f55ed5f8-aeb27205c6f82479f888d83ff54b73e4-4cde9bc9cbac8f245220428cc1d0ab9c-119beb9ae7373524deb53cc20f7b14v1\",\"expiry\":\"2017-01-27T16:05:26.207Z\",\"encrypted\":true,\"metadata\":{},\"created\":\"2017-01-13T16:05:26.207Z\",\"updated\":\"2017-01-13T16:05:26.207Z\"},\"relationships\":{\"account\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502\"},\"data\":{\"type\":\"accounts\",\"id\":\"436430b4-de65-4b1d-a120-97b231395502\"}},\"product\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/product\"},\"data\":{\"type\":\"products\",\"id\":\"558c385c-ce9f-483a-8339-f8b71792426f\"}},\"policy\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/policy\"},\"data\":{\"type\":\"policies\",\"id\":\"d16e6c26-bfbd-47ae-94d5-d9b899e18cfa\"}},\"user\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/user\"},\"data\":{\"type\":\"users\",\"id\":\"7e401525-a2ae-4998-b4a3-84cc2e8dfa2f\"}},\"machines\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/machines\"}}}}}",
     "event": "license.created",
     "status": "queued",
     "created": "<%= created %>",
@@ -3439,6 +3935,10 @@ as the event resource&#39;s relationships.</p>
     "account": {
       "links": {
         "related": "/v1/accounts/<%= account %>"
+      },
+      "data": {
+        "type": "accounts",
+        "id": "<%= account %>"
       }
     }
   }
@@ -3459,7 +3959,7 @@ as the event resource&#39;s relationships.</p>
   },
   "attributes": {
     "endpoint": "https://api.example.com/keygen",
-    "payload": "{\"data\":{\"id\":\"b18e3f3a-330c-4d8d-ae2e-014db21fa827\",\"type\":\"licenses\",\"links\":{\"self\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827\"},\"attributes\":{\"key\":\"024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v1\",\"expiry\":\"<%= expiry %>\",\"encrypted\":false,\"metadata\":{},\"created\":\"<%= created %>\",\"updated\":\"<%= created %>\"},\"relationships\":{\"account\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>\"}},\"product\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/product\"}},\"policy\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/policy\"}},\"user\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/user\"}},\"machines\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/machines?license=b18e3f3a-330c-4d8d-ae2e-014db21fa827\"}}}}}",
+    "payload": "{\"data\":{\"id\":\"438fc352-3fb5-4f0a-ae06-19d6f55ed5f8\",\"type\":\"licenses\",\"links\":{\"self\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8\"},\"attributes\":{\"key\":\"438fc3523fb54f0aae0619d6f55ed5f8-aeb27205c6f82479f888d83ff54b73e4-4cde9bc9cbac8f245220428cc1d0ab9c-119beb9ae7373524deb53cc20f7b14v1\",\"expiry\":\"2017-01-27T16:05:26.207Z\",\"encrypted\":true,\"metadata\":{},\"created\":\"2017-01-13T16:05:26.207Z\",\"updated\":\"2017-01-13T16:05:26.207Z\"},\"relationships\":{\"account\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502\"},\"data\":{\"type\":\"accounts\",\"id\":\"436430b4-de65-4b1d-a120-97b231395502\"}},\"product\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/product\"},\"data\":{\"type\":\"products\",\"id\":\"558c385c-ce9f-483a-8339-f8b71792426f\"}},\"policy\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/policy\"},\"data\":{\"type\":\"policies\",\"id\":\"d16e6c26-bfbd-47ae-94d5-d9b899e18cfa\"}},\"user\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/user\"},\"data\":{\"type\":\"users\",\"id\":\"7e401525-a2ae-4998-b4a3-84cc2e8dfa2f\"}},\"machines\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/machines\"}}}}}",
     "event": "license.created",
     "status": "queued",
     "created": "<%= created %>",
@@ -3469,6 +3969,10 @@ as the event resource&#39;s relationships.</p>
     "account": {
       "links": {
         "related": "/v1/accounts/<%= account %>"
+      },
+      "data": {
+        "type": "accounts",
+        "id": "<%= account %>"
       }
     }
   }
@@ -3492,7 +3996,7 @@ with the most recent events appearing first.</p>
       },
       "attributes": {
         "endpoint": "https://api.example.com/keygen",
-        "payload": "{\"data\":{\"id\":\"b18e3f3a-330c-4d8d-ae2e-014db21fa827\",\"type\":\"licenses\",\"links\":{\"self\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827\"},\"attributes\":{\"key\":\"024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v1\",\"expiry\":\"<%= expiry %>\",\"encrypted\":false,\"metadata\":{},\"created\":\"<%= created %>\",\"updated\":\"<%= created %>\"},\"relationships\":{\"account\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>\"}},\"product\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/product\"}},\"policy\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/policy\"}},\"user\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/user\"}},\"machines\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/machines?license=b18e3f3a-330c-4d8d-ae2e-014db21fa827\"}}}}}",
+        "payload": "{\"data\":{\"id\":\"438fc352-3fb5-4f0a-ae06-19d6f55ed5f8\",\"type\":\"licenses\",\"links\":{\"self\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8\"},\"attributes\":{\"key\":\"438fc3523fb54f0aae0619d6f55ed5f8-aeb27205c6f82479f888d83ff54b73e4-4cde9bc9cbac8f245220428cc1d0ab9c-119beb9ae7373524deb53cc20f7b14v1\",\"expiry\":\"2017-01-27T16:05:26.207Z\",\"encrypted\":true,\"metadata\":{},\"created\":\"2017-01-13T16:05:26.207Z\",\"updated\":\"2017-01-13T16:05:26.207Z\"},\"relationships\":{\"account\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502\"},\"data\":{\"type\":\"accounts\",\"id\":\"436430b4-de65-4b1d-a120-97b231395502\"}},\"product\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/product\"},\"data\":{\"type\":\"products\",\"id\":\"558c385c-ce9f-483a-8339-f8b71792426f\"}},\"policy\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/policy\"},\"data\":{\"type\":\"policies\",\"id\":\"d16e6c26-bfbd-47ae-94d5-d9b899e18cfa\"}},\"user\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/user\"},\"data\":{\"type\":\"users\",\"id\":\"7e401525-a2ae-4998-b4a3-84cc2e8dfa2f\"}},\"machines\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/machines\"}}}}}",
         "event": "license.created",
         "status": "queued",
         "created": "<%= created %>",
@@ -3502,6 +4006,10 @@ with the most recent events appearing first.</p>
         "account": {
           "links": {
             "related": "/v1/accounts/<%= account %>"
+          },
+          "data": {
+            "type": "accounts",
+            "id": "<%= account %>"
           }
         }
       }
@@ -3533,7 +4041,7 @@ an identical <a href="#idempotency">idempotency token</a>.</p>
   },
   "attributes": {
     "endpoint": "https://api.example.com/keygen",
-    "payload": "{\"data\":{\"id\":\"b18e3f3a-330c-4d8d-ae2e-014db21fa827\",\"type\":\"licenses\",\"links\":{\"self\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827\"},\"attributes\":{\"key\":\"024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v1\",\"expiry\":\"<%= expiry %>\",\"encrypted\":false,\"metadata\":{},\"created\":\"<%= created %>\",\"updated\":\"<%= created %>\"},\"relationships\":{\"account\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>\"}},\"product\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/product\"}},\"policy\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/policy\"}},\"user\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/user\"}},\"machines\":{\"links\":{\"related\":\"/v1/accounts/<%= account %>/machines?license=b18e3f3a-330c-4d8d-ae2e-014db21fa827\"}}}}}",
+    "payload": "{\"data\":{\"id\":\"438fc352-3fb5-4f0a-ae06-19d6f55ed5f8\",\"type\":\"licenses\",\"links\":{\"self\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8\"},\"attributes\":{\"key\":\"438fc3523fb54f0aae0619d6f55ed5f8-aeb27205c6f82479f888d83ff54b73e4-4cde9bc9cbac8f245220428cc1d0ab9c-119beb9ae7373524deb53cc20f7b14v1\",\"expiry\":\"2017-01-27T16:05:26.207Z\",\"encrypted\":true,\"metadata\":{},\"created\":\"2017-01-13T16:05:26.207Z\",\"updated\":\"2017-01-13T16:05:26.207Z\"},\"relationships\":{\"account\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502\"},\"data\":{\"type\":\"accounts\",\"id\":\"436430b4-de65-4b1d-a120-97b231395502\"}},\"product\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/product\"},\"data\":{\"type\":\"products\",\"id\":\"558c385c-ce9f-483a-8339-f8b71792426f\"}},\"policy\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/policy\"},\"data\":{\"type\":\"policies\",\"id\":\"d16e6c26-bfbd-47ae-94d5-d9b899e18cfa\"}},\"user\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/user\"},\"data\":{\"type\":\"users\",\"id\":\"7e401525-a2ae-4998-b4a3-84cc2e8dfa2f\"}},\"machines\":{\"links\":{\"related\":\"/v1/accounts/436430b4-de65-4b1d-a120-97b231395502/licenses/438fc352-3fb5-4f0a-ae06-19d6f55ed5f8/machines\"}}}}}",
     "event": "license.created",
     "status": "queued",
     "created": "<%= updated %>",
@@ -3543,6 +4051,10 @@ an identical <a href="#idempotency">idempotency token</a>.</p>
     "account": {
       "links": {
         "related": "/v1/accounts/<%= account %>"
+      },
+      "data": {
+        "type": "accounts",
+        "id": "<%= account %>"
       }
     }
   }
@@ -3567,6 +4079,10 @@ an identical <a href="#idempotency">idempotency token</a>.</p>
       "account": {
         "links": {
           "related": "/v1/accounts/<%= account %>"
+        },
+        "data": {
+          "type": "accounts",
+          "id": "<%= account %>"
         }
       },
       "products": {
@@ -3592,6 +4108,10 @@ an identical <a href="#idempotency">idempotency token</a>.</p>
       "role": {
         "links": {
           "related": "/v1/accounts/<%= account %>/profiles/a5a154d2-f026-40fa-bc8d-a7e3ca415298/role"
+        },
+        "data": {
+          "type": "roles",
+          "id": "4f0ab56b-2418-474a-89ca-9c15bc8b0261"
         }
       }
     }
