@@ -21,16 +21,16 @@ curl https://api.keygen.sh/v1/accounts/ecorp/licenses -X POST \
           }
         }
       }'</code></pre></div></div></div></main><section class="flow__wrapper"><div class="flow"><article class="flow__step"><i class="material-icons">security</i><h2>Create policies</h2><p>Control what type of licenses each product offers.</p></article><article class="flow__step"><i class="material-icons">people</i><h2>Create users</h2><p>Allow your users to login across all your products.</p></article><article class="flow__step"><i class="material-icons">verified_user</i><h2>Create licenses</h2><p>Validate product licenses quickly and effortlessly.</p></article></div></section><section class="lang"><div class="lang__content"><h2>Use your favorite languages</h2><p>Easily use the Keygen API in the programming language of your choice.
-Download and install libraries for Node.js, Go, Ruby, PHP, and more.</p></div><div class="lang__code"><pre><code class="javascript">const keygen = require("keygen")("1f2b43a8-b8a2-4b90-b248-9184368cda57")
+Download and install libraries for Node.js, Go, Ruby, PHP, and more.</p></div><div class="lang__code"><pre><code class="javascript">const keygen = require("keygen")(process.env.KEYGEN_ACCOUNT_ID)
 
 // Authenticate and create a session
 const session = await keygen.sessions.create({
-  accessToken
+  token: process.env.KEYGEN_PRODUCT_TOKEN
 })
 
 // Create a license policy
 const policy = await session.policies.create({
-  product: await session.products.retrieve("41855c2a-3e81-42dc-98df-59350cd6ae12"),
+  product: await session.products.retrieve(process.env.KEYGEN_PRODUCT_ID),
   duration: time.ms("6 months"),
   name: "Product Add-On"
 })
@@ -48,9 +48,9 @@ const license = await user.licenses.create({
 })
 
 // Validate their new license
-const { valid } = await license.validate()
+const { meta } = await license.validate()
 
-if (valid) {
+if (meta.valid) {
   // Do something
 } else {
   // Do something else
