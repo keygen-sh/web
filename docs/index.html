@@ -3630,6 +3630,41 @@ scoped to the authenticated bearer.</p>
 </thead>
 <tbody>
 <tr>
+<td style="text-align:left"><code>account.updated</code></td>
+<td style="text-align:left">When your account is updated</td>
+<td style="text-align:left">The updated account object</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>account.paused</code></td>
+<td style="text-align:left">When your account is paused</td>
+<td style="text-align:left">The updated account object</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>account.resumed</code></td>
+<td style="text-align:left">When your account is resumed</td>
+<td style="text-align:left">The updated account object</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>account.canceled</code></td>
+<td style="text-align:left">When your account is canceled</td>
+<td style="text-align:left">The updated account object</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>account.renewed</code></td>
+<td style="text-align:left">When your account is renewed</td>
+<td style="text-align:left">The updated account object</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>account.plan.updated</code></td>
+<td style="text-align:left">When your account&#39;s plan is updated</td>
+<td style="text-align:left">The updated plan object</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>account.billing.updated</code></td>
+<td style="text-align:left">When your account&#39;s billing is updated</td>
+<td style="text-align:left">The updated billing object</td>
+</tr>
+<tr>
 <td style="text-align:left"><code>user.created</code></td>
 <td style="text-align:left">When a user is created</td>
 <td style="text-align:left">The user object</td>
@@ -3673,6 +3708,11 @@ scoped to the authenticated bearer.</p>
 <td style="text-align:left"><code>policy.deleted</code></td>
 <td style="text-align:left">When a policy is deleted</td>
 <td style="text-align:left">The deleted policy object</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>policy.pool.popped</code></td>
+<td style="text-align:left">When a key is popped from a pool</td>
+<td style="text-align:left">The popped key object</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>license.created</code></td>
@@ -3729,13 +3769,12 @@ scoped to the authenticated bearer.</p>
 <td style="text-align:left">When a key is deleted</td>
 <td style="text-align:left">The deleted key object</td>
 </tr>
-<tr>
-<td style="text-align:left"><code>key.popped</code></td>
-<td style="text-align:left">When a key is popped from a pool</td>
-<td style="text-align:left">The popped key object</td>
-</tr>
 </tbody>
 </table>
+<div class="notice notice--warning">
+  <strong>NOTE:</strong> Events that occur on &quot;sub&quot; resources like <code>account.plan</code> do
+  not trigger the parent&#39;s <code>update</code> event.
+</div>
 </div><article class="object" id="webhook-endpoints-object"><div class="description"><h2 class="anchor__wrapper object__heading"><a class="anchor" href="#webhook-endpoints-object" data-target="webhook-endpoints-object"><i class="material-icons">link</i></a>The endpoint object</h2><p>Below you will find the various attributes for the endpoint resource, as well
 as the endpoint resource&#39;s relationships.</p>
 </div><div class="attributes" id="webhook-endpoints-object-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#webhook-endpoints-object-attrs" data-target="webhook-endpoints-object-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="webhook-endpoints-object-attrs-url"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#webhook-endpoints-object-attrs-url" data-target="webhook-endpoints-object-attrs-url"><i class="material-icons">link</i></a>url</h3><span class="attribute__type">string</span><p class="attribute__desc">The url that events are dispatched to. Must use the https protocol.</p></div></li><li class="attribute"><div class="attribute__info" id="webhook-endpoints-object-attrs-created"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#webhook-endpoints-object-attrs-created" data-target="webhook-endpoints-object-attrs-created"><i class="material-icons">link</i></a>created</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the endpoint was created.</p></div></li><li class="attribute"><div class="attribute__info" id="webhook-endpoints-object-attrs-updated"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#webhook-endpoints-object-attrs-updated" data-target="webhook-endpoints-object-attrs-updated"><i class="material-icons">link</i></a>updated</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the endpoint was last updated.</p></div></li></ul></div><div class="relationships" id="webhook-endpoints-object-relationships"><h4 class="anchor__wrapper relationships__heading"><a class="anchor" href="#webhook-endpoints-object-relationships" data-target="webhook-endpoints-object-relationships"><i class="material-icons">link</i></a>Relationships</h4><ul class="relationships__list"><li class="relationship"><div class="relationship__info" id="webhook-endpoints-object-relationships-account"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#webhook-endpoints-object-relationships-account" data-target="webhook-endpoints-object-relationships-account"><i class="material-icons">link</i></a>account</h3><span class="relationship__type">individual</span><p class="relationship__desc">The account that the endpoint belongs to.</p></div></li></ul></div><div class="example__wrapper"><div class="example"><h4>Example object</h4><pre><code class="json" data-lang="bash">{
