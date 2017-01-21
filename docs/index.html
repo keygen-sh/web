@@ -79,12 +79,13 @@ of the different resources is to follow along and implement the following:</p>
 <ol>
 <li>Generate your first <a href="#tokens-generate">authentication token</a>.</li>
 <li>Create your first <a href="#products-create">product</a>.</li>
-<li>Create your first <a href="#policies-create">policy</a> for that product</li>
+<li>Create your first <a href="#policies-create">policy</a> for that product. Policies
+define the different types of licenses your product offers.</li>
 <li>Create a <a href="#users-create">user</a> for your account (or use your admin account,
 if you&#39;d rather do that).</li>
 <li>Create a <a href="#licenses-create">license</a> for that user (either using your admin
 account, or by generating a token for your user and creating the license
-on their behalf).</li>
+on their behalf). Licenses are implementations of a policy.</li>
 <li>Create a login form in your product, where you can <a href="#licenses-actions-validate">validate a user&#39;s
 license(s)</a> after log in, using their own
 token (so you don&#39;t have to hard code one of yours – which is <strong>not
