@@ -60,12 +60,24 @@ it will require an active internet connection to validate licenses.
 Keygen was designed to make licensing easy for desktop and web-based
 products. Keygen allows you to build and release your product quickly
 by offering a simple licensing API that is easy to implement.</p>
-</li><li><h4 id="why-was-keygen-created-">Why was Keygen created?</h4>
-<p>With the rise of web apps and JavaScript-based desktop apps built
-on <a href="http://electron.atom.io">Electron</a> and <a href="https://nwjs.io/">NW.js</a>,
-a void opened up for an easy licensing solution like the ones provided
-by Apple and Google for their mobile platforms. Keygen was created to
-fill that void.</p>
+</li><li><h4 id="what-licensing-models-are-supported-">What licensing models are supported?</h4>
+<p>Keygen supports almost any licensing model: single machine-locked licenses,
+floating licenses with and without machine limits, feature-based licenses,
+product add-ons, limited pre-determined pool-based licenses, encrypted and
+unencrypted licenses, and even a combination of most of those. Keygen
+provides you the tools you need to handle licensing however you need
+for each of your products.</p>
+</li><li><h4 id="does-keygen-prevent-sharing-licenses-">Does Keygen prevent sharing licenses?</h4>
+<p>Keygen offers endpoints to track machine usage, and policies can be
+set to <code>strict</code>, which will ensure your users do not go over
+their machine limit. A license can be set to <code>floating</code>,
+which will allow the license to be valid across multiple machines.</p>
+</li><li><h4 id="does-keygen-prevent-cracking-">Does Keygen prevent cracking?</h4>
+<p>No. Keygen does nothing to prevent a user from removing your licensing
+logic altogether if they have access to your application&#39;s code. In
+the end, you will have to make the choice on how to deal with cracking
+by doing things such as: requiring a valid license for updates and
+support, etc.</p>
 </li><li><h4 id="what-kind-pricing-model-will-you-offer-">What kind pricing model will you offer?</h4>
 <p>We&#39;ll likely be rolling out volume-based plans, based on number of products,
 users and licenses. We are still gathering usage stats and expenses from the
@@ -83,17 +95,6 @@ possible. We never store passwords as plain text – they are always hashed
 and salted securely using bcrypt. We also do the same with all access
 tokens, and offer the ability to hash license keys as well. All network
 traffic is encrypted over TLS with at least 128-bit AES encryption.</p>
-</li><li><h4 id="does-keygen-prevent-sharing-licenses-">Does Keygen prevent sharing licenses?</h4>
-<p>Keygen offers endpoints to track machine usage, and policies can be
-set to <code>strict</code>, which will ensure your users do not go over
-their machine limit. A license can be set to <code>floating</code>,
-which will allow the license to be valid across multiple machines.</p>
-</li><li><h4 id="does-keygen-prevent-cracking-">Does Keygen prevent cracking?</h4>
-<p>No. Keygen does nothing to prevent a user from removing your licensing
-logic altogether if they have access to your application&#39;s code. In
-the end, you will have to make the choice on how to deal with cracking
-by doing things such as: requiring a valid license for updates and
-support, etc.</p>
 </li><li><h4 id="where-can-i-monitor-keygen-s-uptime-">Where can I monitor Keygen&#39;s uptime?</h4>
 <p>We strive to provide the highest uptime possible. You can monitor our
 uptime and average response time at our <a href="https://status.keygen.sh">status page</a>.</p>
