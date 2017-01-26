@@ -105,12 +105,13 @@ a webhook system so that you can easily integrate your payment system
 with our API. Implementation is similar to how you would implement
 Stripe&#39;s webhook system. <a href="/docs/api#webhooks">Learn more</a>.</p>
 </li><li><h4 id="can-i-use-keygen-for-an-ios-app-">Can I use Keygen for an iOS app?</h4>
-<p>Unfortunately, it isn&#39;t possible at this time. <a href="https://developer.apple.com/app-store/review/guidelines/">Apple’s developer terms</a>
+<p>Yes and no. Unfortunately, it isn&#39;t possible at this time to use Keygen
+for paid app-related licenses. <a href="https://developer.apple.com/app-store/review/guidelines/">Apple’s developer terms</a>
 require that purchases related to an app, such as premium content
 and add-ons are managed via their native <a href="https://developer.apple.com/in-app-purchase/">In-App Purchase API</a>.</p>
 </li><li><h4 id="can-i-use-keygen-for-an-android-app-">Can I use Keygen for an Android app?</h4>
-<p>Unfortunately, it isn&#39;t possible at this time.
-<a href="https://play.google.com/about/developer-content-policy/">Google&#39;s developer policy</a>
+<p>Yes and no. Unfortunately, it isn&#39;t possible at this time to use Keygen
+for paid app-related licenses. <a href="https://play.google.com/about/developer-content-policy/">Google&#39;s developer policy</a>
 requires that purchases related to an app, such as premium
 features and add-ons are managed via their native <a href="https://developer.android.com/google/play/billing/api.html">In-App Billing API</a>.</p>
 </li></ul></div></section><footer class="footer" data-src="/background.jpg"><section class="cta"><div class="cta__content"><h2 data-text="Ready to get started?">Ready to get started?</h2><h3 data-text="Get in touch, or try the beta today.">Get in touch, or try the beta today.</h3><a class="button" href="/register">Request Beta Access</a></div></section><div class="footer__content">© 2017 Keygen – All Rights Reserved – hello@keygen.sh</div><ul class="footer__links"><li><a href="https://status.keygen.sh">Status</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li></ul></footer><script src="/app.js"></script><script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script>var subscribeNodes = document.querySelectorAll("[data-subscribe]")
@@ -120,8 +121,28 @@ Array.prototype.forEach.call(subscribeNodes, function(node) {
     document.cookie = "MCEvilPopupClosed=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;" // Reset cookie so popup will show on click
     require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us14.list-manage.com","uuid":"0da915687b658ef99fb6b9075","lid":"8e6c7696a2"}) })
   }
-})</script><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script><script>window.addEventListener("load", function() {
+})</script><script>!function() {
+  var t;
+  if (t = window.driftt = window.drift = window.driftt || [], !t.init) return t.invoked ? void (window.console && console.error && console.error("Drift snippet included twice.")) : (t.invoked = !0,
+  t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
+  t.factory = function(e) {
+    return function() {
+      var n;
+      return n = Array.prototype.slice.call(arguments), n.unshift(e), t.push(n), t;
+    };
+  }, t.methods.forEach(function(e) {
+    t[e] = t.factory(e);
+  }), t.load = function(t) {
+    var e, n, o, i;
+    e = 3e5, i = Math.ceil(new Date() / e) * e, o = document.createElement("script"),
+    o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + i + "/" + t + ".js",
+    n = document.getElementsByTagName("script")[0], n.parentNode.insertBefore(o, n);
+  });
+}();
+drift.SNIPPET_VERSION = '0.3.1';
+drift.load('sbe3sfnhgnpi');</script><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script><script>window.addEventListener("load", function() {
   window.cookieconsent.initialise({
+    "position": "bottom-left",
     "palette": {
       "popup": {
         "background": "#001331",
