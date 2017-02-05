@@ -3778,8 +3778,10 @@ scoped to the authenticated bearer.</p>
     },
     …
   ]
-}</code></pre></div></div></article></section><section class="resource" id="webhooks"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#webhooks" data-target="webhooks"><i class="material-icons">link</i></a>Webhooks</h1><p>Webhook events usually get sent quickly, but sometimes there can be a small
-delay. (If you experience a delay longer than 1 hour please contact us.)</p>
+}</code></pre></div></div></article></section><section class="resource" id="webhooks"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#webhooks" data-target="webhooks"><i class="material-icons">link</i></a>Webhooks</h1><p>Webhook events are dispatched using POST requests to an account&#39;s webhook
+endpoints. Events usually get sent quickly, but sometimes there can be a
+small delay. If you experience a delay longer than 1 hour for the initial
+event, please contact us.</p>
 <div class="notice notice--tip">
   <strong>Webhooks are asynchronous events.</strong> We do our best to always send them
   in a timely manner, but we <strong>DO NOT</strong> recommend relying on webhooks for
@@ -3787,7 +3789,8 @@ delay. (If you experience a delay longer than 1 hour please contact us.)</p>
 </div>
 
 <h3 id="event-types">Event Types</h3>
-<p>The following events are dispatched to all <a href="#webhook-endpoints-object">endpoints</a>.</p>
+<p>The following events are dispatched to all <a href="#webhook-endpoints-object">endpoints</a>
+with a POST request containing an <a href="#webhook-events-object">event object</a>.</p>
 <div class="notice notice--warning">
   <strong>NOTE:</strong> Events that occur on &quot;sub&quot; resources like <code>account.plan</code> do
   not trigger the parent&#39;s <code>update</code> event.
