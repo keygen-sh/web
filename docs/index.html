@@ -29,18 +29,20 @@ may not be available during the beta:</p>
 <li>Swift</li>
 <li>Go</li>
 </ul>
-<p>If you don&#39;t see your language above, please give us a shout or contribute
-to the Keygen community by creating an open source binding. Since we follow
-the JSON API spec (detailed below), creating a binding for your language
-is a relatively straight-forward process when utilizing a supported <a href="http://jsonapi.org/implementations/">JSON
-API implementation</a> in your language.</p>
+<p>If you don&#39;t see your language of choice above, please give us a shout or
+contribute to the Keygen community by creating an open source binding.</p>
+<p>Since we follow the JSON API spec (detailed below), creating a binding for
+your language is a relatively straight-forward process when utilizing a
+supported <a href="http://jsonapi.org/implementations/">JSON API serializer/deserializer</a>
+in your preferred language.</p>
 <p>We will collaborate with project maintainers to keep open source libraries
 up-to-date as our systems evolve. If you would like us to add your library
 please email <a href="mailto:hello@keygen.sh">hello@keygen.sh</a>.</p>
-</div><article class="article" id="jsonapi"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#jsonapi" data-target="jsonapi"><i class="material-icons">link</i></a>JSON API</h2><p>Our API adheres to the JSON API spec (<a href="http://jsonapi.org">located here</a>)
-as closesly as makes sense for the project; we may occasionally take a few
+</div><article class="article" id="jsonapi"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#jsonapi" data-target="jsonapi"><i class="material-icons">link</i></a>JSON API</h2><p>Our API adheres to v1.0 of the <a href="http://jsonapi.org">JSON API spec</a> as
+closely as makes sense for the project; we may occasionally take a few
 liberties, such as allowing the creation and updating of related resources
-through the parent resource, as opposed to only through the canonical link.</p>
+through the parent resource, as opposed to only through the canonical
+link (<a href="https://github.com/json-api/json-api/issues/1089">view proposed feature</a>).</p>
 <p>In addition, our API also accepts the following mime types, as opposed to
 only accepting <code>application/vnd.api+json</code>, per the spec:</p>
 <ul>
