@@ -249,7 +249,7 @@ with a <a href="#error-codes"><code>403 forbidden</code> error</a>.</p>
   a malicious user the ability to fully manage your account&#39;s resources. The
   only time you should be using your admin or product token(s) directly is
   if you are working with Keygen <strong>server-side</strong>.
-</div></div></section><section class="topic" id="rate-limiting"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#rate-limiting" data-target="rate-limiting"><i class="material-icons">link</i></a>Rate Limiting</h1><p>A single IP address can make up to 3,000 requests per hour (~1/sec), regardless
+</div></div></section><section class="topic" id="rate-limiting"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#rate-limiting" data-target="rate-limiting"><i class="material-icons">link</i></a>Rate Limiting</h1><p>A single IP address can make a maximum of 4 requests per second, regardless
 of authentication. If we see patterns of abuse, this may be lowered or you
 may be temporarily blacklisted or in rare cases of significant abuse,
 permanently blacklisted.</p>
@@ -258,7 +258,7 @@ containing an integer in seconds that you need to wait before making your
 next request. If you do not wait according to this header, you will continue
 to be rate limited until you do.</p>
 <div class="notice notice--tip">
-  Need a higher limit? <a href="mailto:hello@keygen.sh">Give us a shout</a>, as you
+  Need a higher limit? <a href="mailto:sales@keygen.sh">Give us a shout</a>, as you
   may be a good candidate for an on-premise instance of Keygen.
 </div>
 </div><div class="example__wrapper"><div class="example"><h4>Example error</h4><pre><code class="json" data-lang="bash">Retry-After: 5
