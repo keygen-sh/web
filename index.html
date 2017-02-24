@@ -161,18 +161,18 @@ end
 </code><code class="swift" data-lang="swift">/* Know Swift? Drop us a line at hello@keygen.sh so we can chat! */
 </code><code class="php" data-lang="php">require __DIR__ . "/vendor/autoload.php";
 
-$REQUEST_BASEURL = "https://api.keygen.sh/v1/accounts/{$_ENV['KEYGEN_ACCOUNT_ID']}";
-$REQUEST_HEADERS = [
+define("REQUEST_BASEURL", "https://api.keygen.sh/v1/accounts/{$_ENV['KEYGEN_ACCOUNT_ID']}");
+define("REQUEST_HEADERS", [
   "Content-Type" => "application/vnd.api+json",
   "Accept" => "application/vnd.api+json"
-];
+]);
 
 // … prompt user for email and password
 
 // Authenticate the user by creating a new token
 $auth = json_decode(
-  Requests::post("{$REQUEST_BASEURL}/tokens",
-    $REQUEST_HEADERS, ["auth" => [email, password]]
+  Requests::post(sprintf("%s/tokens", REQUEST_BASEURL),
+    REQUEST_HEADERS, ["auth" => [email, password]]
   )->body
 );
 
@@ -185,8 +185,8 @@ $token = $auth["data"]["attributes"]["token"];
 
 // Check if they have a license for a specific product feature
 $licenses = json_decode(
-  Requests::get("{$REQUEST_BASEURL}/licenses?product={$_ENV['KEYGEN_PRODUCT_ID']}&policy={$_ENV['KEYGEN_FEATURE_POLICY_ID']}",
-    array_merge($REQUEST_HEADERS, ["Authorization" => "Bearer {$token}"])
+  Requests::get(sprintf("%s/licenses?product=%s&policy=%s", REQUEST_BASEURL, $_ENV['KEYGEN_PRODUCT_ID'], $_ENV['KEYGEN_FEATURE_POLICY_ID']),
+    array_merge(REQUEST_HEADERS, ["Authorization" => "Bearer {$token}"])
   )->body
 );
 
@@ -196,8 +196,8 @@ if (!$licenses["data"]) {
 }
 
 $validation = json_decode(
-  Requests::get("{$REQUEST_BASEURL}/licenses/{$licenses['data'][0]['id']}/actions/validate",
-    array_merge($REQUEST_HEADERS, ["Authorization" => "Bearer {$token}"])
+  Requests::get(sprintf("%s/licenses/%s/actions/validate", REQUEST_BASEURL, $licenses['data'][0]['id']),
+    array_merge(REQUEST_HEADERS, ["Authorization" => "Bearer {$token}"])
   )->body
 );
 
