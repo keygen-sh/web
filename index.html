@@ -185,7 +185,7 @@ $token = $auth["data"]["attributes"]["token"];
 
 // Check if they have a license for a specific product feature
 $licenses = json_decode(
-  Requests::get(sprintf("%s/licenses?product=%s&policy=%s", REQUEST_BASEURL, $_ENV['KEYGEN_PRODUCT_ID'], $_ENV['KEYGEN_FEATURE_POLICY_ID']),
+  Requests::get(sprintf("%s/licenses?product=%s&policy=%s", REQUEST_BASEURL, $_ENV["KEYGEN_PRODUCT_ID"], $_ENV["KEYGEN_FEATURE_POLICY_ID"]),
     array_merge(REQUEST_HEADERS, ["Authorization" => "Bearer {$token}"])
   )->body
 );
@@ -196,7 +196,7 @@ if (!$licenses["data"]) {
 }
 
 $validation = json_decode(
-  Requests::get(sprintf("%s/licenses/%s/actions/validate", REQUEST_BASEURL, $licenses['data'][0]['id']),
+  Requests::get(sprintf("%s/licenses/%s/actions/validate", REQUEST_BASEURL, $licenses["data"][0]["id"]),
     array_merge(REQUEST_HEADERS, ["Authorization" => "Bearer {$token}"])
   )->body
 );
