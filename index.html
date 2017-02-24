@@ -149,7 +149,7 @@ end
 
 validation = HTTParty.get("#{REQUEST_BASEURL}/licenses/#{licenses['data'][0]['id']}/actions/validate",
   headers: REQUEST_HEADERS.merge("Authorization" => "Bearer #{token}")
-).json()
+)
 
 if validation["meta"]["valid"]
   # Do something
