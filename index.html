@@ -20,87 +20,51 @@ curl https://api.keygen.sh/v1/accounts/ecorp/licenses -X POST \
             }
           }
         }
-      }'</code></pre></div></div></div></main><section class="flow__wrapper"><div class="flow"><article class="flow__step"><a href="/docs/api#policies" alt="Control what type of licenses each product offers"><i class="material-icons">security</i><h2>Create policies</h2><p>Control what type of licenses each product offers.</p></a></article><article class="flow__step"><a href="/docs/api#users" alt="Allow your users to login across all your products"><i class="material-icons">people</i><h2>Create users</h2><p>Allow your users to login across all your products.</p></a></article><article class="flow__step"><a href="/docs/api#licenses" alt="Validate product licenses quickly and effortlessly"><i class="material-icons">verified_user</i><h2>Create licenses</h2><p>Validate product licenses quickly and effortlessly.</p></a></article></div></section><section class="metrics__wrapper"><div class="metrics"><div class="metrics__content"><h2>Powerful business metrics</h2><ul class="checklist"><li><i class="material-icons">trending_up</i>Monitor crucial events for users, licenses and more</li><li><i class="material-icons">notifications_none</i>Get notified of overdue check-ins and expirations</li><li><i class="material-icons">timeline</i>Get insights into user behavior and preferences</li><li><i class="material-icons">dvr</i>Track user machine usage and allowed quotas</li></ul></div><div class="metrics__image"><img src="/metrics.png"></div></div></section><section class="lang"><div class="lang__content"><h2>Use your favorite language</h2><p>Quickly implement our API in any programming language.</p></div><div class="lang__code code-block--with-overflow"><div class="code-block__toggle-button"><button class="button button--size-small" type="button" data-toggle-overflow>Toggle Code</button></div><pre><code class="javascript">const fetch = require('node-fetch')
+      }'</code></pre></div></div></div></main><section class="flow__wrapper"><div class="flow"><article class="flow__step"><a href="/docs/api#policies" alt="Control what type of licenses each product offers"><i class="material-icons">security</i><h2>Create policies</h2><p>Control what type of licenses each product offers.</p></a></article><article class="flow__step"><a href="/docs/api#users" alt="Allow your users to login across all your products"><i class="material-icons">people</i><h2>Create users</h2><p>Allow your users to login across all your products.</p></a></article><article class="flow__step"><a href="/docs/api#licenses" alt="Validate product licenses quickly and effortlessly"><i class="material-icons">verified_user</i><h2>Create licenses</h2><p>Validate product licenses quickly and effortlessly.</p></a></article></div></section><section class="metrics__wrapper"><div class="metrics"><div class="metrics__content"><h2>Powerful business metrics</h2><ul class="checklist"><li><i class="material-icons">trending_up</i>Monitor crucial events for users, licenses and more</li><li><i class="material-icons">notifications_none</i>Get notified of overdue check-ins and expirations</li><li><i class="material-icons">timeline</i>Get insights into user behavior and preferences</li><li><i class="material-icons">dvr</i>Track user machine usage and allowed quotas</li></ul></div><div class="metrics__image"><img src="/metrics.png"></div></div></section><section class="lang"><div class="lang__content"><h2>Use your favorite language</h2><p>Quickly implement Keygen in the programming language of your choice.
+</p></div><div class="lang__toolbar__wrapper"><div class="lang__toolbar" data-default-lang="javascript"><button class="lang__option" type="button" data-lang="javascript">Node</button><button class="lang__option" type="button" data-lang="python">Python</button><button class="lang__option" type="button" data-lang="ruby">Ruby</button><button class="lang__option" type="button" data-lang="java">Java</button><button class="lang__option" type="button" data-lang="c#">C#</button><button class="lang__option" type="button" data-lang="php">PHP
+</button></div></div><div class="lang__code code-block code-block--with-overflow code-block--hide-overflow"><div class="code-block__toggle-button"><button class="button button--size-small" type="button" data-toggle-overflow>Toggle Code</button></div><pre><code class="javascript" data-lang="javascript">const fetch = require('node-fetch')
 
 const REQUEST_BASEURL = `https://api.keygen.sh/v1/accounts/${process.env.KEYGEN_ACCOUNT_ID}`
 const REQUEST_HEADERS = {
   "Content-Type": "application/vnd.api+json",
-  "Accept": "application/vnd.api+json",
-  "Authorization": `Bearer ${process.env.KEYGEN_PRODUCT_TOKEN}`
+  "Accept": "application/vnd.api+json"
 }
 
 async function main() {
+  // … prompt user for email and password
 
-  // Create a license policy
-  const policy = await fetch(`${REQUEST_BASEURL}/policies`, {
-    headers: REQUEST_HEADERS,
-    method: "POST",
-    body: JSON.stringify({
-      data: {
-        type: "policy",
-        attributes: {
-          duration: 15552000, // 6 months in seconds
-          name: "Product Add-On",
-          encrypted: true
-        },
-        relationships: {
-          product: {
-            data: { type: "product", id: process.env.KEYGEN_PRODUCT_ID }
-          }
-        }
-      }
-    })
+  const credentials = new Buffer(`${email}:${password}`).toString("base64")
+
+  // Authenticate the user by creating a new token
+  const auth = await fetch(`${REQUEST_BASEURL}/tokens`, {
+    headers: { ...REQUEST_HEADERS, "Authorization": `Basic ${credentials}` },
+    method: "POST"
   })
 
-  // Create your first user
-  const user = await fetch(`${REQUEST_BASEURL}/users`, {
-    headers: REQUEST_HEADERS,
-    method: "POST",
-    body: JSON.stringify({
-      data: {
-        type: "user",
-        attributes: {
-          firstName: "John",
-          lastName: "Doe",
-          email: "john.doe@example.com",
-          password: "secret"
-        }
-      }
-    })
-  })
+  // Get the newly created authentication token
+  const { data: { attributes: { token } }, errors } = await auth.json()
+  if (errors) {
+    return // Handle invalid credentials
+  }
 
-  // Get resource UUIDs
-  const { data: { id: policyId } } = await policy.json()
-  const { data: { id: userId } } = await user.json()
-
-  // Create a license for the new user that implements our policy
-  const license = await fetch(`${REQUEST_BASEURL}/licenses`, {
-    headers: REQUEST_HEADERS,
-    method: "POST",
-    body: JSON.stringify({
-      data: {
-        type: "license",
-        relationships: {
-          policy: {
-            data: { type: "policy", id: policyId }
-          },
-          user: {
-            data: { type: "user", id: userId }
-          }
-        }
-      }
-    })
-  })
-
-  // Validate their new license
-  const { data: { id: licenseId } } = await license.json()
-
-  const validation = await fetch(`${REQUEST_BASEURL}/licenses/${licenseId}/actions/validate`, {
-    headers: REQUEST_HEADERS,
+  // Check if they have a license for a specific product feature
+  const licenses = await fetch(`${REQUEST_BASEURL}/licenses?product=${process.env.KEYGEN_PRODUCT_ID}&policy=${process.env.KEYGEN_FEATURE_POLICY_ID}`, {
+    headers: { ...REQUEST_HEADERS, "Authorization": `Bearer ${token}` },
     method: "GET"
   })
 
-  const { meta, errors } = await validation.json()
+  // Validate the first license we get back
+  const { data } = await licenses.json()
+  if (!data) {
+    return // User does not have a license for the feature
+  }
+
+  const validation = await fetch(`${REQUEST_BASEURL}/licenses/${data[0]['id']}/actions/validate`, {
+    headers: { ...REQUEST_HEADERS, "Authorization": `Bearer ${token}` },
+    method: "GET"
+  })
+
+  const { meta } = await validation.json()
 
   if (meta.valid) {
     // Do something
@@ -109,7 +73,92 @@ async function main() {
   }
 }
 
-main()</code></pre></div></section><section class="docs"><div class="docs__content"><h2>In-depth documentation on…</h2><ul class="checklist"><li><i class="material-icons">code</i>How to easily implement Keygen into your product</li><li><i class="material-icons">sync</i>How to handle webhooks to integrate with your payment system</li><li><i class="material-icons">done_all</i>How to set up user registration and license verification</li><li><i class="material-icons">playlist_add_check</i>And of course, a full API reference with examples</li></ul></div></section><section class="news"><div class="news__content"><h2>Not ready to join? Stay updated.</h2><form action="//keygen.us14.list-manage.com/subscribe/post?u=0da915687b658ef99fb6b9075&amp;id=8e6c7696a2" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate=""><input type="email" value="" name="EMAIL" placeholder="Email address" required=""><div style="position: absolute; left: -5000px" aria-hidden="true"><input type="text" name="b_0da915687b658ef99fb6b9075_8e6c7696a2" tabindex="-1" value=""></div><button class="button" type="submit" name="subscribe">Subscribe</button></form></div></section><section class="faqs"><div class="faqs__content"><h3>FAQs</h3><ul class="faqs__questions"><li><h4 id="what-is-keygen-">What is Keygen?</h4>
+main()
+</code><code class="python" data-lang="python">import requests
+import os
+
+REQUEST_BASEURL = "https://api.keygen.sh/v1/accounts/{0}".format(os.environ["KEYGEN_ACCOUNT_ID"])
+REQUEST_HEADERS = {
+  "Content-Type": "application/vnd.api+json",
+  "Accept": "application/vnd.api+json"
+}
+
+# … prompt user for email and password
+
+# Authenticate the user by creating a new token
+auth = requests.post("{0}/tokens".format(REQUEST_BASEURL),
+  headers=REQUEST_HEADERS,
+  auth=(email, password)
+).json()
+
+# Get the newly created authentication token
+if auth["errors"]:
+  return # Handle invalid credentials
+
+token = auth["data"]["attributes"]["token"]
+
+# Check if they have a license for a specific product feature
+licenses = requests.get("{0}/licenses?product={1}&policy={2}".format(REQUEST_BASEURL, os.environ["KEYGEN_PRODUCT_ID"], os.environ["KEYGEN_FEATURE_POLICY_ID"]),
+  headers={ **REQUEST_HEADERS, "Authorization": "Bearer {0}".format(token) }
+).json()
+
+# Validate the first license we get back
+if not licenses["data"]:
+  return # User does not have a license for the feature
+
+validation = requests.get("{0}/licenses/{1}/actions/validate".format(REQUEST_BASEURL, licenses["data"][0]["id"]),
+  headers={ **REQUEST_HEADERS, "Authorization": "Bearer {0}".format(token) }
+).json()
+
+if validation["meta"]["valid"]:
+  # Do something
+else:
+  # Do something else
+</code><code class="ruby" data-lang="ruby">require "httparty"
+
+REQUEST_BASEURL = "https://api.keygen.sh/v1/accounts/#{ENV['KEYGEN_ACCOUNT_ID']}"
+REQUEST_HEADERS = {
+  "Content-Type" => "application/vnd.api+json",
+  "Accept" => "application/vnd.api+json"
+}
+
+# … prompt user for email and password
+
+# Authenticate the user by creating a new token
+auth = HTTParty.post("#{REQUEST_BASEURL}/tokens",
+  basic_auth: { username: email, password: password },
+  headers: REQUEST_HEADERS
+)
+
+# Get the newly created authentication token
+if auth["errors"]
+  return # Handle invalid credentials
+end
+
+token = auth["data"]["attributes"]["token"]
+
+# Check if they have a license for a specific product feature
+licenses = HTTParty.get("#{REQUEST_BASEURL}/licenses?product=#{ENV['KEYGEN_PRODUCT_ID']}&policy=#{ENV['KEYGEN_FEATURE_POLICY_ID']}",
+  headers: REQUEST_HEADERS.merge("Authorization" => "Bearer #{token}")
+)
+
+# Validate the first license we get back
+if licenses["data"]&.empty?
+  return # User does not have a license for the feature
+end
+
+validation = HTTParty.get("#{REQUEST_BASEURL}/licenses/#{licenses['data'][0]['id']}/actions/validate",
+  headers: REQUEST_HEADERS.merge("Authorization" => "Bearer #{token}")
+).json()
+
+if validation["meta"]["valid"]
+  # Do something
+else
+  # Do something else
+end
+</code><code class="java" data-lang="java">/* Know Java? Drop us a line at hello@keygen.sh so we can chat! */
+</code><code class="csharp" data-lang="c#">/* Know C#? Drop us a line at hello@keygen.sh so we can chat! */
+</code><code class="php" data-lang="php">/* Know PHP? Drop us a line at hello@keygen.sh so we can chat! */</code></pre></div></section><section class="docs"><div class="docs__content"><h2>In-depth documentation on…</h2><ul class="checklist"><li><i class="material-icons">code</i>How to easily implement Keygen into your product</li><li><i class="material-icons">sync</i>How to handle webhooks to integrate with your payment system</li><li><i class="material-icons">done_all</i>How to set up user registration and license verification</li><li><i class="material-icons">playlist_add_check</i>And of course, a full API reference with examples</li></ul></div></section><section class="news"><div class="news__content"><h2>Not ready to join? Stay updated.</h2><form action="//keygen.us14.list-manage.com/subscribe/post?u=0da915687b658ef99fb6b9075&amp;id=8e6c7696a2" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate=""><input type="email" value="" name="EMAIL" placeholder="Email address" required=""><div style="position: absolute; left: -5000px" aria-hidden="true"><input type="text" name="b_0da915687b658ef99fb6b9075_8e6c7696a2" tabindex="-1" value=""></div><button class="button" type="submit" name="subscribe">Subscribe</button></form></div></section><section class="faqs"><div class="faqs__content"><h3>FAQs</h3><ul class="faqs__questions"><li><h4 id="what-is-keygen-">What is Keygen?</h4>
 <p>Keygen is a powerful new SaaS offering in the software-licensing space
 that aims to disrupt the current market that is littered with unintuitive
 enterprise solutions. Keygen gives you the tools to handle licensing how
