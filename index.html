@@ -159,7 +159,53 @@ end
 </code><code class="java" data-lang="java">/* Know Java? Drop us a line at hello@keygen.sh so we can chat! */
 </code><code class="csharp" data-lang="c#">/* Know C#? Drop us a line at hello@keygen.sh so we can chat! */
 </code><code class="swift" data-lang="swift">/* Know Swift? Drop us a line at hello@keygen.sh so we can chat! */
-</code><code class="php" data-lang="php">/* Know PHP? Drop us a line at hello@keygen.sh so we can chat! */</code></pre></div></section><section class="docs"><div class="docs__content"><h2>In-depth documentation on…</h2><ul class="checklist"><li><i class="material-icons">code</i>How to easily implement Keygen into your product</li><li><i class="material-icons">sync</i>How to handle webhooks to integrate with your payment system</li><li><i class="material-icons">done_all</i>How to set up user registration and license verification</li><li><i class="material-icons">playlist_add_check</i>And of course, a full API reference with examples</li></ul></div></section><section class="news"><div class="news__content"><h2>Not ready to join? Stay updated.</h2><form action="//keygen.us14.list-manage.com/subscribe/post?u=0da915687b658ef99fb6b9075&amp;id=8e6c7696a2" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate=""><input type="email" value="" name="EMAIL" placeholder="Email address" required=""><div style="position: absolute; left: -5000px" aria-hidden="true"><input type="text" name="b_0da915687b658ef99fb6b9075_8e6c7696a2" tabindex="-1" value=""></div><button class="button" type="submit" name="subscribe">Subscribe</button></form></div></section><section class="faqs"><div class="faqs__content"><h3>FAQs</h3><ul class="faqs__questions"><li><h4 id="what-is-keygen-">What is Keygen?</h4>
+</code><code class="php" data-lang="php">require __DIR__ . "/vendor/autoload.php";
+
+$REQUEST_BASEURL = "https://api.keygen.sh/v1/accounts/{$_ENV['KEYGEN_ACCOUNT_ID']}";
+$REQUEST_HEADERS = [
+  "Content-Type" => "application/vnd.api+json",
+  "Accept" => "application/vnd.api+json"
+];
+
+// … prompt user for email and password
+
+// Authenticate the user by creating a new token
+$auth = json_decode(
+  Requests::post("{$REQUEST_BASEURL}/tokens",
+    $REQUEST_HEADERS, ["auth" => [email, password]]
+  )->body
+);
+
+// Get the newly created authentication token
+if (isset($auth["errors"])) {
+  return; // Handle invalid credentials
+}
+
+$token = $auth["data"]["attributes"]["token"];
+
+// Check if they have a license for a specific product feature
+$licenses = json_decode(
+  Requests::get("{$REQUEST_BASEURL}/licenses?product={$_ENV['KEYGEN_PRODUCT_ID']}&policy={$_ENV['KEYGEN_FEATURE_POLICY_ID']}",
+    array_merge($REQUEST_HEADERS, ["Authorization" => "Bearer {$token}"])
+  )->body
+);
+
+// Validate the first license we get back
+if (!$licenses["data"]) {
+  return; // User does not have a license for the feature
+}
+
+$validation = json_decode(
+  Requests::get("{$REQUEST_BASEURL}/licenses/{$licenses['data'][0]['id']}/actions/validate",
+    array_merge($REQUEST_HEADERS, ["Authorization" => "Bearer {$token}"])
+  )->body
+);
+
+if ($validation["meta"]["valid"]) {
+  // Do something
+} else {
+  // Do something else
+}</code></pre></div></section><section class="docs"><div class="docs__content"><h2>In-depth documentation on…</h2><ul class="checklist"><li><i class="material-icons">code</i>How to easily implement Keygen into your product</li><li><i class="material-icons">sync</i>How to handle webhooks to integrate with your payment system</li><li><i class="material-icons">done_all</i>How to set up user registration and license verification</li><li><i class="material-icons">playlist_add_check</i>And of course, a full API reference with examples</li></ul></div></section><section class="news"><div class="news__content"><h2>Not ready to join? Stay updated.</h2><form action="//keygen.us14.list-manage.com/subscribe/post?u=0da915687b658ef99fb6b9075&amp;id=8e6c7696a2" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate=""><input type="email" value="" name="EMAIL" placeholder="Email address" required=""><div style="position: absolute; left: -5000px" aria-hidden="true"><input type="text" name="b_0da915687b658ef99fb6b9075_8e6c7696a2" tabindex="-1" value=""></div><button class="button" type="submit" name="subscribe">Subscribe</button></form></div></section><section class="faqs"><div class="faqs__content"><h3>FAQs</h3><ul class="faqs__questions"><li><h4 id="what-is-keygen-">What is Keygen?</h4>
 <p>Keygen is a powerful new SaaS offering in the software-licensing space
 that aims to disrupt the current market that is littered with unintuitive
 enterprise solutions. Keygen gives you the tools to handle licensing how
