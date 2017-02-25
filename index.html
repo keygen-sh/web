@@ -44,7 +44,8 @@ async function main() {
   // Get the newly created authentication token
   const { data: { attributes: { token } }, errors } = await auth.json()
   if (errors) {
-    return // Handle invalid credentials
+    // … handle invalid credentials
+    process.exit()
   }
 
   // Check if they have a license for a specific product feature
@@ -56,7 +57,7 @@ async function main() {
   // Validate the first license we get back
   const { data } = await licenses.json()
   if (!data) {
-    return // User does not have a license for the feature
+    process.exit() // User does not have a license for the feature
   }
 
   const validation = await fetch(`${REQUEST_BASEURL}/licenses/${data[0]['id']}/actions/validate`, {
@@ -93,7 +94,8 @@ auth = requests.post("{0}/tokens".format(REQUEST_BASEURL),
 
 # Get the newly created authentication token
 if auth["errors"]:
-  return # Handle invalid credentials
+  # … handle invalid credentials
+  quit()
 
 token = auth["data"]["attributes"]["token"]
 
@@ -104,7 +106,7 @@ licenses = requests.get("{0}/licenses?product={1}&policy={2}".format(REQUEST_BAS
 
 # Validate the first license we get back
 if not licenses["data"]:
-  return # User does not have a license for the feature
+  quit() # User does not have a license for the feature
 
 validation = requests.get("{0}/licenses/{1}/actions/validate".format(REQUEST_BASEURL, licenses["data"][0]["id"]),
   headers={ **REQUEST_HEADERS, "Authorization": "Bearer {0}".format(token) }
@@ -132,7 +134,8 @@ auth = HTTParty.post("#{REQUEST_BASEURL}/tokens",
 
 # Get the newly created authentication token
 if auth["errors"]
-  return # Handle invalid credentials
+  # … handle invalid credentials
+  exit
 end
 
 token = auth["data"]["attributes"]["token"]
@@ -144,7 +147,7 @@ licenses = HTTParty.get("#{REQUEST_BASEURL}/licenses?product=#{ENV['KEYGEN_PRODU
 
 # Validate the first license we get back
 if licenses["data"].empty?
-  return # User does not have a license for the feature
+  exit # User does not have a license for the feature
 end
 
 validation = HTTParty.get("#{REQUEST_BASEURL}/licenses/#{licenses['data'][0]['id']}/actions/validate",
@@ -175,7 +178,8 @@ $auth = json_decode(
 
 // Get the newly created authentication token
 if (isset($auth["errors"])) {
-  return; // Handle invalid credentials
+  // … handle invalid credentials
+  exit;
 }
 
 $token = $auth["data"]["attributes"]["token"];
@@ -189,7 +193,7 @@ $licenses = json_decode(
 
 // Validate the first license we get back
 if (!$licenses["data"]) {
-  return; // User does not have a license for the feature
+  exit; // User does not have a license for the feature
 }
 
 $validation = json_decode(
