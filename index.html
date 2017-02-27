@@ -31,6 +31,8 @@ const REQUEST_HEADERS = {
 }
 
 async function main() {
+  var data, errors
+
   // … prompt user for email and password
 
   const credentials = new Buffer(`${email}:${password}`).toString("base64")
@@ -42,7 +44,7 @@ async function main() {
   })
 
   // Get the newly created authentication token
-  const { data, errors } = await auth.json()
+  var { data, errors } = await auth.json()
   if (errors) {
     // … handle invalid credentials
     process.exit()
@@ -57,7 +59,7 @@ async function main() {
   })
 
   // Validate the first license we get back
-  const { data } = await licenses.json()
+  var { data } = await licenses.json()
   if (!data) {
     process.exit() // User does not have a license for the feature
   }
