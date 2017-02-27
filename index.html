@@ -42,11 +42,13 @@ async function main() {
   })
 
   // Get the newly created authentication token
-  const { data: { attributes: { token } }, errors } = await auth.json()
+  const { data, errors } = await auth.json()
   if (errors) {
     // … handle invalid credentials
     process.exit()
   }
+
+  const { attributes: { token } } = data
 
   // Check if they have a license for a specific product feature
   const licenses = await fetch(`${REQUEST_BASEURL}/licenses?product=${process.env.KEYGEN_PRODUCT_ID}&policy=${process.env.KEYGEN_FEATURE_POLICY_ID}`, {
