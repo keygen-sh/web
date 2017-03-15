@@ -4837,10 +4837,16 @@ async function webhookHandler(webhookEvent) {
 
   switch (data.attributes.event) {
     case "user.created":
+      const user = JSON.parse(data.attributes.payload)
+
       // … do something when a user is created e.g. create a Stripe customer
+
       break
     case "license.created":
+      const license = JSON.parse(data.attributes.payload)
+
       // … do something when a license is created e.g. charge a user
+
       break
   }
 }
