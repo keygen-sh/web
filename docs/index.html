@@ -4817,11 +4817,11 @@ with a POST request containing an <a href="#webhook-events-object">event object<
 </table>
 </div><div class="example__wrapper"><div class="example"><h4>Example webhook handler</h4><pre><code class="javascript" data-lang="javascript">const fetch = require("node-fetch")
 
-async function webhookHandler(webhookEvent) {
-  const { data: { id } } = webhookEvent
+async function webhookHandler(req, res) {
+  const { data: { id } } = JSON.parse(req.body)
 
   // Fetch the webhook to validate it and get its most up-to-date state
-  const response = await fetch(`https://api.keygen.sh/v1/accounts/<%= account %>/webhook-events/${id}`, {
+  const event = await fetch(`https://api.keygen.sh/v1/accounts/<%= account %>/webhook-events/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/vnd.api+json",
@@ -4830,9 +4830,9 @@ async function webhookHandler(webhookEvent) {
     }
   })
 
-  const { data, errors } = await response.json()
+  const { data, errors } = await event.json()
   if (errors) {
-    return // Webhook event does not exist
+    return // Webhook event does not exist or is invalid
   }
 
   switch (data.attributes.event) {
@@ -4849,6 +4849,8 @@ async function webhookHandler(webhookEvent) {
 
       break
   }
+
+  res.sendStatus(200)
 }
 </code></pre></div></div></article><article class="object" id="webhook-endpoints-object"><div class="description"><h2 class="anchor__wrapper object__heading"><a class="anchor" href="#webhook-endpoints-object" data-target="webhook-endpoints-object"><i class="material-icons">link</i></a>The endpoint object</h2><p>Below you will find the various attributes for the endpoint resource, as well
 as the endpoint resource&#39;s relationships.</p>
