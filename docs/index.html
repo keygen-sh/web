@@ -4673,9 +4673,9 @@ event, please contact us.</p>
 with a POST request containing an <a href="#webhook-events-object">event object</a>.</p>
 <div class="notice notice--warning">
   <strong>NOTE:</strong> Events that occur on &quot;sub&quot; resources like <code>account.plan</code> do
-  not trigger the parent&#39;s <code>update</code> event. In the same way, for example,
-  an <code>account.deleted</code> or <code>user.deleted</code> event will not trigger &quot;cascading&quot;
-  events for it&#39;s associated resources.
+  not trigger the parent&#39;s <code>update</code> event. In addition, resource deletion
+  e.g. <code>account.deleted</code> or <code>user.deleted</code> events will not trigger &quot;cascading&quot;
+  delete events on dependant associations.
 </div>
 
 <table>
