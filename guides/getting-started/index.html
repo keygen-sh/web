@@ -1,0 +1,82 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="initial-scale=1"><title>Getting Started – Guides</title><link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII" type="image/x-icon"><link rel="icon" href="/favicon-192x192.png" sizes="192x192"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link href="https://keygen.sh/media.jpg" rel="image_src"><meta content="Keygen - a dead-simple product and app licensing API built for developers" property="og:title"><meta content="https://keygen.sh/" property="og:url"><meta content="Keygen is a simple app and product licensing API, allowing developers to easily implement various licensing types into any online or desktop software product." property="og:description"><meta content="https://keygen.sh/media.jpg" property="og:image"><meta content="Keygen" property="og:site_name"><meta content="website" property="og:type"><link rel="stylesheet" href="/app.css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-86857020-1', 'auto');
+ga('send', 'pageview');</script></head><body><main class="guide" id="guide"><header class="guide__header"><div class="guide__sidebar-toggle" id="sidebar-toggle"><i class="material-icons">menu</i></div><div class="guide__header__background">&nbsp;</div></header><nav class="guide__sidebar"><div class="guide__sidebar__logo"><a class="logo" href="/"><canvas class="logo__logomark" width="64" height="64"></canvas><span class="logo__logotype effect--shuffle">Keygen</span><span class="logo__tagline">Beta</span></a></div><div class="guide__sidebar__content"><div class="guide__sidebar__section"><h5>Guides</h5><ul class="guide__sidebar__list"><li class="guide__sidebar__item guide__sidebar__item--in-view"><a href="/guides/getting-started">Getting Started</a></li></ul></div><div class="guide__sidebar__section"><h5>Documentation</h5><ul class="guide__sidebar__list"><li class="guide__sidebar__item"><a href="/docs/api">API Reference</a></li></ul></div><div class="guide__sidebar__section"><h5>Account</h5><ul class="guide__sidebar__list"><li class="guide__sidebar__item"><a href="https://app.keygen.sh/register">Register</a></li><li class="guide__sidebar__item"><a href="https://app.keygen.sh/login">Login</a></li></ul></div></div></nav><div class="guide__content__wrapper"><div class="guide__content"><h1 id="getting-started">Getting Started</h1>
+<p>Learn how to set up a product and a policy, plus create a new user and
+a license within Keygen. If you need help after reading this, can reach
+out to us anytime at <a href="mailto:support@keygen.sh">support@keygen.sh</a>.</p>
+<p>To get started, you will either need to log into your <strong><a href="https://app.keygen.sh">Dashboard</a></strong>
+or <strong>create</strong> an <strong>authentication token</strong> via the API. To create a token
+directly through the API, check out the <a href="/docs/api#tokens-generate">code examples in the API reference</a>.</p>
+<hr>
+<h2 id="products">Products</h2>
+<p>Add your first product by going to the <strong>Products</strong> resource and clicking
+the <strong>New Product</strong> button. You will be presented with a form consisting
+of a few attributes for your product. If you&#39;re curious what a particular
+attribute is for, be sure to check out the <a href="/docs/api/#products"><strong>Product</strong> resource in the API reference</a>.</p>
+<p><img src="/new-product.gif" alt=""></p>
+<hr>
+<h2 id="policies">Policies</h2>
+<p>Next, we&#39;re going to add a <strong>license policy</strong> for your product. A license
+policy defines the different <strong>types</strong> of licenses that your product offers.
+Policies can be for a number of different things, from different <em>plans</em>
+for your product to fine-grained <em>feature policies</em>.</p>
+<p>To add a new policy, go to the <strong>Policies</strong> resource and click on the
+<strong>New Policy</strong> button.</p>
+<p>Curious about what each of the attributes are used for? Check out the
+<a href="/docs/api/#policies"><strong>Policy</strong> resource in the API reference</a>.</p>
+<p><img src="/new-policy.gif" alt=""></p>
+<hr>
+<h2 id="users">Users</h2>
+<p>Add a new <strong>user</strong> for your product by going to the <strong>Users</strong> resource
+and clicking on the <strong>New User</strong> button. You will see all of your users
+under the users listing as well as all <strong>admin</strong> users. (Normally, you
+would create users through the API using a sign up form, but for the
+purpose of this guide we&#39;re creating them manually.)</p>
+<p><img src="/new-user.gif" alt=""></p>
+<hr>
+<h2 id="licenses">Licenses</h2>
+<p>Next up, we&#39;re going to give the new user a <strong>license</strong> to use your
+product. To add a new license, go to the <strong>Licenses</strong> resource and
+click on the <strong>New License</strong> button. You will be presented with a form
+allowing you to select the <strong>policy</strong> to implement, as well as the
+<strong>user</strong> to create the license for.</p>
+<p>When creating a new license, you have the option to manually specify a
+<strong>license key</strong>. When the <strong>key</strong> field is left blank, a key will automatically
+be generated for you whenever the license is created.</p>
+<p><img src="/new-license.gif" alt=""></p>
+<hr>
+<h2 id="next-steps">Next steps</h2>
+<p>That&#39;s it! Now that you&#39;ve got a <strong>product</strong> all set up with a <strong>license
+policy</strong>, you&#39;re all set to start integrating Keygen into your product!</p>
+<p>Next up, you could…</p>
+<ol>
+<li>Create a registration form for your product to accept new users</li>
+<li>Create a login form for your product to authenticate your users</li>
+<li>Add a conditional feature within your product based on a user&#39;s licenses</li>
+<li>Start keeping track of your users&#39; <a href="/docs/api#machines">machines</a></li>
+<li>Integrate Stripe and Keygen together using <a href="/docs/api#webhooks">webhooks</a></li>
+</ol>
+<p>Questions? Reach out at <a href="mailto:support@keygen.sh">support@keygen.sh</a>.</p>
+</div></div><div class="zoom__wrapper"><div class="zoom"></div></div></main><script src="/app.js"></script><script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script>!function() {
+  var t;
+  if (t = window.driftt = window.drift = window.driftt || [], !t.init) return t.invoked ? void (window.console && console.error && console.error("Drift snippet included twice.")) : (t.invoked = !0,
+  t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
+  t.factory = function(e) {
+    return function() {
+      var n;
+      return n = Array.prototype.slice.call(arguments), n.unshift(e), t.push(n), t;
+    };
+  }, t.methods.forEach(function(e) {
+    t[e] = t.factory(e);
+  }), t.load = function(t) {
+    var e, n, o, i;
+    e = 3e5, i = Math.ceil(new Date() / e) * e, o = document.createElement("script"),
+    o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + i + "/" + t + ".js",
+    n = document.getElementsByTagName("script")[0], n.parentNode.insertBefore(o, n);
+  });
+}();
+drift.SNIPPET_VERSION = '0.3.1';
+setTimeout(function() { drift.load('sbe3sfnhgnpi'); }, 1000);</script></body></html>
