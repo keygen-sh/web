@@ -2,37 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:geo="http://www.google.com/geo/schemas/sitemap/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:pagemap="http://www.google.com/schemas/sitemap-pagemap/1.0" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://keygen.sh</loc>
-    <lastmod>2017-04-28T01:23:45+67:89</lastmod>
+    <lastmod>2017-04-28T01:23:45+00:00</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://keygen.sh/dashboard</loc>
-    <lastmod>2017-04-28T01:23:45+67:89</lastmod>
+    <lastmod>2017-04-28T01:23:45+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://keygen.sh/docs/api</loc>
-    <lastmod>2017-04-28T01:23:45+67:89</lastmod>
+    <lastmod>2017-04-28T01:23:45+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://keygen.sh/guides/getting-started</loc>
-    <lastmod>2017-04-28T01:23:45+67:89</lastmod>
+    <lastmod>2017-04-28T01:23:45+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://keygen.sh/register</loc>
-    <lastmod>2017-04-28T01:23:45+67:89</lastmod>
+    <lastmod>2017-04-28T01:23:45+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://keygen.sh/login</loc>
-    <lastmod>2017-04-28T01:23:45+67:89</lastmod>
+    <lastmod>2017-04-28T01:23:45+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
