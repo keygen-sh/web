@@ -36,10 +36,18 @@ and frameworks, as well as those contributed by the community.</p>
 </div></div></article></section><section class="topic" id="architecture"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#architecture" data-target="architecture"><i class="material-icons">link</i></a>Architecture</h1><p>How to model the communication layer between your app and Keygen.</p>
 </div><div class="division"><div class="content"><h3 id="a-direct">A) Direct</h3>
 <p>First up is the direct approach, utilizing a direct communication channel
-from your app to Keygen. This allows users to create licenses from within
-the app, while your server responds to webhook events accordingly, updating
-records to reflect any changes made server-side as well as to handle
+from your app to Keygen&#39;s API. This allows users to for example create licenses
+from within your app, while your server responds to webhook events accordingly,
+updating records to reflect any changes made server-side as well as to handle
 invoicing your users for any purchased licenses.</p>
+<div class="notice notice--tip">
+  <strong>Using the direct architecture also lightens the load on your servers</strong>,
+  allowing user&#39;s to interact directly with Keygen&#39;s APIs for most of their
+  transactions, e.g. license validation and creation, as well as managing
+  their machines. You can then respond to the appropriate webhook events
+  to for example charge a customer for a new license.
+</div>
+
 <p>On the topic of billing, it is recommended that your users register through
 your server, so that you can handle the initial collection of user billing
 information. We recommend using <a href="https://stripe.com">Stripe</a> for billing.
@@ -58,7 +66,7 @@ then registration is as simple as creating a new user.</p>
   information server-side when required.
 </div></div><div class="offset__wrapper"><div class="offset"><img class="zoom__image" src="/direct-arch.jpg"></div></div></div><div class="division"><div class="content"><h3 id="b-middleman">B) Middleman</h3>
 <p>Next is an alternate approach, using your server as a middleman for communication
-between your app and Keygen. This architecture allows you to more easily manage
+between your app and Keygen&#39;s API. This architecture allows you to more easily manage
 and validate events, instead of relying solely on listening for webhook events.</p>
 <p>In addition, this approach also allows you to store user accounts within your
 own database, instead of utilizing Keygen&#39;s user-management features. You may do
