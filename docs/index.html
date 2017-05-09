@@ -268,11 +268,11 @@ for billing purposes.</p>
 operations will <strong>overwrite</strong> the entire hash, so be sure to <strong>merge</strong>
 existing data on your end when performing updates.</p>
 <div class="notice notice--warning">
-  <strong>Do not attach sensitive information directly to your users using the <code>metadata</code>
+  <strong>Do not attach sensitive billing information directly to your users using the <code>metadata</code>
   attribute. Doing so is a violation of our <a href="/terms">terms of use</a>.</strong> If you&#39;re using
-  Stripe, you need only attach their Stripe <code>customer_id</code>, or a <em>secure representation</em>
-  of a card (such as a <code>stripe_token</code>), which can then be used to look up their
-  information server-side when required.
+  Stripe, you need only attach their Stripe <code>customer_id</code>, or a temporary <em>secure
+  representation</em> of a card (such as a <code>stripe_token</code>), which can then be used to
+  look up their information server-side when required.
 </div></div></section><section class="topic" id="pagination"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#pagination" data-target="pagination"><i class="material-icons">link</i></a>Pagination</h1><p>All top-level API resources have support for bulk fetches via &quot;list&quot; API
 methods. For instance you can <a href="#users-list">list users</a>, <a href="#licenses-list">list licenses</a>,
 and <a href="#machines-list">list machines</a>. These list API methods share a common
