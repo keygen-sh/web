@@ -24,96 +24,46 @@ curl https://api.keygen.sh/v1/accounts/ecorp/licenses -X POST \
 </p></div><div class="lang__toolbar__wrapper"><div class="lang__toolbar" data-default-lang="javascript"><button class="lang__option" type="button" data-lang="javascript">Node</button><button class="lang__option" type="button" data-lang="python">Python</button><button class="lang__option" type="button" data-lang="ruby">Ruby</button><button class="lang__option" type="button" data-lang="php">PHP
 </button></div></div><div class="lang__code code-block code-block--with-overflow code-block--hide-overflow"><div class="code-block__toggle-button"><button class="button button--size-small button--fill-solid" type="button" data-toggle-overflow>Toggle Code</button></div><pre><code class="javascript" data-lang="javascript">const fetch = require("node-fetch")
 
-const REQUEST_BASEURL = `https://api.keygen.sh/v1/accounts/${process.env.KEYGEN_ACCOUNT_ID}`
-const REQUEST_HEADERS = {
-  "Content-Type": "application/vnd.api+json",
-  "Accept": "application/vnd.api+json"
+// Request the current user's licenses for our product
+const licenses = await fetch(`https://api.keygen.sh/v1/accounts/${process.env.KEYGEN_ACCOUNT_ID}/licenses?product=${process.env.KEYGEN_PRODUCT_ID}`, {
+  headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/vnd.api+json", "Accept": "application/vnd.api+json" },
+  method: "GET"
+})
+
+const { data, errors } = await licenses.json()
+if (!data) {
+  process.exit() // User does not have any licenses
 }
 
-async function main() {
-  var data, errors
+// Validate the first license we get back
+const [license, ...rest] = data
+const validation = await fetch(`https://api.keygen.sh/v1/accounts/${process.env.KEYGEN_ACCOUNT_ID}/licenses/${license.id}/actions/validate`, {
+  headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/vnd.api+json", "Accept": "application/vnd.api+json" },
+  method: "GET"
+})
 
-  // … prompt user for email and password
+const { meta } = await validation.json()
 
-  const credentials = new Buffer(`${email}:${password}`).toString("base64")
-
-  // Authenticate the user and create a new token
-  const auth = await fetch(`${REQUEST_BASEURL}/tokens`, {
-    headers: { ...REQUEST_HEADERS, "Authorization": `Basic ${credentials}` },
-    method: "POST"
-  })
-
-  // Get the newly created authentication token
-  var { data, errors } = await auth.json()
-  if (errors) {
-    // … handle invalid credentials
-    process.exit()
-  }
-
-  const { attributes: { token } } = data
-
-  // Check if they have a license for a specific product feature
-  const licenses = await fetch(`${REQUEST_BASEURL}/licenses?product=${process.env.KEYGEN_PRODUCT_ID}&policy=${process.env.KEYGEN_FEATURE_POLICY_ID}`, {
-    headers: { ...REQUEST_HEADERS, "Authorization": `Bearer ${token}` },
-    method: "GET"
-  })
-
-  // Validate the first license we get back
-  var { data } = await licenses.json()
-  if (!data) {
-    process.exit() // User does not have a license for the feature
-  }
-
-  const validation = await fetch(`${REQUEST_BASEURL}/licenses/${data[0]['id']}/actions/validate`, {
-    headers: { ...REQUEST_HEADERS, "Authorization": `Bearer ${token}` },
-    method: "GET"
-  })
-
-  const { meta } = await validation.json()
-
-  if (meta.valid) {
-    // Do something
-  } else {
-    // Do something else
-  }
+if (meta.valid) {
+  // Do something
+} else {
+  // Do something else
 }
-
-main()
 </code><code class="python" data-lang="python">import requests
 import os
 
-REQUEST_BASEURL = "https://api.keygen.sh/v1/accounts/{0}".format(os.environ["KEYGEN_ACCOUNT_ID"])
-REQUEST_HEADERS = {
-  "Content-Type": "application/vnd.api+json",
-  "Accept": "application/vnd.api+json"
-}
-
-# … prompt user for email and password
-
-# Authenticate the user and create a new token
-auth = requests.post("{0}/tokens".format(REQUEST_BASEURL),
-  headers=REQUEST_HEADERS,
-  auth=(email, password)
+# Request the current user's licenses for our product
+licenses = requests.get("https://api.keygen.sh/v1/accounts/{0}/licenses?product={1}".format(os.environ["KEYGEN_ACCOUNT_ID"], os.environ["KEYGEN_PRODUCT_ID"]),
+  headers={ "Authorization": "Bearer {0}".format(token), "Content-Type": "application/vnd.api+json", "Accept": "application/vnd.api+json" }
 ).json()
 
-# Get the newly created authentication token
-if auth["errors"]:
-  # … handle invalid credentials
-  quit()
-
-token = auth["data"]["attributes"]["token"]
-
-# Check if they have a license for a specific product feature
-licenses = requests.get("{0}/licenses?product={1}&policy={2}".format(REQUEST_BASEURL, os.environ["KEYGEN_PRODUCT_ID"], os.environ["KEYGEN_FEATURE_POLICY_ID"]),
-  headers={ **REQUEST_HEADERS, "Authorization": "Bearer {0}".format(token) }
-).json()
+if not licenses["data"]:
+  quit() # User does not have any licenses
 
 # Validate the first license we get back
-if not licenses["data"]:
-  quit() # User does not have a license for the feature
-
-validation = requests.get("{0}/licenses/{1}/actions/validate".format(REQUEST_BASEURL, licenses["data"][0]["id"]),
-  headers={ **REQUEST_HEADERS, "Authorization": "Bearer {0}".format(token) }
+license, *rest = licenses["data"]
+validation = requests.get("https://api.keygen.sh/v1/accounts/{0}/licenses/{1}/actions/validate".format(os.environ["KEYGEN_ACCOUNT_ID"], license["id"]),
+  headers={ "Authorization": "Bearer {0}".format(token), "Content-Type": "application/vnd.api+json", "Accept": "application/vnd.api+json" }
 ).json()
 
 if validation["meta"]["valid"]:
@@ -122,40 +72,19 @@ else:
   # Do something else
 </code><code class="ruby" data-lang="ruby">require "httparty"
 
-REQUEST_BASEURL = "https://api.keygen.sh/v1/accounts/#{ENV['KEYGEN_ACCOUNT_ID']}"
-REQUEST_HEADERS = {
-  "Content-Type" => "application/vnd.api+json",
-  "Accept" => "application/vnd.api+json"
-}
-
-# … prompt user for email and password
-
-# Authenticate the user and create a new token
-auth = HTTParty.post("#{REQUEST_BASEURL}/tokens",
-  basic_auth: { username: email, password: password },
-  headers: REQUEST_HEADERS
+# Request the current user's licenses for our product
+licenses = HTTParty.get("https://api.keygen.sh/v1/accounts/#{ENV['KEYGEN_ACCOUNT_ID']}/licenses?product=#{ENV['KEYGEN_PRODUCT_ID']}",
+  headers: { "Authorization" => "Bearer #{token}", "Content-Type" => "application/vnd.api+json", "Accept" => "application/vnd.api+json" }
 )
 
-# Get the newly created authentication token
-if auth["errors"]
-  # … handle invalid credentials
-  exit
+if licenses["data"].empty?
+  exit # User does not have any licenses
 end
-
-token = auth["data"]["attributes"]["token"]
-
-# Check if they have a license for a specific product feature
-licenses = HTTParty.get("#{REQUEST_BASEURL}/licenses?product=#{ENV['KEYGEN_PRODUCT_ID']}&policy=#{ENV['KEYGEN_FEATURE_POLICY_ID']}",
-  headers: REQUEST_HEADERS.merge("Authorization" => "Bearer #{token}")
-)
 
 # Validate the first license we get back
-if licenses["data"].empty?
-  exit # User does not have a license for the feature
-end
-
-validation = HTTParty.get("#{REQUEST_BASEURL}/licenses/#{licenses['data'][0]['id']}/actions/validate",
-  headers: REQUEST_HEADERS.merge("Authorization" => "Bearer #{token}")
+license, *rest = licenses["data"]
+validation = HTTParty.get("https://api.keygen.sh/v1/accounts/#{ENV['KEYGEN_ACCOUNT_ID']}/licenses/#{license['id']}/actions/validate",
+  headers: { "Authorization" => "Bearer #{token}", "Content-Type" => "application/vnd.api+json", "Accept" => "application/vnd.api+json" }
 )
 
 if validation["meta"]["valid"]
@@ -165,46 +94,23 @@ else
 end
 </code><code class="php" data-lang="php">require __DIR__ . "/vendor/autoload.php";
 
-define("REQUEST_BASEURL", "https://api.keygen.sh/v1/accounts/{$_ENV['KEYGEN_ACCOUNT_ID']}");
-define("REQUEST_HEADERS", [
-  "Content-Type" => "application/vnd.api+json",
-  "Accept" => "application/vnd.api+json"
-]);
-
-// … prompt user for email and password
-
-// Authenticate the user and create a new token
-$auth = json_decode(
-  Requests::post(sprintf("%s/tokens", REQUEST_BASEURL),
-    REQUEST_HEADERS,
-    ["auth" => [$email, $password]]
-  )->body
-);
-
-// Get the newly created authentication token
-if (isset($auth["errors"])) {
-  // … handle invalid credentials
-  exit;
-}
-
-$token = $auth["data"]["attributes"]["token"];
-
-// Check if they have a license for a specific product feature
+// Request the current user's licenses for our product
 $licenses = json_decode(
-  Requests::get(sprintf("%s/licenses?product=%s&policy=%s", REQUEST_BASEURL, $_ENV["KEYGEN_PRODUCT_ID"], $_ENV["KEYGEN_FEATURE_POLICY_ID"]),
-    REQUEST_HEADERS + ["Authorization" => "Bearer {$token}"]
-  )->body
+  Requests::get("https://api.keygen.sh/v1/accounts/{$_ENV['KEYGEN_ACCOUNT_ID']}/licenses?product={$_ENV['KEYGEN_PRODUCT_ID']}", [
+    "Authorization" => "Bearer {$token}", "Content-Type" => "application/vnd.api+json", "Accept" => "application/vnd.api+json"
+  ])->body
 );
+
+if (!$licenses["data"]) {
+  exit; // User does not have any licenses
+}
 
 // Validate the first license we get back
-if (!$licenses["data"]) {
-  exit; // User does not have a license for the feature
-}
-
+$license = current($licenses["data"]);
 $validation = json_decode(
-  Requests::get(sprintf("%s/licenses/%s/actions/validate", REQUEST_BASEURL, $licenses["data"][0]["id"]),
-    REQUEST_HEADERS + ["Authorization" => "Bearer {$token}"]
-  )->body
+  Requests::get("https://api.keygen.sh/v1/accounts/{$_ENV['KEYGEN_ACCOUNT_ID']}/licenses/{$license['id']}/actions/validate", [
+    "Authorization" => "Bearer {$token}", "Content-Type" => "application/vnd.api+json", "Accept" => "application/vnd.api+json"
+  ])->body
 );
 
 if ($validation["meta"]["valid"]) {

@@ -776,22 +776,20 @@ const { data, errors } = await response.json()
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "data": [
     {
-      "data": {
-        "id": "0e040820-aba5-4e0e-8947-b9f7cf76e484",
-        "type": "plans",
-        "links": {
-          "self": "/v1/plans/0e040820-aba5-4e0e-8947-b9f7cf76e484"
-        },
-        "attributes": {
-          "name": "Enterprise",
-          "price": 24900,
-          "maxUsers": null,
-          "maxPolicies": null,
-          "maxLicenses": null,
-          "maxProducts": 5,
-          "created": "<%= created %>",
-          "updated": "<%= created %>"
-        }
+      "id": "0e040820-aba5-4e0e-8947-b9f7cf76e484",
+      "type": "plans",
+      "links": {
+        "self": "/v1/plans/0e040820-aba5-4e0e-8947-b9f7cf76e484"
+      },
+      "attributes": {
+        "name": "Enterprise",
+        "price": 24900,
+        "maxUsers": null,
+        "maxPolicies": null,
+        "maxLicenses": null,
+        "maxProducts": 5,
+        "created": "<%= created %>",
+        "updated": "<%= created %>"
       }
     },
     …
@@ -2403,53 +2401,51 @@ const { data, errors } = await response.json()
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "data": [
     {
-      "data": {
-        "id": "0b4b1a9a-e25a-4f14-a95e-d9dd378d6065",
-        "type": "policies",
-        "links": {
-          "self": "/v1/accounts/<%= account %>/policies/0b4b1a9a-e25a-4f14-a95e-d9dd378d6065"
+      "id": "0b4b1a9a-e25a-4f14-a95e-d9dd378d6065",
+      "type": "policies",
+      "links": {
+        "self": "/v1/accounts/<%= account %>/policies/0b4b1a9a-e25a-4f14-a95e-d9dd378d6065"
+      },
+      "attributes": {
+        "name": "Premium Add-On",
+        "duration": 1209600,
+        "strict": false,
+        "floating": true,
+        "usePool": false,
+        "maxMachines": 5,
+        "encrypted": true,
+        "protected": false,
+        "metadata": {},
+        "created": "<%= created %>",
+        "updated": "<%= created %>"
+      },
+      "relationships": {
+        "account": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>"
+          },
+          "data": {
+            "type": "accounts",
+            "id": "<%= account %>"
+          }
         },
-        "attributes": {
-          "name": "Premium Add-On",
-          "duration": 1209600,
-          "strict": false,
-          "floating": true,
-          "usePool": false,
-          "maxMachines": 5,
-          "encrypted": true,
-          "protected": false,
-          "metadata": {},
-          "created": "<%= created %>",
-          "updated": "<%= created %>"
+        "product": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/policies/0b4b1a9a-e25a-4f14-a95e-d9dd378d6065/product"
+          },
+          "data": {
+            "type": "products",
+            "id": "3ab38aae-bbf7-4846-9c32-af9d94bf5ad4"
+          }
         },
-        "relationships": {
-          "account": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>"
-            },
-            "data": {
-              "type": "accounts",
-              "id": "<%= account %>"
-            }
-          },
-          "product": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>/policies/0b4b1a9a-e25a-4f14-a95e-d9dd378d6065/product"
-            },
-            "data": {
-              "type": "products",
-              "id": "3ab38aae-bbf7-4846-9c32-af9d94bf5ad4"
-            }
-          },
-          "pool": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>/policies/0b4b1a9a-e25a-4f14-a95e-d9dd378d6065/pool"
-            }
-          },
-          "licenses": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>/policies/0b4b1a9a-e25a-4f14-a95e-d9dd378d6065/licenses"
-            }
+        "pool": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/policies/0b4b1a9a-e25a-4f14-a95e-d9dd378d6065/pool"
+          }
+        },
+        "licenses": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/policies/0b4b1a9a-e25a-4f14-a95e-d9dd378d6065/licenses"
           }
         }
       }
@@ -3452,62 +3448,60 @@ const { data, errors } = await response.json()
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "data": [
     {
-      "data": {
-        "id": "b18e3f3a-330c-4d8d-ae2e-014db21fa827",
-        "type": "licenses",
-        "links": {
-          "self": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827"
+      "id": "b18e3f3a-330c-4d8d-ae2e-014db21fa827",
+      "type": "licenses",
+      "links": {
+        "self": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827"
+      },
+      "attributes": {
+        "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v1",
+        "expiry": "<%= expiry %>",
+        "suspended": false,
+        "encrypted": false,
+        "metadata": {},
+        "created": "<%= created %>",
+        "updated": "<%= created %>"
+      },
+      "relationships": {
+        "account": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>"
+          },
+          "data": {
+            "type": "accounts",
+            "id": "<%= account %>"
+          }
         },
-        "attributes": {
-          "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v1",
-          "expiry": "<%= expiry %>",
-          "suspended": false,
-          "encrypted": false,
-          "metadata": {},
-          "created": "<%= created %>",
-          "updated": "<%= created %>"
+        "product": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/product"
+          },
+          "data": {
+            "type": "products",
+            "id": "eb4e14a7-ea41-4ede-b3fe-5e835c17156b"
+          }
         },
-        "relationships": {
-          "account": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>"
-            },
-            "data": {
-              "type": "accounts",
-              "id": "<%= account %>"
-            }
+        "policy": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/policy"
           },
-          "product": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/product"
-            },
-            "data": {
-              "type": "products",
-              "id": "eb4e14a7-ea41-4ede-b3fe-5e835c17156b"
-            }
+          "data": {
+            "type": "policies",
+            "id": "37b632f4-8e1e-4af9-8717-634765364628"
+          }
+        },
+        "user": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/user"
           },
-          "policy": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/policy"
-            },
-            "data": {
-              "type": "policies",
-              "id": "37b632f4-8e1e-4af9-8717-634765364628"
-            }
-          },
-          "user": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/user"
-            },
-            "data": {
-              "type": "users",
-              "id": "015a33dd-3aca-43a9-8786-328042cce30a"
-            }
-          },
-          "machines": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>/machines?license=b18e3f3a-330c-4d8d-ae2e-014db21fa827"
-            }
+          "data": {
+            "type": "users",
+            "id": "015a33dd-3aca-43a9-8786-328042cce30a"
+          }
+        },
+        "machines": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/machines?license=b18e3f3a-330c-4d8d-ae2e-014db21fa827"
           }
         }
       }
@@ -4218,58 +4212,56 @@ const { data, errors } = await response.json()
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "data": [
     {
-      "data": {
-        "id": "9c4c90c8-d4d3-4571-9363-4c7b0332a6a4",
-        "type": "machines",
-        "links": {
-          "self": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4"
+      "id": "9c4c90c8-d4d3-4571-9363-4c7b0332a6a4",
+      "type": "machines",
+      "links": {
+        "self": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4"
+      },
+      "attributes": {
+        "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC",
+        "ip": null,
+        "hostname": null,
+        "platform": "macOS",
+        "name": "Office MacBook Pro",
+        "metadata": {},
+        "created": "<%= created %>",
+        "updated": "<%= created %>"
+      },
+      "relationships": {
+        "account": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>"
+          },
+          "data": {
+            "type": "accounts",
+            "id": "<%= account %>"
+          }
         },
-        "attributes": {
-          "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC",
-          "ip": null,
-          "hostname": null,
-          "platform": "macOS",
-          "name": "Office MacBook Pro",
-          "metadata": {},
-          "created": "<%= created %>",
-          "updated": "<%= created %>"
+        "product": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/product"
+          },
+          "data": {
+            "type": "products",
+            "id": "22b78db6-6a2e-4a7f-9369-157976148c4c"
+          }
         },
-        "relationships": {
-          "account": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>"
-            },
-            "data": {
-              "type": "accounts",
-              "id": "<%= account %>"
-            }
+        "license": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/license"
           },
-          "product": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/product"
-            },
-            "data": {
-              "type": "products",
-              "id": "22b78db6-6a2e-4a7f-9369-157976148c4c"
-            }
+          "data": {
+            "type": "licenses",
+            "id": "4097d726-6cc5-4156-8575-3a96387e19b4"
+          }
+        },
+        "user": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/user"
           },
-          "license": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/license"
-            },
-            "data": {
-              "type": "licenses",
-              "id": "4097d726-6cc5-4156-8575-3a96387e19b4"
-            }
-          },
-          "user": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>/machines/9c4c90c8-d4d3-4571-9363-4c7b0332a6a4/user"
-            },
-            "data": {
-              "type": "users",
-              "id": "15ad7012-b570-48b7-88c1-fbab68be9d05"
-            }
+          "data": {
+            "type": "users",
+            "id": "15ad7012-b570-48b7-88c1-fbab68be9d05"
           }
         }
       }
@@ -4596,44 +4588,42 @@ const { data, errors } = await response.json()
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "data": [
     {
-      "data": {
-        "id": "6e936a61-94ad-44d1-88ac-88da9f10eca7",
-        "type": "keys",
-        "links": {
-          "self": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7"
-        },
-        "attributes": {
-          "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128",
-          "created": "<%= created %>",
-          "updated": "<%= created %>"
-        },
-        "relationships": {
-          "account": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>"
-            },
-            "data": {
-              "type": "accounts",
-              "id": "<%= account %>"
-            }
+      "id": "6e936a61-94ad-44d1-88ac-88da9f10eca7",
+      "type": "keys",
+      "links": {
+        "self": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7"
+      },
+      "attributes": {
+        "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+        "created": "<%= created %>",
+        "updated": "<%= created %>"
+      },
+      "relationships": {
+        "account": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>"
           },
-          "product": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/product"
-            },
-            "data": {
-              "type": "products",
-              "id": "1f286fb6-c9bb-498b-a4e7-6c67748b1f4f"
-            }
+          "data": {
+            "type": "accounts",
+            "id": "<%= account %>"
+          }
+        },
+        "product": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/product"
           },
-          "policy": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/policy"
-            },
-            "data": {
-              "type": "policies",
-              "id": "95981290-518b-4109-a611-c0001214b3c5"
-            }
+          "data": {
+            "type": "products",
+            "id": "1f286fb6-c9bb-498b-a4e7-6c67748b1f4f"
+          }
+        },
+        "policy": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7/policy"
+          },
+          "data": {
+            "type": "policies",
+            "id": "95981290-518b-4109-a611-c0001214b3c5"
           }
         }
       }
@@ -5092,26 +5082,24 @@ const { data, errors } = await response.json()
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "data": [
     {
-      "data": {
-        "id": "0ed7330f-8d2c-405e-88b6-0a4a327e620c",
-        "type": "webhookEndpoints",
-        "links": {
-          "self": "/v1/accounts/<%= account %>/webhook-endpoints/0ed7330f-8d2c-405e-88b6-0a4a327e620c"
-        },
-        "attributes": {
-          "url": "https://api.example.com/v1/keygen",
-          "created": "<%= created %>",
-          "updated": "<%= created %>"
-        },
-        "relationships": {
-          "account": {
-            "links": {
-              "related": "/v1/accounts/<%= account %>"
-            },
-            "data": {
-              "type": "accounts",
-              "id": "<%= account %>"
-            }
+      "id": "0ed7330f-8d2c-405e-88b6-0a4a327e620c",
+      "type": "webhookEndpoints",
+      "links": {
+        "self": "/v1/accounts/<%= account %>/webhook-endpoints/0ed7330f-8d2c-405e-88b6-0a4a327e620c"
+      },
+      "attributes": {
+        "url": "https://api.example.com/v1/keygen",
+        "created": "<%= created %>",
+        "updated": "<%= created %>"
+      },
+      "relationships": {
+        "account": {
+          "links": {
+            "related": "/v1/accounts/<%= account %>"
+          },
+          "data": {
+            "type": "accounts",
+            "id": "<%= account %>"
           }
         }
       }
