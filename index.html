@@ -25,10 +25,10 @@ curl https://api.keygen.sh/v1/accounts/ecorp/licenses -X POST \
 </button></div></div><div class="lang__code code-block code-block--with-overflow code-block--hide-overflow"><div class="code-block__toggle-button"><button class="button button--size-small button--fill-solid" type="button" data-toggle-overflow>Toggle Code</button></div><pre><code class="javascript" data-lang="javascript">const fetch = require("node-fetch")
 
 // Replace this with a token that belongs to a user
-const token = "d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…"
+const token = "9fc6d1e049a8414a905524dfa8c24a6b.d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…"
 
 // Request the current user's licenses for our product
-const licenses = await fetch(`https://api.keygen.sh/v1/accounts/${process.env.KEYGEN_ACCOUNT_ID}/licenses?product=${process.env.KEYGEN_PRODUCT_ID}`, {
+const licenses = await fetch(`https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses?product=14c80537-66c7-4753-a5e7-e8269a2ea616`, {
   headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/vnd.api+json", "Accept": "application/vnd.api+json" }
 })
 
@@ -39,7 +39,7 @@ if (!data) {
 
 // Validate the first license we get back
 const [license, ...rest] = data
-const validation = await fetch(`https://api.keygen.sh/v1/accounts/${process.env.KEYGEN_ACCOUNT_ID}/licenses/${license.id}/actions/validate`, {
+const validation = await fetch(`https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/${license.id}/actions/validate`, {
   headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/vnd.api+json", "Accept": "application/vnd.api+json" }
 })
 
@@ -54,12 +54,12 @@ if (meta.valid) {
 import os
 
 # Replace this with a token that belongs to a user
-token = "d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…"
+token = "9fc6d1e049a8414a905524dfa8c24a6b.d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…"
 
 # Request the current user's licenses for our product
-licenses = requests.get("https://api.keygen.sh/v1/accounts/{0}/licenses".format(os.environ["KEYGEN_ACCOUNT_ID"]),
+licenses = requests.get("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses"),
   headers={ "Authorization": "Bearer {0}".format(token), "Content-Type": "application/vnd.api+json", "Accept": "application/vnd.api+json" },
-  params={ "product": os.environ["KEYGEN_PRODUCT_ID"] }
+  params={ "product": "14c80537-66c7-4753-a5e7-e8269a2ea616" }
 ).json()
 
 if not licenses["data"]:
@@ -67,7 +67,7 @@ if not licenses["data"]:
 
 # Validate the first license we get back
 license, *rest = licenses["data"]
-validation = requests.get("https://api.keygen.sh/v1/accounts/{0}/licenses/{1}/actions/validate".format(os.environ["KEYGEN_ACCOUNT_ID"], license["id"]),
+validation = requests.get("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{1}/actions/validate".format(license["id"]),
   headers={ "Authorization": "Bearer {0}".format(token), "Content-Type": "application/vnd.api+json", "Accept": "application/vnd.api+json" }
 ).json()
 
@@ -78,12 +78,12 @@ else:
 </code><code class="ruby" data-lang="ruby">require "httparty"
 
 # Replace this with a token that belongs to a user
-token = "d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…"
+token = "9fc6d1e049a8414a905524dfa8c24a6b.d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…"
 
 # Request the current user's licenses for our product
-licenses = HTTParty.get("https://api.keygen.sh/v1/accounts/#{ENV['KEYGEN_ACCOUNT_ID']}/licenses",
+licenses = HTTParty.get("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
   headers: { "Authorization" => "Bearer #{token}", "Content-Type" => "application/vnd.api+json", "Accept" => "application/vnd.api+json" },
-  query: { product: ENV["KEYGEN_PRODUCT_ID"] }
+  query: { product: "14c80537-66c7-4753-a5e7-e8269a2ea616" }
 )
 
 if licenses["data"].empty?
@@ -92,7 +92,7 @@ end
 
 # Validate the first license we get back
 license = licenses["data"].first
-validation = HTTParty.get("https://api.keygen.sh/v1/accounts/#{ENV['KEYGEN_ACCOUNT_ID']}/licenses/#{license['id']}/actions/validate",
+validation = HTTParty.get("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/#{license['id']}/actions/validate",
   headers: { "Authorization" => "Bearer #{token}", "Content-Type" => "application/vnd.api+json", "Accept" => "application/vnd.api+json" }
 )
 
@@ -104,13 +104,13 @@ end
 </code><code class="php" data-lang="php">require __DIR__ . "/vendor/autoload.php";
 
 // Replace this with a token that belongs to a user
-$token = "d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…";
+$token = "9fc6d1e049a8414a905524dfa8c24a6b.d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…";
 
 // Request the current user's licenses for our product
 $licenses = json_decode(
-  Requests::request("https://api.keygen.sh/v1/accounts/{$_ENV['KEYGEN_ACCOUNT_ID']}/licenses",
+  Requests::request("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
     ["Authorization" => "Bearer {$token}", "Content-Type" => "application/vnd.api+json", "Accept" => "application/vnd.api+json"],
-    ["product" => $_ENV["KEYGEN_PRODUCT_ID"]]
+    ["product" => "14c80537-66c7-4753-a5e7-e8269a2ea616"
   )->body
 );
 
@@ -121,7 +121,7 @@ if (!$licenses["data"]) {
 // Validate the first license we get back
 $license = current($licenses["data"]);
 $validation = json_decode(
-  Requests::request("https://api.keygen.sh/v1/accounts/{$_ENV['KEYGEN_ACCOUNT_ID']}/licenses/{$license['id']}/actions/validate", [
+  Requests::request("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{$license['id']}/actions/validate", [
     "Authorization" => "Bearer {$token}", "Content-Type" => "application/vnd.api+json", "Accept" => "application/vnd.api+json"
   ])->body
 );
@@ -135,17 +135,16 @@ if ($validation["meta"]["valid"]) {
 using System;
 
 // Replace this with a token that belongs to a user
-var token = "d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…";
+var token = "9fc6d1e049a8414a905524dfa8c24a6b.d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…";
 
-var accountId = Environment.GetEnvironmentVariable("KEYGEN_ACCOUNT_ID");
 var http = new HttpClient();
 http.Request.ContentType = "application/vnd.api+json";
 http.Request.Accept = "application/vnd.api+json";
 http.Request.Authorization = $"Bearer {token}";
 
 // Request the current user's licenses for our product
-var licenses = http.Get($"https://api.keygen.sh/v1/accounts/{accountId}/licenses",
-  new {Product = Environment.GetEnvironmentVariable("KEYGEN_PRODUCT_ID")}
+var licenses = http.Get("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
+  new {product = "14c80537-66c7-4753-a5e7-e8269a2ea616"}
 );
 var data = response.DynamicBody;
 
@@ -156,7 +155,7 @@ if (data.Data == null || data.Data.length == 0)
 
 // Validate the first license we get back
 var license = licenses.First();
-var validation = http.Get($"https://api.keygen.sh/v1/accounts/{accountId}/licenses/{license.Id}/actions/validate");
+var validation = http.Get($"https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{license.Id}/actions/validate");
 var data = response.DynamicBody;
 
 if (data.Meta.Valid)
