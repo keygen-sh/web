@@ -21,13 +21,15 @@ curl https://api.keygen.sh/v1/accounts/ecorp/licenses -X POST \
           }
         }
       }'</code></pre></div></div></div></main><section class="flow__wrapper"><div class="flow"><a class="flow__step__wrapper" href="/docs/api#policies-create" alt="Control what type of licenses each product offers"><article class="flow__step"><i class="material-icons">security</i><h2>Create policies</h2><p>Control what type of licenses each product offers.</p></article></a><a class="flow__step__wrapper" href="/docs/api#users-create" alt="Allow your users to login across all your products"><article class="flow__step"><i class="material-icons">people</i><h2>Create users</h2><p>Allow your users to login across all your products.</p></article></a><a class="flow__step__wrapper" href="/docs/api#licenses-create" alt="Validate product licenses quickly and effortlessly"><article class="flow__step"><i class="material-icons">verified_user</i><h2>Create licenses</h2><p>Validate product licenses quickly and effortlessly.</p></article></a></div></section><section class="metrics__wrapper"><div class="metrics"><div class="metrics__content"><h2>Powerful business metrics</h2><ul class="checklist"><li><i class="material-icons">trending_up</i>Monitor crucial events for users, licenses and more</li><li><i class="material-icons">notifications_none</i>Get notified of overdue check-ins and expirations</li><li><i class="material-icons">timeline</i>Get insights into user behavior and preferences</li><li><i class="material-icons">dvr</i>Track user machine usage and allowed limits</li></ul></div><div class="metrics__image"><img src="/metrics.png"></div></div></section><section class="lang"><div class="lang__content"><h2>Use your favorite language</h2><p>Quickly implement Keygen in the programming language of your choice.
-</p></div><div class="lang__toolbar__wrapper"><div class="lang__toolbar" data-default-lang="javascript"><button class="lang__option" type="button" data-lang="javascript">Node</button><button class="lang__option" type="button" data-lang="python">Python</button><button class="lang__option" type="button" data-lang="ruby">Ruby</button><button class="lang__option" type="button" data-lang="php">PHP
+</p></div><div class="lang__toolbar__wrapper"><div class="lang__toolbar" data-default-lang="javascript"><button class="lang__option" type="button" data-lang="javascript">Node</button><button class="lang__option" type="button" data-lang="python">Python</button><button class="lang__option" type="button" data-lang="ruby">Ruby</button><button class="lang__option" type="button" data-lang="php">PHP</button><button class="lang__option" type="button" data-lang="csharp">C#
 </button></div></div><div class="lang__code code-block code-block--with-overflow code-block--hide-overflow"><div class="code-block__toggle-button"><button class="button button--size-small button--fill-solid" type="button" data-toggle-overflow>Toggle Code</button></div><pre><code class="javascript" data-lang="javascript">const fetch = require("node-fetch")
+
+// Replace this with a token that belongs to a user
+const token = "d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…"
 
 // Request the current user's licenses for our product
 const licenses = await fetch(`https://api.keygen.sh/v1/accounts/${process.env.KEYGEN_ACCOUNT_ID}/licenses?product=${process.env.KEYGEN_PRODUCT_ID}`, {
-  headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/vnd.api+json", "Accept": "application/vnd.api+json" },
-  method: "GET"
+  headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/vnd.api+json", "Accept": "application/vnd.api+json" }
 })
 
 const { data, errors } = await licenses.json()
@@ -38,8 +40,7 @@ if (!data) {
 // Validate the first license we get back
 const [license, ...rest] = data
 const validation = await fetch(`https://api.keygen.sh/v1/accounts/${process.env.KEYGEN_ACCOUNT_ID}/licenses/${license.id}/actions/validate`, {
-  headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/vnd.api+json", "Accept": "application/vnd.api+json" },
-  method: "GET"
+  headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/vnd.api+json", "Accept": "application/vnd.api+json" }
 })
 
 const { meta } = await validation.json()
@@ -52,9 +53,13 @@ if (meta.valid) {
 </code><code class="python" data-lang="python">import requests
 import os
 
+# Replace this with a token that belongs to a user
+token = "d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…"
+
 # Request the current user's licenses for our product
-licenses = requests.get("https://api.keygen.sh/v1/accounts/{0}/licenses?product={1}".format(os.environ["KEYGEN_ACCOUNT_ID"], os.environ["KEYGEN_PRODUCT_ID"]),
-  headers={ "Authorization": "Bearer {0}".format(token), "Content-Type": "application/vnd.api+json", "Accept": "application/vnd.api+json" }
+licenses = requests.get("https://api.keygen.sh/v1/accounts/{0}/licenses".format(os.environ["KEYGEN_ACCOUNT_ID"]),
+  headers={ "Authorization": "Bearer {0}".format(token), "Content-Type": "application/vnd.api+json", "Accept": "application/vnd.api+json" },
+  params={ "product": os.environ["KEYGEN_PRODUCT_ID"] }
 ).json()
 
 if not licenses["data"]:
@@ -72,9 +77,13 @@ else:
   # Do something else
 </code><code class="ruby" data-lang="ruby">require "httparty"
 
+# Replace this with a token that belongs to a user
+token = "d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…"
+
 # Request the current user's licenses for our product
-licenses = HTTParty.get("https://api.keygen.sh/v1/accounts/#{ENV['KEYGEN_ACCOUNT_ID']}/licenses?product=#{ENV['KEYGEN_PRODUCT_ID']}",
-  headers: { "Authorization" => "Bearer #{token}", "Content-Type" => "application/vnd.api+json", "Accept" => "application/vnd.api+json" }
+licenses = HTTParty.get("https://api.keygen.sh/v1/accounts/#{ENV['KEYGEN_ACCOUNT_ID']}/licenses",
+  headers: { "Authorization" => "Bearer #{token}", "Content-Type" => "application/vnd.api+json", "Accept" => "application/vnd.api+json" },
+  query: { product: ENV["KEYGEN_PRODUCT_ID"] }
 )
 
 if licenses["data"].empty?
@@ -82,7 +91,7 @@ if licenses["data"].empty?
 end
 
 # Validate the first license we get back
-license, *rest = licenses["data"]
+license = licenses["data"].first
 validation = HTTParty.get("https://api.keygen.sh/v1/accounts/#{ENV['KEYGEN_ACCOUNT_ID']}/licenses/#{license['id']}/actions/validate",
   headers: { "Authorization" => "Bearer #{token}", "Content-Type" => "application/vnd.api+json", "Accept" => "application/vnd.api+json" }
 )
@@ -94,11 +103,15 @@ else
 end
 </code><code class="php" data-lang="php">require __DIR__ . "/vendor/autoload.php";
 
+// Replace this with a token that belongs to a user
+$token = "d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…";
+
 // Request the current user's licenses for our product
 $licenses = json_decode(
-  Requests::get("https://api.keygen.sh/v1/accounts/{$_ENV['KEYGEN_ACCOUNT_ID']}/licenses?product={$_ENV['KEYGEN_PRODUCT_ID']}", [
-    "Authorization" => "Bearer {$token}", "Content-Type" => "application/vnd.api+json", "Accept" => "application/vnd.api+json"
-  ])->body
+  Requests::request("https://api.keygen.sh/v1/accounts/{$_ENV['KEYGEN_ACCOUNT_ID']}/licenses",
+    ["Authorization" => "Bearer {$token}", "Content-Type" => "application/vnd.api+json", "Accept" => "application/vnd.api+json"],
+    ["product" => $_ENV["KEYGEN_PRODUCT_ID"]]
+  )->body
 );
 
 if (!$licenses["data"]) {
@@ -108,7 +121,7 @@ if (!$licenses["data"]) {
 // Validate the first license we get back
 $license = current($licenses["data"]);
 $validation = json_decode(
-  Requests::get("https://api.keygen.sh/v1/accounts/{$_ENV['KEYGEN_ACCOUNT_ID']}/licenses/{$license['id']}/actions/validate", [
+  Requests::request("https://api.keygen.sh/v1/accounts/{$_ENV['KEYGEN_ACCOUNT_ID']}/licenses/{$license['id']}/actions/validate", [
     "Authorization" => "Bearer {$token}", "Content-Type" => "application/vnd.api+json", "Accept" => "application/vnd.api+json"
   ])->body
 );
@@ -116,6 +129,42 @@ $validation = json_decode(
 if ($validation["meta"]["valid"]) {
   // Do something
 } else {
+  // Do something else
+}
+</code><code class="csharp" data-lang="csharp">using EasyHttp.Http;
+using System;
+
+// Replace this with a token that belongs to a user
+var token = "d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…";
+
+var accountId = Environment.GetEnvironmentVariable("KEYGEN_ACCOUNT_ID");
+var http = new HttpClient();
+http.Request.ContentType = "application/vnd.api+json";
+http.Request.Accept = "application/vnd.api+json";
+http.Request.Authorization = $"Bearer {token}";
+
+// Request the current user's licenses for our product
+var licenses = http.Get($"https://api.keygen.sh/v1/accounts/{accountId}/licenses",
+  new {Product = Environment.GetEnvironmentVariable("KEYGEN_PRODUCT_ID")}
+);
+var data = response.DynamicBody;
+
+if (data.Data == null || data.Data.length == 0)
+{
+  Environment.Exit(0); // User does not have any licenses
+}
+
+// Validate the first license we get back
+var license = licenses.First();
+var validation = http.Get($"https://api.keygen.sh/v1/accounts/{accountId}/licenses/{license.Id}/actions/validate");
+var data = response.DynamicBody;
+
+if (data.Meta.Valid)
+{
+  // Do something
+}
+else
+{
   // Do something else
 }</code></pre></div></section><section class="docs"><div class="docs__content"><h2>In-depth documentation on…</h2><ul class="checklist"><li><i class="material-icons">code</i>How to easily implement Keygen into your product</li><li><i class="material-icons">sync</i>How to handle webhooks to integrate with your payment system</li><li><i class="material-icons">done_all</i>How to set up user registration and license verification</li><li><i class="material-icons">playlist_add_check</i>And of course, a full API reference with examples</li></ul></div></section><section class="news"><div class="news__content"><h2>Not ready to join? Stay updated.</h2><form action="//keygen.us14.list-manage.com/subscribe/post?u=0da915687b658ef99fb6b9075&amp;id=8e6c7696a2" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate=""><input type="email" value="" name="EMAIL" placeholder="Email address" required=""><div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0da915687b658ef99fb6b9075_8e6c7696a2" tabindex="-1" value=""></div><button class="button" type="submit" name="subscribe">Subscribe</button></form></div></section><section class="integrate__wrapper"><div class="integrate"><div class="integrate__heading"><h2>Integrate Keygen with…</h2></div><div class="integrate__platforms"><a class="integrate__platform__wrapper" href="/integrate/electron" alt="Integrate Keygen into an Electron app"><article class="integrate__platform"><svg width="128px" height="128px" viewBox="0 0 110 110" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
