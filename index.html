@@ -45,7 +45,7 @@ if (!data) {
 }
 
 // Validate the first license we get back
-const [license, ...rest] = data
+const license = data[0]
 const validation = await fetch(`https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/${license.id}/actions/validate`, {
   headers
 })
@@ -79,7 +79,7 @@ if not licenses["data"]:
   quit() # User does not have any licenses
 
 # Validate the first license we get back
-license, *rest = licenses["data"]
+license = licenses["data"][0]
 validation = requests.get("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{1}/actions/validate".format(license["id"]),
   headers=headers
 ).json()
@@ -145,7 +145,7 @@ if (!$licenses["data"]) {
 }
 
 // Validate the first license we get back
-$license = current($licenses["data"]);
+$license = $licenses["data"][0];
 $validation = json_decode(
   Requests::request("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{$license['id']}/actions/validate",
     $headers
