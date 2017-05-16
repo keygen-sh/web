@@ -37,8 +37,8 @@ const headers = {
 // Request the current user's licenses for our product
 const url = new URL("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses")
 url.searchParams.append("product", "14c80537-66c7-4753-a5e7-e8269a2ea616")
-
 const licenses = await fetch(url, { headers })
+
 const { data, errors } = await licenses.json()
 if (!data) {
   process.exit() // User does not have any licenses
