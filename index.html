@@ -37,6 +37,7 @@ const headers = {
 // Request the current user's licenses for our product
 const url = new URL("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses")
 url.searchParams.append("product", "14c80537-66c7-4753-a5e7-e8269a2ea616")
+
 const licenses = await fetch(url, { headers })
 
 const { data, errors } = await licenses.json()
@@ -46,9 +47,10 @@ if (!data) {
 
 // Validate the first license we get back
 const license = data[0]
-const validation = await fetch(`https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/${license.id}/actions/validate`, {
-  headers
-})
+const validation = await fetch(
+  `https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/${license.id}/actions/validate`,
+  { headers }
+)
 const { meta } = await validation.json()
 
 if (meta.valid) {
@@ -70,7 +72,8 @@ headers = {
 }
 
 # Request the current user's licenses for our product
-licenses = requests.get("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses"),
+licenses = requests.get(
+  "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
   params={ "product": "14c80537-66c7-4753-a5e7-e8269a2ea616" },
   headers=headers
 ).json()
@@ -80,7 +83,8 @@ if not licenses["data"]:
 
 # Validate the first license we get back
 license = licenses["data"][0]
-validation = requests.get("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{1}/actions/validate".format(license["id"]),
+validation = requests.get(
+  "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{1}/actions/validate".format(license["id"]),
   headers=headers
 ).json()
 
@@ -101,7 +105,8 @@ headers = {
 }
 
 # Request the current user's licenses for our product
-licenses = HTTParty.get("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
+licenses = HTTParty.get(
+  "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
   query: { product: "14c80537-66c7-4753-a5e7-e8269a2ea616" },
   headers: headers
 )
@@ -112,7 +117,8 @@ end
 
 # Validate the first license we get back
 license = licenses["data"].first
-validation = HTTParty.get("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/#{license['id']}/actions/validate",
+validation = HTTParty.get(
+  "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/#{license['id']}/actions/validate",
   headers: headers
 )
 
@@ -135,7 +141,8 @@ $headers = [
 
 // Request the current user's licenses for our product
 $licenses = json_decode(
-  Requests::request("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
+  Requests::request(
+    "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
     $headers, ["product" => "14c80537-66c7-4753-a5e7-e8269a2ea616"]
   )->body
 );
@@ -147,7 +154,8 @@ if (!$licenses["data"]) {
 // Validate the first license we get back
 $license = $licenses["data"][0];
 $validation = json_decode(
-  Requests::request("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{$license['id']}/actions/validate",
+  Requests::request(
+    "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{$license['id']}/actions/validate",
     $headers
   )->body
 );
@@ -170,22 +178,25 @@ http.Request.Accept = "application/vnd.api+json";
 http.Request.Authorization = $"Bearer {token}";
 
 // Request the current user's licenses for our product
-var licenses = http.Get("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
+var licenses = http.Get(
+  "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
   new {product = "14c80537-66c7-4753-a5e7-e8269a2ea616"}
 );
-var data = response.DynamicBody;
+var body = response.DynamicBody;
 
-if (data.Data == null || data.Data.length == 0)
+if (body.Data == null || body.Data.length == 0)
 {
   Environment.Exit(0); // User does not have any licenses
 }
 
 // Validate the first license we get back
-var license = licenses.First();
-var validation = http.Get($"https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{license.Id}/actions/validate");
-var data = response.DynamicBody;
+var license = body.Data.First();
+var validation = http.Get(
+  $"https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{license.Id}/actions/validate"
+);
+var body = response.DynamicBody;
 
-if (data.Meta.Valid)
+if (body.Meta.Valid)
 {
   // Do something
 }
