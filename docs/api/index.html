@@ -4830,7 +4830,7 @@ with a POST request containing an <a href="#webhook-events-object">event object<
 </tr>
 </tbody>
 </table>
-</div><div class="example__wrapper"><div class="example"><h4>Example webhook handler</h4><pre><code class="javascript" data-lang="javascript">const fetch = require("node-fetch")
+</div><div class="example__wrapper"><div class="example"><h4>Example webhook handler</h4><pre><code class="javascript">const fetch = require("node-fetch")
 
 async function webhookHandler(req, res) {
   const { data: { id } } = JSON.parse(req.body)
