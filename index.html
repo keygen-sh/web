@@ -182,7 +182,7 @@ var licenses = http.Get(
   "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
   new {product = "14c80537-66c7-4753-a5e7-e8269a2ea616"}
 );
-dynamic body = licenses.DynamicBody;
+var body = licenses.DynamicBody;
 
 if (body.Data == null || body.Data.length == 0)
 {
