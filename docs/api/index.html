@@ -372,7 +372,7 @@ an identical token, signaling a retried event.</p>
 </div><div class="example__wrapper"><div class="example"><h4>Example resource</h4><p>A failed webhook event resource.</p><pre><code class="json">{
   "data": {
     "id": "2bc99fe1-f315-4877-ac5f-542240c4e883",
-    "type": "webhookEvents",
+    "type": "webhook-events",
     "meta": {
       "idempotencyToken": "e8e0fbb598e8bcfd0e94ceb79199edc79e6ab53f4a4bbb32d7aede7964e7c3v1",
     },
@@ -419,7 +419,7 @@ const { data, errors } = await response.json()
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response</h4><p>Notice that it's a new resource, yet the idempotency token matches the original event.</p><pre><code class="json">{
   "data": {
     "id": "1bda5fd5-6d82-49f5-b5b8-71bb432a32bb",
-    "type": "webhookEvents",
+    "type": "webhook-events",
     "meta": {
       "idempotencyToken": "e8e0fbb598e8bcfd0e94ceb79199edc79e6ab53f4a4bbb32d7aede7964e7c3v1",
     },
@@ -802,7 +802,7 @@ const { data, errors } = await response.json()
   ]
 }</code></pre></div></div></article></section><section class="resource" id="accounts"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#accounts" data-target="accounts"><i class="material-icons">link</i></a>Accounts</h1></div><article class="object" id="accounts-object"><div class="description"><h2 class="anchor__wrapper object__heading"><a class="anchor" href="#accounts-object" data-target="accounts-object"><i class="material-icons">link</i></a>The account object</h2><p>Below you will find the various attributes for the account resource, as well
 as the account resource&#39;s relationships.</p>
-</div><div class="attributes" id="accounts-object-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#accounts-object-attrs" data-target="accounts-object-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="accounts-object-attrs-name"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#accounts-object-attrs-name" data-target="accounts-object-attrs-name"><i class="material-icons">link</i></a>name</h3><span class="attribute__type">string</span><p class="attribute__desc">The name of the account.</p></div></li><li class="attribute"><div class="attribute__info" id="accounts-object-attrs-slug"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#accounts-object-attrs-slug" data-target="accounts-object-attrs-slug"><i class="material-icons">link</i></a>slug</h3><span class="attribute__type">string</span><p class="attribute__desc">The unique slug of the account. This can be used in place of the account's unique identifier when making requests.</p></div></li><li class="attribute"><div class="attribute__info" id="accounts-object-attrs-protected"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#accounts-object-attrs-protected" data-target="accounts-object-attrs-protected"><i class="material-icons">link</i></a>protected</h3><span class="attribute__type">boolean</span><span class="attribute__default">, default is<code>false</code></span><p class="attribute__desc">Whether or not the account is protected. A protected account disallows public user and license creation and management, useful in situations where Keygen is only managed server-side or when you aren't listening for the appropriate user-initiated webhook events.</p></div></li><li class="attribute"><div class="attribute__info" id="accounts-object-attrs-created"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#accounts-object-attrs-created" data-target="accounts-object-attrs-created"><i class="material-icons">link</i></a>created</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the account was created.</p></div></li><li class="attribute"><div class="attribute__info" id="accounts-object-attrs-updated"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#accounts-object-attrs-updated" data-target="accounts-object-attrs-updated"><i class="material-icons">link</i></a>updated</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the account was last updated.</p></div></li></ul></div><div class="relationships" id="accounts-object-relationships"><h4 class="anchor__wrapper relationships__heading"><a class="anchor" href="#accounts-object-relationships" data-target="accounts-object-relationships"><i class="material-icons">link</i></a>Relationships</h4><ul class="relationships__list"><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-billing"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-billing" data-target="accounts-object-relationships-billing"><i class="material-icons">link</i></a>billing</h3><span class="relationship__type">individual</span><p class="relationship__desc">The billing information for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-plan"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-plan" data-target="accounts-object-relationships-plan"><i class="material-icons">link</i></a>plan</h3><span class="relationship__type">individual</span><p class="relationship__desc">The plan that the account is subscribed to.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-webhookEndpoints"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-webhookEndpoints" data-target="accounts-object-relationships-webhookEndpoints"><i class="material-icons">link</i></a>webhookEndpoints</h3><span class="relationship__type">collection</span><p class="relationship__desc">Webhook endpoints for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-webhookEvents"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-webhookEvents" data-target="accounts-object-relationships-webhookEvents"><i class="material-icons">link</i></a>webhookEvents</h3><span class="relationship__type">collection</span><p class="relationship__desc">Webhook events for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-products"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-products" data-target="accounts-object-relationships-products"><i class="material-icons">link</i></a>products</h3><span class="relationship__type">collection</span><p class="relationship__desc">Products for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-policies"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-policies" data-target="accounts-object-relationships-policies"><i class="material-icons">link</i></a>policies</h3><span class="relationship__type">collection</span><p class="relationship__desc">Policies for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-users"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-users" data-target="accounts-object-relationships-users"><i class="material-icons">link</i></a>users</h3><span class="relationship__type">collection</span><p class="relationship__desc">Users for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-keys"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-keys" data-target="accounts-object-relationships-keys"><i class="material-icons">link</i></a>keys</h3><span class="relationship__type">collection</span><p class="relationship__desc">Keys for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-licenses"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-licenses" data-target="accounts-object-relationships-licenses"><i class="material-icons">link</i></a>licenses</h3><span class="relationship__type">collection</span><p class="relationship__desc">Licenses for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-machines"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-machines" data-target="accounts-object-relationships-machines"><i class="material-icons">link</i></a>machines</h3><span class="relationship__type">collection</span><p class="relationship__desc">Machines for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-tokens"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-tokens" data-target="accounts-object-relationships-tokens"><i class="material-icons">link</i></a>tokens</h3><span class="relationship__type">collection</span><p class="relationship__desc">Tokens for the account.</p></div></li></ul></div><div class="example__wrapper"><div class="example"><h4>Example object</h4><pre><code class="json">{
+</div><div class="attributes" id="accounts-object-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#accounts-object-attrs" data-target="accounts-object-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="accounts-object-attrs-name"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#accounts-object-attrs-name" data-target="accounts-object-attrs-name"><i class="material-icons">link</i></a>name</h3><span class="attribute__type">string</span><p class="attribute__desc">The name of the account.</p></div></li><li class="attribute"><div class="attribute__info" id="accounts-object-attrs-slug"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#accounts-object-attrs-slug" data-target="accounts-object-attrs-slug"><i class="material-icons">link</i></a>slug</h3><span class="attribute__type">string</span><p class="attribute__desc">The unique slug of the account. This can be used in place of the account's unique identifier when making requests.</p></div></li><li class="attribute"><div class="attribute__info" id="accounts-object-attrs-protected"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#accounts-object-attrs-protected" data-target="accounts-object-attrs-protected"><i class="material-icons">link</i></a>protected</h3><span class="attribute__type">boolean</span><span class="attribute__default">, default is<code>false</code></span><p class="attribute__desc">Whether or not the account is protected. A protected account disallows public user and license creation and management, useful in situations where Keygen is only managed server-side or when you aren't listening for the appropriate user-initiated webhook events.</p></div></li><li class="attribute"><div class="attribute__info" id="accounts-object-attrs-created"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#accounts-object-attrs-created" data-target="accounts-object-attrs-created"><i class="material-icons">link</i></a>created</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the account was created.</p></div></li><li class="attribute"><div class="attribute__info" id="accounts-object-attrs-updated"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#accounts-object-attrs-updated" data-target="accounts-object-attrs-updated"><i class="material-icons">link</i></a>updated</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the account was last updated.</p></div></li></ul></div><div class="relationships" id="accounts-object-relationships"><h4 class="anchor__wrapper relationships__heading"><a class="anchor" href="#accounts-object-relationships" data-target="accounts-object-relationships"><i class="material-icons">link</i></a>Relationships</h4><ul class="relationships__list"><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-billing"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-billing" data-target="accounts-object-relationships-billing"><i class="material-icons">link</i></a>billing</h3><span class="relationship__type">individual</span><p class="relationship__desc">The billing information for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-plan"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-plan" data-target="accounts-object-relationships-plan"><i class="material-icons">link</i></a>plan</h3><span class="relationship__type">individual</span><p class="relationship__desc">The plan that the account is subscribed to.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-webhook-endpoints"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-webhook-endpoints" data-target="accounts-object-relationships-webhook-endpoints"><i class="material-icons">link</i></a>webhook-endpoints</h3><span class="relationship__type">collection</span><p class="relationship__desc">Webhook endpoints for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-webhook-events"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-webhook-events" data-target="accounts-object-relationships-webhook-events"><i class="material-icons">link</i></a>webhook-events</h3><span class="relationship__type">collection</span><p class="relationship__desc">Webhook events for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-products"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-products" data-target="accounts-object-relationships-products"><i class="material-icons">link</i></a>products</h3><span class="relationship__type">collection</span><p class="relationship__desc">Products for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-policies"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-policies" data-target="accounts-object-relationships-policies"><i class="material-icons">link</i></a>policies</h3><span class="relationship__type">collection</span><p class="relationship__desc">Policies for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-users"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-users" data-target="accounts-object-relationships-users"><i class="material-icons">link</i></a>users</h3><span class="relationship__type">collection</span><p class="relationship__desc">Users for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-keys"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-keys" data-target="accounts-object-relationships-keys"><i class="material-icons">link</i></a>keys</h3><span class="relationship__type">collection</span><p class="relationship__desc">Keys for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-licenses"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-licenses" data-target="accounts-object-relationships-licenses"><i class="material-icons">link</i></a>licenses</h3><span class="relationship__type">collection</span><p class="relationship__desc">Licenses for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-machines"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-machines" data-target="accounts-object-relationships-machines"><i class="material-icons">link</i></a>machines</h3><span class="relationship__type">collection</span><p class="relationship__desc">Machines for the account.</p></div></li><li class="relationship"><div class="relationship__info" id="accounts-object-relationships-tokens"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#accounts-object-relationships-tokens" data-target="accounts-object-relationships-tokens"><i class="material-icons">link</i></a>tokens</h3><span class="relationship__type">collection</span><p class="relationship__desc">Tokens for the account.</p></div></li></ul></div><div class="example__wrapper"><div class="example"><h4>Example object</h4><pre><code class="json">{
   "data": {
     "id": "fff33d8f-11b8-428d-a949-db2b74d7c2f2",
     "type": "accounts",
@@ -835,12 +835,12 @@ as the account resource&#39;s relationships.</p>
           "id": "ecd0aaa1-86e7-4f06-9f82-2985585c94a3"
         }
       },
-      "webhookEndpoints": {
+      "webhook-endpoints": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/webhook-endpoints"
         }
       },
-      "webhookEvents": {
+      "webhook-events": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/webhook-events"
         }
@@ -988,12 +988,12 @@ const { data, errors } = await response.json()
           "id": "ecd0aaa1-86e7-4f06-9f82-2985585c94a3"
         }
       },
-      "webhookEndpoints": {
+      "webhook-endpoints": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/webhook-endpoints"
         }
       },
-      "webhookEvents": {
+      "webhook-events": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/webhook-events"
         }
@@ -1086,12 +1086,12 @@ const { data, errors } = await response.json()
           "id": "ecd0aaa1-86e7-4f06-9f82-2985585c94a3"
         }
       },
-      "webhookEndpoints": {
+      "webhook-endpoints": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/webhook-endpoints"
         }
       },
-      "webhookEvents": {
+      "webhook-events": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/webhook-events"
         }
@@ -1202,12 +1202,12 @@ const { data, errors } = await response.json()
           "id": "ecd0aaa1-86e7-4f06-9f82-2985585c94a3"
         }
       },
-      "webhookEndpoints": {
+      "webhook-endpoints": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/webhook-endpoints"
         }
       },
-      "webhookEvents": {
+      "webhook-events": {
         "links": {
           "related": "/v1/accounts/fff33d8f-11b8-428d-a949-db2b74d7c2f2/webhook-events"
         }
@@ -4881,7 +4881,7 @@ as the endpoint resource&#39;s relationships.</p>
 </div><div class="attributes" id="webhook-endpoints-object-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#webhook-endpoints-object-attrs" data-target="webhook-endpoints-object-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="webhook-endpoints-object-attrs-url"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#webhook-endpoints-object-attrs-url" data-target="webhook-endpoints-object-attrs-url"><i class="material-icons">link</i></a>url</h3><span class="attribute__type">string</span><p class="attribute__desc">The url that events are dispatched to. Must use the https protocol.</p></div></li><li class="attribute"><div class="attribute__info" id="webhook-endpoints-object-attrs-created"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#webhook-endpoints-object-attrs-created" data-target="webhook-endpoints-object-attrs-created"><i class="material-icons">link</i></a>created</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the endpoint was created.</p></div></li><li class="attribute"><div class="attribute__info" id="webhook-endpoints-object-attrs-updated"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#webhook-endpoints-object-attrs-updated" data-target="webhook-endpoints-object-attrs-updated"><i class="material-icons">link</i></a>updated</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the endpoint was last updated.</p></div></li></ul></div><div class="relationships" id="webhook-endpoints-object-relationships"><h4 class="anchor__wrapper relationships__heading"><a class="anchor" href="#webhook-endpoints-object-relationships" data-target="webhook-endpoints-object-relationships"><i class="material-icons">link</i></a>Relationships</h4><ul class="relationships__list"><li class="relationship"><div class="relationship__info" id="webhook-endpoints-object-relationships-account"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#webhook-endpoints-object-relationships-account" data-target="webhook-endpoints-object-relationships-account"><i class="material-icons">link</i></a>account</h3><span class="relationship__type">individual</span><p class="relationship__desc">The account that the endpoint belongs to.</p></div></li></ul></div><div class="example__wrapper"><div class="example"><h4>Example object</h4><pre><code class="json">{
   "data": {
     "id": "0ed7330f-8d2c-405e-88b6-0a4a327e620c",
-    "type": "webhookEndpoints",
+    "type": "webhook-endpoints",
     "links": {
       "self": "/v1/accounts/<%= account %>/webhook-endpoints/0ed7330f-8d2c-405e-88b6-0a4a327e620c"
     },
@@ -4904,7 +4904,7 @@ as the endpoint resource&#39;s relationships.</p>
   }
 }</code></pre></div></div></article><article class="method" id="webhook-endpoints-create"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#webhook-endpoints-create" data-target="webhook-endpoints-create"><i class="material-icons">link</i></a>Create an endpoint</h2><p>Creates a new endpoint for the account.</p>
 </div><div class="authentications" id="webhook-endpoints-create-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#webhook-endpoints-create-auths" data-target="webhook-endpoints-create-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="webhook-endpoints-create-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#webhook-endpoints-create-auths-bearer" data-target="webhook-endpoints-create-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with admin privileges.</p></div></li></ul></div><div class="parameters" id="webhook-endpoints-create-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#webhook-endpoints-create-params" data-target="webhook-endpoints-create-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="webhook-endpoints-create-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#webhook-endpoints-create-params-account" data-target="webhook-endpoints-create-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li></ul></div><div class="attributes" id="webhook-endpoints-object-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#webhook-endpoints-object-attrs" data-target="webhook-endpoints-object-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="webhook-endpoints-object-attrs-url"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#webhook-endpoints-object-attrs-url" data-target="webhook-endpoints-object-attrs-url"><i class="material-icons">link</i></a>url</h3><span class="attribute__type">string</span><span class="attribute__req">, required</span><p class="attribute__desc">The url that events are dispatched to. Must use the https protocol.</p></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash">POST https://api.keygen.sh/v1/accounts/<%= account %>/webhook-endpoints \
-  -d '{ "data": { "type": "webhookEndpoints", "attributes": {DATA} } }'
+  -d '{ "data": { "type": "webhook-endpoints", "attributes": {DATA} } }'
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="javascript" data-lang="javascript">const fetch = require("node-fetch")
 
 const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/webhook-endpoints", {
@@ -4916,7 +4916,7 @@ const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/w
   },
   body: JSON.stringify({
     "data": {
-      "type": "webhookEndpoints",
+      "type": "webhook-endpoints",
       "attributes": {
         "url": "https://api.example.com/v1/keygen"
       }
@@ -4931,7 +4931,7 @@ const { data, errors } = await response.json()
   -H 'Authorization: Bearer <%= token %>' \
   -d '{
         "data": {
-          "type": "webhookEndpoints",
+          "type": "webhook-endpoints",
           "attributes": {
             "url": "https://api.example.com/v1/keygen"
           }
@@ -4940,7 +4940,7 @@ const { data, errors } = await response.json()
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 201 Created</h4><pre><code class="json">{
   "data": {
     "id": "0ed7330f-8d2c-405e-88b6-0a4a327e620c",
-    "type": "webhookEndpoints",
+    "type": "webhook-endpoints",
     "links": {
       "self": "/v1/accounts/<%= account %>/webhook-endpoints/0ed7330f-8d2c-405e-88b6-0a4a327e620c"
     },
@@ -4982,7 +4982,7 @@ const { data, errors } = await response.json()
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "data": {
     "id": "0ed7330f-8d2c-405e-88b6-0a4a327e620c",
-    "type": "webhookEndpoints",
+    "type": "webhook-endpoints",
     "links": {
       "self": "/v1/accounts/<%= account %>/webhook-endpoints/0ed7330f-8d2c-405e-88b6-0a4a327e620c"
     },
@@ -5006,7 +5006,7 @@ const { data, errors } = await response.json()
 }</code></pre></div></div></article><article class="method" id="webhook-endpoints-update"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#webhook-endpoints-update" data-target="webhook-endpoints-update"><i class="material-icons">link</i></a>Update an endpoint</h2><p>Updates the specified endpoint resource by setting the values of the parameters
 passed. Any parameters not provided will be left unchanged.</p>
 </div><div class="authentications" id="webhook-endpoints-update-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#webhook-endpoints-update-auths" data-target="webhook-endpoints-update-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="webhook-endpoints-update-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#webhook-endpoints-update-auths-bearer" data-target="webhook-endpoints-update-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with admin privileges.</p></div></li></ul></div><div class="parameters" id="webhook-endpoints-update-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#webhook-endpoints-update-params" data-target="webhook-endpoints-update-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="webhook-endpoints-update-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#webhook-endpoints-update-params-account" data-target="webhook-endpoints-update-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="webhook-endpoints-update-params-id"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#webhook-endpoints-update-params-id" data-target="webhook-endpoints-update-params-id"><i class="material-icons">link</i></a>id</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier of the webhook endpoint to be updated.</p></div></li></ul></div><div class="attributes" id="webhook-endpoints-update-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#webhook-endpoints-update-attrs" data-target="webhook-endpoints-update-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="webhook-endpoints-update-attrs-url"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#webhook-endpoints-update-attrs-url" data-target="webhook-endpoints-update-attrs-url"><i class="material-icons">link</i></a>url</h3><span class="attribute__type">string</span><span class="attribute__req">, optional</span><p class="attribute__desc">The url that events are dispatched to. Must use the https protocol.</p></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash">PATCH https://api.keygen.sh/v1/accounts/<%= account %>/webhook-endpoints/{ID} \
-  -d '{ "data": { "type": "webhookEndpoints", "attributes": {DATA} } }'
+  -d '{ "data": { "type": "webhook-endpoints", "attributes": {DATA} } }'
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="javascript" data-lang="javascript">const fetch = require("node-fetch")
 
 const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/webhook-endpoints/0ed7330f-8d2c-405e-88b6-0a4a327e620c", {
@@ -5018,7 +5018,7 @@ const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/w
   },
   body: JSON.stringify({
     "data": {
-      "type": "webhookEndpoints",
+      "type": "webhook-endpoints",
       "attributes": {
         "url": "https://api.example.com/v2/keygen"
       }
@@ -5033,7 +5033,7 @@ const { data, errors } = await response.json()
   -H 'Authorization: Bearer <%= token %>' \
   -d '{
         "data": {
-          "type": "webhookEndpoints",
+          "type": "webhook-endpoints",
           "attributes": {
             "url": "https://api.example.com/v2/keygen"
           }
@@ -5042,7 +5042,7 @@ const { data, errors } = await response.json()
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "data": {
     "id": "0ed7330f-8d2c-405e-88b6-0a4a327e620c",
-    "type": "webhookEndpoints",
+    "type": "webhook-endpoints",
     "links": {
       "self": "/v1/accounts/<%= account %>/webhook-endpoints/0ed7330f-8d2c-405e-88b6-0a4a327e620c"
     },
@@ -5102,7 +5102,7 @@ const { data, errors } = await response.json()
   "data": [
     {
       "id": "0ed7330f-8d2c-405e-88b6-0a4a327e620c",
-      "type": "webhookEndpoints",
+      "type": "webhook-endpoints",
       "links": {
         "self": "/v1/accounts/<%= account %>/webhook-endpoints/0ed7330f-8d2c-405e-88b6-0a4a327e620c"
       },
@@ -5136,7 +5136,7 @@ as the event resource&#39;s relationships.</p>
 </div><div class="attributes" id="webhook-events-object-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#webhook-events-object-attrs" data-target="webhook-events-object-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="webhook-events-object-attrs-endpoint"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#webhook-events-object-attrs-endpoint" data-target="webhook-events-object-attrs-endpoint"><i class="material-icons">link</i></a>endpoint</h3><span class="attribute__type">string</span><span class="bubble">read only</span><p class="attribute__desc">The endpoint that the event will be sent to.</p></div></li><li class="attribute"><div class="attribute__info" id="webhook-events-object-attrs-payload"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#webhook-events-object-attrs-payload" data-target="webhook-events-object-attrs-payload"><i class="material-icons">link</i></a>payload</h3><span class="attribute__type">string</span><span class="bubble">read only</span><p class="attribute__desc">The event payload in serialized JSON format.</p></div></li><li class="attribute"><div class="attribute__info" id="webhook-events-object-attrs-event"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#webhook-events-object-attrs-event" data-target="webhook-events-object-attrs-event"><i class="material-icons">link</i></a>event</h3><span class="attribute__type">string</span><span class="bubble">read only</span><p class="attribute__desc">The event type.</p></div></li><li class="attribute"><div class="attribute__info" id="webhook-events-object-attrs-status"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#webhook-events-object-attrs-status" data-target="webhook-events-object-attrs-status"><i class="material-icons">link</i></a>status</h3><span class="attribute__type">string</span><span class="bubble">read only</span><p class="attribute__desc">The current status of the event. Possible statuses are: queued, working, complete, failed, interrupted or unavailable.</p></div></li><li class="attribute"><div class="attribute__info" id="webhook-events-object-attrs-created"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#webhook-events-object-attrs-created" data-target="webhook-events-object-attrs-created"><i class="material-icons">link</i></a>created</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the event was created.</p></div></li><li class="attribute"><div class="attribute__info" id="webhook-events-object-attrs-updated"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#webhook-events-object-attrs-updated" data-target="webhook-events-object-attrs-updated"><i class="material-icons">link</i></a>updated</h3><span class="attribute__type">timestamp</span><span class="bubble">read only</span><p class="attribute__desc">When the event was last updated.</p></div></li></ul></div><div class="relationships" id="webhook-events-object-relationships"><h4 class="anchor__wrapper relationships__heading"><a class="anchor" href="#webhook-events-object-relationships" data-target="webhook-events-object-relationships"><i class="material-icons">link</i></a>Relationships</h4><ul class="relationships__list"><li class="relationship"><div class="relationship__info" id="webhook-events-object-relationships-account"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#webhook-events-object-relationships-account" data-target="webhook-events-object-relationships-account"><i class="material-icons">link</i></a>account</h3><span class="relationship__type">individual</span><p class="relationship__desc">The account that the event belongs to.</p></div></li></ul></div><div class="example__wrapper"><div class="example"><h4>Example object</h4><pre><code class="json">{
   "data": {
     "id": "e438b26c-79ab-4088-9bbd-17dbb70c429a",
-    "type": "webhookEvents",
+    "type": "webhook-events",
     "meta": {
       "idempotencyToken": "eeb719a7005359c2b1993c90cff455e2749142253c15227d3f7a93048868c5v1"
     },
@@ -5184,7 +5184,7 @@ const { data, errors } = await response.json()
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "data": {
     "id": "e438b26c-79ab-4088-9bbd-17dbb70c429a",
-    "type": "webhookEvents",
+    "type": "webhook-events",
     "meta": {
       "idempotencyToken": "eeb719a7005359c2b1993c90cff455e2749142253c15227d3f7a93048868c5v1"
     },
@@ -5234,7 +5234,7 @@ const { data, errors } = await response.json()
   "data": [
     {
       "id": "e438b26c-79ab-4088-9bbd-17dbb70c429a",
-      "type": "webhookEvents",
+      "type": "webhook-events",
       "meta": {
         "idempotencyToken": "eeb719a7005359c2b1993c90cff455e2749142253c15227d3f7a93048868c5v1"
       },
@@ -5294,7 +5294,7 @@ const { data, errors } = await response.json()
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 201 Created</h4><pre><code class="json">{
   "data": {
     "id": "3119ed21-2f9e-4aa9-8210-5ed0e73f9bef",
-    "type": "webhookEvents",
+    "type": "webhook-events",
     "meta": {
       "idempotencyToken": "eeb719a7005359c2b1993c90cff455e2749142253c15227d3f7a93048868c5v1"
     },
