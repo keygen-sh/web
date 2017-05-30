@@ -237,45 +237,47 @@ else
   </g>
 </svg>
 <h3>Swift</h3></div><span class="integrate__tooltip">Mac app licensing example coming soon</span></article></div><div class="integrate__actions"><span>and more!</span></div></div></section><section class="faqs"><div class="faqs__content"><h3>FAQs</h3><ul class="faqs__questions"><li><h4 id="what-is-keygen-">What is Keygen?</h4>
-<p>Keygen is a powerful new SaaS offering in the software-licensing space
-built for small- to medium-sized software products. Keygen aims to disrupt
-the current market that is littered with unintuitive enterprise solutions
-by giving you the tools to handle licensing how <em>you want to</em> using a
-simple JSON REST API.</p>
+<p>Keygen is a hosted SaaS (software-as-a-service) for licensing and managing
+users for desktop apps and other types of software. Keygen&#39;s primary
+product is an API that enables developers to quickly set up licensing
+and user management.</p>
+</li><li><h4 id="who-is-keygen-for-">Who is Keygen for?</h4>
+<p>Keygen is primarily built for small- and medium-sized businesses who
+build desktop applications, on-premise software, and other digital
+products e.g. WordPress plugins, etc. We also offer <a href="#do-you-offer-on-premise-api-plans-">on-premise options</a>
+for larger companies that are interested in using Keygen.</p>
 </li><li><h4 id="why-was-keygen-created-">Why was Keygen created?</h4>
-<p><a href="https://hackernoon.com/finding-issues-and-guessing-solutions-43e6b7ed823e">The current state of product licensing sucks</a>.
-It&#39;s never been easier than it is today to create awesome desktop apps by 
-using popular frameworks such as <a href="http://electron.atom.io">Electron</a>—<em>yet
-the ways to license those apps are still stuck in the past.</em> Keygen aims to
-make licensing as easy to set up as <a href="https://stripe.com">Stripe</a>, enabling
-you to ship your product earlier and not <em>waste time</em> building a custom
-licensing solution.</p>
+<p>From terrible “enterprisey” documentation to ridiculous pricing—we all
+know that <a href="https://hackernoon.com/finding-issues-and-guessing-solutions-43e6b7ed823e">the current state of product licensing sucks</a>.
+Keygen aims to make licensing software for small businesses <em>easy</em>, letting
+you ship your product earlier and not <em>waste time</em> building a custom
+licensing server.</p>
+</li><li><h4 id="can-keygen-help-lower-support-costs-">Can Keygen help lower support costs?</h4>
+<p>Yes! One of the things that makes Keygen unique is that we encourage you
+to allow your users to manage their own resources i.e. their licenses
+and machines, while you respond to the appropriate <a href="/docs/api#webhooks">webhook events</a>
+to handle billing using your payment provider. This not only gives your
+users freedom to purchase additional licenses directly from within your
+product <em>without your help</em> (offering them a great user-experience and
+potential for <em>more sales</em>!) but <em>can also lower your licensing-related
+support costs</em>.</p>
 </li><li><h4 id="what-licensing-models-are-supported-">What licensing models are supported?</h4>
 <p>Keygen supports almost any licensing model: single machine-locked licenses,
 floating licenses with and without machine limits, feature-based licenses,
 product add-ons, limited pre-determined pool-based licenses, encrypted and
-unencrypted licenses, and even a combination of most of those. Keygen
-provides you the tools you need to handle licensing however you need
-for each of your products.</p>
+unencrypted licenses, and even a combination of most of those.</p>
 </li><li><h4 id="does-keygen-prevent-sharing-licenses-">Does Keygen prevent sharing licenses?</h4>
-<p>Yes! Keygen offers endpoints to help you track <a href="/docs/api#machines">machine usage</a>,
+<p>Yes! Keygen offers API endpoints to help you track user <a href="/docs/api#machines">machine usage</a>,
 and license policies can be configured to <code>strict</code>, invalidating licenses
-that go over your configured machine limit. You can also set a policy to
-<code>floating</code> to allow a license to be valid across multiple machines.</p>
+that go over any configured machine limit. You can also set a license
+policies to <code>floating</code> to allow a license to be valid across multiple
+machines.</p>
 </li><li><h4 id="does-keygen-prevent-cracking-">Does Keygen prevent cracking?</h4>
 <p>No. Keygen does nothing to prevent a user from removing your licensing
 logic altogether if they have access to your application&#39;s code. In
 the end, you will have to make the choice on how to deal with cracking
-by doing things such as: requiring a valid license for updates, requring
-a licensed user account for support requests, etc.</p>
-</li><li><h4 id="can-users-manage-their-own-licenses-">Can users manage their own licenses?</h4>
-<p>We encourage you to allow your users to manage their own resources i.e.
-their licenses and machines, while you respond to the appropriate <a href="/docs/api#webhooks">webhook
-events</a> to handle billing using your payment provider.
-This not only allows your users freedom to purchase additional licenses
-directly from within your product <em>without your help</em> (offering them a
-great user-experience!) but <em>can also lower your licensing-related
-support costs</em>.</p>
+by e.g. requiring a valid license for updates, requring a licensed
+user-account for support requests, etc.</p>
 </li><li><h4 id="where-can-i-monitor-keygen-s-uptime-">Where can I monitor Keygen&#39;s uptime?</h4>
 <p>We strive to provide the highest uptime possible. You can monitor our
 uptime and average response time on our <a href="https://status.keygen.sh">status page</a>.</p>
@@ -284,8 +286,8 @@ uptime and average response time on our <a href="https://status.keygen.sh">statu
 possible. We never store passwords as plain text – they are always hashed
 and salted securely using <code>bcrypt</code>. We also do the same with all access
 tokens, and offer the ability to hash license keys as well. All network
-traffic is encrypted over TLS with at least 128-bit AES encryption.
-Have additional questions or concerns? <a href="mailto:security@keygen.sh">Get in touch</a>.</p>
+traffic is encrypted over TLS with at least 128-bit AES encryption. Have
+additional questions or concerns? <a href="mailto:security@keygen.sh">Get in touch</a>.</p>
 </li><li><h4 id="does-keygen-work-offline-">Does Keygen work offline?</h4>
 <p>Yes, but it requires manual work. Using Keygen&#39;s admin dashboard, you
 can manually create, check-in and verify licenses, allowing you to offer
