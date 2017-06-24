@@ -3592,8 +3592,7 @@ const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/l
   method: "POST",
   headers: {
     "Content-Type": "application/vnd.api+json",
-    "Accept": "application/vnd.api+json",
-    "Authorization": "Bearer <%= token %>"
+    "Accept": "application/vnd.api+json"
   },
   body: JSON.stringify({
     "meta": {
