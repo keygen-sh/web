@@ -28,38 +28,89 @@ can be disabled by <a href="/docs/api#accounts-object-attrs-protected">setting y
 </div>
 
 <hr>
-<p>To get started, we&#39;ll fire off a user creation request for Elon Musk of
-SpaceX. Below you&#39;ll see that we&#39;re including the user&#39;s first and last
-name, an email address (which they&#39;ll use to authenticate with), as well
-as a password (which is also used for authentication).</p>
+<p>To get started, we&#39;re going to create a simple HTML sign up form that
+our user&#39;s can fill out and we can use to create a new user account
+for them via <a href="/docs/api#users-create">user creation</a>. You can include
+this sign up form directly within your app, or from within a web page.</p>
+<pre><code class="lang-html">&lt;form id=&quot;register&quot;&gt;
+  &lt;label for=&quot;first-name&quot;&gt;
+    First Name
+  &lt;/label&gt;
+  &lt;br&gt;
+  &lt;input type=&quot;text&quot; name=&quot;first-name&quot; id=&quot;first-name&quot;&gt;
+  &lt;label for=&quot;last-name&quot;&gt;
+    Last Name
+  &lt;/label&gt;
+  &lt;br&gt;
+  &lt;input type=&quot;text&quot; name=&quot;last-name&quot; id=&quot;last-name&quot;&gt;
+  &lt;label for=&quot;email&quot;&gt;
+    Email
+  &lt;/label&gt;
+  &lt;br&gt;
+  &lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;email&quot;&gt;
+  &lt;br&gt;
+  &lt;label for=&quot;password&quot;&gt;
+    Password
+  &lt;/label&gt;
+  &lt;br&gt;
+  &lt;input type=&quot;password&quot; name=&quot;password&quot; id=&quot;password&quot;&gt;
+  &lt;br&gt;
+  &lt;br&gt;
+  &lt;button type=&quot;submit&quot;&gt;
+    Login
+  &lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<hr>
+<p>To get started, we&#39;ll add an event listener to the form that will fire
+off a user creation request for the user. Below you&#39;ll see that we&#39;re
+including the user&#39;s first and last name, an email address (which they&#39;ll
+use to authenticate with), as well as a password (which is also used
+for authentication).</p>
 <p>The response of this request will either be an error (e.g. if a required
 attribute is missing, or the email has already been used), or a user
 resource containing your new user&#39;s information.</p>
-<pre><code class="lang-js">const response = await fetch(&quot;https://api.keygen.sh/v1/accounts/{ACCOUNT}/users&quot;, {
-  method: &quot;POST&quot;,
-  headers: {
-    &quot;Content-Type&quot;: &quot;application/vnd.api+json&quot;,
-    &quot;Accept&quot;: &quot;application/vnd.api+json&quot;
-  },
-  body: JSON.stringify({
-    &quot;data&quot;: {
-      &quot;type&quot;: &quot;users&quot;,
-      &quot;attributes&quot;: {
-        &quot;firstName&quot;: &quot;Elon&quot;,
-        &quot;lastName&quot;: &quot;Musk&quot;,
-        &quot;email&quot;: &quot;elon@spacex.com&quot;,
-        &quot;password&quot;: &quot;password123&quot;
+<pre><code class="lang-js">const register = document.getElementById(&quot;register&quot;)
+
+register.addEventListener(&quot;submit&quot;, async (event) =&gt; {
+  // Prevent form submision (and browser refresh)
+  event.preventDefault()
+
+  // Get our user&#39;s information from the form fields
+  const firstName = document.getElementById(&quot;first-name&quot;).value
+  const lastName = document.getElementById(&quot;last-name&quot;).value
+  const email = document.getElementById(&quot;email&quot;).value
+  const password = document.getElementById(&quot;password&quot;).value
+
+  // Create the user
+  const response = await fetch(&quot;https://api.keygen.sh/v1/accounts/{ACCOUNT}/users&quot;, {
+    method: &quot;POST&quot;,
+    headers: {
+      &quot;Content-Type&quot;: &quot;application/vnd.api+json&quot;,
+      &quot;Accept&quot;: &quot;application/vnd.api+json&quot;
+    },
+    body: JSON.stringify({
+      &quot;data&quot;: {
+        &quot;type&quot;: &quot;users&quot;,
+        &quot;attributes&quot;: {
+          firstName,
+          lastName,
+          email,
+          password
+        }
       }
-    }
+    })
   })
+
+  const { data: user, errors } = await response.json()
+  if (errors) {
+    // … handle errors
+  }
+
+  console.log(`Our user&#39;s name is: ${user.attributes.fullName}`)
+
+  // … handle successful form submission
 })
-
-const { data: user, errors } = await response.json()
-if (errors) {
-  // … handle errors
-}
-
-console.log(`Our user&#39;s name is: ${user.attributes.fullName}`)
 </code></pre>
 <hr>
 <h2 id="next-steps">Next steps</h2>
