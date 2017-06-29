@@ -23,8 +23,8 @@ curl https://api.keygen.sh/v1/accounts/ecorp/licenses -X POST \
       }'</code></pre></div></div></div></main><section class="flow__wrapper"><div class="flow"><article class="flow__step__wrapper"><div class="flow__step"><i class="material-icons">security</i><h2>Control</h2><p><strong>Control what types of licenses your product offers</strong> using powerful <a href="/docs/api#policies">license policies</a>—from feature licenses to timed trials, we got you covered.</p>
 </div></article><article class="flow__step__wrapper"><div class="flow__step"><i class="material-icons">people</i><h2>Grow</h2><p><strong>Reduce licensing-related support costs</strong> by allowing your users to <a href="#can-keygen-help-lower-support-costs-">manage their own licenses and machines</a> so that you can focus on your product.</p>
 </div></article><article class="flow__step__wrapper"><div class="flow__step"><i class="material-icons">verified_user</i><h2>Monitor</h2><p><strong>Quit guessing how many machines your users have</strong>—using our <a href="/docs/api#machines-create">machine tracking endpoints</a> you can know exactly where your product is being used.</p>
-</div></article></div></section><section class="metrics__wrapper"><div class="metrics"><div class="metrics__content"><h2>Know what's working</h2><p>…and what isn't. With Keygen's dashboard, you can always be on top of what's happening with your products.</p><ul class="checklist"><li><i class="material-icons">trending_up</i>View recent trends for new users, licenses, and much more</li><li><i class="material-icons">list</i>Watch an up-to-date activity feed of what's happening</li><li><i class="material-icons">timeline</i>Gain insight into how users are licensing your products</li><li><i class="material-icons">star_half</i>Know which types of licenses your users prefer</li></ul></div><div class="metrics__image"><img src="/metrics.png"></div></div></section><section class="lang"><div class="lang__content"><h2>Use your favorite language</h2><p>Quickly implement Keygen in the programming language of your choice.</p></div><div class="lang__toolbar__wrapper"><div class="lang__toolbar" data-default-lang="javascript"><button class="lang__option" type="button" data-lang="javascript">Node</button><button class="lang__option" type="button" data-lang="python">Python</button><button class="lang__option" type="button" data-lang="ruby">Ruby</button><button class="lang__option" type="button" data-lang="php">PHP</button><button class="lang__option" type="button" data-lang="csharp">C#
-</button></div></div><div class="lang__code code-block code-block--with-overflow code-block--hide-overflow"><div class="code-block__toggle-button"><button class="button button--size-small button--fill-solid" type="button" data-toggle-overflow>Toggle Code</button></div><pre><code class="javascript" data-lang="javascript">const fetch = require("node-fetch")
+</div></article></div></section><section class="metrics__wrapper"><div class="metrics"><div class="metrics__content"><h2>Know what's working</h2><p>…and what isn't. With Keygen's dashboard, you can always be on top of what's happening with your products.</p><ul class="checklist"><li><i class="material-icons">trending_up</i>View recent trends for new users, licenses, and much more</li><li><i class="material-icons">list</i>Watch an up-to-date activity feed of what's happening</li><li><i class="material-icons">timeline</i>Gain insight into how users are licensing your products</li><li><i class="material-icons">star_half</i>Know which types of licenses your users prefer</li></ul></div><div class="metrics__image"><img src="/metrics.png"></div></div></section><section class="lang"><div class="lang__content"><h2>Use your favorite language</h2><p>Quickly implement Keygen in the programming language of your choice.</p></div><div class="lang__toolbar__wrapper"><div class="lang__toolbar__scrollable-overflow"><div class="lang__toolbar" data-default-lang="javascript"><button class="lang__option" type="button" data-lang="javascript">Node</button><button class="lang__option" type="button" data-lang="swift">Swift</button><button class="lang__option" type="button" data-lang="csharp">C#</button><button class="lang__option" type="button" data-lang="python">Python</button><button class="lang__option" type="button" data-lang="ruby">Ruby</button><button class="lang__option" type="button" data-lang="php">PHP
+</button></div></div></div><div class="lang__code code-block code-block--with-overflow code-block--hide-overflow"><div class="code-block__toggle-button"><button class="button button--size-small button--fill-solid" type="button" data-toggle-overflow>Toggle Code</button></div><pre><code class="javascript" data-lang="javascript">const fetch = require("node-fetch")
 
 // Replace this with a token that belongs to a user
 const token = "9fc6d1e049a8414a905524dfa8c24a6b.d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…"
@@ -58,6 +58,82 @@ const { meta } = await validation.json()
 if (meta.valid) {
   // Do something
 } else {
+  // Do something else
+}
+</code><code class="swift" data-lang="swift">import SwiftyJSON
+import Alamofire
+
+// Replace this with a token that belongs to a user
+let token = "9fc6d1e049a8414a905524dfa8c24a6b.d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…"
+
+// Set up request headers
+let headers = [
+  "Content-Type": "application/vnd.api+json",
+  "Accept": "application/vnd.api+json",
+  "Authorization": "Bearer \(token)"
+]
+
+// Request the current user's licenses for our product
+let licensesUrl = "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses"
+
+Alamofire.request(licensesUrl, parameters: ["product": "14c80537-66c7-4753-a5e7-e8269a2ea616"], headers: headers)
+  .responseJSON { response in
+    let json = JSON(data: response.data!)
+    let licenseId = json["data"][0]["id"].string
+    if licenseId == nil {
+      abort() // User does not have any licenses
+    }
+
+    // Validate the first license we get back
+    let licenseUrl = "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/\(licenseId)/actions/validate"
+
+    Alamofire.request(licenseUrl, headers: headers)
+      .responseJSON { response in
+        let json = JSON(data: response.data!)
+        let valid = json["meta"]["valid"].bool
+
+        if valid {
+          // Do something
+        } else {
+          // Do something else
+        }
+      }
+  }
+</code><code class="csharp" data-lang="csharp">using EasyHttp.Http;
+using System;
+
+// Replace this with a token that belongs to a user
+var token = "9fc6d1e049a8414a905524dfa8c24a6b.d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…";
+
+// Set up http client and request headers
+var http = new HttpClient();
+http.Request.ContentType = "application/vnd.api+json";
+http.Request.Accept = "application/vnd.api+json";
+http.Request.Authorization = $"Bearer {token}";
+
+// Request the current user's licenses for our product
+var licenses = http.Get(
+  "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
+  new {product = "14c80537-66c7-4753-a5e7-e8269a2ea616"}
+);
+var body = licenses.DynamicBody;
+
+if (body.Data == null || body.Data.length == 0)
+{
+  Environment.Exit(0); // User does not have any licenses
+}
+
+// Validate the first license we get back
+var license = body.Data.First();
+var validation = http.Get($"https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{license.Id}/actions/validate");
+body = validation.DynamicBody;
+
+if (body.Meta.Valid)
+{
+  // Do something
+}
+else
+{
   // Do something else
 }
 </code><code class="python" data-lang="python">import requests
@@ -165,43 +241,6 @@ $validation = json_decode(
 if ($validation["meta"]["valid"]) {
   // Do something
 } else {
-  // Do something else
-}
-</code><code class="csharp" data-lang="csharp">using EasyHttp.Http;
-using System;
-
-// Replace this with a token that belongs to a user
-var token = "9fc6d1e049a8414a905524dfa8c24a6b.d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…";
-
-// Set up http client and request headers
-var http = new HttpClient();
-http.Request.ContentType = "application/vnd.api+json";
-http.Request.Accept = "application/vnd.api+json";
-http.Request.Authorization = $"Bearer {token}";
-
-// Request the current user's licenses for our product
-var licenses = http.Get(
-  "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
-  new {product = "14c80537-66c7-4753-a5e7-e8269a2ea616"}
-);
-var body = licenses.DynamicBody;
-
-if (body.Data == null || body.Data.length == 0)
-{
-  Environment.Exit(0); // User does not have any licenses
-}
-
-// Validate the first license we get back
-var license = body.Data.First();
-var validation = http.Get($"https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{license.Id}/actions/validate");
-body = validation.DynamicBody;
-
-if (body.Meta.Valid)
-{
-  // Do something
-}
-else
-{
   // Do something else
 }</code></pre></div></section><section class="docs"><div class="docs__content"><h2>Learn how to…</h2><ul class="checklist"><li><i class="material-icons">code</i>easily implement Keygen to handle licensing for your product</li><li><i class="material-icons">done_all</i>quickly set up user registration and license validation</li><li><i class="material-icons">sync</i>handle webhooks to integrate with your payment system</li></ul><h3>and of course…</h3><ul class="checklist"><li><i class="material-icons">playlist_add_check</i>a full API reference with examples in popular languages</li><li><i class="material-icons">mail_outline</i>awesome email support</li></ul></div></section><section class="news"><div class="news__content"><h2>Not ready to join? Stay updated.</h2><form action="//keygen.us14.list-manage.com/subscribe/post?u=0da915687b658ef99fb6b9075&amp;id=8e6c7696a2" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate=""><input type="email" value="" name="EMAIL" placeholder="Email address" required=""><div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0da915687b658ef99fb6b9075_8e6c7696a2" tabindex="-1" value=""></div><button class="button" type="submit" name="subscribe">Subscribe</button></form></div></section><section class="integrate__wrapper"><div class="integrate"><div class="integrate__heading"><h2>Integrate Keygen with software built on…</h2></div><div class="integrate__platforms"><article class="integrate__platform__wrapper"><a class="integrate__platform" href="/integrate/electron" alt="Integrate Keygen into an Electron app"><svg width="128px" height="128px" viewBox="0 0 110 110" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
