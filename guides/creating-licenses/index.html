@@ -48,17 +48,18 @@ for server-side vs. client-side license creation, respectively.</p>
 
 <p>When creating licenses, we first need to determine what <a href="/docs/api#policies">policy</a>
 we want the license to implement. Policies are like blueprints for
-licenses—determining how a license is validated, how long is lasts,
-and more generally in relation to your product, what it&#39;s for. If you
-haven&#39;t created a policy yet, head over to <a href="https://app.keygen.sh">your dashboard</a>
-and create one for your product.</p>
+licenses—determining how a license is validated, how long it lasts,
+how many machines it can be used on, and more generally in relation
+to your product, what it&#39;s for. If you haven&#39;t created a policy yet,
+head over to <a href="https://app.keygen.sh">your dashboard</a> and create one
+for your product.</p>
 <p>Once you&#39;ve decided on a policy to use, we can make our request. Below
 you will see that we&#39;re using an authentication token which belongs to
 one of our user&#39;s, as well as including the user within the license&#39;s
 <code>relationships</code> object. This will make sure that our license is associated
 with the correct user resource so that we can query it later when we
 want to validate it.</p>
-<p>You may be asking yourself about the license&#39;s key. You can <a href="/docs/api/#licenses-create-attrs-key">manually
+<p>You may be asking yourself about the license&#39;s <em>key</em>. You can <a href="/docs/api/#licenses-create-attrs-key">manually
 specificy a key</a> by including it
 inside of the license resource&#39;s attributes object. When the license
 key is not manually specified, one will automatically be generated
