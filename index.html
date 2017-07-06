@@ -228,20 +228,20 @@ $licenses = json_decode(
   )->body
 );
 
-if (!$licenses["data"]) {
+if (!$licenses->data) {
   exit; // User does not have any licenses
 }
 
 // Validate the first license we get back
-$license = $licenses["data"][0];
+$license = $licenses->data[0];
 $validation = json_decode(
   Requests::request(
-    "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{$license['id']}/actions/validate",
+    "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{$license->id}/actions/validate",
     $headers
   )->body
 );
 
-if ($validation["meta"]["valid"]) {
+if ($validation->meta->valid) {
   // Do something
 } else {
   // Do something else
