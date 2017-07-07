@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="initial-scale=1"><title>Storing User Metadata – Guides</title><link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII" type="image/x-icon"><link rel="icon" href="/favicon-192x192.png" sizes="192x192"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link href="https://keygen.sh/media.jpg" rel="image_src"><meta content="Keygen - a dead-simple product and app licensing API built for developers" property="og:title"><meta content="https://keygen.sh/" property="og:url"><meta content="Keygen is a simple app and product licensing API, allowing developers to easily implement various licensing types into any online or desktop software product." property="og:description"><meta content="https://keygen.sh/media.jpg" property="og:image"><meta content="Keygen" property="og:site_name"><meta content="website" property="og:type"><link rel="stylesheet" href="/app.css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-86857020-1', 'auto');
+ga('send', 'pageview');</script></head><body><main class="guide" id="guide"><header class="guide__header"><div class="guide__sidebar-toggle" id="sidebar-toggle"><i class="material-icons">menu</i></div><div class="guide__header__background">&nbsp;</div></header><nav class="guide__sidebar"><div class="guide__sidebar__logo"><a class="logo" href="/"><canvas class="logo__logomark" width="64" height="64"></canvas><span class="logo__logotype effect--shuffle">Keygen</span></a></div><div class="guide__sidebar__content"><div class="guide__sidebar__section"><h5>Introduction</h5><ul class="guide__sidebar__list"><li class="guide__sidebar__item"><a href="/docs/getting-started">Getting Started</a></li></ul></div><div class="guide__sidebar__section"><h5>Users</h5><ul class="guide__sidebar__list"><li class="guide__sidebar__item"><a href="/docs/creating-users">Creating Users</a></li><li class="guide__sidebar__item"><a href="/docs/authenticating-users">Authentication</a></li><li class="guide__sidebar__item guide__sidebar__item--in-view"><a href="/docs/storing-user-metadata">Metadata</a></li></ul></div><div class="guide__sidebar__section"><h5>Licenses</h5><ul class="guide__sidebar__list"><li class="guide__sidebar__item"><a href="/docs/creating-licenses">Creating Licenses</a></li><li class="guide__sidebar__item"><a href="/docs/validating-licenses">Validation</a></li></ul></div><div class="guide__sidebar__section"><h5>Integrations</h5><ul class="guide__sidebar__list"><li class="guide__sidebar__item"><a href="/integrate/electron">Electron</a></li></ul></div><div class="guide__sidebar__section"><h5>Documentation</h5><ul class="guide__sidebar__list"><li class="guide__sidebar__item"><a href="/docs/api">API Reference</a></li></ul></div><div class="guide__sidebar__section"><h5>Account</h5><ul class="guide__sidebar__list"><li class="guide__sidebar__item"><a href="https://app.keygen.sh">Dashboard</a></li></ul></div></div></nav><div class="guide__content__wrapper"><div class="guide__content"><h1 id="storing-user-metadata">Storing User Metadata</h1>
+<p>Use Keygen&#39;s API and your client-side code to store metadata on your
+user resources. If you need help after reading this, can reach out to
+us anytime at <a href="mailto:support@keygen.sh">support@keygen.sh</a>.</p>
+<p>This tutorial is written in JavaScript, but you can follow along in any
+other language that you&#39;re comfortable in. Throughout this tutorial, you
+will see placeholders e.g. <code>{ACCOUNT}</code> within the code examples that
+will need to be replaced with your account&#39;s slug (or ID), or other
+resource information.</p>
+<hr>
+<p>Keygen supports adding arbitrary metadata to most resources, such as
+the user resource. Metadata is for your use only and is not explicity
+shown to customers unless you display it (though note that <strong>it is</strong>
+included in API responses e.g. when you request a user resource).</p>
+<p>With metadata, you can associate other information, such as the user&#39;s
+<code>customer_id</code> within your payment system, the user&#39;s shipping address,
+etc. Any metadata you include will be viewable within <a href="https://app.keygen.sh">your dashboard</a>
+(e.g. when looking at an individual resource).</p>
+<div class="notice notice--warning">
+  Be aware that since the <code>metadata</code> attribute is simply a key-value
+  store (hash), all write operations will <strong>overwrite</strong> the entire hash,
+  so be sure to <strong>merge</strong> existing data on your end when performing
+  partial updates.
+</div>
+
+<p>The response of this request will either be an error, or the full user
+resource including your user&#39;s updated metadata.</p>
+<pre><code class="lang-js">const response = await fetch(&quot;https://api.keygen.sh/v1/accounts/{ACCOUNT}/users&quot;, {
+  method: &quot;PATCH&quot;,
+  headers: {
+    &quot;Content-Type&quot;: &quot;application/vnd.api+json&quot;,
+    &quot;Accept&quot;: &quot;application/vnd.api+json&quot;,
+    &quot;Authorization&quot;: &quot;Bearer {USER_TOKEN}&quot;
+  },
+  body: JSON.stringify({
+    &quot;data&quot;: {
+      &quot;type&quot;: &quot;users&quot;,
+      &quot;attributes&quot;: {
+        &quot;metadata&quot;: {
+          &quot;customerId&quot;: &quot;cus_VuAsGNTGqYgz1P&quot;
+        }
+      }
+    }
+  })
+})
+
+const { data, errors } = await response.json()
+</code></pre>
+<hr>
+<h2 id="next-steps">Next steps</h2>
+<p>Congrats! You&#39;ve stored metadata on one of your users using Keygen. Next
+up, we can <a href="/docs/creating-licenses">create a license for your user</a>
+and learn <a href="/docs/validating-licenses">how to validate it</a>. If you
+have any questions about what you&#39;ve learned today, <a href="mailto:support@keygen.sh">be sure to
+reach out</a>!</p>
+</div></div><div class="zoom__wrapper"><div class="zoom"></div></div></main><script src="/app.js"></script><script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script></body></html>
