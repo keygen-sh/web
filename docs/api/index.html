@@ -33,6 +33,13 @@ and frameworks, as well as those contributed by the community.</p>
   up-to-date as our systems evolve.</strong> If you would like us to add documentation
   examples for a specific language, or if you would like us to add an open-source
   library you created, please email <a href="mailto:hello@keygen.sh">hello@keygen.sh</a>.
+</div>
+</div></article><article class="article" id="pre-populated-examples"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#pre-populated-examples" data-target="pre-populated-examples"><i class="material-icons">link</i></a>Pre-populated Examples</h2><p>Your authentication token is pre-populated in all the examples on this page
+if you&#39;re currently logged in to <a href="https://app.keygen.sh">your dashboard</a>,
+so you can test any example right away. <strong>Only you can see these values.</strong></p>
+<div class="notice notice--warning">
+  <strong>The pre-populated token is an admin token and is not meant to be used
+  in client-facing code, stored in version control, and so forth.</strong>
 </div></div></article></section><section class="topic" id="architecture"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#architecture" data-target="architecture"><i class="material-icons">link</i></a>Architecture</h1><p>How to model the communication layer between your app and Keygen.</p>
 </div><div class="division"><div class="content"><h3 id="a-direct">A) Direct</h3>
 <p>First up is the direct approach, utilizing a direct communication channel
@@ -180,6 +187,14 @@ our servers (these are rare).</p>
 If you&#39;re using one of our <a href="#introduction">language bindings</a>, then this will
 be handled for you automatically with each request, if a session has been
 created.</p>
+<div class="notice notice--tip">
+  Your authentication token is pre-populated in all the examples on this page
+  if you&#39;re currently logged in to <a href="https://app.keygen.sh">your dashboard</a>,
+  so you can test any example right away. <strong>Only you can see these values.</strong>
+  The pre-populated token is an <strong>admin token</strong> and is <strong>not</strong> meant to be
+  used in client-facing code, stored in version control, and so forth.
+</div>
+
 <p>You can manage your tokens using the <a href="#tokens">Tokens</a> resource. Along
 with users, a product can also authenticate using product tokens; to
 create a new product token, please see the <a href="#products-tokens">Product token relationship</a>.
