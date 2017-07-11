@@ -82,8 +82,8 @@ let licensesUrl = "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24d
 Alamofire.request(licensesUrl, parameters: ["product": "14c80537-66c7-4753-a5e7-e8269a2ea616"], headers: headers)
   .responseJSON { response in
     let json = JSON(data: response.data!)
-    let licenseId = json["data"][0]["id"].string
-    if licenseId == nil {
+
+    guard let licenseId = json["data"][0]["id"].string else {
       abort() // User does not have any licenses
     }
 
