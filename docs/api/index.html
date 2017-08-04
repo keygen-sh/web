@@ -109,7 +109,6 @@ our servers (these are rare).</p>
     …
   ]
 }
-
 </code></pre></div></div><article class="article" id="error-codes"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#error-codes" data-target="error-codes"><i class="material-icons">link</i></a>Error Codes</h2><table>
 <thead>
 <tr>
@@ -3201,7 +3200,51 @@ Alamofire.request("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/b18
     "detail": "is valid"
   }
 }
-</code></pre></div></div></article><article class="article" id="licenses-actions-validate-key"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-validate-key" data-target="licenses-actions-validate-key"><i class="material-icons">link</i></a>Validate key</h3><p>Action to validate a license key. This will look up the license by its key
+</code></pre></div></div></article><article class="article" id="licenses-actions-validate-failures"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-validate-failures" data-target="licenses-actions-validate-failures"><i class="material-icons">link</i></a>Validation Failures</h2><p>Below are the possible values for the <code>meta.detail</code> key within the validation
+response. This can be used to better communicate failures to your users.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Detail</th>
+<th style="text-align:left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>&#39;is valid&#39;</code></td>
+<td style="text-align:left">The validated license resource or license key is valid.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;does not exist&#39;</code></td>
+<td style="text-align:left">The validated license resource or license key does not exist.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;is overdue for check in&#39;</code></td>
+<td style="text-align:left">The validated license is overdue for check-in.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;is suspended&#39;</code></td>
+<td style="text-align:left">The validated license has been suspended.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;is expired&#39;</code></td>
+<td style="text-align:left">The validated license is expired.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;must have exactly 1 associated machine&#39;</code></td>
+<td style="text-align:left">The validated license does not meet its policy&#39;s requirement of 1 associated machine.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;must have at least 1 associated machine&#39;</code></td>
+<td style="text-align:left">The validated license does not meet its policy&#39;s requirement of at least 1 associated machine.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;has too many associated machines&#39;</code></td>
+<td style="text-align:left">The validated license has exceeded its policy&#39;s machine limit.</td>
+</tr>
+</tbody>
+</table>
+</div></article><article class="article" id="licenses-actions-validate-key"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-validate-key" data-target="licenses-actions-validate-key"><i class="material-icons">link</i></a>Validate key</h3><p>Action to validate a license key. This will look up the license by its key
 and check the following: if the license is suspended, if the license is
 expired, if the license is overdue for check-in, and if the license meets
 its machine requirements (if <a href="#policies-object-attrs-strict">strict</a>).</p>
@@ -3255,7 +3298,51 @@ Alamofire.request("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/act
     "detail": "is expired"
   }
 }
-</code></pre></div></div></article><article class="article" id="licenses-actions-suspend"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-suspend" data-target="licenses-actions-suspend"><i class="material-icons">link</i></a>Suspend license</h3><p>Action to temporarily suspend (ban) a license. This will cause the license
+</code></pre></div></div></article><article class="article" id="licenses-actions-validate-key-failures"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-validate-key-failures" data-target="licenses-actions-validate-key-failures"><i class="material-icons">link</i></a>Validation Failures</h2><p>Below are the possible values for the <code>meta.detail</code> key within the validation
+response. This can be used to better communicate failures to your users.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Detail</th>
+<th style="text-align:left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>&#39;is valid&#39;</code></td>
+<td style="text-align:left">The validated license resource or license key is valid.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;does not exist&#39;</code></td>
+<td style="text-align:left">The validated license resource or license key does not exist.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;is overdue for check in&#39;</code></td>
+<td style="text-align:left">The validated license is overdue for check-in.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;is suspended&#39;</code></td>
+<td style="text-align:left">The validated license has been suspended.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;is expired&#39;</code></td>
+<td style="text-align:left">The validated license is expired.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;must have exactly 1 associated machine&#39;</code></td>
+<td style="text-align:left">The validated license does not meet its policy&#39;s requirement of 1 associated machine.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;must have at least 1 associated machine&#39;</code></td>
+<td style="text-align:left">The validated license does not meet its policy&#39;s requirement of at least 1 associated machine.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;has too many associated machines&#39;</code></td>
+<td style="text-align:left">The validated license has exceeded its policy&#39;s machine limit.</td>
+</tr>
+</tbody>
+</table>
+</div></article><article class="article" id="licenses-actions-suspend"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-suspend" data-target="licenses-actions-suspend"><i class="material-icons">link</i></a>Suspend license</h3><p>Action to temporarily suspend (ban) a license. This will cause the license
 to fail validation until reinistated. To permanently revoke a license,
 see the <a href="#licenses-actions-revoke">revoke action</a>.</p>
 </div><div class="authentications" id="licenses-suspend-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#licenses-suspend-auths" data-target="licenses-suspend-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="licenses-suspend-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#licenses-suspend-auths-bearer" data-target="licenses-suspend-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with privileges to suspend the resource: either an admin or the product it belongs to.</p></div></li></ul></div><div class="parameters" id="licenses-suspend-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#licenses-suspend-params" data-target="licenses-suspend-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="licenses-suspend-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#licenses-suspend-params-account" data-target="licenses-suspend-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="licenses-suspend-params-id"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#licenses-suspend-params-id" data-target="licenses-suspend-params-id"><i class="material-icons">link</i></a>id</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier of the license to suspend.</p></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="bash">POST https://api.keygen.sh/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/actions/suspend
