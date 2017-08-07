@@ -131,7 +131,7 @@ if (meta.valid) {
 <li>Immediately show a dialog detailing the validation failure (you can find out the reason using <a href="/docs/api#licenses-actions-validate">the <code>meta.detail</code> key</a> within the validation response).</li>
 <li>Depending on how you&#39;re licensing your product (e.g. user accounts with associated licenses vs. only license keys), you can prompt the user to purchase a new license, resolve the invalid license, etc.</li>
 </ol>
-<p>Alternatively, you could disallow access to the product, or implement a grace period while prompting the user to resolve the validation failure—though ideally, this should be communicated beforehand by listening for <em>upcoming</em> license expiration and overdue check-in events (e.g. <code>license.expiring-soon</code> and <code>license.check-in-required-soon</code>) so the the potential for validation failures i.e. license churn is diminished.</p>
+<p>Alternatively, you could disallow access to the product, or implement a grace period while prompting the user to resolve the validation failure—though ideally, this should be communicated beforehand by listening for <em>upcoming</em> license expiration and overdue check-in events (e.g. <code>license.expiring-soon</code> and <code>license.check-in-required-soon</code>) so that the potential for validation failures i.e. license churn is diminished.</p>
 <h4 id="validation-request-failed-e-g-timeout">Validation request failed e.g. timeout</h4>
 <p>The failure could be for a number of reasons, but the most likely culprit is that your user doesn&#39;t have an active internet connection. You could handle this in a variety of ways, but here are a few ideas:</p>
 <ol>
@@ -140,5 +140,5 @@ if (meta.valid) {
 </ol>
 <hr>
 <h2 id="next-steps">Next steps</h2>
-<p>Congrats! You&#39;ve validated your first license using Keygen. Next up your could start associating <a href="/docs/api#machines">machines</a> with your users and their licenses, so that you can get a better understanding of how your users operate and where they use your product. If you have any questions about what you&#39;ve learned today, <a href="mailto:support@keygen.sh">be sure to reach out</a>!</p>
+<p>Congrats! You&#39;ve validated your first license using Keygen. Next up you could start associating <a href="/docs/api#machines">machines</a> with your users and their licenses, so that you can get a better understanding of how your users operate and where they use your product. If you have any questions about what you&#39;ve learned today, <a href="mailto:support@keygen.sh">be sure to reach out</a>!</p>
 </div></div><div class="zoom__wrapper"><div class="zoom"></div></div></main><script src="/app.js"></script><script src="https://www.googleadservices.com/pagead/conversion_async.js"></script><script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script></body></html>
