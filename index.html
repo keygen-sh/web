@@ -110,9 +110,9 @@ var token = "9fc6d1e049a8414a905524dfa8c24a6b.d2b7366c85974bb09ef00b1b1ec22fd0.5
 
 // Set up http client and request headers
 var http = new HttpClient();
-http.Request.ContentType = "application/vnd.api+json";
-http.Request.Accept = "application/vnd.api+json";
-http.Request.Authorization = $"Bearer {token}";
+http.Request.ContentType = "application/json";
+http.Request.Accept = "application/json";
+http.Request.AddExtraHeader("Authorization", $"Bearer {token}");
 
 // Request the current user's licenses for our product
 var licenses = http.Get(
