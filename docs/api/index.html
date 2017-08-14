@@ -94,8 +94,8 @@ within your product are <em>stable</em>.</p>
 </div></article></section><section class="topic" id="security"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#security" data-target="security"><i class="material-icons">link</i></a>Security</h1><ol>
 <li><p><strong>Do not store your API tokens in version control.</strong>
 If you&#39;re using version control like Git or Subversion, do not store your API
-tokens in your version control. It is recommended that you store keys in a
-file that is never checked into the repository, or within the <code>ENV</code>.</p>
+tokens in your version control. It is recommended that you store tokens in
+a file that is never checked into the repository, or within the <code>ENV</code>.</p>
 </li>
 <li><p><strong>Do not embed your admin or product tokens within your product&#39;s source code.</strong>
 If you&#39;re using Keygen client-side, do not embed your admin or product tokens
@@ -104,7 +104,7 @@ account up to attackers.</p>
 <p>Instead, you can perform license and machine creation requests client-side
 <a href="/docs/authenticating-users">while authenticated as one of your users</a> and
 then you can <a href="/docs/using-webhooks">listen for the corresponding webhook events</a>
-to act accordingly e.g., charge them for new licenses, crediting them for
+to act accordingly e.g., charging them for new licenses, crediting them for
 deleted licenses or machines, etc.</p>
 </li>
 <li><p>If you only need to validate license keys, then you do not need to implement
