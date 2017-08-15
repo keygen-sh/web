@@ -151,6 +151,13 @@ app.post(&quot;/my/webhook/url&quot;, async (req, res) =&gt; {
   res.sendStatus(200)
 })
 </code></pre>
+<div class="notice notice--tip">
+  <strong>Tip</strong>: A great way to test your webhook integration locally is to use
+  <a href="https://ngrok.com"><code>ngrok</code></a>, which allows you to create secure tunnels
+  to <code>localhost</code>, HTTPS and all. Assuming you&#39;re running on port <code>8080</code>,
+  you can use the command: <code>ngrok http -host-header=localhost 8080</code>.
+</div>
+
 <h2 id="next-steps">Next steps</h2>
 <p>Congrats! You&#39;ve learned what webhooks are, when and how to use them, and how
 to receive events with your own server. If you have any questions about what
