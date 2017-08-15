@@ -107,6 +107,13 @@ then you can <a href="/docs/using-webhooks">listen for the corresponding webhook
 to act accordingly e.g., charging them for new licenses, crediting them for
 deleted licenses or machines, etc.</p>
 </li>
+<li><p><strong>Embedding account, product and policy IDs directly into your product i.e.
+client-side code is perfectly safe.</strong>
+In fact, you won&#39;t be able to communicate with Keygen&#39;s API unless you do so, and
+managing e.g. feature licenses without being able to embed policy IDs wouldn&#39;t be
+feasible. With that in mind, it is recommended that you use your account ID over
+your account slug, as unlike your account slug, your ID is unchangable.</p>
+</li>
 <li><p>If you only need to validate license keys, then you do not need to implement
 user authentication. The license resource&#39;s <a href="/docs/api#licenses-actions-validate-key"><code>validate-key</code></a>
 action does not require authentication. If you&#39;re doing anything else e.g. validating
