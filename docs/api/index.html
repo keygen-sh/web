@@ -3630,7 +3630,7 @@ var response = client.Execute(request);
     "detail": "is valid"
   }
 }
-</code></pre></div></div></article><article class="article" id="licenses-actions-validate-failures"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-validate-failures" data-target="licenses-actions-validate-failures"><i class="material-icons">link</i></a>Validation Failures</h2><p>Below are the possible values for the <code>meta.detail</code> key within the validation
+</code></pre></div></div><article class="article" id="licenses-actions-validate-failures"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-validate-failures" data-target="licenses-actions-validate-failures"><i class="material-icons">link</i></a>Validation Failures</h2><p>Below are the possible values for the <code>meta.detail</code> key within the validation
 response. This can be used to better communicate failures to your users.</p>
 <table>
 <thead>
@@ -3674,7 +3674,7 @@ response. This can be used to better communicate failures to your users.</p>
 </tr>
 </tbody>
 </table>
-</div></article><article class="article" id="licenses-actions-validate-key"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-validate-key" data-target="licenses-actions-validate-key"><i class="material-icons">link</i></a>Validate key</h3><p>Action to validate a license key. This will look up the license by its key
+</div></article></article><article class="article" id="licenses-actions-validate-key"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-validate-key" data-target="licenses-actions-validate-key"><i class="material-icons">link</i></a>Validate key</h3><p>Action to validate a license key. This will look up the license by its key
 and check the following: if the license is suspended, if the license is
 expired, if the license is overdue for check-in, and if the license meets
 its machine requirements (if <a href="#policies-object-attrs-strict">strict</a>).</p>
@@ -3745,7 +3745,7 @@ var response = client.Execute(request);
     "detail": "is expired"
   }
 }
-</code></pre></div></div></article><article class="article" id="licenses-actions-validate-key-failures"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-validate-key-failures" data-target="licenses-actions-validate-key-failures"><i class="material-icons">link</i></a>Validation Failures</h2><p>Below are the possible values for the <code>meta.detail</code> key within the validation
+</code></pre></div></div><article class="article" id="licenses-actions-validate-key-failures"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-validate-key-failures" data-target="licenses-actions-validate-key-failures"><i class="material-icons">link</i></a>Validation Failures</h2><p>Below are the possible values for the <code>meta.detail</code> key within the validation
 response. This can be used to better communicate failures to your users.</p>
 <table>
 <thead>
@@ -3789,7 +3789,7 @@ response. This can be used to better communicate failures to your users.</p>
 </tr>
 </tbody>
 </table>
-</div></article><article class="article" id="licenses-actions-suspend"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-suspend" data-target="licenses-actions-suspend"><i class="material-icons">link</i></a>Suspend license</h3><p>Action to temporarily suspend (ban) a license. This will cause the license
+</div></article></article><article class="article" id="licenses-actions-suspend"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-suspend" data-target="licenses-actions-suspend"><i class="material-icons">link</i></a>Suspend license</h3><p>Action to temporarily suspend (ban) a license. This will cause the license
 to fail validation until reinistated. To permanently revoke a license,
 see the <a href="#licenses-actions-revoke">revoke action</a>.</p>
 </div><div class="authentications" id="licenses-suspend-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#licenses-suspend-auths" data-target="licenses-suspend-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="licenses-suspend-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#licenses-suspend-auths-bearer" data-target="licenses-suspend-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with privileges to suspend the resource: either an admin or the product it belongs to.</p></div></li></ul></div><div class="parameters" id="licenses-suspend-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#licenses-suspend-params" data-target="licenses-suspend-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="licenses-suspend-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#licenses-suspend-params-account" data-target="licenses-suspend-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier or slug of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="licenses-suspend-params-id"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#licenses-suspend-params-id" data-target="licenses-suspend-params-id"><i class="material-icons">link</i></a>id</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier of the license to suspend.</p></div></li></ul></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="no-highlight" data-method="POST">https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/{ID}/actions/suspend
