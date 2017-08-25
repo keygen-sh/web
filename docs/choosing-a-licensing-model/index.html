@@ -11,10 +11,11 @@ search is likely to confuse you more than educate you, thanks to a plethora of e
 perspective</em> so that you can make an educated decision on what type of model is best
 for you and your business.</p>
 <h2 id="licensing-terminology">Licensing terminology</h2>
-<p>Below is a non-exhaustive reference for some of the terminology used within the licensing
-space. Feel free to refer back to this throughout the guide, but we&#39;ll try to keep things
-as straight forward as possible, regardless. If you&#39;re a developer implementing Keygen,
-this list will also provide you with a good overview of all of our resources.</p>
+<p>Below is a non-exhaustive reference for some of the terminology used in this guide
+and throughout the licensing space. Feel free to refer back to this throughout the
+guide, but we&#39;ll try to keep things as straight forward as possible, regardless. If
+you&#39;re a developer implementing Keygen, this list will also provide you with a good
+overview of all of our resources.</p>
 <ol>
 <li><strong>Users</strong> are a particular resource within Keygen that represents a user of your
 software, allowing them to <a href="/docs/authenticating-users">authenticate with Keygen&#39;s API</a>
@@ -27,13 +28,14 @@ particular feature your software offers.</li>
 behave, and what rules those licenses must follow. A license is always an <em>implementation</em>
 of a policy i.e. you cannot create a license without first having a policy that
 defines its behavior.</li>
-<li><strong>Machines</strong> are a <em>fingerprinted</em> device or node that is associated with a license
-within Keygen. When creating a machine and associating it with a license, you must
-specify a unique string called a <em>fingerprint</em> which the machine is identified by.</li>
+<li><strong>Machines</strong> are a device or node that is associated with a license within Keygen.
+When creating a machine and associating it with a license, you must specify a unique
+string called a <em>fingerprint</em> which the machine is identified by.</li>
 <li>A <strong>fingerprint</strong> is a unique string that identifies a particular machine. There
 are many ways to create a fingerprint, but most use a combination of device-specific
 components such as MAC address, HDD serial number, OS, etc., but it could also simply
-be a file you store locally on their machine containing the unique string.</li>
+be a domain name (e.g. when licensing a WordPress plugin), or even a file you store
+locally on their machine containing the unique string.</li>
 </ol>
 <h2 id="licensing-goals">Licensing goals</h2>
 <p>Before we go any further, we should take a step back and think about <em>why</em> we want to
