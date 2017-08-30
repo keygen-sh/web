@@ -112,10 +112,13 @@ below will be taking such a precaution.</p>
 <h4 id="example-webhook-handler-using-node-and-express">Example webhook handler using Node and Express</h4>
 <pre><code class="lang-javascript">const fetch = require(&quot;node-fetch&quot;)
 const express = require(&quot;express&quot;)
+const bodyParser = require(&quot;body-parser&quot;)
 const app = express()
 
+app.use(bodyParser.json({ type: &quot;application/vnd.api+json&quot; }))
+
 app.post(&quot;/my/webhook/url&quot;, async (req, res) =&gt; {
-  const { data: { id } } = JSON.parse(req.body)
+  const { data: { id } } = req.body
 
   // Fetch the webhook to validate it and get its most up-to-date state
   const event = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/webhook-events/${id}`, {
@@ -134,13 +137,13 @@ app.post(&quot;/my/webhook/url&quot;, async (req, res) =&gt; {
 
   switch (data.attributes.event) {
     case &quot;user.created&quot;:
-      const user = JSON.parse(data.attributes.payload)
+      const { payload: user } = data.attributes
 
       // … do something when a user is created e.g. create a Stripe customer
 
       break
     case &quot;license.created&quot;:
-      const license = JSON.parse(data.attributes.payload)
+      const { payload: license } = data.attributes
 
       // … do something when a license is created e.g. charge a user
 
