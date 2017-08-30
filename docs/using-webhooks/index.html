@@ -137,13 +137,13 @@ app.post(&quot;/my/webhook/url&quot;, async (req, res) =&gt; {
 
   switch (data.attributes.event) {
     case &quot;user.created&quot;:
-      const { payload: user } = data.attributes
+      const user = JSON.parse(data.attributes.payload)
 
       // … do something when a user is created e.g. create a Stripe customer
 
       break
     case &quot;license.created&quot;:
-      const { payload: license } = data.attributes
+      const license = JSON.parse(data.attributes.payload)
 
       // … do something when a license is created e.g. charge a user
 
