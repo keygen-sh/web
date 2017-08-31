@@ -5596,12 +5596,13 @@ const bodyParser = require("body-parser")
 const app = express()
 
 app.use(bodyParser.json({ type: "application/vnd.api+json" }))
+app.use(bodyParser.json({ type: "application/json" }))
 
 app.post("/my/webhook/url", async (req, res) => {
   const { data: { id } } = req.body
 
   // Fetch the webhook to validate it and get its most up-to-date state
-  const event = await fetch(`https://api.keygen.sh/v1/accounts/<%= account %>/webhook-events/${id}`, {
+  const event = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/webhook-events/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/vnd.api+json",
@@ -5632,6 +5633,12 @@ app.post("/my/webhook/url", async (req, res) => {
 
   // Let Keygen know the event was received successfully
   res.sendStatus(200)
+})
+
+const server = app.listen(8080, 'localhost', () => {
+  const { address, port } = server.address()
+
+  console.log(`Listening at http://${address}:${port}`)
 })
 </code></pre></div></div></article><article class="object" id="webhook-endpoints-object"><div class="description"><h2 class="anchor__wrapper object__heading"><a class="anchor" href="#webhook-endpoints-object" data-target="webhook-endpoints-object"><i class="material-icons">link</i></a>The endpoint object</h2><p>Below you will find the various attributes for the endpoint resource, as well
 as the endpoint resource&#39;s relationships.</p>

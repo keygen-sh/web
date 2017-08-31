@@ -110,12 +110,15 @@ below will be taking such a precaution.</p>
 </div>
 
 <h4 id="example-webhook-handler-using-node-and-express">Example webhook handler using Node and Express</h4>
+<p>To see a full working example of webhook integration, check out our <a href="https://keygen.sh/integrate/stripe">example Node.js app</a>
+which integrates Keygen and <a href="https://stripe.com">Stripe</a> together.</p>
 <pre><code class="lang-javascript">const fetch = require(&quot;node-fetch&quot;)
 const express = require(&quot;express&quot;)
 const bodyParser = require(&quot;body-parser&quot;)
 const app = express()
 
 app.use(bodyParser.json({ type: &quot;application/vnd.api+json&quot; }))
+app.use(bodyParser.json({ type: &quot;application/json&quot; }))
 
 app.post(&quot;/my/webhook/url&quot;, async (req, res) =&gt; {
   const { data: { id } } = req.body
@@ -152,6 +155,12 @@ app.post(&quot;/my/webhook/url&quot;, async (req, res) =&gt; {
 
   // Let Keygen know the event was received successfully
   res.sendStatus(200)
+})
+
+const server = app.listen(8080, &#39;localhost&#39;, () =&gt; {
+  const { address, port } = server.address()
+
+  console.log(`Listening at http://${address}:${port}`)
 })
 </code></pre>
 <div class="notice notice--tip">
