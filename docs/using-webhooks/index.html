@@ -127,7 +127,6 @@ app.post(&quot;/my/webhook/url&quot;, async (req, res) =&gt; {
   const event = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/webhook-events/${id}`, {
     method: &quot;GET&quot;,
     headers: {
-      &quot;Content-Type&quot;: &quot;application/vnd.api+json&quot;,
       &quot;Accept&quot;: &quot;application/vnd.api+json&quot;,
       &quot;Authorization&quot;: &quot;Bearer {PRODUCT_TOKEN}&quot;
     }
