@@ -55,6 +55,7 @@ const distUrl = `https://dist.keygen.sh/v1/${KEYGEN_ACCOUNT_ID}/${KEYGEN_PRODUCT
 const feedUrl = `${distUrl}/update/${platform}/zip/${version}?key=${licenseKey}`
 
 autoUpdater.setFeedURL(feedUrl)
+autoUpdater.checkForUpdates()
 </code></pre>
 </div></section><section class="topic" id="storage"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#storage" data-target="storage"><i class="material-icons">link</i></a>Storage</h1><p>Each release has a &quot;platform&quot; and a &quot;key&quot; (i.e. the release&#39;s filename and
 path). Release keys uniquely identify a release for a particular platform.
