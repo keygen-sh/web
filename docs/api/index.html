@@ -117,12 +117,12 @@ your account slug, as unlike your account slug, your ID is unchangable.</p>
 <li><p>If you only need to validate license keys, then you do not need to implement
 user authentication. The license resource&#39;s <a href="/docs/api#licenses-actions-validate-key"><code>validate-key</code></a>
 action does not require authentication. If you&#39;re doing anything else e.g. validating
-multiple license resources per-user, tracking machines, etc., <a href="(/docs/authenticating-users">user authentication</a>
+multiple license resources per-user, tracking machines, etc., <a href="/docs/authenticating-users">user authentication</a>
 will be required in order to communicate with Keygen&#39;s API client-side.</p>
 </li>
 <li><p>If you do not want the overhead of implementing webhooks, then you should only
 use Keygen server-side alongside your payment provider. Implementing Keygen
-client-side necessitates <a href="/docs/using/webhooks">listening for webhook events</a>,
+client-side necessitates <a href="/docs/using-webhooks">listening for webhook events</a>,
 unless you&#39;re simply validating license keys directly, as mentioned above.</p>
 </li>
 <li><p>If you do not want your users to be able to create and manage their own licenses
