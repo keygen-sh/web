@@ -3627,48 +3627,59 @@ var response = client.Execute(request);
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "meta": {
     "valid": true,
-    "detail": "is valid"
+    "detail": "is valid",
+    "constant": "VALID"
   }
 }
-</code></pre></div></div><article class="article" id="licenses-actions-validate-failures"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-validate-failures" data-target="licenses-actions-validate-failures"><i class="material-icons">link</i></a>Validation Failures</h2><p>Below are the possible values for the <code>meta.detail</code> key within the validation
-response. This can be used to better communicate failures to your users.</p>
+</code></pre></div></div><article class="article" id="licenses-actions-validate-failures"><div class="content"><h4 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-validate-failures" data-target="licenses-actions-validate-failures"><i class="material-icons">link</i></a>Validation Failures</h4><p>Below are the possible values for the <code>meta.detail</code> and <code>meta.constant</code> keys
+within the validation response. This can be used to better communicate failures
+to your users.</p>
 <table>
 <thead>
 <tr>
+<th style="text-align:left">Constant</th>
 <th style="text-align:left">Detail</th>
 <th style="text-align:left">Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td style="text-align:left"><code>VALID</code></td>
 <td style="text-align:left"><code>&#39;is valid&#39;</code></td>
 <td style="text-align:left">The validated license resource or license key is valid.</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>NOT_FOUND</code></td>
 <td style="text-align:left"><code>&#39;does not exist&#39;</code></td>
 <td style="text-align:left">The validated license resource or license key does not exist.</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>OVERDUE</code></td>
 <td style="text-align:left"><code>&#39;is overdue for check in&#39;</code></td>
 <td style="text-align:left">The validated license is overdue for check-in.</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>SUSPENDED</code></td>
 <td style="text-align:left"><code>&#39;is suspended&#39;</code></td>
 <td style="text-align:left">The validated license has been suspended.</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>EXPIRED</code></td>
 <td style="text-align:left"><code>&#39;is expired&#39;</code></td>
 <td style="text-align:left">The validated license is expired.</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>NO_MACHINE</code></td>
 <td style="text-align:left"><code>&#39;must have exactly 1 associated machine&#39;</code></td>
 <td style="text-align:left">The validated license does not meet its policy&#39;s requirement of 1 associated machine.</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>NO_MACHINES</code></td>
 <td style="text-align:left"><code>&#39;must have at least 1 associated machine&#39;</code></td>
 <td style="text-align:left">The validated license does not meet its policy&#39;s requirement of at least 1 associated machine.</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>TOO_MANY_MACHINES</code></td>
 <td style="text-align:left"><code>&#39;has too many associated machines&#39;</code></td>
 <td style="text-align:left">The validated license has exceeded its policy&#39;s machine limit.</td>
 </tr>
@@ -3742,48 +3753,59 @@ var response = client.Execute(request);
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "meta": {
     "valid": false,
-    "detail": "is expired"
+    "detail": "is expired",
+    "constant": "EXPIRED"
   }
 }
-</code></pre></div></div><article class="article" id="licenses-actions-validate-key-failures"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-validate-key-failures" data-target="licenses-actions-validate-key-failures"><i class="material-icons">link</i></a>Validation Failures</h2><p>Below are the possible values for the <code>meta.detail</code> key within the validation
-response. This can be used to better communicate failures to your users.</p>
+</code></pre></div></div><article class="article" id="licenses-actions-validate-key-failures"><div class="content"><h4 class="anchor__wrapper article__heading"><a class="anchor" href="#licenses-actions-validate-key-failures" data-target="licenses-actions-validate-key-failures"><i class="material-icons">link</i></a>Validation Failures</h4><p>Below are the possible values for the <code>meta.detail</code> and <code>meta.constant</code> keys
+within the validation response. This can be used to better communicate failures
+to your users.</p>
 <table>
 <thead>
 <tr>
+<th style="text-align:left">Constant</th>
 <th style="text-align:left">Detail</th>
 <th style="text-align:left">Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td style="text-align:left"><code>VALID</code></td>
 <td style="text-align:left"><code>&#39;is valid&#39;</code></td>
 <td style="text-align:left">The validated license resource or license key is valid.</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>NOT_FOUND</code></td>
 <td style="text-align:left"><code>&#39;does not exist&#39;</code></td>
 <td style="text-align:left">The validated license resource or license key does not exist.</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>OVERDUE</code></td>
 <td style="text-align:left"><code>&#39;is overdue for check in&#39;</code></td>
 <td style="text-align:left">The validated license is overdue for check-in.</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>SUSPENDED</code></td>
 <td style="text-align:left"><code>&#39;is suspended&#39;</code></td>
 <td style="text-align:left">The validated license has been suspended.</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>EXPIRED</code></td>
 <td style="text-align:left"><code>&#39;is expired&#39;</code></td>
 <td style="text-align:left">The validated license is expired.</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>NO_MACHINE</code></td>
 <td style="text-align:left"><code>&#39;must have exactly 1 associated machine&#39;</code></td>
 <td style="text-align:left">The validated license does not meet its policy&#39;s requirement of 1 associated machine.</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>NO_MACHINES</code></td>
 <td style="text-align:left"><code>&#39;must have at least 1 associated machine&#39;</code></td>
 <td style="text-align:left">The validated license does not meet its policy&#39;s requirement of at least 1 associated machine.</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>TOO_MANY_MACHINES</code></td>
 <td style="text-align:left"><code>&#39;has too many associated machines&#39;</code></td>
 <td style="text-align:left">The validated license has exceeded its policy&#39;s machine limit.</td>
 </tr>
