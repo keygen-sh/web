@@ -231,7 +231,11 @@ ID by viewing the policy from your account dashboard.</p>
 const KEYGEN_FEATURE_X = &quot;aac4905c-84d0-41a3-af6e-1026e28c04d3&quot;
 const KEYGEN_FEATURE_Y = &quot;dd025847-42fb-49b0-b898-80c34d7734b4&quot;
 const KEYGEN_FEATURE_Z = &quot;b6a5ae11-ec60-4ecd-9902-ae48a1077623&quot;
-const ALLOWED_FEATURES = {}
+const ALLOWED_FEATURES = {
+  [KEYGEN_FEATURE_X]: false,
+  [KEYGEN_FEATURE_Y]: false,
+  [KEYGEN_FEATURE_Z]: false
+}
 
 const licenses = /* fetch user&#39;s licenses */
 
