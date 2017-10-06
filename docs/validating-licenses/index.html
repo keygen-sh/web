@@ -68,8 +68,9 @@ a license requires an authentication token. We recommend using a token
 that belongs to one of your users, but if you&#39;re validating licenses
 <strong>server-side</strong>, then using an admin or product token also works.</p>
 <p>The response of the validation request will be a <code>meta</code> object containing
-the result of the validation: a <code>meta.valid</code> boolean, and a <code>meta.detail</code>
-human-readable description of the validation result.</p>
+the result of the validation: a <code>meta.valid</code> boolean, a <code>meta.constant</code>
+machine-readable constant, and a <code>meta.detail</code> human-readable description
+of the validation result.</p>
 <pre><code class="lang-js">// … above code
 
 const validation = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/${license.id}/actions/validate`, {
@@ -128,7 +129,7 @@ if (meta.valid) {
 <h4 id="validation-request-was-successful-but-license-is-not-valid">Validation request was successful, but license is not valid</h4>
 <p>License validation failures are innevitable, and how you handle them will differ based on your business requirements. Here are a few ideas for handling such a situation:</p>
 <ol>
-<li>Immediately show a dialog detailing the validation failure (you can find out the reason using <a href="/docs/api#licenses-actions-validate">the <code>meta.detail</code> key</a> within the validation response).</li>
+<li>Immediately show a dialog detailing the validation failure (you can find out the reason using <a href="/docs/api#licenses-actions-validate">the <code>meta.constant</code> key</a> within the validation response).</li>
 <li>Depending on how you&#39;re licensing your product (e.g. user accounts with associated licenses vs. only license keys), you can prompt the user to purchase a new license, resolve the invalid license, etc.</li>
 </ol>
 <p>Alternatively, you could disallow access to the product, or implement a grace period while prompting the user to resolve the validation failure—though ideally, this should be communicated beforehand by listening for <em>upcoming</em> license expiration and overdue check-in events (e.g. <code>license.expiring-soon</code> and <code>license.check-in-required-soon</code>) so that the potential for validation failures i.e. license churn is diminished.</p>
