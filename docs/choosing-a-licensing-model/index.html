@@ -65,8 +65,9 @@ dashboard</a> to do so instead. The policies below use default
 attributes where possible, so be sure to review the <a href="/docs/api#policies-object">Policy resource&#39;s default
 attributes</a>.</p>
 <h3 id="i-want-to-limit-access-of-my-software-to-only-licensed-users">I want to limit access of my software to only licensed users</h3>
-<p>Keeping things simple—I like that. Below is a policy which implements the bare-minimum
-to implement a licensing system for your software.</p>
+<p>Keeping things simple. Below is a policy which implements the bare-minimum to
+implement a licensing system for your software. It will be valid on an unlimited
+number of machines.</p>
 <pre><code class="lang-js">{
   data: {
     type: &quot;policies&quot;,
@@ -78,7 +79,7 @@ to implement a licensing system for your software.</p>
 </code></pre>
 <p>Licenses that implement this policy will never expire and will be valid on an
 unlimited number of machines. The only way for a license implementing this
-policy to fail validation is for it to be suspended.</p>
+policy to fail validation is for it to be suspended or revoked.</p>
 <h3 id="i-want-to-offer-timed-licenses-to-each-of-my-users">I want to offer timed licenses to each of my users</h3>
 <p>To offer licenses which have an expiration date, we&#39;ll need to create a policy similar
 to the above one, but one which also has a value for the <code>duration</code> attribute.</p>
