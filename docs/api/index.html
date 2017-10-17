@@ -122,7 +122,7 @@ license key client-side by embedding a derived public key within your
 software.</p>
 </li>
 <li><p><strong>If you only need to validate license keys, then you do not need to implement
-user authentication.</strong> The license resource&#39;s <a href="/docs/api#licenses-actions-validate-key"><code>validate-key</code></a>
+user authentication.</strong> The license <a href="/docs/api#licenses-actions-validate-key"><code>validate-key</code></a>
 action does not require authentication. If you&#39;re doing anything else e.g. validating
 multiple license resources per-user, tracking machines, etc., <a href="/docs/authenticating-users">user authentication</a>
 will be required in order to communicate with Keygen&#39;s API client-side.</p>
@@ -137,9 +137,10 @@ and machines</strong> (which necessitates <a href="/docs/using-webhooks">listeni
 then you should set your account to <code>protected</code>, which will require admin authentication
 to create and manage all resources, aside from token creation and license validation.
 Setting your account to protected can be done within your <a href="https://app.keygen.sh/settings">account settings</a>.</p>
-<p>Alternatively, you can set individual license policies to <code>protected</code>, which
-will only disallow users from creating and managing licenses which implement
-that particular policy, rather than all resources e.g. their machines, etc.</p>
+<p>Alternatively, you can set individual license policies to <code>protected</code> (which by default
+is inherited from the account&#39;s current <code>protected</code> state), which will only disallow
+users from creating and managing licenses which implement that particular policy and
+their related machines, rather than all resources e.g. public user creation, etc.</p>
 </li>
 </ol>
 </div></section><section class="topic" id="errors"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#errors" data-target="errors"><i class="material-icons">link</i></a>Errors</h1><p>Our API uses conventional HTTP response codes to indicate the success or
