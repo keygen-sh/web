@@ -1,0 +1,7 @@
+Sitemap: https://keygen.sh/sitemap.xml
+
+User-agent: ia_archiver
+Allow: /docs/api
+Allow: /docs/api$
+Disallow: /docs
+Disallow: /docs$
