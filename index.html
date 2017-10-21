@@ -39,7 +39,7 @@ const headers = {
 }
 
 // Request the current user's licenses for our product
-const url = new URL("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses")
+const url = new URL("https://api.keygen.sh/v1/accounts/example/licenses")
 url.searchParams.append("product", "14c80537-66c7-4753-a5e7-e8269a2ea616")
 
 const licenses = await fetch(url, { headers })
@@ -52,7 +52,7 @@ if (!data) {
 // Validate the first license we get back
 const license = data[0]
 const validation = await fetch(
-  `https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/${license.id}/actions/validate`,
+  `https://api.keygen.sh/v1/accounts/example/licenses/${license.id}/actions/validate`,
   { headers }
 )
 const { meta } = await validation.json()
@@ -75,7 +75,7 @@ let headers: HTTPHeaders = [
 ]
 
 // Request the current user's licenses for our product
-let licensesUrl = "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses"
+let licensesUrl = "https://api.keygen.sh/v1/accounts/example/licenses"
 
 Alamofire.request(licensesUrl, parameters: ["product": "14c80537-66c7-4753-a5e7-e8269a2ea616"], headers: headers)
   .responseJSON { response in
@@ -86,7 +86,7 @@ Alamofire.request(licensesUrl, parameters: ["product": "14c80537-66c7-4753-a5e7-
     }
 
     // Validate the first license we get back
-    let licenseUrl = "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/\(licenseId)/actions/validate"
+    let licenseUrl = "https://api.keygen.sh/v1/accounts/example/licenses/\(licenseId)/actions/validate"
 
     Alamofire.request(licenseUrl, headers: headers)
       .responseJSON { response in
@@ -108,7 +108,7 @@ using System.Collections.Generic;
 var token = "9fc6d1e049a8414a905524dfa8c24a6b.d2b7366c85974bb09ef00b1b1ec22fd0.5a5dc7…";
 
 // Set up request url
-var client = new RestClient("https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b");
+var client = new RestClient("https://api.keygen.sh/v1/accounts/example");
 var request = new RestRequest("licenses", Method.POST);
 
 // Set up request query string
@@ -164,7 +164,7 @@ headers = {
 
 # Request the current user's licenses for our product
 licenses = requests.get(
-  "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
+  "https://api.keygen.sh/v1/accounts/example/licenses",
   params={ "product": "14c80537-66c7-4753-a5e7-e8269a2ea616" },
   headers=headers
 ).json()
@@ -175,7 +175,7 @@ if not licenses["data"]:
 # Validate the first license we get back
 license = licenses["data"][0]
 validation = requests.get(
-  "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{1}/actions/validate".format(license["id"]),
+  "https://api.keygen.sh/v1/accounts/example/licenses/{1}/actions/validate".format(license["id"]),
   headers=headers
 ).json()
 
@@ -196,7 +196,7 @@ headers = {
 
 # Request the current user's licenses for our product
 licenses = HTTParty.get(
-  "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
+  "https://api.keygen.sh/v1/accounts/example/licenses",
   query: { product: "14c80537-66c7-4753-a5e7-e8269a2ea616" },
   headers: headers
 )
@@ -208,7 +208,7 @@ end
 # Validate the first license we get back
 license = licenses["data"].first
 validation = HTTParty.get(
-  "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/#{license['id']}/actions/validate",
+  "https://api.keygen.sh/v1/accounts/example/licenses/#{license['id']}/actions/validate",
   headers: headers
 )
 
@@ -231,7 +231,7 @@ $headers = [
 // Request the current user's licenses for our product
 $licenses = json_decode(
   Requests::request(
-    "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses",
+    "https://api.keygen.sh/v1/accounts/example/licenses",
     $headers, ["product" => "14c80537-66c7-4753-a5e7-e8269a2ea616"]
   )->body
 );
@@ -244,7 +244,7 @@ if (!$licenses->data) {
 $license = $licenses->data[0];
 $validation = json_decode(
   Requests::request(
-    "https://api.keygen.sh/v1/accounts/9fc6d1e0-49a8-414a-9055-24dfa8c24a6b/licenses/{$license->id}/actions/validate",
+    "https://api.keygen.sh/v1/accounts/example/licenses/{$license->id}/actions/validate",
     $headers
   )->body
 );
