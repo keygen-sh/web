@@ -238,9 +238,9 @@ curl -G https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a
       "type": "releases",
       "id": "90afc0d2-7343-40f8-abdd-07aed3d6d22b",
       "attributes": {
-        "url": "https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/1.9.1.zip",
+        "url": "https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/linux/1.9.1.zip",
         "key": "1.9.1.zip",
-        "platform": "macos"
+        "platform": "linux"
       }
     },
     …
@@ -293,21 +293,21 @@ the latest update release. Otherwise, <code>204 No Content</code> will be return
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example requests</h4><pre><code class="bash" data-lang="bash"># Using bearer authentication
 curl -L https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/update/macos/zip/v1.0.0 \
   -H "Authorization: Bearer <%= token %>" \
-  -o "App-Latest.zip"
+  -o "v1.3.0.zip"
 
 # Using basic authentication
 curl -L https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/update/macos/zip/v1.0.0 \
   -u "bbec-988f-b52f-5188:" \
-  -o "App-Latest.zip"
+  -o "v1.3.0.zip"
 
 # Using query parameters
 curl -L https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/update/macos/zip/v1.0.0?key=bbec-988f-b52f-5188 \
-  -o "App-Latest.zip"
+  -o "v1.3.0.zip"
 
 # or…
 curl -GL https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/update/macos/zip/v1.0.0 \
   -d "key=bbec-988f-b52f-5188" \
-  -o "App-Latest.zip"
+  -o "v1.3.0.zip"
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 307 Temporary Redirect</h4><pre><code class="no-highlight">Location: https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.3.0.zip?key=bbec-988f-b52f-5188</code><code class="json">{
   "url": "https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.3.0.zip?key=bbec-988f-b52f-5188",
   "name": "v1.3.0.zip"
