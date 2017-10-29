@@ -72,6 +72,11 @@ you manage your users within your own database instead of within Keygen)</li>
 provider (e.g. you may check if their subscription is still active before renewing)</li>
 <li>Create an audit trail for events of importance for each user or license</li>
 </ul>
+<p><strong>Webhook endpoints may occasionally receive the same event more than once.</strong> We advise you
+to guard against duplicated event receipts by making your event processing <a href="https://en.wikipedia.org/wiki/Idempotence">idempotent</a>.
+One way of doing this is by logging the events you&#39;ve processed, and then not processing
+already-logged events. Keygen sends an <a href="/docs/api#idempotency">idempotency token</a> with each
+webhook event which can be used for logging events to a database.</p>
 <h3 id="server-side-integration">Server-side integration</h3>
 <p>If you&#39;re using Keygen server-side, some of the above mentioned steps could potentially
 be done within a single transaction, but you may not want to introduce additional network
