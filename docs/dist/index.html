@@ -51,7 +51,7 @@ for updates or the request will be rejected.</p>
 <pre><code class="lang-js">const { app, autoUpdater } = require(&#39;electron&#39;)
 const { platform } = process
 
-const licenseKey = getLicenseKeyForUser()
+const licenseKey = getLicenseKeyForCurrentUser()
 const version = app.getVersion()
 
 const distUrl = `https://dist.keygen.sh/v1/${KEYGEN_ACCOUNT_ID}/${KEYGEN_PRODUCT_ID}`
@@ -61,9 +61,9 @@ autoUpdater.setFeedURL(feedUrl)
 autoUpdater.checkForUpdates()
 </code></pre>
 <p>The <a href="#releases-update">update endpoint</a> is compatible with both Squirrel.Mac and
-Squirrel.Windows, Sparkle, WordPress for plugin and theme updates, etc., as well
-as any other auto-update system or framework that needs to access your static
-release files.</p>
+Squirrel.Windows, NSIS, Sparkle, WordPress for plugin and theme updates, etc., as
+well as any other auto-update system or framework that needs to access your
+static release files.</p>
 </div></section><section class="topic" id="proxy"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#proxy" data-target="proxy"><i class="material-icons">link</i></a>Proxy Server</h1><p>If you would rather deliver releases over your own domain, you can run
 a proxy server. We have an <a href="https://github.com/keygen-sh/example-dist-proxy">example Node.js proxy server</a>
 available for reference which utilizes this API.</p>
