@@ -248,9 +248,12 @@ for (let license of licenses) {
     case KEYGEN_FEATURE_Y:
     case KEYGEN_FEATURE_Z:
       // Validate the current license
-      const validation = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/${id}/actions/validate`, {
+      const { meta: validation, errors } = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/${id}/actions/validate`, {
         headers: { &quot;Accept&quot;: &quot;application/vnd.api+json&quot;, &quot;Authorization&quot;: &quot;Bearer {TOKEN}&quot; },
       }).then(r =&gt; r.json())
+      if (errors) {
+        continue
+      }
 
       ALLOWED_FEATURES[policy.id] = validation.valid
 
