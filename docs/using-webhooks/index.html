@@ -139,7 +139,7 @@ app.post(&quot;/my/webhook/url&quot;, async (req, res) =&gt; {
 
   const { data, errors } = await event.json()
   if (errors) {
-    return // Webhook event does not exist
+    return res.sendStatus(200) // Webhook event does not exist
   }
 
   switch (data.attributes.event) {
