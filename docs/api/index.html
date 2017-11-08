@@ -2888,8 +2888,8 @@ var response = client.Execute(request);
     }
   }
 }
-</code></pre></div></div></article><article class="article" id="users-actions-reset-password"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#users-actions-reset-password" data-target="users-actions-reset-password"><i class="material-icons">link</i></a>Reset password</h3><p>Action to reset the user&#39;s password. Password reset tokens expire 24 hours
-after <a href="#passwords">requesting the reset</a>.</p>
+</code></pre></div></div></article><article class="article" id="users-actions-reset-password"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#users-actions-reset-password" data-target="users-actions-reset-password"><i class="material-icons">link</i></a>Reset password</h3><p>Fulfill a user&#39;s password reset request. Password reset tokens expire 24 hours
+after <a href="#passwords-forgot">requesting the reset</a>.</p>
 </div><div class="authentications" id="users-reset-password-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#users-reset-password-auths" data-target="users-reset-password-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="users-reset-password-auths-none"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#users-reset-password-auths-none" data-target="users-reset-password-auths-none"><i class="material-icons">link</i></a>None</h3></div></li></ul></div><div class="parameters" id="users-reset-password-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#users-reset-password-params" data-target="users-reset-password-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="users-reset-password-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#users-reset-password-params-account" data-target="users-reset-password-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) or slug of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="users-reset-password-params-id"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#users-reset-password-params-id" data-target="users-reset-password-params-id"><i class="material-icons">link</i></a>id</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the user to be retrieved.</p></div></li></ul></div><div class="metas" id="users-reset-password-meta"><h4 class="anchor__wrapper metas__heading"><a class="anchor" href="#users-reset-password-meta" data-target="users-reset-password-meta"><i class="material-icons">link</i></a>Meta</h4><ul class="metas__list"><li class="meta"><div class="meta__info" id="users-reset-password-metas-passwordResetToken"><h3 class="anchor__wrapper meta__name"><a class="anchor" href="#users-reset-password-meta-passwordResetToken" data-target="users-reset-password-meta-passwordResetToken"><i class="material-icons">link</i></a>passwordResetToken</h3><span class="meta__type">string</span><span class="meta__req">, required</span><p class="meta__desc">The password reset token emailed to the user.</p></div></li><li class="meta"><div class="meta__info" id="users-reset-password-metas-newPassword"><h3 class="anchor__wrapper meta__name"><a class="anchor" href="#users-reset-password-meta-newPassword" data-target="users-reset-password-meta-newPassword"><i class="material-icons">link</i></a>newPassword</h3><span class="meta__type">string</span><span class="meta__req">, required</span><p class="meta__desc">The new password for the user.</p></div></li></ul></div><div class="returns" id="users-reset-password-returns"><h4 class="anchor__wrapper returns__heading"><a class="anchor" href="#users-reset-password-returns" data-target="users-reset-password-returns"><i class="material-icons">link</i></a>Returns</h4><div class="returns__content"><p>A <code>200 OK</code> response will be returned along with the updated user object.</p>
 </div></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="no-highlight" data-method="POST">https://api.keygen.sh/v1/accounts/{ACCOUNT}/users/{ID}/actions/reset-password
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="javascript" data-lang="javascript">const fetch = require("node-fetch")
@@ -5684,6 +5684,11 @@ with a POST request containing an <a href="#webhook-events-object">event object<
 <td style="text-align:left">The deleted user object</td>
 </tr>
 <tr>
+<td style="text-align:left"><code>user.password-reset</code></td>
+<td style="text-align:left">When a user requests a password reset</td>
+<td style="text-align:left">The user object and reset token</td>
+</tr>
+<tr>
 <td style="text-align:left"><code>product.created</code></td>
 <td style="text-align:left">When a product is created</td>
 <td style="text-align:left">The product object</td>
@@ -5841,6 +5846,13 @@ app.post("/my/webhook/url", async (req, res) => {
   }
 
   switch (data.attributes.event) {
+    case "user.password-reset":
+      const reset = JSON.parse(data.attributes.payload)
+      const { passwordResetToken } = reset.meta
+
+      // … email the password reset token to the user for fulfillment
+
+      break
     case "user.created":
       const user = JSON.parse(data.attributes.payload)
 
@@ -6622,10 +6634,13 @@ var response = client.Execute(request);
 if it is a valid email address. The email will contain a link leading to
 a password reset form securely hosted by Keygen.</p>
 <div class="notice notice--tip">
-  In the future, we will support the use of custom domains and branding or
-  the ability to respond to reset requests via webhook events.
+  <strong>If you would like to use custom branding or your own domain</strong>, you can
+  set <code>deliver = false</code> and listen for the <code>user.password-reset</code> webhook
+  which will contain the user data and meta containing the user&#39;s password
+  reset token. You can use the password reset token to fulfill the reset
+  through the <a href="#users-actions-reset-password">password reset fulfillment endpoint</a>.
 </div>
-</div><div class="authentications" id="passwords-forgot-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#passwords-forgot-auths" data-target="passwords-forgot-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="passwords-forgot-auths-none"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#passwords-forgot-auths-none" data-target="passwords-forgot-auths-none"><i class="material-icons">link</i></a>None</h3></div></li></ul></div><div class="parameters" id="passwords-forgot-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#passwords-forgot-params" data-target="passwords-forgot-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="passwords-forgot-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#passwords-forgot-params-account" data-target="passwords-forgot-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) or slug of the account.</p></div></li></ul></div><div class="metas" id="passwords-forgot-meta"><h4 class="anchor__wrapper metas__heading"><a class="anchor" href="#passwords-forgot-meta" data-target="passwords-forgot-meta"><i class="material-icons">link</i></a>Meta</h4><ul class="metas__list"><li class="meta"><div class="meta__info" id="passwords-forgot-metas-email"><h3 class="anchor__wrapper meta__name"><a class="anchor" href="#passwords-forgot-meta-email" data-target="passwords-forgot-meta-email"><i class="material-icons">link</i></a>email</h3><span class="meta__type">string</span><span class="meta__req">, required</span><p class="meta__desc">The email of the user.</p></div></li></ul></div><div class="returns" id="passwords-forgot-returns"><h4 class="anchor__wrapper returns__heading"><a class="anchor" href="#passwords-forgot-returns" data-target="passwords-forgot-returns"><i class="material-icons">link</i></a>Returns</h4><div class="returns__content"><p>A <code>202 Accepted</code> response will be returned.</p>
+</div><div class="authentications" id="passwords-forgot-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#passwords-forgot-auths" data-target="passwords-forgot-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="passwords-forgot-auths-none"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#passwords-forgot-auths-none" data-target="passwords-forgot-auths-none"><i class="material-icons">link</i></a>None</h3></div></li></ul></div><div class="parameters" id="passwords-forgot-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#passwords-forgot-params" data-target="passwords-forgot-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="passwords-forgot-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#passwords-forgot-params-account" data-target="passwords-forgot-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) or slug of the account.</p></div></li></ul></div><div class="metas" id="passwords-forgot-meta"><h4 class="anchor__wrapper metas__heading"><a class="anchor" href="#passwords-forgot-meta" data-target="passwords-forgot-meta"><i class="material-icons">link</i></a>Meta</h4><ul class="metas__list"><li class="meta"><div class="meta__info" id="passwords-forgot-metas-email"><h3 class="anchor__wrapper meta__name"><a class="anchor" href="#passwords-forgot-meta-email" data-target="passwords-forgot-meta-email"><i class="material-icons">link</i></a>email</h3><span class="meta__type">string</span><span class="meta__req">, required</span><p class="meta__desc">The email of the user.</p></div></li><li class="meta"><div class="meta__info" id="passwords-forgot-metas-deliver"><h3 class="anchor__wrapper meta__name"><a class="anchor" href="#passwords-forgot-meta-deliver" data-target="passwords-forgot-meta-deliver"><i class="material-icons">link</i></a>deliver</h3><span class="meta__type">boolean</span><span class="meta__req">, optional</span><span class="meta__default">, default is<code>true</code></span><p class="meta__desc">Whether or not to email a password reset notification to the user. When false, you will need to listen for the user.password-reset webhook event and implement the fulfillment logic yourself.</p></div></li></ul></div><div class="returns" id="passwords-forgot-returns"><h4 class="anchor__wrapper returns__heading"><a class="anchor" href="#passwords-forgot-returns" data-target="passwords-forgot-returns"><i class="material-icons">link</i></a>Returns</h4><div class="returns__content"><p>A <code>202 Accepted</code> response will be returned.</p>
 </div></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="no-highlight" data-method="POST">https://api.keygen.sh/v1/accounts/{ACCOUNT}/passwords
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="javascript" data-lang="javascript">const fetch = require("node-fetch")
 
@@ -6637,7 +6652,8 @@ const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/p
   },
   body: JSON.stringify({
     "meta": {
-      "email": "user@example.com"
+      "email": "user@example.com",
+      "deliver": false
     }
   })
 })
@@ -6652,7 +6668,8 @@ Alamofire.request("https://api.keygen.sh/v1/accounts/<%= account %>/passwords",
   ],
   parameters: [
     "meta": [
-      "email": "user@example.com"
+      "email": "user@example.com",
+      "deliver": false
     ]
   ],
   encoding: JSONEncoding.default
@@ -6669,7 +6686,8 @@ request.AddHeader("Accept", "application/vnd.api+json");
 
 request.AddJsonBody(new {
   meta = new {
-    email = "user@example.com"
+    email = "user@example.com",
+    deliver = false
   }
 });
 
@@ -6679,7 +6697,8 @@ var response = client.Execute(request);
   -H 'Accept: application/vnd.api+json' \
   -d '{
         "meta": {
-          "email": "user@example.com"
+          "email": "user@example.com",
+          "deliver": false
         }
       }'
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 202 Accepted</h4><pre><code class="no-highlight">No content</code></pre></div></div></article></section></div></main><div class="zoom__wrapper"><div class="zoom"></div></div><script src="/app.js"></script><script src="https://www.googleadservices.com/pagead/conversion_async.js"></script><script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script></body></html>
