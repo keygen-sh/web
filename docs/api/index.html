@@ -27,7 +27,8 @@ so you can test any example right away. <strong>Only you can see these values.</
 <div class="notice notice--warning">
   <strong>The pre-populated token is an admin token and is not meant to be used
   in client-facing code, stored in version control, and so forth.</strong>
-</div></div></article></section><section class="topic" id="architecture"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#architecture" data-target="architecture"><i class="material-icons">link</i></a>Architecture</h1><p>How to model the communication layer between your app and Keygen.</p>
+</div></div></article></section><section class="topic" id="architecture"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#architecture" data-target="architecture"><i class="material-icons">link</i></a>Architecture</h1><p>How to model the communication layer between your app and Keygen. Although
+these are not the only way, they are some of the most common setups.</p>
 </div><div class="division"><div class="content"><h3 id="a-direct">A) Direct</h3>
 <p>First up is the direct approach, utilizing a direct communication channel
 from your app to Keygen&#39;s API. This allows users to for example create licenses
@@ -36,7 +37,7 @@ updating records to reflect any changes made server-side as well as to handle
 invoicing your users for any purchased licenses.</p>
 <div class="notice notice--tip">
   <strong>Using the direct architecture also lightens the load on your servers</strong>,
-  allowing user&#39;s to interact directly with Keygen&#39;s APIs for most of their
+  allowing users to interact directly with Keygen&#39;s APIs for most of their
   transactions, e.g. license validation and creation, as well as managing
   their machines. You can then respond to the appropriate webhook events
   to for example charge a customer for a new license.
