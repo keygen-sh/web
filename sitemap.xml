@@ -138,4 +138,10 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://keygen.sh/integrate/gumroad</loc>
+    <lastmod>2017-11-30T01:23:45+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
