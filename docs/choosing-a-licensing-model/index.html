@@ -126,6 +126,83 @@ will be our &quot;trial&quot; policy.</p>
 </code></pre>
 <p>The only difference is the <code>duration</code> of each policy, i.e. the &quot;trial&quot; version will
 expire in 2 weeks, while the &quot;full&quot; version will be valid for 1 year.</p>
+<h3 id="i-want-to-offer-a-premium-version-of-my-free-software">I want to offer a premium version of my free software</h3>
+<p>This particular model is usually referred to as &quot;freemium&quot; or &quot;in-app purchases&quot;, and
+it&#39;s one of the models that Keygen was originally built around. For reference, we
+even have <a href="/integrate/electron">an example application</a> which implements a similar
+form of this type of licensing.</p>
+<pre><code class="lang-js">// Base license policy
+{
+  data: {
+    type: &quot;policies&quot;,
+    attributes: {
+      name: &quot;Base License&quot;
+    }
+  }
+}
+// Premium license policy
+{
+  data: {
+    type: &quot;policies&quot;,
+    attributes: {
+      name: &quot;Premium License&quot;
+    }
+  }
+}
+</code></pre>
+<p>You can then store each policy&#39;s ID within your product to determine if the current
+user is allowed to use each particular feature of your product. You can find a policy&#39;s
+ID by viewing the policy from your account dashboard.</p>
+<p>For example,</p>
+<pre><code class="lang-js">// Policies representing our product editions. You can get this information
+// from your dashboard: https://app.keygen.sh/policies
+const KEYGEN_PREMIUM_POLICY = &quot;f4eb56fa-cd4d-4060-b9fe-66fb70d875d9&quot;
+const KEYGEN_BASE_POLICY = &quot;35900395-c0e6-4fda-b174-a440ef58dd12&quot;
+const PRIVILEGES = {
+  premium: false,
+  base: false
+}
+
+const licenses = /* fetch user&#39;s licenses */
+
+for (let license of licenses) {
+  const { id, relationships: { policy: { data: policy } } } = license
+
+  switch (policy.id) {
+    case KEYGEN_PREMIUM_POLICY: {
+      // Validate the current license
+      const { meta: validation, errors } = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/${id}/actions/validate`, {
+        headers: { &quot;Accept&quot;: &quot;application/vnd.api+json&quot;, &quot;Authorization&quot;: &quot;Bearer {TOKEN}&quot; },
+      }).then(r =&gt; r.json())
+      if (errors) {
+        continue
+      }
+
+      PRIVILEGES.premium = validation.valid
+
+      break
+    }
+    case KEYGEN_BASE_POLICY: {
+      const { meta: validation, errors } = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/${id}/actions/validate`, {
+        headers: { &quot;Accept&quot;: &quot;application/vnd.api+json&quot;, &quot;Authorization&quot;: &quot;Bearer {TOKEN}&quot; },
+      }).then(r =&gt; r.json())
+      if (errors) {
+        continue
+      }
+
+      PRIVILEGES.base = validation.valid
+
+      break
+    }
+  }
+}
+
+// … later in the product
+
+if (PRIVILEGES.premium) {
+  // … do something
+}
+</code></pre>
 <h3 id="i-want-to-limit-access-of-my-software-to-a-single-machine">I want to limit access of my software to a single machine</h3>
 <p>To limit access to a single machine (also called <em>node-locked</em> licensing), we&#39;ll take
 advantage of a few other policy attributes. Node-locked is a fancy way to say &quot;I want
@@ -246,7 +323,7 @@ for (let license of licenses) {
   switch (policy.id) {
     case KEYGEN_FEATURE_X:
     case KEYGEN_FEATURE_Y:
-    case KEYGEN_FEATURE_Z:
+    case KEYGEN_FEATURE_Z: {
       // Validate the current license
       const { meta: validation, errors } = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/${id}/actions/validate`, {
         headers: { &quot;Accept&quot;: &quot;application/vnd.api+json&quot;, &quot;Authorization&quot;: &quot;Bearer {TOKEN}&quot; },
@@ -258,10 +335,12 @@ for (let license of licenses) {
       ALLOWED_FEATURES[policy.id] = validation.valid
 
       break
-    default:
+    }
+    default: {
       // This version of our product doesn&#39;t use this policy so it&#39;s okay to skip
       // it (we can implement new features without breaking old versions)
       break
+    }
   }
 }
 
