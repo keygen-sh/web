@@ -68,6 +68,7 @@ attributes</a>.</p>
 <p>Keeping things simple. Below is a policy which implements the bare-minimum to
 implement a licensing system for your software. It will be valid on an unlimited
 number of machines.</p>
+<p>Here&#39;s what that Policy would look like (with everything else left to defaults):</p>
 <pre><code class="lang-js">{
   data: {
     type: &quot;policies&quot;,
@@ -83,6 +84,7 @@ policy to fail validation is for it to be suspended or revoked.</p>
 <h3 id="i-want-to-offer-timed-licenses-to-each-of-my-users">I want to offer timed licenses to each of my users</h3>
 <p>To offer licenses which have an expiration date, we&#39;ll need to create a policy similar
 to the above one, but one which also has a value for the <code>duration</code> attribute.</p>
+<p>And here&#39;s what that would look like (everything else left to defaults),</p>
 <pre><code class="lang-js">{
   data: {
     type: &quot;policies&quot;,
@@ -103,6 +105,7 @@ automate <a href="/docs/api#licenses-actions-renew">renewing the license</a> ser
 <p>This is similar to the above implementation, but instead of only having a single
 policy, we&#39;ll have 2. The first one will be our &quot;full&quot; policy, while the second
 will be our &quot;trial&quot; policy.</p>
+<p>Here&#39;s what those Policies would look like (with everything else left to defaults):</p>
 <pre><code class="lang-js">// Full license policy
 {
   data: {
@@ -131,6 +134,7 @@ expire in 2 weeks, while the &quot;full&quot; version will be valid for 1 year.<
 it&#39;s one of the models that Keygen was originally built around. For reference, we
 even have <a href="/integrate/electron">an example application</a> which implements a similar
 form of this type of licensing.</p>
+<p>And here&#39;s a representation of the 2 policies (with other attributes left to defaults),</p>
 <pre><code class="lang-js">// Base license policy
 {
   data: {
@@ -151,7 +155,7 @@ form of this type of licensing.</p>
 }
 </code></pre>
 <p>You can then store each policy&#39;s ID within your product to determine if the current
-user is allowed to use each particular feature of your product. You can find a policy&#39;s
+user is allowed to use the &quot;premium&quot; features of your product. You can find a policy&#39;s
 ID by viewing the policy from your account dashboard.</p>
 <p>For example,</p>
 <pre><code class="lang-js">// Policies representing our product editions. You can get this information
@@ -208,6 +212,7 @@ if (PRIVILEGES.premium) {
 advantage of a few other policy attributes. Node-locked is a fancy way to say &quot;I want
 a license to only be valid on a single machine&quot; i.e. you &quot;lock&quot; the license to a
 particular machine resource.</p>
+<p>Here&#39;s what that Policy would look like (with everything else left to defaults):</p>
 <pre><code class="lang-js">{
   data: {
     type: &quot;policies&quot;,
@@ -227,6 +232,7 @@ machine—no more, no less.</p>
 licenses. Floating is a term used to describe the opposite of &quot;node-locked&quot; i.e.
 a &quot;floating&quot; license is valid across multiple machines, but only up to a maximum
 machine count.</p>
+<p>Here&#39;s what that would look like,</p>
 <pre><code class="lang-js">{
   data: {
     type: &quot;policies&quot;,
@@ -272,6 +278,7 @@ depleted, you must add additional keys in order to continue to create new licens
 <p>This particular model is called &quot;feature licensing&quot;, and it&#39;s one of the models that Keygen
 was originally built around. For reference, we even have <a href="/integrate/electron">an example application</a>
 which implements feature licensing.</p>
+<p>The feature policies would end up looking like,</p>
 <pre><code class="lang-js">// Feature &quot;X&quot;
 {
   data: {
@@ -356,6 +363,7 @@ Below is a policy which requires licenses to check in every 2 weeks in
 order to remain valid. Check-in policies are great for allowing offline
 usage of your product, but still requiring a periodic &quot;check-in&quot; to
 validate licenses e.g. to ensure they aren&#39;t expired or suspended.</p>
+<p>Here&#39;s that policy:</p>
 <pre><code class="lang-js">{
   data: {
     type: &quot;policies&quot;,
