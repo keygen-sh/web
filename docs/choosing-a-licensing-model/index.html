@@ -241,7 +241,8 @@ particular machine resource.</p>
 }
 </code></pre>
 <p>In order for a license to pass validation, it <em>must</em> be associated with a single
-machine—no more, no less.</p>
+machine—no more, no less. Whenever a user goes over their single machine limit,
+their license will be invalidated until the additional machines are removed.</p>
 <h3 id="i-want-to-limit-access-of-my-software-to-only-_-x-_-number-of-machines">I want to limit access of my software to only <em><code>x</code></em> number of machines</h3>
 <p>Similar to implementing &quot;node-locked&quot; licenses, we can also implement &quot;floating&quot;
 licenses. Floating is a term used to describe the opposite of &quot;node-locked&quot; i.e.
@@ -261,7 +262,11 @@ machine count.</p>
 }
 </code></pre>
 <p>In order for a license to pass validation, it <em>must</em> be associated with at least 1
-machine, but no more than 5 machines total.</p>
+machine, but no more than 5 machines total. Whenever a user goes over their machine
+limit, their license will be invalidated until the additional machines are removed.</p>
+<p>This type of policy/licensing model can be used to implement a &quot;concurrent&quot; or
+&quot;per-seat&quot; licensing system, e.g. where you only allow <code>n</code> machines to be active
+at any given time.</p>
 <h3 id="i-want-to-offer-a-limited-supply-of-special-licenses">I want to offer a limited supply of &quot;special&quot; licenses</h3>
 <p>In order to implement a &quot;limited supply&quot; of licenses, we&#39;ll need to create a <strong>pooled
 policy</strong>. Before we start, let&#39;s go over a little bit of terminology:</p>
