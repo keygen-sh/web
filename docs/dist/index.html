@@ -93,13 +93,11 @@ win32/Releases/MyApp-1.1.0-delta.nupkg
 win32/Releases/Setup.exe
 win32/Releases/Setup.msi
 win32/Releases/RELEASES
-darwin/.git/objects/00
-darwin/.git/objects/01
+darwin/.notes/CHANGELOG.md
 darwin/v1.0.0.zip
 darwin/v1.0.0.dmg
 darwin/v1.1.0.zip
 darwin/v1.1.0.dmg
-darwin/CHANGELOG.md
 </code></pre>
 <p>Note that the releases for the <code>darwin</code> platform are all placed within
 the root &quot;directory&quot;, while the releases for the <code>win32</code> platform use
@@ -111,20 +109,17 @@ following URIs:</p>
 /v1/{ACCOUNT}/{PRODUCT}/win32/Releases/Setup.exe
 /v1/{ACCOUNT}/{PRODUCT}/win32/Releases/Setup.msi
 /v1/{ACCOUNT}/{PRODUCT}/win32/Releases/RELEASES
-/v1/{ACCOUNT}/{PRODUCT}/darwin/.git/objects/00
-/v1/{ACCOUNT}/{PRODUCT}/darwin/.git/objects/01
+/v1/{ACCOUNT}/{PRODUCT}/darwin/.notes/CHANGELOG.md
 /v1/{ACCOUNT}/{PRODUCT}/darwin/v1.0.0.zip
 /v1/{ACCOUNT}/{PRODUCT}/darwin/v1.0.0.dmg
 /v1/{ACCOUNT}/{PRODUCT}/darwin/v1.1.0.zip
 /v1/{ACCOUNT}/{PRODUCT}/darwin/v1.1.0.dmg
-/v1/{ACCOUNT}/{PRODUCT}/darwin/CHANGELOG.md
 </code></pre>
 <p>But the following URIs are <strong>not</strong> accessible (because e.g. a release with
 the key <code>Releases</code> does not exist, as our file-system is flat i.e. it has
 no concept of &quot;sub-directories&quot; or partial key matches):</p>
 <pre><code class="lang-plain">/v1/{ACCOUNT}/{PRODUCT}/win32/Releases
-/v1/{ACCOUNT}/{PRODUCT}/darwin/.git/objects
-/v1/{ACCOUNT}/{PRODUCT}/darwin/.git
+/v1/{ACCOUNT}/{PRODUCT}/darwin/.notes
 </code></pre>
 </div></article><article class="article" id="safe-characters"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#safe-characters" data-target="safe-characters"><i class="material-icons">link</i></a>Safe Characters</h2><p>The following character sets are generally safe for use in release
 keys:</p>
