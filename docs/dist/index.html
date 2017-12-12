@@ -60,10 +60,10 @@ const feedUrl = `${distUrl}/update/${platform}/zip/${version}?key=${licenseKey}`
 autoUpdater.setFeedURL(feedUrl)
 autoUpdater.checkForUpdates()
 </code></pre>
-<p>The <a href="#releases-update">update endpoint</a> is compatible with both Squirrel.Mac and
-Squirrel.Windows, NSIS, Sparkle, WordPress for plugin and theme updates, etc., as
-well as any other auto-update system or framework that needs to access your
-static release files.</p>
+<p>The <a href="#releases-update">update endpoint</a> is compatible with Squirrel.Mac,
+NSIS, Sparkle, WordPress for plugin and theme updates, as well as any
+other auto-update system or framework that needs to determine if an
+update is available from the current version number.</p>
 </div></section><section class="topic" id="proxy"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#proxy" data-target="proxy"><i class="material-icons">link</i></a>Proxy Server</h1><p>If you would rather deliver releases over your own domain, you can run
 a proxy server. We have an <a href="https://github.com/keygen-sh/example-dist-proxy">example Node.js proxy server</a>
 available for reference which utilizes this API.</p>
