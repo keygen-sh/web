@@ -3895,7 +3895,7 @@ var response = client.Execute(request);
 </code><code class="bash" data-lang="bash">curl -X POST https://api.keygen.sh/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/actions/validate \
   -H 'Content-Type: application/vnd.api+json' \
   -H 'Accept: application/vnd.api+json' \
-  -H 'Authorization: Bearer <%= token %>'
+  -H 'Authorization: Bearer <%= token %>' \
   -d '{
         "meta": {
           "scope": {
