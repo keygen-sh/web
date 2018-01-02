@@ -233,16 +233,20 @@ particular machine resource.</p>
     type: &quot;policies&quot;,
     attributes: {
       name: &quot;Node-Locked License&quot;,
+      requireFingerprintScope: true, // All validations will require a machine fingerprint
       maxMachines: 1, // Licenses should only be associated with a single machine
-      floating: false,
+      floating: false, // We do not want to allow more than 1 machine at a time
       strict: true // Invalidate licenses which do not meet machine requirements
     }
   }
 }
 </code></pre>
 <p>In order for a license to pass validation, it <em>must</em> be associated with a single
-machine—no more, no less. Whenever a user goes over their single machine limit,
-their license will be invalidated until the additional machines are removed.</p>
+machine—no more, no less. In addition, all validation requests must contain a
+machine fingerprint scope, which will be used to determine whether or not the
+machine is valid for the given license. Whenever a user goes over their single
+machine limit, their license will be invalidated until the additional machines
+are removed.</p>
 <h3 id="i-want-to-limit-access-of-my-software-to-only-_-x-_-number-of-machines">I want to limit access of my software to only <em><code>x</code></em> number of machines</h3>
 <p>Similar to implementing &quot;node-locked&quot; licenses, we can also implement &quot;floating&quot;
 licenses. Floating is a term used to describe the opposite of &quot;node-locked&quot; i.e.
@@ -254,16 +258,20 @@ machine count.</p>
     type: &quot;policies&quot;,
     attributes: {
       name: &quot;Floating License&quot;,
+      requireFingerprintScope: true, // All validations will require a machine fingerprint
       maxMachines: 5, // Licenses can be associated to a maximum of 5 machines
-      floating: true,
+      floating: true, // We want to allow more than 1 machine at a time
       strict: true // Invalidate licenses which do not meet machine requirements
     }
   }
 }
 </code></pre>
 <p>In order for a license to pass validation, it <em>must</em> be associated with at least 1
-machine, but no more than 5 machines total. Whenever a user goes over their machine
-limit, their license will be invalidated until the additional machines are removed.</p>
+machine, but no more than 5 machines total. In addition, all validation requests
+must contain a machine fingerprint scope, which will be used to determine whether
+or not the machine is valid for the given license. Whenever a user goes over their
+machine limit, their license will be invalidated until the additional machines
+are removed.</p>
 <p>This type of policy/licensing model can be used to implement a &quot;concurrent&quot; or
 &quot;per-seat&quot; licensing system, e.g. where you only allow <code>n</code> machines to be active
 at any given time.</p>
