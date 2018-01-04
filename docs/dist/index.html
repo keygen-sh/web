@@ -35,20 +35,23 @@ within your product are <em>stable</em>.</p>
 <li>Adding new API endpoints</li>
 <li>Adding new optional request parameters to existing API endpoints</li>
 </ul>
-</div></article></section><section class="topic" id="distribution"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#distribution" data-target="distribution"><i class="material-icons">link</i></a>Download Links</h1><p>All releases are gated with license validation; meaning, when providing download
+</div></article></section><section class="topic" id="distribution"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#distribution" data-target="distribution"><i class="material-icons">link</i></a>Distribution</h1></div><article class="article"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#distribution-links" data-target="distribution-links"><i class="material-icons">link</i></a>Download Links</h3><p>All releases are gated with license validation; meaning, when providing download
 URLs to your users, you <strong>must</strong> provide a valid license key within the request
 or the request will be rejected.</p>
 <p>For example, you may choose to email the user a download link after they purchase
 your product. You should include their new license key as a query parameter
-within the URL:</p>
-<pre><code class="lang-plain">https://dist.keygen.sh/v1/&lt;%= account %&gt;/31339351-f7f5-4bdd-8346-5d8399a1ac07/latest/macos/dmg?key=bbec-988f-b52f-5188
-</code></pre>
+within the URL.</p>
 <p>The download URL will remain accessible for as long as the license is valid.</p>
-</div></section><section class="topic" id="auto-updates"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#auto-updates" data-target="auto-updates"><i class="material-icons">link</i></a>Auto Updates</h1><p>In addition to what we&#39;ve covered in the distribution section above, if you&#39;re
+</div><div class="example__wrapper"><div class="example"><h4>Example Download URL</h4><pre><code class="no-highlight">https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/latest/macos/dmg?key=bbec-988f-b52f-5188</code></pre></div></div></article></section><section class="topic" id="auto-updates"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#auto-updates" data-target="auto-updates"><i class="material-icons">link</i></a>Auto Updates</h1><p>The <a href="#releases-update">update endpoint</a> is compatible with Squirrel.Mac,
+NSIS, Sparkle, WordPress for plugin and theme updates, as well as any
+other auto-update system or framework that needs to determine if an
+update is available from the current version number.</p>
+</div><article class="article"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#auto-updates-example" data-target="auto-updates-example"><i class="material-icons">link</i></a>Example for Electron</h3><p>In addition to what we&#39;ve covered in the distribution section above, if you&#39;re
 providing auto-updates, you&#39;ll also want to make sure to include a license key
 for updates or the request will be rejected.</p>
-<p>For example, you could do the following for an Electron app:</p>
-<pre><code class="lang-js">const { app, autoUpdater } = require(&#39;electron&#39;)
+<h3 class="anchor__wrapper article__heading"><a class="anchor" href="#auto-updates-other" data-target="auto-updates-other"><i class="material-icons">link</i></a>Other Examples</h3><p>If you&#39;d like to see examples for another framework or in another
+language, <a href="mailto:hello@keygen.sh">please let us know</a>.</p>
+</div><div class="example__wrapper"><div class="example"><h4>Example Electron Updater</h4><pre><code class="javascript">const { app, autoUpdater } = require('electron')
 const { platform } = process
 
 const licenseKey = getLicenseKeyForCurrentUser()
@@ -58,13 +61,7 @@ const distUrl = `https://dist.keygen.sh/v1/${KEYGEN_ACCOUNT_ID}/${KEYGEN_PRODUCT
 const feedUrl = `${distUrl}/update/${platform}/zip/${version}?key=${licenseKey}`
 
 autoUpdater.setFeedURL(feedUrl)
-autoUpdater.checkForUpdates()
-</code></pre>
-<p>The <a href="#releases-update">update endpoint</a> is compatible with Squirrel.Mac,
-NSIS, Sparkle, WordPress for plugin and theme updates, as well as any
-other auto-update system or framework that needs to determine if an
-update is available from the current version number.</p>
-</div></section><section class="topic" id="proxy"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#proxy" data-target="proxy"><i class="material-icons">link</i></a>Proxy Server</h1><p>If you would rather deliver releases over your own domain, you can run
+autoUpdater.checkForUpdates()</code></pre></div></div></article></section><section class="topic" id="proxy"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#proxy" data-target="proxy"><i class="material-icons">link</i></a>Proxy Server</h1><p>If you would rather deliver releases over your own domain, you can run
 a proxy server. We have an <a href="https://github.com/keygen-sh/example-dist-proxy">example Node.js proxy server</a>
 available for reference which utilizes this API.</p>
 <p>The Node.js proxy server supports the following endpoints:</p>
