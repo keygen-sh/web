@@ -285,29 +285,29 @@ with a <a href="#response-codes"><code>403 forbidden</code> error</a>.</p>
 <thead>
 <tr>
 <th style="text-align:left">Role</th>
-<th style="text-align:left">Authentication</th>
+<th style="text-align:left">Authenticated</th>
 <th style="text-align:left">Authorization</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left">None</td>
-<td style="text-align:left">Unauthenciated</td>
-<td style="text-align:left">Unauthenciated users can create a new user account (unless your <a href="https://app.keygen.sh/settings">account is protected</a>), and validate license keys using the <a href="#licenses-actions-validate-key"><code>validate-key</code></a> action. No other endpoints are accessisible to unauthenticated users.</td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">Unauthenicated users can create a new user account (unless your <a href="https://app.keygen.sh/settings">account is protected</a>), and validate license keys using the <a href="#licenses-actions-validate-key"><code>validate-key</code></a> action. No other endpoints are accessisible to unauthenticated users.</td>
 </tr>
 <tr>
 <td style="text-align:left">User</td>
-<td style="text-align:left">Authenticated</td>
+<td style="text-align:left">Yes</td>
 <td style="text-align:left">Authenticated users may access certain resource endpoints, but all resources that are returned will be scoped to their user account, e.g. when a user makes a request to list all licenses, only the licenses which are associated with their user account will be returned.</td>
 </tr>
 <tr>
 <td style="text-align:left">Product</td>
-<td style="text-align:left">Authenticated</td>
+<td style="text-align:left">Yes</td>
 <td style="text-align:left">Authenticated products may access resources for their account that are associated with that particular product. All resources that are returned will be scoped to the product, e.g. when a product makes a request to list all licenses, only the licenses which are associated with the product will be returned.</td>
 </tr>
 <tr>
 <td style="text-align:left">Admin</td>
-<td style="text-align:left">Authenticated</td>
+<td style="text-align:left">Yes</td>
 <td style="text-align:left">Authenticated admin users may access all resources for their account.</td>
 </tr>
 </tbody>
