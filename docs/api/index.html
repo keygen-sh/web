@@ -14,7 +14,9 @@ from any client-facing software application.</p>
 </div><article class="article" id="client-libraries"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#client-libraries" data-target="client-libraries"><i class="material-icons">link</i></a>Client Libraries</h2><p>At the moment we&#39;re focused on our HTTP API endpoints. As time goes by we&#39;ll
 be featuring here some more of our open-source clients for different languages
 and frameworks, as well as those contributed by the community.</p>
-<p>If you have written one yourself, <a href="mailto:hello@keygen.sh">please let us know</a>.</p>
+<p>If you have written one yourself, <a href="mailto:hello@keygen.sh">please let us know</a>.
+We will feature your name along with the client library, unless asked to
+do otherwise.</p>
 <div class="notice notice--tip">
   <strong>We will collaborate with project maintainers to keep open source libraries
   up-to-date as our systems evolve.</strong> If you would like us to add documentation
@@ -95,10 +97,12 @@ within your product are <em>stable</em>.</p>
 </div></article></section><section class="topic" id="security"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#security" data-target="security"><i class="material-icons">link</i></a>Security</h1><ol>
 <li><p><strong>Do not store your API tokens in version control.</strong>
 If you&#39;re using version control like Git or Subversion, do not store your API
-tokens in your version control. It is recommended that you store tokens in
-a file that is never checked into the repository, or within the <code>ENV</code>.</p>
+tokens in version control. It is recommended that you store tokens in a
+file that is never checked into the repository, or within the <code>ENV</code>.</p>
+<p><strong>If one of your API tokens become compromised, quickly revoke it from
+your <a href="https://app.keygen.sh/tokens">admin dashboard</a>.</strong></p>
 </li>
-<li><p><strong>Do not embed your admin or product tokens within your product&#39;s source code.</strong>
+<li><p><strong>Do not embed your admin or product API tokens within your product&#39;s source code.</strong>
 If you&#39;re using Keygen client-side, do not embed your admin or product tokens
 within your product&#39;s source code. Doing so exposes your tokens and opens your
 account up to attackers.</p>
@@ -106,7 +110,9 @@ account up to attackers.</p>
 <a href="/docs/authenticating-users">while authenticated as one of your users</a> and
 then you can <a href="/docs/using-webhooks">listen for the corresponding webhook events</a>
 to act accordingly e.g., charging them for new licenses, crediting them for
-deleted licenses or machines, etc.</p>
+deleted licenses or machines, etc. For an example of responding to user
+actions, see our <a href="https://keygen.sh/integrate/paddle">Paddle integration example</a>.</p>
+<p>If you&#39;re using Keygen server-side, see the above tip.</p>
 </li>
 <li><p><strong>Embedding account, product and policy IDs directly into your product i.e.
 client-side code is perfectly safe.</strong>
@@ -120,18 +126,26 @@ server-side using a public/private keypair.</strong>
 For example, when creating a new license, you would specify the key attribute
 with a value generated from your private key. You would then validate the
 license key client-side by embedding a derived public key within your
-software.</p>
+software. <a href="https://gist.github.com/ezekg/f021009b4c419f2462f3706a4478f200">Here&#39;s an example of doing so using Node</a>.</p>
+<p><strong>Offline license validation cannot use metrics e.g. outside of simple expiry
+validation</strong>, as it would require an internet connection to e.g. validate
+against a license&#39;s machine requirements, etc. Keep that in mind.</p>
 </li>
 <li><p><strong>If you only need to validate license keys, then you do not need to implement
 user authentication.</strong> The license <a href="/docs/api#licenses-actions-validate-key"><code>validate-key</code></a>
 action does not require authentication. If you&#39;re doing anything else e.g. validating
 multiple license resources per-user, tracking machines, etc., <a href="/docs/authenticating-users">user authentication</a>
 will be required in order to communicate with Keygen&#39;s API client-side.</p>
+<p>You can add required scopes to your policies to e.g. require a machine
+fingerprint, etc., which helps implement certain license models without
+the need for any additional server-side logic such as a webhook handler.</p>
 </li>
 <li><p><strong>If you do not want the overhead of implementing webhooks, then you should only
 use Keygen server-side</strong> alongside your payment provider. Implementing Keygen
 client-side necessitates <a href="/docs/using-webhooks">listening for webhook events</a>,
 unless you&#39;re simply validating license keys directly, as mentioned above.</p>
+<p>When using Keygen client-side, you should utilize webhooks to e.g. keep
+your billing state up to date with recent user actions.</p>
 </li>
 <li><p><strong>If you do not want your users to be able to create and manage their own licenses
 and machines</strong> (which necessitates <a href="/docs/using-webhooks">listening for webhook events</a>)
@@ -143,6 +157,8 @@ is inherited from the account&#39;s current <code>protected</code> state), which
 users from creating and managing licenses which implement that particular policy and
 their associated machines, rather than all resources e.g. public user creation,
 licenses that implement other unprotected policies, etc.</p>
+<p><strong>By default, your account is <code>unprotected</code>, which allows user registration as
+well as the ability for users to manage their own resources.</strong></p>
 </li>
 </ol>
 </div></section><section class="topic" id="response-codes"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#response-codes" data-target="response-codes"><i class="material-icons">link</i></a>Response Codes</h1><p>Our API uses conventional HTTP response codes to indicate the success or
