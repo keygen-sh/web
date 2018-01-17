@@ -103,13 +103,11 @@ else
 {
   // Do something else
 }
-</code><code class="kotlin" data-lang="kotlin">import com.mashape.unirest.http.exceptions.UnirestException
-import com.mashape.unirest.http.HttpResponse
-import com.mashape.unirest.http.JsonNode
-import com.mashape.unirest.http.Unirest
-import org.json.JSONObject
+</code><code class="kotlin" data-lang="kotlin">import com.mashape.unirest.http.exceptions.*
+import com.mashape.unirest.http.*
+import org.json.*
 
-val json = JSONObject(mapOf(
+val body = JSONObject(mapOf(
   "meta" to mapOf(
     "key" to "B8A5-91D7-CB9A-DAE4-4F6E-1128"
   )
@@ -118,37 +116,38 @@ val json = JSONObject(mapOf(
 val res = Unirest.post("https://api.keygen.sh/v1/accounts/demo/licenses/actions/validate-key")
   .header("Content-Type", "application/vnd.api+json")
   .header("Accept", "application/vnd.api+json")
-  .body(json)
+  .body(body)
   .asJson()
 
-val body = res.getBody().getObject()
-val meta = body.getJSONObject("meta")
+val data = res.getBody().getObject()
+val meta = data.getJSONObject("meta")
 
 if (meta.getBoolean("valid")) {
   // Do something
 } else {
   // Do something else
 }
-</code><code class="java" data-lang="java">import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import org.json.JSONObject;
+</code><code class="java" data-lang="java">import com.mashape.unirest.http.exceptions.*;
+import com.mashape.unirest.http.*;
+import org.json.*;
 
-JSONObject meta = new JSONObject();
-meta.put("key", "B8A5-91D7-CB9A-DAE4-4F6E-1128");
+import static java.util.Map.ofEntries;
+import static java.util.Map.entry;
 
-JSONObject body = new JSONObject();
-body.put("meta", meta);
+JSONObject body = new JSONObject(ofEntries(
+  entry("meta", ofEntries(
+    entry("key", "B8A5-91D7-CB9A-DAE4-4F6E-1128")
+  ))
+));
 
-HttpResponse<JsonNode> res = Unirest.post("https://api.keygen.sh/v1/accounts/demo/licenses/actions/validate-key")
+HttpResponse&lt;JsonNode&gt; res = Unirest.post("https://api.keygen.sh/v1/accounts/demo/licenses/actions/validate-key")
   .header("Content-Type", "application/vnd.api+json")
   .header("Accept", "application/vnd.api+json")
   .body(body)
   .asJson();
 
-body = res.getBody().getObject();
-meta = body.getJSONObject("meta");
+JSONObject data = res.getBody().getObject();
+JSONObject meta = data.getJSONObject("meta");
 
 if (meta.getBoolean("valid"))
 {
@@ -180,16 +179,15 @@ value body;
 body["meta"] = meta;
 
 req.headers().add("Content-Type", "application/vnd.api+json");
-req.headers().add("Accept", "application/vnd.api+json");
+req.headers().add("Accept", "application/json");
 
 req.set_request_uri("/licenses/actions/validate-key");
-req.set_body(body.serialize());
 req.set_method(methods::POST);
+req.set_body(body.serialize());
 
 client.request(req)
   .then([](http_response res)
   {
-    res.headers().set_content_type("application/json");
     auto data = res.extract_json().get();
     auto meta = data.at("meta");
 
