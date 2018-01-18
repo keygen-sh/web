@@ -74,6 +74,12 @@ paths for your release files. For example,</p>
 0XFF… https://dist.example.com/download/win32/your-app-2.0.0-delta.nupkg 0123
 0XFF… https://dist.example.com/download/win32/your-app-2.0.0-full.nupkg 0123
 </code></pre>
+<div class="notice notice--warning">
+  <strong>Please be aware that there is a 5MB transfer limit for any <code>RELEASES</code> file.</strong>
+  This should not be an issue given a plaintext <code>RELEASES</code> file (which is what
+  it should be), but you may not receive the entire file if it is of another
+  filetype e.g. a zip file, binary file, etc.
+</div>
 </div><div class="example__wrapper"><div class="example"><h4>Example Electron Updater</h4><pre><code class="javascript">const { app, autoUpdater } = require('electron')
 const { platform } = process
 
