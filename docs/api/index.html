@@ -11,7 +11,16 @@ codes to indicate API errors. We use built-in HTTP features, like authentication
 and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support
 cross-origin resource sharing, allowing you to interact securely with our API
 from any client-facing software application.</p>
-</div><article class="article" id="client-libraries"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#client-libraries" data-target="client-libraries"><i class="material-icons">link</i></a>Client Libraries</h2><p>At the moment we&#39;re focused on our HTTP API endpoints. As time goes by we&#39;ll
+</div><article class="article" id="jsonapi"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#jsonapi" data-target="jsonapi"><i class="material-icons">link</i></a>Accepted Content Types</h2><p>Our JSON API is able to respond with the following content types specified
+via an <code>Accept</code> header:</p>
+<ul>
+<li><code>application/vnd.api+json</code></li>
+<li><code>application/json</code></li>
+</ul>
+<p>By default our API will respond with <code>application/vnd.api+json</code>, unless
+asked otherwise through the standard HTTP <code>Accept</code> header. <strong>All other
+content types will be rejected with a <code>400</code> status code.</strong></p>
+</div></article><article class="article" id="client-libraries"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#client-libraries" data-target="client-libraries"><i class="material-icons">link</i></a>Client Libraries</h2><p>At the moment we&#39;re focused on our HTTP API endpoints. As time goes by we&#39;ll
 be featuring here some more of our open-source clients for different languages
 and frameworks, as well as those contributed by the community.</p>
 <p>If you have written one yourself, <a href="mailto:hello@keygen.sh">please let us know</a>.
@@ -23,9 +32,9 @@ do otherwise.</p>
   examples for a specific language, or if you would like us to add an open-source
   library you created, please email <a href="mailto:hello@keygen.sh">hello@keygen.sh</a>.
 </div>
-</div></article><article class="article" id="pre-populated-examples"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#pre-populated-examples" data-target="pre-populated-examples"><i class="material-icons">link</i></a>Pre-populated Examples</h2><p>Your authentication token is pre-populated in all the examples on this page
-if you&#39;re currently logged in to <a href="https://app.keygen.sh">your dashboard</a>,
-so you can test any example right away. <strong>Only you can see these values.</strong></p>
+</div></article><article class="article" id="pre-populated-examples"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#pre-populated-examples" data-target="pre-populated-examples"><i class="material-icons">link</i></a>Pre-populated Examples</h2><p>When you&#39;re logged in to <a href="https://app.keygen.sh">your dashboard</a>, your
+authentication token is pre-populated in all the examples on this page so
+you can test any example right away. <strong>Only you can see these values.</strong></p>
 <div class="notice notice--warning">
   <strong>The pre-populated token is an admin token and is not meant to be used
   in client-facing code, stored in version control, and so forth.</strong>
