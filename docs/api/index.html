@@ -343,10 +343,11 @@ with a <a href="#response-codes"><code>403 forbidden</code> error</a>.</p>
 </tr>
 </tbody>
 </table>
-</div></section><section class="topic" id="rate-limiting"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#rate-limiting" data-target="rate-limiting"><i class="material-icons">link</i></a>Rate Limiting</h1><p>A single IP address can make a maximum of 100 requests per 10 second window,
-regardless of authentication. If we see patterns of abuse, this may be
-lowered or the IP may be temporarily blacklisted or in rare cases of
-significant abuse, permanently blacklisted.</p>
+</div></section><section class="topic" id="rate-limiting"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#rate-limiting" data-target="rate-limiting"><i class="material-icons">link</i></a>Rate Limiting</h1><p>A single IP address can make a maximum burst of 100 requests per 10 second
+window, regardless of authentication. In addition, an IP address can make a
+maximum of 1,000 requests per 1 hour window. If we see patterns of abuse,
+this may be lowered or the IP may be temporarily blacklisted or in rare
+cases of significant abuse, permanently blacklisted.</p>
 <p>You can check the returned HTTP headers of any API request to see your
 current rate limit status:</p>
 <table>
