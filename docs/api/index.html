@@ -11,8 +11,14 @@ codes to indicate API errors. We use built-in HTTP features, like authentication
 and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support
 cross-origin resource sharing, allowing you to interact securely with our API
 from any client-facing software application.</p>
-</div><article class="article" id="jsonapi"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#jsonapi" data-target="jsonapi"><i class="material-icons">link</i></a>Accepted Content Types</h2><p>Our JSON API is able to respond with the following content types specified
-via an <code>Accept</code> header:</p>
+</div><article class="article" id="jsonapi"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#jsonapi" data-target="jsonapi"><i class="material-icons">link</i></a>Accepted Content Types</h2><p>Our JSON API accepts the following content types specified via the HTTP
+<code>Content-Type</code> header:</p>
+<ul>
+<li><code>application/vnd.api+json</code></li>
+<li><code>application/json</code></li>
+</ul>
+<p>In addition, our JSON API is able to respond with the following content
+types specified via the HTTP <code>Accept</code> header:</p>
 <ul>
 <li><code>application/vnd.api+json</code></li>
 <li><code>application/json</code></li>
