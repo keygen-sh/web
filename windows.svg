@@ -1,6 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="128px" height="128px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" version="1.1">
-  <g id="windows-logo">
-    <path d="m0,12.402,35.687-4.8602,0.0156,34.423-35.67,0.20313zm35.67,33.529,0.0277,34.453-35.67-4.9041-0.002-29.78zm4.3261-39.025,47.318-6.906,0,41.527-47.318,0.37565zm47.329,39.349-0.0111,41.34-47.318-6.6784-0.0663-34.739z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="88px" height="88px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="windows" fill="#ABB3C1" fill-rule="nonzero">
+            <path d="M0,12.402 L35.687,7.5418 L35.7026,41.9648 L0.0326,42.16793 L0,12.402 Z M35.67,45.931 L35.6977,80.384 L0.0277,75.4799 L0.0257,45.6999 L35.67,45.931 Z M39.9961,6.906 L87.3141,7.10542736e-15 L87.3141,41.527 L39.9961,41.90265 L39.9961,6.906 Z M87.3251,46.255 L87.314,87.595 L39.996,80.9166 L39.9297,46.1776 L87.3251,46.255 Z" id="Shape"></path>
+        </g>
+    </g>
 </svg>
