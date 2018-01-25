@@ -112,7 +112,7 @@
     <loc>https://keygen.sh/integrate</loc>
     <lastmod>2017-05-05T01:23:45+00:00</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>0.1</priority>
   </url>
   <url>
     <loc>https://keygen.sh/integrate/electron</loc>
@@ -153,6 +153,36 @@
   <url>
     <loc>https://keygen.sh/integrate/sendowl</loc>
     <lastmod>2017-12-01T01:23:45+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://keygen.sh/integrate/wordpress</loc>
+    <lastmod>2018-01-25T01:23:45+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://keygen.sh/compare/nalpeiron</loc>
+    <lastmod>2018-01-25T01:23:45+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://keygen.sh/compare/netlicensing</loc>
+    <lastmod>2018-01-25T01:23:45+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://keygen.sh/compare/flexera</loc>
+    <lastmod>2018-01-25T01:23:45+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://keygen.sh/compare/softwarekey</loc>
+    <lastmod>2018-01-25T01:23:45+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
