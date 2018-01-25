@@ -1,0 +1,476 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="initial-scale=1"><title>Keygen - a dead-simple software licensing API built for developers</title><meta name="description" content="Keygen is a powerful API service for licensing desktop apps, on-premise software, and other digital products. Get started for free today!"><link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII" type="image/x-icon"><link rel="icon" href="/favicon-192x192.png" sizes="192x192"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link href="https://keygen.sh/media.jpg" rel="image_src"><meta content="Keygen - a dead-simple product and app licensing API built for developers" property="og:title"><meta content="https://keygen.sh/" property="og:url"><meta content="Keygen is a simple app and product licensing API, allowing developers to easily implement various licensing types into any online or desktop software product." property="og:description"><meta content="https://keygen.sh/media.jpg" property="og:image"><meta content="Keygen" property="og:site_name"><meta content="website" property="og:type"><link rel="stylesheet" href="/app.css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-86857020-1', 'auto');
+ga('send', 'pageview');</script></head><body><div class="container"><header class="header__wrapper"><div class="header"><a class="logo" href="/"><canvas class="logo__logomark" width="64" height="64"></canvas><span class="logo__logotype effect--shuffle">Keygen</span></a><nav class="navigation" id="nav"><div class="navigation__hamburger" id="nav-toggle"><i class="material-icons">menu</i></div><ul class="navigation__list"><li onclick=""><span>Products<i class="material-icons">expand_more</i></span><ul class="navigation__sublist"><li><a href="/licensing">Software Licensing</a></li><li><a href="/distribution">Distribution</a></li></ul></li><li><a href="/pricing" data-conversion="r_ssCOKoynMQw8CikwM">Pricing</a></li><li><a href="/docs" data-conversion="smILCPbF13MQw8CikwM">Documentation</a></li><li><a href="https://app.keygen.sh/login">Log in</a></li><li><a class="button button--size-small" href="https://app.keygen.sh/register" data-conversion="iInYCL2A0HMQw8CikwM">Sign Up</a></li></ul></nav></div></header><main class="main--home"><div class="hero"><div class="hero__background"></div><div class="hero__content"><h1>A dead-simple software licensing API built for developers</h1><h2>For licensing desktop apps, on-premise software, and other digital products.</h2><a class="button" href="/pricing" data-conversion="r_ssCOKoynMQw8CikwM">Get Started Free</a></div></div><div class="pitch"><div class="pitch__content"><h2>Quit wasting time fighting with other licensing “solutions”</h2><ul class="checklist"><li><i class="material-icons">check</i><strong>Easily sell, license and distribute your desktop/server software</strong> by utilizing our powerful <a href="/licensing">licensing</a> and <a href="/distribution">distribution</a> APIs.</li><li><i class="material-icons">check</i><strong>Ship faster and stop wasting time</strong> (and money!) writing custom licensing servers that don't have all the features you want.</li><li><i class="material-icons">check</i><strong>Support a wider range of platforms</strong> by using a <a href="/licensing">licensing</a> and <a href="/distribution">auto-update service</a> that doesn't rely on a specific OS.</li></ul><h3>and last but not least…</h3><ul class="checklist"><li><i class="material-icons">close</i><strong>No gimmicky third-party installers</strong> that you have to package with your product (and that you have no control over!)</li></ul><div class="pitch__terminal" data-title="Bash"><pre><code class="bash"># Create a new license for a user of the “ecorp” account
+curl https://api.keygen.sh/v1/accounts/ecorp/licenses -X POST \
+  -H 'Authorization: Bearer a9f93c31b41642248db99fc04f4e8482.ebbe297ffbed4ccc837733e335bd8181…' \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Accept: application/vnd.api+json' \
+  -d '{
+        "data": {
+          "type": "licenses",
+          "attributes": {
+            "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+          },
+          "relationships": {
+            "policy": {
+              "data: { "type": "policies", "id": "fbc29532…" }
+            },
+            "user": {
+              "data: { "type": "users", "id": "592032dd…" }
+            }
+          }
+        }
+      }'</code></pre></div></div></div></main><section class="flow__wrapper"><div class="flow"><article class="flow__step__wrapper"><div class="flow__step"><i class="material-icons">security</i><h2>Control</h2><p><strong>Control what types of licenses your product offers</strong> using powerful <a href="/docs/api#policies">license policies</a>—from feature licenses to timed trials, we got you covered.</p>
+</div></article><article class="flow__step__wrapper"><div class="flow__step"><i class="material-icons">people</i><h2>Grow</h2><p><strong>Reduce licensing-related support costs</strong> by allowing your users to <a href="#can-keygen-help-lower-support-costs-">manage their own licenses and machines</a> so that you can focus on your product.</p>
+</div></article><article class="flow__step__wrapper"><div class="flow__step"><i class="material-icons">verified_user</i><h2>Monitor</h2><p><strong>Quit guessing how many machines your users have</strong>—using our <a href="/docs/api#machines-create">machine tracking endpoints</a> you can know exactly where your product is being used.</p>
+</div></article></div></section><section class="metrics__wrapper"><div class="metrics"><div class="metrics__content"><h2>Know what's working</h2><p>…and what isn't. With Keygen's dashboard, you can always be on top of what's happening with your products.</p><ul class="checklist"><li><i class="material-icons">trending_up</i>View recent trends for new users, licenses, and much more</li><li><i class="material-icons">list</i>Watch an up-to-date activity feed of what's happening</li><li><i class="material-icons">timeline</i>See all recent successful and failed license validations</li><li><i class="material-icons">memory</i>Instantly see new machine activations in full detail</li></ul></div><div class="metrics__image"><img src="/metrics.png"></div></div></section><section class="lang"><div class="lang__content"><h2>Use your favorite language</h2><p>Quickly implement Keygen in the programming language of your choice.</p></div><div class="lang__toolbar__wrapper"><div class="lang__toolbar__scrollable-overflow"><div class="lang__toolbar" data-default-lang="javascript"><button class="lang__option" type="button" data-lang="javascript" data-conversion="BjGJCJWR0HMQw8CikwM">Node</button><button class="lang__option" type="button" data-lang="swift" data-conversion="BjGJCJWR0HMQw8CikwM">Swift</button><button class="lang__option" type="button" data-lang="csharp" data-conversion="BjGJCJWR0HMQw8CikwM">C#</button><button class="lang__option" type="button" data-lang="kotlin" data-conversion="BjGJCJWR0HMQw8CikwM">Kotlin</button><button class="lang__option" type="button" data-lang="java" data-conversion="BjGJCJWR0HMQw8CikwM">Java</button><button class="lang__option" type="button" data-lang="cpp" data-conversion="BjGJCJWR0HMQw8CikwM">C++</button><button class="lang__option" type="button" data-lang="python" data-conversion="BjGJCJWR0HMQw8CikwM">Python</button><button class="lang__option" type="button" data-lang="ruby" data-conversion="BjGJCJWR0HMQw8CikwM">Ruby</button><button class="lang__option" type="button" data-lang="php" data-conversion="BjGJCJWR0HMQw8CikwM">PHP
+</button></div></div></div><div class="lang__code code-block code-block--with-overflow code-block--hide-overflow"><div class="code-block__toggle-button"><button class="button button--size-small button--fill-solid" type="button" data-toggle-overflow data-conversion="dDy7CPyM0HMQw8CikwM">Toggle Code</button></div><pre><code class="javascript" data-lang="javascript">const fetch = require('node-fetch')
+
+const res = await fetch('https://api.keygen.sh/v1/accounts/demo/licenses/actions/validate-key', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/vnd.api+json',
+    'Accept': 'application/vnd.api+json'
+  },
+  body: JSON.stringify({
+    meta: {
+      key: 'B8A5-91D7-CB9A-DAE4-4F6E-1128'
+    }
+  })
+})
+
+const { meta } = await res.json()
+
+if (meta.valid) {
+  // Do something
+} else {
+  // Do something else
+}
+</code><code class="swift" data-lang="swift">import SwiftyJSON
+import Alamofire
+
+Alamofire.request("https://api.keygen.sh/v1/accounts/demo/licenses/actions/validate-key",
+  method: .post,
+  headers: [
+    "Content-Type": "application/vnd.api+json",
+    "Accept": "application/vnd.api+json"
+  ],
+  parameters: [
+    "meta": [
+      "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+    ]
+  ],
+  encoding: JSONEncoding.default
+).responseJSON { response in
+  let json = JSON(data: response.data!)
+  let valid = json["meta"]["valid"].bool
+
+  if valid {
+    // Do something
+  } else {
+    // Do something else
+  }
+}
+</code><code class="csharp" data-lang="csharp">using RestSharp;
+using System;
+using System.Collections.Generic;
+
+var client = new RestClient("https://api.keygen.sh/v1/accounts/demo");
+var request = new RestRequest(
+  "licenses/actions/validate-key",
+  Method.POST
+);
+
+request.AddHeader("Content-Type", "application/vnd.api+json");
+request.AddHeader("Accept", "application/vnd.api+json");
+request.AddJsonBody(new {
+  meta = new {
+    key = "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+  }
+});
+
+var response = client.Execute&lt;Dictionary&lt;string, object&gt;&gt;(request);
+var meta = (Dictionary&lt;string, object&gt;) response.Data["meta"];
+
+if ((bool) meta["valid"])
+{
+  // Do something
+}
+else
+{
+  // Do something else
+}
+</code><code class="kotlin" data-lang="kotlin">import com.mashape.unirest.http.exceptions.*
+import com.mashape.unirest.http.*
+import org.json.*
+
+val body = JSONObject(mapOf(
+  "meta" to mapOf(
+    "key" to "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+  )
+))
+
+val res = Unirest.post("https://api.keygen.sh/v1/accounts/demo/licenses/actions/validate-key")
+  .header("Content-Type", "application/vnd.api+json")
+  .header("Accept", "application/vnd.api+json")
+  .body(body)
+  .asJson()
+
+val data = res.getBody().getObject()
+val meta = data.getJSONObject("meta")
+
+if (meta.getBoolean("valid")) {
+  // Do something
+} else {
+  // Do something else
+}
+</code><code class="java" data-lang="java">import com.mashape.unirest.http.exceptions.*;
+import com.mashape.unirest.http.*;
+import org.json.*;
+
+import static java.util.Map.ofEntries;
+import static java.util.Map.entry;
+
+JSONObject body = new JSONObject(ofEntries(
+  entry("meta", ofEntries(
+    entry("key", "B8A5-91D7-CB9A-DAE4-4F6E-1128")
+  ))
+));
+
+HttpResponse&lt;JsonNode&gt; res = Unirest.post("https://api.keygen.sh/v1/accounts/demo/licenses/actions/validate-key")
+  .header("Content-Type", "application/vnd.api+json")
+  .header("Accept", "application/vnd.api+json")
+  .body(body)
+  .asJson();
+
+JSONObject data = res.getBody().getObject();
+JSONObject meta = data.getJSONObject("meta");
+
+if (meta.getBoolean("valid"))
+{
+  // Do something
+}
+else
+{
+  // Do something else
+}
+</code><code class="cpp" data-lang="cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;cpprest/http_client.h&gt;
+#include &lt;cpprest/filestream.h&gt;
+
+using namespace std;
+using namespace web;
+using namespace web::http;
+using namespace web::http::client;
+using namespace web::json;
+using namespace utility;
+
+http_client client("https://api.keygen.sh/v1/accounts/demo");
+http_request req;
+
+value meta;
+meta["key"] = value::string("B8A5-91D7-CB9A-DAE4-4F6E-1128");
+
+value body;
+body["meta"] = meta;
+
+req.headers().add("Content-Type", "application/vnd.api+json");
+req.headers().add("Accept", "application/json");
+
+req.set_request_uri("/licenses/actions/validate-key");
+req.set_method(methods::POST);
+req.set_body(body.serialize());
+
+client.request(req)
+  .then([](http_response res)
+  {
+    auto data = res.extract_json().get();
+    auto meta = data.at("meta");
+
+    if (meta.at("valid").as_bool())
+    {
+      // Do something
+    }
+    else
+    {
+      // Do something else
+    }
+  })
+  .wait();
+</code><code class="python" data-lang="python">import requests
+import json
+
+data = requests.post(
+  "https://api.keygen.sh/v1/accounts/demo/licenses/actions/validate-key",
+  headers={
+    "Content-Type": "application/vnd.api+json",
+    "Accept": "application/vnd.api+json"
+  },
+  data=json.dumps({
+    "meta": {
+      "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+    }
+  })
+).json()
+
+if data["meta"]["valid"]:
+  # Do something
+else:
+  # Do something else
+</code><code class="ruby" data-lang="ruby">require 'httparty'
+
+data = HTTParty.post(
+  'https://api.keygen.sh/v1/accounts/demo/licenses/actions/validate-key',
+  headers: {
+    'Content-Type' => 'application/vnd.api+json',
+    'Accept' => 'application/vnd.api+json'
+  },
+  body: {
+    meta: {
+      key: 'B8A5-91D7-CB9A-DAE4-4F6E-1128'
+    }
+  }
+)
+
+if data['meta']['valid']
+  # Do something
+else
+  # Do something else
+end
+</code><code class="php" data-lang="php">&lt;?php
+
+$url = 'https://api.keygen.sh/v1/accounts/demo/licenses/actions/validate-key';
+$ch = curl_init($url);
+
+$body = json_encode([
+  'meta' => [
+    'key' => 'B8A5-91D7-CB9A-DAE4-4F6E-1128'
+  ]
+]);
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+  'Content-Type: application/json',
+  'Accept: application/json'
+]);
+
+$json = curl_exec($ch);
+$data = json_decode($json);
+
+if ($data->meta->valid) {
+  // Do something
+} else {
+  // Do something else
+}</code></pre></div></section><section class="docs"><div class="docs__content"><h2>Learn how to…</h2><ul class="checklist"><li><i class="material-icons">code</i><p>easily implement Keygen to <a href="/docs/creating-licenses">handle licensing for your product</a></p>
+</li><li><i class="material-icons">done_all</i><p>quickly set up <a href="/docs/creating-users">user registration</a> and <a href="/docs/validating-licenses">license validation</a></p>
+</li><li><i class="material-icons">sync</i><p><a href="/docs/using-webhooks">handle webhooks</a> to <a href="/integrate/stripe">integrate with your payment system</a></p>
+</li><li><i class="material-icons">file_download</i><p>provide <a href="/distribution">licensed product distribution</a> and auto-updates</p>
+</li></ul><h3>and of course…</h3><ul class="checklist"><li><i class="material-icons">playlist_add_check</i><p>a full <a href="/docs/api">API reference</a> with examples in popular languages</p>
+</li><li><i class="material-icons">mail_outline</i><p>awesome <a title="Open chat" onclick="Intercom('show')" style="cursor:pointer">in-app</a>
+and <a href="mailto:support@keygen.sh">email support</a></p>
+</li></ul></div></section><section class="news"><div class="news__content"><h2>Not ready to join? Stay updated.</h2><form action="//keygen.us14.list-manage.com/subscribe/post?u=0da915687b658ef99fb6b9075&amp;id=8e6c7696a2" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate=""><input type="email" value="" name="EMAIL" placeholder="Email address" required=""><div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0da915687b658ef99fb6b9075_8e6c7696a2" tabindex="-1" value=""></div><button class="button" type="submit" name="subscribe" data-conversion="nLyVCPi413MQw8CikwM">Subscribe</button></form></div></section><section class="integrate__wrapper"><div class="integrate"><div class="integrate__heading"><h2>Integrate with your favorite tools…</h2></div><div class="integrate__platforms"><article class="platforms__platform__wrapper"><a class="platforms__platform platforms__platform--size-large" href="/integrate/stripe"><?xml version="1.0" encoding="UTF-8"?>
+<svg width="360px" height="150px" viewBox="0 0 360 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>stripe</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="stripe" fill="#ABB3C1" fill-rule="nonzero">
+            <path d="M360,77.4 C360,51.8 347.6,31.6 323.9,31.6 C300.1,31.6 285.7,51.8 285.7,77.2 C285.7,107.3 302.7,122.5 327.1,122.5 C339,122.5 348,119.8 354.8,116 L354.8,96 C348,99.4 340.2,101.5 330.3,101.5 C320.6,101.5 312,98.1 310.9,86.3 L359.8,86.3 C359.8,85 360,79.8 360,77.4 Z M310.6,67.9 C310.6,56.6 317.5,51.9 323.8,51.9 C329.9,51.9 336.4,56.6 336.4,67.9 L310.6,67.9 Z" id="Shape"></path>
+            <path d="M247.1,31.6 C237.3,31.6 231,36.2 227.5,39.4 L226.2,33.2 L204.2,33.2 L204.2,149.8 L229.2,144.5 L229.3,116.2 C232.9,118.8 238.2,122.5 247,122.5 C264.9,122.5 281.2,108.1 281.2,76.4 C281.1,47.4 264.6,31.6 247.1,31.6 Z M241.1,100.5 C235.2,100.5 231.7,98.4 229.3,95.8 L229.2,58.7 C231.8,55.8 235.4,53.8 241.1,53.8 C250.2,53.8 256.5,64 256.5,77.1 C256.5,90.5 250.3,100.5 241.1,100.5 Z" id="Shape"></path>
+            <polygon id="Shape" points="169.8 25.7 194.9 20.3 194.9 0 169.8 5.3"></polygon>
+            <rect id="Rectangle-path" x="169.8" y="33.3" width="25.1" height="87.5"></rect>
+            <path d="M142.9,40.7 L141.3,33.3 L119.7,33.3 L119.7,120.8 L144.7,120.8 L144.7,61.5 C150.6,53.8 160.6,55.2 163.7,56.3 L163.7,33.3 C160.5,32.1 148.8,29.9 142.9,40.7 Z" id="Shape"></path>
+            <path d="M92.9,11.6 L68.5,16.8 L68.4,96.9 C68.4,111.7 79.5,122.6 94.3,122.6 C102.5,122.6 108.5,121.1 111.8,119.3 L111.8,99 C108.6,100.3 92.8,104.9 92.8,90.1 L92.8,54.6 L111.8,54.6 L111.8,33.3 L92.8,33.3 L92.9,11.6 Z" id="Shape"></path>
+            <path d="M25.3,58.7 C25.3,54.8 28.5,53.3 33.8,53.3 C41.4,53.3 51,55.6 58.6,59.7 L58.6,36.2 C50.3,32.9 42.1,31.6 33.8,31.6 C13.5,31.6 0,42.2 0,59.9 C0,87.5 38,83.1 38,95 C38,99.6 34,101.1 28.4,101.1 C20.1,101.1 9.5,97.7 1.1,93.1 L1.1,116.9 C10.4,120.9 19.8,122.6 28.4,122.6 C49.2,122.6 63.5,112.3 63.5,94.4 C63.4,64.6 25.3,69.9 25.3,58.7 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg></a></article><article class="platforms__platform__wrapper"><a class="platforms__platform platforms__platform--size-large" href="/integrate/fastspring"><?xml version="1.0" encoding="UTF-8"?>
+<svg width="251px" height="64px" viewBox="0 0 251 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>fastspring</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="fastspring" fill="#ABB3C1" fill-rule="nonzero">
+            <path d="M182.58,25.84 C187.08,25.94 191.68,26.96 192.4,28 C192.37249,28.7548752 192.921579,29.4077288 193.67,29.51 C194.475274,29.3863295 195.039841,28.649746 194.95,27.84 C194.95,23.67 188.27,22.64 182.63,22.5 C178.2,22.5 170.71,23.73 170.71,28.34 C170.710907,29.4108175 171.152064,30.4341563 171.93,31.17 C172.488774,31.6933953 173.126612,32.1253708 173.82,32.45 C172.08,33.3 170.82,34.53 170.67,36.27 C170.662338,36.4098952 170.662338,36.5501048 170.67,36.69 C170.67,39.63 173.67,41.19 177.07,41.94 C178.881516,42.3473412 180.733271,42.5486189 182.59,42.54 C185.293601,42.4786855 187.972283,43.0686129 190.4,44.26 C190.783601,44.4213262 191.027197,44.803353 191.011631,45.2192054 C190.996064,45.6350579 190.724588,45.9978039 190.33,46.13 C187.884535,47.1370411 185.253358,47.6141975 182.61,47.53 C178.11,47.43 173.51,46.41 172.79,45.37 C172.879153,44.9917221 172.784282,44.5935623 172.534126,44.2961328 C172.28397,43.9987033 171.90796,43.8369975 171.52,43.86 C170.714726,43.9836705 170.150159,44.720254 170.24,45.53 C170.24,49.7 176.92,50.73 182.56,50.87 C186.99,50.87 194.48,49.64 194.48,45.03 C194.479093,43.9591825 194.037936,42.9358437 193.26,42.2 C192.701226,41.6766047 192.063388,41.2446292 191.37,40.92 C193.11,40.07 194.37,38.84 194.52,37.1 C194.527486,36.9601001 194.527486,36.8198999 194.52,36.68 C194.52,33.74 191.52,32.18 188.12,31.43 C186.308456,31.0228275 184.456721,30.8215519 182.6,30.83 C179.08,30.83 176.73,30.37 174.6,29.03 C174.302699,28.8665874 174.117968,28.5542515 174.117968,28.215 C174.117968,27.8757485 174.302699,27.5634126 174.6,27.4 C176.13,26.43 178.69,25.85 182.58,25.84 Z M182.58,34.19 C183.760846,34.1868977 184.94044,34.2670967 186.11,34.43 C187.74373,34.6376162 189.328015,35.131859 190.79,35.89 C191.066429,36.0757617 191.232237,36.3869525 191.232237,36.72 C191.232237,37.0530475 191.066429,37.3642383 190.79,37.55 C189.418919,38.2774686 187.93464,38.7677204 186.4,39 C185.139102,39.1912762 183.865314,39.2848879 182.59,39.28 C181.409154,39.2831023 180.22956,39.2029033 179.06,39.04 C177.42627,38.8323838 175.841985,38.338141 174.38,37.58 C174.103571,37.3942383 173.937763,37.0830475 173.937763,36.75 C173.937763,36.4169525 174.103571,36.1057617 174.38,35.92 C175.765371,35.1986702 177.263443,34.7184757 178.81,34.5 C180.063523,34.2997034 181.33059,34.1960648 182.6,34.19 L182.58,34.19 Z" id="Shape"></path>
+            <path d="M11.86,36 L4.6,35.93 L4.6,50.93 L0,50.93 L0,16.79 L18.76,16.79 C18.7517124,16.8731273 18.7517124,16.9568727 18.76,17.04 L18.76,17.72 C18.7985391,18.7029059 18.6103487,19.6814956 18.21,20.58 L13.69,20.43 L11.58,20.38 L9.27,20.33 C7.75666667,20.2966667 6.2,20.28 4.6,20.28 L4.6,32.56 L6.08,32.56 L7.99,32.56 L10.1,32.56 L12.94,32.5 L17.44,32.41 C17.4330147,32.509878 17.4330147,32.610122 17.44,32.71 L17.44,33.54 C17.449472,34.4143919 17.338428,35.2859197 17.11,36.13 C15.2633333,36.0766667 13.5133333,36.0333333 11.86,36 Z" id="Shape"></path>
+            <path d="M35.25,49 C33.5739651,50.6932181 31.2477756,51.5792119 28.87,51.43 C26.596455,51.5255776 24.3812178,50.6957656 22.73,49.13 C21.1757257,47.5813716 20.3415075,45.4523019 20.43,43.26 C20.43,39.1466667 22.21,36.5933333 25.77,35.6 C27.044776,35.259348 28.352089,35.0548709 29.67,34.99 L36.4,34.62 L36.4,32 C36.4,29.9 35.9733333,28.4033333 35.12,27.51 C34.2666667,26.6166667 32.64,26.18 30.24,26.2 C27.8680181,26.1984266 25.537117,26.8190807 23.48,28 C22.7488997,26.9910635 22.2814153,25.8154779 22.12,24.58 C24.5988524,23.3004935 27.3318534,22.5899133 30.12,22.5 C32.0122281,22.4347064 33.9042057,22.6366969 35.74,23.1 C36.9011201,23.4205016 37.9656756,24.0214603 38.84,24.85 C40.28,26.2833333 41,28.56 41,31.68 L41,46.79 L43.72,49.57 L43.72,50.9 L39.1,50.9 L37,49 L35.25,49 Z M30.71,47.64 C32.783905,47.7252545 34.8143375,47.0294121 36.4,45.69 L36.4,37.84 L30.23,38.24 C26.83,38.42 25.13,40.0033333 25.13,42.99 C25.13,45.4833333 26.2333333,46.96 28.44,47.42 C29.190273,47.5724786 29.9544148,47.6462116 30.72,47.64 L30.71,47.64 Z" id="Shape"></path>
+            <path d="M64,27.35 C62.1276893,26.4669804 60.0679097,26.0550245 58,26.15 C56.6669258,26.0455135 55.3278969,26.2544157 54.09,26.76 C53.4556804,27.1025461 52.9293365,27.6150388 52.57,28.24 C52.2505744,28.8576238 52.0890998,29.5447496 52.1,30.24 C52.0653479,30.8331425 52.1295568,31.427919 52.29,32 C52.4620477,32.4350277 52.7531665,32.8127889 53.13,33.09 C54.3231653,33.8511608 55.6555979,34.3678183 57.05,34.61 C58.5525434,34.9510013 60.0242457,35.4159255 61.45,36 C62.4178601,36.3846476 63.3086932,36.9401481 64.08,37.64 C65.4823561,39.062628 66.2101014,41.0166243 66.08,43.01 C66.08,47.05 64.08,49.6666667 60.08,50.86 C58.6817069,51.2586764 57.2339989,51.4573154 55.78,51.45 C52.858805,51.5192756 49.9480813,51.075898 47.18,50.14 C47.1231256,48.8312029 47.3588468,47.5261953 47.87,46.32 C49.9301804,46.9709267 52.0631148,47.3639241 54.22,47.49 C55.6466667,47.49 56.7233333,47.46 57.45,47.4 C58.1145295,47.3551401 58.7652435,47.1890725 59.37,46.91 C60.5633333,46.3433333 61.16,45.1766667 61.16,43.41 C61.2526816,41.6833426 60.1145694,40.130991 58.44,39.7 C57.705184,39.4608167 56.9572977,39.2638288 56.2,39.11 C50.2533333,37.9166667 47.28,35.2833333 47.28,31.21 C47.1305582,28.6717084 48.227717,26.2198942 50.22,24.64 C52.0733333,23.2133333 54.7066667,22.5 58.12,22.5 C60.5739922,22.3814569 63.0202381,22.8583548 65.25,23.89 C65.0990718,25.122717 64.6717828,26.3054531 64,27.35 Z" id="Shape"></path>
+            <path d="M87.77,49.59 C85.7151291,50.9094253 83.2989124,51.5528173 80.86,51.43 C77.0666667,51.43 74.7966667,49.9166667 74.05,46.89 C73.7862564,45.7526428 73.6620084,44.5873982 73.68,43.42 L73.68,27.64 L69.8,27.64 C69.7278641,27.0025259 69.691141,26.3615415 69.69,25.72 C69.69,25.1666667 69.7266667,24.5333333 69.8,23.82 L73.67,23.82 L73.67,19 L76.55,15.74 L78.26,15.74 L78.26,23.86 L86.32,23.86 C86.3818654,24.3909902 86.4085902,24.925487 86.4,25.46 C86.3782846,26.2357599 86.1762878,26.9958156 85.81,27.68 L78.26,27.68 L78.26,43.42 C78.1642417,44.5312413 78.4576442,45.641222 79.09,46.56 C79.8621506,47.3042704 80.9232196,47.6701563 81.99,47.56 C83.5930529,47.4981402 85.1560074,47.0412766 86.54,46.23 C87.2235153,47.2300404 87.6463203,48.3850198 87.77,49.59 Z" id="Shape"></path>
+            <path d="M95.48,49.82 C95.6001009,48.44224 95.9376137,47.0921887 96.48,45.82 C98.9008303,46.6752942 101.434996,47.1672997 104,47.28 C105.474078,47.3201334 106.948399,47.2095593 108.4,46.95 C109.234378,46.7813669 110.024488,46.4408021 110.72,45.95 C111.876098,45.0135848 112.487754,43.5613706 112.35,42.08 C112.485714,40.74297 112.066326,39.4088823 111.19,38.39 C109.79765,37.358256 108.179741,36.6727011 106.47,36.39 C104.600194,35.9647924 102.77525,35.3620584 101.02,34.59 C99.8523796,34.0620143 98.7836439,33.3382502 97.86,32.45 C96.3055644,30.7995229 95.4959166,28.5838348 95.62,26.32 C95.62,22.8733333 96.71,20.2866667 98.89,18.56 C100.93,16.9333333 103.776667,16.12 107.43,16.12 C110.476684,15.9735286 113.509133,16.6213702 116.23,18 C116.061873,19.3068311 115.570364,20.5510692 114.8,21.62 C112.758356,20.5097991 110.451399,19.9806171 108.13,20.09 C105.356667,20.09 103.413333,20.52 102.3,21.38 C101.131952,22.3668125 100.510388,23.8555896 100.63,25.38 C100.502324,26.7523344 100.968238,28.1136768 101.91,29.12 C103.345195,30.1889315 105.002991,30.9204127 106.76,31.26 C108.600156,31.7028684 110.40507,32.2811095 112.16,32.99 C113.30032,33.4684016 114.346578,34.1455909 115.25,34.99 C116.743333,36.3966667 117.49,38.5066667 117.49,41.32 C117.49,44.8333333 116.526667,47.4133333 114.6,49.06 C112.673333,50.7066667 109.71,51.56 105.71,51.62 C102.215482,51.6898064 98.7408115,51.0784274 95.48,49.82 Z" id="Shape"></path>
+            <path d="M132.93,51.43 C131.162595,51.4454706 129.398792,51.267749 127.67,50.9 L127.67,61.44 L123.08,61.44 L123.08,26.58 L120.92,24.36 L120.92,23 L125,23 L127.16,24.9 L128.84,24.9 C129.771566,24.0303015 130.895424,23.3929921 132.12,23.04 C133.352241,22.6663664 134.632366,22.4743477 135.92,22.47 C137.226815,22.4783815 138.522422,22.7117938 139.75,23.16 C141.089474,23.6488988 142.290445,24.4552648 143.25,25.51 C145.51,27.93 146.64,31.65 146.64,36.67 C146.64,41.21 145.286667,44.84 142.58,47.56 C140.041681,50.1361454 136.544945,51.5384634 132.93,51.43 Z M136.61,26.71 C135.302491,26.3834541 133.957381,26.2321293 132.61,26.26 C130.805261,26.3356935 129.064228,26.9485373 127.61,28.02 L127.61,47.37 C128.910746,47.7388888 130.258069,47.9174091 131.61,47.9 C133.020094,47.9150096 134.418485,47.6428166 135.72,47.1 C136.966656,46.5978379 138.08676,45.8260588 139,44.84 C140.911408,42.5711286 141.893815,39.6632034 141.75,36.7 C141.763333,30.98 140.05,27.65 136.61,26.71 Z" id="Shape"></path>
+            <path d="M165.68,27.62 C164.728402,27.2343158 163.706145,27.0537171 162.68,27.09 C160.971885,26.9889703 159.301896,27.6220378 158.09,28.83 C157.62409,29.323006 157.281424,29.9192436 157.09,30.57 L157.09,50.9 L152.5,50.9 L152.5,26.58 L150.34,24.36 L150.34,23 L154.18,23 L156.77,25.67 L157.86,25.67 C158.793961,24.3638884 160.106438,23.3760403 161.62,22.84 C162.257278,22.5913292 162.935936,22.4657774 163.62,22.47 C164.798213,22.4295108 165.976297,22.5540511 167.12,22.84 C167.047116,24.5286551 166.552022,26.1720895 165.68,27.62 Z" id="Shape"></path>
+            <path d="M217.27,27.75 C216.29,26.7566667 214.58,26.2566667 212.14,26.25 C210.035729,26.1425964 207.961942,26.7877744 206.29,28.07 L206.29,50.9 L201.7,50.9 L201.7,26.58 L199.54,24.36 L199.54,23 L203.86,23 L205.73,24.9 L207.44,24.9 C208.44286,24.0713492 209.597771,23.4463384 210.84,23.06 C212.042975,22.6761198 213.29728,22.4771845 214.56,22.47 C215.763644,22.4647799 216.957599,22.6852546 218.08,23.12 C219.181941,23.5198847 220.17988,24.1623937 221,25 C222.670839,26.8622629 223.534059,29.3116494 223.4,31.81 L223.4,50.9 L218.78,50.9 L218.78,32.4 C218.910753,30.7113803 218.367887,29.0396418 217.27,27.75 Z" id="Shape"></path>
+            <path d="M244.57,46.46 C248.663333,46.46 250.71,48.8366667 250.71,53.59 C250.77084,56.2376538 249.549206,58.7516873 247.43,60.34 C245.15,62.1533333 241.983333,63.06 237.93,63.06 C235.12391,63.2023803 232.338959,62.5061425 229.93,61.06 C228.097366,59.9476836 226.984547,57.9537247 227,55.81 C227.02115,54.3191635 227.603125,52.8910038 228.63,51.81 C229.099757,51.2526436 229.648973,50.7674463 230.26,50.37 L230.26,49.57 C229.357943,48.5611979 228.90333,47.2298306 229,45.88 C229.039374,44.4905266 229.546782,43.1550577 230.44,42.09 C230.867101,41.5585346 231.361208,41.0845961 231.91,40.68 L231.91,39.58 C229.534315,37.7933226 228.164517,34.9718356 228.23,32 C228.156563,29.3360857 229.296992,26.782995 231.33,25.06 C233.478656,23.2803064 236.212852,22.3641545 239,22.49 C240.16633,22.4985493 241.325184,22.6770936 242.44,23.02 L251,23.02 L251,24.86 L247.64,26.3 C248.85418,27.8239481 249.554343,29.6933839 249.64,31.64 C249.68148,33.1103471 249.398079,34.5717402 248.81,35.92 C248.270808,37.0673513 247.497585,38.0892329 246.54,38.92 C244.43237,40.6883751 241.750234,41.6239212 239,41.55 C237.508572,41.6131696 236.017993,41.4065211 234.6,40.94 C233.640065,41.8460238 233.1156,43.1207642 233.16,44.44 C233.16,45.7733333 234.006667,46.44 235.7,46.44 L244.57,46.46 Z M231.65,54.24 C231.633261,54.9473279 231.690235,55.6544758 231.82,56.35 C231.942385,56.8877725 232.224782,57.3758661 232.63,57.75 C233.623333,58.6766667 235.44,59.14 238.08,59.14 C240.72,59.14 242.72,58.58 244.08,57.46 C245.208135,56.5206341 245.830124,55.1063492 245.76,53.64 C245.821066,52.9059255 245.64964,52.1712429 245.27,51.54 C244.779181,51.0417053 244.083779,50.8012738 243.39,50.89 L232.9,50.89 L232.53,51.48 C231.981228,52.3024656 231.67299,53.2618139 231.64,54.25 L231.65,54.24 Z M239,38.19 C240.611989,38.286871 242.192685,37.7153606 243.37,36.61 C244.481133,35.343198 245.029768,33.6792466 244.89,32 C244.957059,30.374417 244.390625,28.7862509 243.31,27.57 C242.18582,26.4091559 240.613602,25.7926714 239,25.88 C237.351597,25.8017228 235.74902,26.4354692 234.6,27.62 C233.518863,28.8172774 232.945172,30.3877583 233,32 C233,34.8466667 234.146667,36.7433333 236.44,37.69 C237.252337,38.0227665 238.122151,38.1926519 239,38.19 Z" id="Shape"></path>
+            <path d="M182.6,0 C177.452706,-3.15180848e-16 173.28,4.17270613 173.28,9.32 C173.28,14.4672939 177.452706,18.64 182.6,18.64 C187.747294,18.64 191.92,14.4672939 191.92,9.32 C191.92,6.84818231 190.938074,4.47760385 189.190235,2.7297648 C187.442396,0.981925752 185.071818,1.51355181e-16 182.6,0 Z M179.22,8.62 C177.563146,8.62 176.22,7.27685425 176.22,5.62 C176.22,3.96314575 177.563146,2.62 179.22,2.62 C180.876854,2.62 182.22,3.96314575 182.22,5.62 C182.22,6.41564947 181.903929,7.17871121 181.34132,7.74132034 C180.778711,8.30392948 180.015649,8.62 179.22,8.62 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg></a></article><article class="platforms__platform__wrapper"><a class="platforms__platform platforms__platform--size-large" href="/integrate/electron"><?xml version="1.0" encoding="UTF-8"?>
+<svg width="101px" height="109px" viewBox="0 0 101 109" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>electron</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="electron" fill="#ABB3C1">
+            <path d="M36.2238023,23.2911116 C22.0456098,20.7087892 10.8294833,23.4129815 6.35475337,31.1634411 C3.01501806,36.9480324 3.96897711,44.6119961 8.66300295,52.7992053 C9.07505115,53.51789 9.99169132,53.7664681 10.7103761,53.3544199 C11.4290608,52.9423717 11.6776389,52.0257315 11.2655907,51.3070468 C7.05174551,43.9573574 6.23245169,37.3752738 8.95282958,32.6634411 C12.6471745,26.264648 22.6139893,23.861663 35.6862455,26.2425574 C36.5012647,26.3909997 37.2823046,25.8506322 37.4307468,25.0356129 C37.5791891,24.2205937 37.0388216,23.4395538 36.2238023,23.2911116 Z M16.0330763,62.7428537 C21.7622128,69.0387501 29.2047733,74.9435525 37.6923452,79.8438544 C58.2477432,91.711519 80.1333534,94.8840279 90.9292657,87.5227593 C91.6137225,87.0560576 91.7902479,86.1228593 91.3235462,85.4384026 C90.8568446,84.7539458 89.9236463,84.5774204 89.2391895,85.0441221 C79.6123828,91.6082279 58.8578863,88.5996837 39.1923452,77.2457782 C30.9666931,72.4966957 23.7675054,66.7849813 18.251915,60.7237561 C17.6943566,60.1110407 16.7456622,60.0663271 16.1329469,60.6238855 C15.5202315,61.1814439 15.4755179,62.1301383 16.0330763,62.7428537 Z M100.959747,82.4663524 C100.959747,78.6016132 97.8267566,75.4686231 93.9620175,75.4686231 C90.0972783,75.4686231 86.9642881,78.6016132 86.9642881,82.4663524 C86.9642881,86.3310916 90.0972783,89.4640817 93.9620175,89.4640817 C97.8267566,89.4640817 100.959747,86.3310916 100.959747,82.4663524 Z M97.9597468,82.4663524 C97.9597468,84.6742373 96.1699024,86.4640817 93.9620175,86.4640817 C91.7541325,86.4640817 89.9642881,84.6742373 89.9642881,82.4663524 C89.9642881,80.2584675 91.7541325,78.4686231 93.9620175,78.4686231 C96.1699024,78.4686231 97.9597468,80.2584675 97.9597468,82.4663524 Z" id="Shape"></path>
+            <path d="M87.5009299,60.975107 C96.7844895,50.0080308 100.027723,38.9717125 95.5622014,31.2372015 C92.2757803,25.5449533 85.3330074,22.5417675 76.1119245,22.4218465 C75.2835674,22.4110736 74.6033182,23.0738566 74.5925453,23.9022137 C74.5817725,24.7305708 75.2445554,25.41082 76.0729125,25.4215928 C84.3370656,25.5290689 90.2889276,28.1036234 92.9641252,32.7372015 C96.6504792,39.1221541 93.7691791,48.9268573 85.2111547,59.036827 C84.6759134,59.669131 84.7545983,60.6156134 85.3869023,61.1508546 C86.0192062,61.6860959 86.9656886,61.607411 87.5009299,60.975107 Z M63.6254509,23.7749159 C55.2370468,25.5721681 46.3090158,29.0858953 37.7349308,34.0361455 C16.5149224,46.2875231 2.670597,64.3552712 4.59524568,77.4689935 C4.71554192,78.2886399 5.47751603,78.8555753 6.29716248,78.735279 C7.11680894,78.6149828 7.68374431,77.8530087 7.56344807,77.0333622 C5.86127554,65.4354961 18.9611645,48.3392862 39.2349308,36.6342217 C47.5441346,31.8369007 56.1796516,28.4382958 64.2539502,26.708342 C65.0639935,26.5347867 65.5799689,25.7374225 65.4064136,24.9273793 C65.2328583,24.117336 64.4354941,23.6013606 63.6254509,23.7749159 Z" id="Shape"></path>
+            <path d="M29.2376332,86.55306 C34.0915037,100.106813 42.0366788,108.456237 50.9797702,108.456237 C57.5033681,108.456237 63.5348391,104.012348 68.2352101,96.1934338 C68.6620346,95.4834251 68.4324685,94.5618397 67.7224598,94.1350152 C67.0124512,93.7081907 66.0908658,93.9377568 65.6640412,94.6477655 C61.4547258,101.649825 56.2884702,105.456237 50.9797702,105.456237 C43.5966074,105.456237 36.5369879,98.0374252 32.0619837,85.5416035 C31.7826777,84.7616806 30.924003,84.3558505 30.1440802,84.6351565 C29.3641573,84.9144625 28.9583272,85.7731372 29.2376332,86.55306 Z M73.6097725,83.9032561 C76.1208787,75.8787102 77.4694488,66.6223105 77.4694488,56.9768802 C77.4694488,32.9037588 69.0427924,12.1489283 57.0288139,6.81435674 C56.2716713,6.47816242 55.3853467,6.81940842 55.0491524,7.57655099 C54.712958,8.33369357 55.054204,9.2200182 55.8113466,9.5562126 C66.4858638,14.2960226 74.4694488,33.9595697 74.4694488,56.9768802 C74.4694488,66.325162 73.164846,75.2797758 70.7466818,83.0073144 C70.4992744,83.7979351 70.9396357,84.6394232 71.7302564,84.8868306 C72.520877,85.1342381 73.3623651,84.6938767 73.6097725,83.9032561 Z" id="Shape"></path>
+            <path d="M100.959747,82.4663524 C100.959747,78.6016132 97.8267566,75.4686231 93.9620175,75.4686231 C90.0972783,75.4686231 86.9642881,78.6016132 86.9642881,82.4663524 C86.9642881,86.3310916 90.0972783,89.4640817 93.9620175,89.4640817 C97.8267566,89.4640817 100.959747,86.3310916 100.959747,82.4663524 Z M97.9597468,82.4663524 C97.9597468,84.6742373 96.1699024,86.4640817 93.9620175,86.4640817 C91.7541325,86.4640817 89.9642881,84.6742373 89.9642881,82.4663524 C89.9642881,80.2584675 91.7541325,78.4686231 93.9620175,78.4686231 C96.1699024,78.4686231 97.9597468,80.2584675 97.9597468,82.4663524 Z" id="Shape"></path>
+            <path d="M7.89756569,89.4640817 C11.7623049,89.4640817 14.895295,86.3310916 14.895295,82.4663524 C14.895295,78.6016132 11.7623049,75.4686231 7.89756569,75.4686231 C4.03282651,75.4686231 0.899836384,78.6016132 0.899836384,82.4663524 C0.899836384,86.3310916 4.03282651,89.4640817 7.89756569,89.4640817 Z M7.89756569,86.4640817 C5.68968076,86.4640817 3.89983638,84.6742373 3.89983638,82.4663524 C3.89983638,80.2584675 5.68968076,78.4686231 7.89756569,78.4686231 C10.1054506,78.4686231 11.895295,80.2584675 11.895295,82.4663524 C11.895295,84.6742373 10.1054506,86.4640817 7.89756569,86.4640817 Z" id="Shape"></path>
+            <path d="M50.9797702,13.9952522 C54.8445093,13.9952522 57.9774995,10.8622621 57.9774995,6.99752288 C57.9774995,3.1327837 54.8445093,-0.000206427 50.9797702,-0.000206427 C47.115031,-0.000206427 43.9820409,3.1327837 43.9820409,6.99752288 C43.9820409,10.8622621 47.115031,13.9952522 50.9797702,13.9952522 Z M50.9797702,10.9952522 C48.7718852,10.9952522 46.9820409,9.2054078 46.9820409,6.99752288 C46.9820409,4.78963795 48.7718852,2.99979357 50.9797702,2.99979357 C53.1876551,2.99979357 54.9774995,4.78963795 54.9774995,6.99752288 C54.9774995,9.2054078 53.1876551,10.9952522 50.9797702,10.9952522 Z" id="Shape"></path>
+            <path d="M52.0412978,61.8916841 C49.3267926,62.4782009 46.6524598,60.753084 46.0647952,58.0385788 C45.4794263,55.3240736 47.2033953,52.6497408 49.9179005,52.0620763 C52.6324057,51.4755595 55.3067385,53.2006763 55.8944031,55.9151815 C56.4809198,58.6296867 54.755803,61.3040196 52.0412978,61.8916841 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg></a></article><article class="platforms__platform__wrapper"><a class="platforms__platform platforms__platform--size-large" href="/integrate/gumroad"><?xml version="1.0" encoding="UTF-8"?>
+<svg width="771px" height="227px" viewBox="0 0 771 227" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>gumroad</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M144.537494,84.491 C149.847871,84.491 154.16199,80.183 154.16199,74.87 C154.16199,69.559 149.847871,65.249 144.537494,65.249 C139.221114,65.249 134.914997,69.559 134.914997,74.87 C134.914997,80.183 139.221114,84.491 144.537494,84.491 Z M196.558988,216.429 C201.880368,216.429 206.186485,212.123 206.186485,206.811 C206.186485,201.496 201.880368,197.189 196.558988,197.189 C191.252612,197.189 186.938492,201.496 186.938492,206.811 C186.938492,212.123 191.252612,216.429 196.558988,216.429 Z M26.3108251,197.567 L178.698355,197.567 C182.054225,191.11 188.793974,186.684 196.558988,186.684 C207.662868,186.684 216.693211,195.712 216.693211,206.811 C216.693211,217.907 207.662868,226.935 196.558988,226.935 C188.136803,226.935 180.91693,221.732 177.921153,214.375 L26.3108251,214.375 C11.5770031,214.375 0.0370096004,203.203 0.0370096004,188.943 L0.0370096004,26.769 C0.0370096004,12.295 12.070131,0.065 26.3108251,0.065 L188.522903,0.065 C202.793605,0.065 214.403617,12.045 214.403617,26.769 L214.403617,122.972 C214.403617,137.458 202.793605,149.241 188.522903,149.241 L92.2949416,149.241 C77.6021303,149.241 65.18791,137.212 65.18791,122.972 L65.18791,92.738 C65.18791,78.709 77.3480643,67.299 92.2949416,67.299 L125.896658,67.299 C128.897436,59.946 136.11831,54.745 144.537494,54.745 C155.640374,54.745 164.670716,63.773 164.670716,74.87 C164.670716,85.969 155.640374,94.998 144.537494,94.998 C136.768478,94.998 130.026729,90.568 126.671859,84.108 L92.2949416,84.108 C87.3446575,84.108 82.0002711,87.407 82.0002711,92.738 L82.0002711,122.972 C82.0002711,127.925 86.9075441,132.433 92.2949416,132.433 L188.522903,132.433 C193.606222,132.433 197.591256,128.278 197.591256,122.972 L197.591256,26.769 C197.591256,21.406 193.438179,16.874 188.522903,16.874 L26.3108251,16.874 C21.2705176,16.874 16.8493708,21.499 16.8493708,26.769 L16.8493708,188.943 C16.8493708,193.859 20.9174261,197.567 26.3108251,197.567 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="gumroad" transform="translate(385.500000, 113.500000) scale(1, -1) translate(-385.500000, -113.500000) ">
+            <path d="M144.537494,84.491 C149.847871,84.491 154.16199,80.183 154.16199,74.87 C154.16199,69.559 149.847871,65.249 144.537494,65.249 C139.221114,65.249 134.914997,69.559 134.914997,74.87 C134.914997,80.183 139.221114,84.491 144.537494,84.491 Z M196.558988,216.429 C201.880368,216.429 206.186485,212.123 206.186485,206.811 C206.186485,201.496 201.880368,197.189 196.558988,197.189 C191.252612,197.189 186.938492,201.496 186.938492,206.811 C186.938492,212.123 191.252612,216.429 196.558988,216.429 Z M26.3108251,197.567 L178.698355,197.567 C182.054225,191.11 188.793974,186.684 196.558988,186.684 C207.662868,186.684 216.693211,195.712 216.693211,206.811 C216.693211,217.907 207.662868,226.935 196.558988,226.935 C188.136803,226.935 180.91693,221.732 177.921153,214.375 L26.3108251,214.375 C11.5770031,214.375 0.0370096004,203.203 0.0370096004,188.943 L0.0370096004,26.769 C0.0370096004,12.295 12.070131,0.065 26.3108251,0.065 L188.522903,0.065 C202.793605,0.065 214.403617,12.045 214.403617,26.769 L214.403617,122.972 C214.403617,137.458 202.793605,149.241 188.522903,149.241 L92.2949416,149.241 C77.6021303,149.241 65.18791,137.212 65.18791,122.972 L65.18791,92.738 C65.18791,78.709 77.3480643,67.299 92.2949416,67.299 L125.896658,67.299 C128.897436,59.946 136.11831,54.745 144.537494,54.745 C155.640374,54.745 164.670716,63.773 164.670716,74.87 C164.670716,85.969 155.640374,94.998 144.537494,94.998 C136.768478,94.998 130.026729,90.568 126.671859,84.108 L92.2949416,84.108 C87.3446575,84.108 82.0002711,87.407 82.0002711,92.738 L82.0002711,122.972 C82.0002711,127.925 86.9075441,132.433 92.2949416,132.433 L188.522903,132.433 C193.606222,132.433 197.591256,128.278 197.591256,122.972 L197.591256,26.769 C197.591256,21.406 193.438179,16.874 188.522903,16.874 L26.3108251,16.874 C21.2705176,16.874 16.8493708,21.499 16.8493708,26.769 L16.8493708,188.943 C16.8493708,193.859 20.9174261,197.567 26.3108251,197.567 Z" id="Shape" fill="#231F20" fill-rule="nonzero"></path>
+            <g id="Clipped">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Shape"></g>
+                <g id="Group" mask="url(#mask-2)" fill="#ABB3C1" fill-rule="nonzero">
+                    <g transform="translate(-6.601713, -6.900000)" id="Shape">
+                        <polyline points="0.0770199792 229.198 32.2323612 229.198 32.2323612 194.908 0.0770199792 194.908 0.0770199792 229.198"></polyline>
+                        <polyline points="0.0770199792 34.342 32.2323612 34.342 32.2323612 0.052 0.0770199792 0.052 0.0770199792 34.342"></polyline>
+                        <polyline points="194.494453 34.342 226.649794 34.342 226.649794 0.052 194.494453 0.052 194.494453 34.342"></polyline>
+                        <polyline points="194.494453 163.49 226.649794 163.49 226.649794 129.2 194.494453 129.2 194.494453 163.49"></polyline>
+                        <polyline points="67.3724766 163.49 99.5278179 163.49 99.5278179 129.2 67.3724766 129.2 67.3724766 163.49"></polyline>
+                        <polyline points="67.3724766 100.311 99.5278179 100.311 99.5278179 66.021 67.3724766 66.021 67.3724766 100.311"></polyline>
+                        <polyline points="31.6011975 33.669 0.0770199792 33.669 0.0770199792 195.58 31.6011975 195.58 31.6011975 33.669"></polyline>
+                        <polyline points="195.124616 0.052 31.6011975 0.052 31.6011975 33.669 195.124616 33.669 195.124616 0.052"></polyline>
+                        <polyline points="226.649794 129.872 195.124616 129.872 195.124616 33.669 226.649794 33.669 226.649794 129.872"></polyline>
+                        <polyline points="98.8966541 163.49 195.124616 163.49 195.124616 129.872 98.8966541 129.872 98.8966541 163.49"></polyline>
+                        <polyline points="67.3724766 99.638 98.8966541 99.638 98.8966541 129.872 67.3724766 129.872 67.3724766 99.638"></polyline>
+                        <polyline points="179.120464 236.148 179.120464 229.198 31.6011975 229.198 31.6011975 195.58 179.120464 195.58 179.120464 188.631 226.649794 188.631 226.649794 236.148 179.120464 236.148"></polyline>
+                        <polyline points="127.752139 105.408 127.752139 99.638 98.8966541 99.638 98.8966541 66.021 127.752139 66.021 127.752139 58.133 175.037405 58.133 175.037405 105.408 127.752139 105.408"></polyline>
+                    </g>
+                </g>
+            </g>
+            <path d="M299.458681,90.412 C288.876936,90.412 280.267702,99.019 280.267702,109.598 C280.267702,120.177 288.876936,128.784 299.458681,128.784 C310.039425,128.784 318.649659,120.177 318.649659,109.598 C318.649659,99.019 310.039425,90.412 299.458681,90.412 Z M299.458681,141.574 C281.822106,141.574 267.474384,127.229 267.474384,109.598 C267.474384,91.967 281.822106,77.622 299.458681,77.622 C306.653547,77.622 313.300271,80.011 318.649659,84.035 L318.649659,61.177 C318.649659,50.598 310.039425,41.991 299.458681,41.991 L299.458681,29.201 C317.094255,29.201 331.442977,43.546 331.442977,61.177 L331.442977,109.598 C331.442977,127.229 317.094255,141.574 299.458681,141.574 Z" id="Shape" fill="#ABB3C1" fill-rule="nonzero"></path>
+            <path d="M389.018913,107.771 C389.018913,97.193 380.40968,88.585 369.827935,88.585 C359.24619,88.585 350.636956,97.193 350.636956,107.771 L350.636956,137.007 L337.843638,137.007 L337.843638,107.771 C337.843638,90.14 352.19136,75.796 369.827935,75.796 C387.46451,75.796 401.812231,90.14 401.812231,107.771 L401.812231,137.007 L389.018913,137.007 L389.018913,107.771" id="Shape" fill="#ABB3C1" fill-rule="nonzero"></path>
+            <path d="M491.365462,139.748 C480.913751,139.748 471.617339,134.708 465.777824,126.934 C459.936309,134.708 450.640898,139.748 440.190187,139.748 C422.553612,139.748 408.20589,125.403 408.20589,107.771 L408.20589,78.536 L420.999209,78.536 L420.999209,107.771 C420.999209,118.351 429.608442,126.958 440.190187,126.958 C450.771932,126.958 459.381165,118.351 459.381165,107.771 L459.381165,78.536 L472.174484,78.536 L472.174484,107.771 C472.174484,118.351 480.783717,126.958 491.365462,126.958 C501.947207,126.958 510.55644,118.351 510.55644,107.771 L510.55644,78.536 L523.349759,78.536 L523.349759,107.771 C523.349759,125.403 509.001037,139.748 491.365462,139.748" id="Shape" fill="#ABB3C1" fill-rule="nonzero"></path>
+            <path d="M530.660655,107.771 L530.660655,78.536 L543.453974,78.536 L543.453974,107.771 C543.453974,118.351 552.063207,126.958 562.644952,126.958 L562.644952,139.748 C545.008377,139.748 530.660655,125.403 530.660655,107.771" id="Shape" fill="#ABB3C1" fill-rule="nonzero"></path>
+            <path d="M598.284197,90.412 C587.702452,90.412 579.093219,99.019 579.093219,109.598 C579.093219,120.177 587.702452,128.784 598.284197,128.784 C608.864942,128.784 617.475175,120.177 617.475175,109.598 C617.475175,99.019 608.864942,90.412 598.284197,90.412 Z M598.284197,141.574 C580.647622,141.574 566.2989,127.229 566.2989,109.598 C566.2989,91.967 580.647622,77.622 598.284197,77.622 C615.919772,77.622 630.268494,91.967 630.268494,109.598 C630.268494,127.229 615.919772,141.574 598.284197,141.574 Z" id="Shape" fill="#ABB3C1" fill-rule="nonzero"></path>
+            <path d="M668.65045,90.412 C658.068705,90.412 649.459472,99.019 649.459472,109.598 C649.459472,120.177 658.068705,128.784 668.65045,128.784 C679.232195,128.784 687.841428,120.177 687.841428,109.598 C687.841428,99.019 679.232195,90.412 668.65045,90.412 Z M668.65045,141.574 C651.013875,141.574 636.666153,127.229 636.666153,109.598 C636.666153,91.967 651.013875,77.622 668.65045,77.622 C675.845317,77.622 682.492041,80.011 687.841428,84.035 L687.841428,79.449 L700.634747,79.449 L700.634747,109.598 C700.634747,127.229 686.286025,141.574 668.65045,141.574 Z" id="Shape" fill="#ABB3C1" fill-rule="nonzero"></path>
+            <path d="M739.015703,90.412 C728.433958,90.412 719.824725,99.019 719.824725,109.598 C719.824725,120.177 728.433958,128.784 739.015703,128.784 C749.594447,128.784 758.206681,120.177 758.206681,109.598 C758.206681,99.019 749.594447,90.412 739.015703,90.412 Z M758.206681,170.81 L758.206681,135.161 C752.855293,139.185 746.21057,141.574 739.015703,141.574 C721.379128,141.574 707.031406,127.229 707.031406,109.598 C707.031406,91.967 721.379128,77.622 739.015703,77.622 C756.656279,77.622 771,91.967 771,109.598 L771,170.81 L758.206681,170.81 Z" id="Shape" fill="#ABB3C1" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg></a></article><article class="platforms__platform__wrapper"><a class="platforms__platform platforms__platform--size-large" href="/integrate/paddle"><?xml version="1.0" encoding="UTF-8"?>
+<svg width="102px" height="39px" viewBox="0 0 102 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>paddle</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="paddle" transform="translate(1.000000, 1.000000)" fill="#ABB3C1" stroke="#ABB3C1" stroke-width="1.006">
+            <path d="M33.484,21.632 C33.484,23.506 31.029,25.079 28.648,25.079 C27.012,25.079 25.45,24.03 25.45,22.531 C25.45,20.883 26.268,19.983 28.35,19.309 C30.136,18.709 31.773,18.409 33.484,18.185 L33.484,21.632 Z M30.062,7.842 C27.83,7.842 25.025,8.731 25.025,8.731 C24.109,8.985 23.255,9.957 23.116,10.902 L22.828,12.867 C25.406,12.002 27.533,10.915 29.988,10.915 C31.475,10.915 33.484,11.515 33.484,15.187 C32.294,15.262 30.211,15.562 28.202,16.087 C24.111,17.135 21.73,19.534 21.73,22.681 C21.73,25.904 24.334,28.152 27.384,28.152 C30.211,28.152 32.144,27.483 33.484,25.835 C33.558,26.509 33.551,26.207 33.551,26.207 C33.842,27.116 34.85,27.852 35.801,27.852 L37.223,27.852 L37.223,13.731 C37.223,10.273 34.153,7.842 30.062,7.842 Z M11.028,24.664 C9.375,24.78 7.963,24.343 7.018,23.384 L7.018,12.046 C8.189,11.792 9.149,11.611 9.554,11.583 C12.591,11.37 15.174,13.003 15.468,17.203 C15.684,20.295 14.583,24.413 11.028,24.663 L11.028,24.664 Z M8.88,7.88 C7.472,7.979 2.538,9.09 2.538,9.09 C1.611,9.292 0.713,10.215 0.533,11.148 L0,13.906 C0.876,13.551 3.124,12.952 5.243,12.45 L5.574,12.901 L3.516,15.656 C3.232,16.036 3.001,16.73 3.001,17.206 L3.001,37 L5.042,36.198 C6.134,35.769 7.018,34.47 7.018,33.296 L7.018,27.53 C8.058,28.174 9.638,28.52 11.458,28.393 C16.494,28.041 19.926,23.624 19.478,17.205 C18.996,10.31 14.73,7.47 8.88,7.88 Z M66.731,25.099 C63.298,25.099 62.029,22.343 62.029,18.098 C62.029,14.672 63.074,11.097 66.507,11.097 C70.239,11.097 71.358,14.449 71.358,17.725 C71.358,22.269 70.015,25.099 66.731,25.099 Z M72.257,-1.11020608e-16 L71.106,-1.11020608e-16 L71.106,10.596 C70.061,8.883 67.874,7.895 65.785,7.895 C60.934,7.895 58.149,11.924 58.149,18.329 C58.149,24.51 61.009,28.152 65.71,28.152 C68.471,28.152 70.188,27.109 71.233,25.397 C71.308,26.141 71.311,26.077 71.311,26.077 C71.433,27.017 72.311,27.779 73.266,27.779 L74.849,27.779 L74.849,2.578 C74.847146,1.8924146 74.5730189,1.23564577 74.0869241,0.75217644 C73.6008292,0.268707113 72.9425854,-0.00185903118 72.257,-4.4408921e-16 Z M93.078,10.838 C94.573,10.838 96.25,11.705 96.25,13.422 C96.25,17.305 90.145,18.079 87.454,18.303 C87.454,13.709 89.864,10.838 93.078,10.838 Z M87.814,21.358 C90.132,21.058 100,20.536 100,13.368 C100,9.634 97.234,7.842 93.047,7.842 C87.366,7.842 83.702,12.322 83.702,18.072 C83.702,24.269 86.767,28.152 92.599,28.152 C94.617,28.152 97.327,27.447 97.327,27.447 C98.261,27.239 99.186,26.308 99.398,25.38 L100,22.754 C97.286,24.476 95.365,25.091 92.673,25.091 C90.655,25.091 88.188,23.971 87.814,21.357 L87.814,21.358 Z M47.819,25.099 C44.386,25.099 43.117,22.343 43.117,18.098 C43.117,14.672 44.162,11.097 47.595,11.097 C51.327,11.097 52.446,14.449 52.446,17.725 C52.446,22.269 51.103,25.099 47.819,25.099 Z M53.545,1.11023997e-16 L52.394,1.11023997e-16 L52.394,10.596 C51.349,8.883 49.162,7.895 47.072,7.895 C42.222,7.895 39.437,11.924 39.437,18.329 C39.437,24.51 42.296,28.152 46.997,28.152 C49.759,28.152 51.476,27.109 52.521,25.397 C52.595,26.141 52.599,26.077 52.599,26.077 C52.721,27.017 53.599,27.779 54.554,27.779 L56.137,27.779 L56.137,2.578 C56.135146,1.8924146 55.8610189,1.23564577 55.3749241,0.75217644 C54.8888292,0.268707113 54.2305854,-0.00185903118 53.545,-2.22042911e-16 Z M79.577,0 L77.666,0 L77.666,26.033 C77.666,26.983 78.456,27.75 79.429,27.75 L81.489,27.75 L81.489,1.858 C81.489,0.832 80.633,0 79.577,0 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg></a></article></div><div class="integrate__actions"><span>and more!</span></div></div></section><section class="faqs"><div class="faqs__content"><h3>FAQs</h3><ul class="faqs__questions"><li><h4 id="what-is-keygen-">What is Keygen?</h4>
+<p>Keygen is a cloud-based SaaS (software-as-a-service) that provides secure
+license and user management for desktop apps and other types of software.
+Keygen&#39;s primary product is a set of APIs that enable developers to quickly
+set up licensing, user management, and product distribution.</p>
+</li><li><h4 id="who-is-keygen-for-">Who is Keygen for?</h4>
+<p>Keygen is primarily built for small- to medium-sized businesses who
+build desktop applications, on-premise software, and other digital
+products e.g. WordPress plugins, etc. We also offer <a href="#do-you-offer-on-premise-api-plans-">on-premise options</a>
+for larger companies that are interested in using Keygen.</p>
+</li><li><h4 id="why-was-keygen-created-">Why was Keygen created?</h4>
+<p>Keygen aims to make licensing software for small- to medium-businesses
+<em>easy</em> by letting you ship your product earlier and not <em>waste time</em>
+building custom licensing servers and managing infrastructure.</p>
+</li><li><h4 id="can-keygen-help-lower-support-costs-">Can Keygen help lower support costs?</h4>
+<p>Yes! One of the things that makes Keygen unique is that we encourage you
+to allow your users to manage their own resources i.e. their licenses
+and machines, while you respond to the appropriate <a href="/docs/using-webhooks">webhook events</a>
+to handle billing using your payment provider. This not only gives your
+users freedom to purchase additional licenses directly from within your
+product <em>without your help</em> (offering a great user-experience and
+potential for <em>more sales</em>!) but <em>can also lower your
+licensing-related support costs</em>.</p>
+</li><li><h4 id="what-licensing-models-are-supported-">What licensing models are supported?</h4>
+<p>Keygen supports <a href="/docs/choosing-a-licensing-model">almost any licensing model</a>:
+perpetual licenses, subscription-based models, concurrency models, single
+machine-locked licenses, floating licenses with and without machine limits,
+feature-based licenses, limited pre-determined pool-based licenses, encrypted
+and unencrypted licenses, licenses that require periodic check-in, and even
+a combination of most of those.</p>
+</li><li><h4 id="does-keygen-prevent-sharing-licenses-">Does Keygen prevent sharing licenses?</h4>
+<p>Yes! Keygen offers API endpoints to help you track user <a href="/docs/api#machines">machine usage</a>,
+and license policies can be configured to <code>strict</code>, invalidating licenses
+that go over any configured machine limit. You can also set license
+policies to <code>floating</code> to allow licenses to be valid across multiple
+machines.</p>
+</li><li><h4 id="does-keygen-prevent-cracking-">Does Keygen prevent cracking?</h4>
+<p>No. Keygen does nothing to prevent a user from removing your licensing
+logic altogether if they have access to your application&#39;s code. In
+the end, you will have to make the choice on how to deal with cracking
+by e.g. requiring a valid license for updates, requiring a licensed
+user-account for support requests, etc.</p>
+</li><li><h4 id="where-can-i-monitor-keygen-s-uptime-">Where can I monitor Keygen&#39;s uptime?</h4>
+<p>We strive to provide the highest uptime possible for our customers through
+a distributed system hosted on battle-test insfrastrucure. You can monitor
+uptime and average response time for each of Keygen&#39;s services from our
+<a href="https://status.keygen.sh">status page</a>.</p>
+</li><li><h4 id="is-data-within-keygen-secure-">Is data within Keygen secure?</h4>
+<p>Yes. We strive to ensure that the data stored within Keygen is as secure as
+possible. We never store passwords as plain text – they are always hashed
+and salted securely using <code>bcrypt</code>. We also do the same with all access
+tokens, and offer the ability to hash license keys as well. All network
+traffic is encrypted over TLS with at least 128-bit AES encryption. Have
+additional questions or concerns? <a href="mailto:security@keygen.sh">Get in touch</a>.</p>
+</li><li><h4 id="does-keygen-work-offline-">Does Keygen work offline?</h4>
+<p>Yes, but it requires manual work. Using Keygen&#39;s admin dashboard, you
+can manually create, check-in and verify licenses, allowing you to offer
+phone activation or a similar service. Alternatively, you could generate
+license keys using a private key and validate the key client-side using
+a public key derived from your private key. For automatic license validation
+and to track machine usage, Keygen will require an active (or periodic)
+internet connection.</p>
+</li><li><h4 id="does-keygen-handle-distribution-">Does Keygen handle distribution?</h4>
+<p>Yes! Using <a href="/distribution">Keygen Dist</a>, you can distribute your products
+to licensed users and even provide auto-updates using industry standard
+frameworks such as Sparkle, NSIS, Squirrel.Mac, Squirrel.Windows, and
+even updates for WordPress plugins and themes.</p>
+</li><li><h4 id="does-keygen-handle-payments-">Does Keygen handle payments?</h4>
+<p>No—only licensing. Since products handle payments in a variety of ways
+(and we don&#39;t want to become a payment platform), we have created a webhook
+system so that you can easily integrate your payment system with our API.
+Implementation is similar to how you would implement Stripe&#39;s webhook
+system. <a href="/docs/using-webhooks">Learn more about webhooks</a>.</p>
+</li><li><h4 id="do-you-offer-on-premise-api-plans-">Do you offer on-premise API plans?</h4>
+<p>Yes. We&#39;re very interested in talking with companies that would
+rather host our software licensing server in-house. <a href="mailto:sales@keygen.sh">Get in touch</a>.</p>
+</li><li><h4 id="can-i-use-keygen-for-an-ios-app-">Can I use Keygen for an iOS app?</h4>
+<p>Yes and no. Unfortunately, it isn&#39;t possible at this time to use Keygen
+for paid app-related licenses. <a href="https://developer.apple.com/app-store/review/guidelines/">Apple’s developer terms</a>
+require that purchases related to an app, such as premium content
+and add-ons are managed via their native <a href="https://developer.apple.com/in-app-purchase/">In-App Purchase API</a>.</p>
+</li><li><h4 id="can-i-use-keygen-for-an-android-app-">Can I use Keygen for an Android app?</h4>
+<p>Yes and no. If you&#39;re selling outside of the Google Play Store, then yes, you can
+use Keygen to handle licensing. But if you&#39;re selling within the Google Play Store,
+then unfortunately it isn&#39;t possible at this time to use Keygen for paid app-related
+licenses. <a href="https://play.google.com/about/developer-content-policy/">Google&#39;s developer policy</a>
+requires that purchases related to an app, such as premium features and
+add-ons are managed via their native <a href="https://developer.android.com/google/play/billing/api.html">In-App Billing API</a>.</p>
+</li></ul></div></section><footer class="footer"><section class="cta"><div class="cta__content"><h2>Ready to get started?</h2><h3>Get in touch, or sign up today.</h3><a class="button" href="/pricing" data-conversion="r_ssCOKoynMQw8CikwM">View Pricing</a><a class="button button--secondary" href="mailto:sales@keygen.sh" data-conversion="2CTlCI_m6XQQw8CikwM">Contact Sales</a></div></section><div class="footer__content">© 2018 Keygen – All Rights Reserved – hello@keygen.sh</div><ul class="footer__links"><li><a href="https://status.keygen.sh">Status</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li><li><a href="https://twitter.com/keygen_sh">Twitter</a></li></ul></footer></div><script src="/app.js"></script><script src="https://www.googleadservices.com/pagead/conversion_async.js"></script><script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script>window.intercomSettings = {
+  app_id: "zlzql92y"
+};</script><script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/zlzql92y';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script></body></html>

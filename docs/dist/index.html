@@ -1,0 +1,403 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="initial-scale=1"><title>Documentation - Keygen Dist</title><link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII" type="image/x-icon"><link rel="icon" href="/favicon-192x192.png" sizes="192x192"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link href="https://keygen.sh/media.jpg" rel="image_src"><meta content="Keygen - a dead-simple product and app licensing API built for developers" property="og:title"><meta content="https://keygen.sh/" property="og:url"><meta content="Keygen is a simple app and product licensing API, allowing developers to easily implement various licensing types into any online or desktop software product." property="og:description"><meta content="https://keygen.sh/media.jpg" property="og:image"><meta content="Keygen" property="og:site_name"><meta content="website" property="og:type"><link rel="stylesheet" href="/app.css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-86857020-1', 'auto');
+ga('send', 'pageview');</script></head><body><main class="ref" id="ref"><header class="ref__header"><div class="ref__sidebar-toggle" id="sidebar-toggle" onclick=""><i class="material-icons">menu</i></div><div class="ref__languages__wrapper"><div class="ref__languages"><button class="ref__languages__language" type="button" data-lang="bash" data-default-lang="bash">Shell</button></div></div></header><nav class="ref__sidebar"><div class="ref__sidebar__logo"><a class="logo" href="/"><canvas class="logo__logomark" width="64" height="64"></canvas><span class="logo__logotype effect--shuffle">Keygen</span><span class="logo__tagline">Dist</span></a></div><div class="ref__sidebar__content"><div class="ref__sidebar__section"><h5>Introduction</h5><ul class="ref__sidebar__list"><li class="ref__sidebar__item"><a href="#introduction" data-target="introduction">Introduction</a></li></ul></div><div class="ref__sidebar__section"><h5>Topics</h5><ul class="ref__sidebar__list"><li class="ref__sidebar__item"><a href="#versioning" data-target="versioning">API Versioning</a></li><li class="ref__sidebar__item"><a href="#distribution" data-target="distribution">Download Links</a></li><li class="ref__sidebar__item"><a href="#auto-updates" data-target="auto-updates">Auto Updates</a></li><li class="ref__sidebar__item"><a href="#proxy" data-target="proxy">Proxy Server</a></li><li class="ref__sidebar__item"><a href="#storage" data-target="storage">Storage</a></li><li class="ref__sidebar__item"><a href="#semver" data-target="semver">SemVer</a></li></ul></div><div class="ref__sidebar__section"><h5>Resources</h5><ul class="ref__sidebar__list"><li class="ref__sidebar__item"><a href="#platforms" data-target="platforms">Platforms</a><ul class="ref__sidebar__sublist"><li class="ref__sidebar__subitem"><a href="#platforms-object" data-target="platforms-object">The platform object</a></li><li class="ref__sidebar__subitem"><a href="#platforms-list" data-target="platforms-list">List all platforms</a></li></ul></li><li class="ref__sidebar__item"><a href="#releases" data-target="releases">Releases</a><ul class="ref__sidebar__sublist"><li class="ref__sidebar__subitem"><a href="#releases-object" data-target="releases-object">The release object</a></li><li class="ref__sidebar__subitem"><a href="#releases-create" data-target="releases-create">Create a new release</a></li><li class="ref__sidebar__subitem"><a href="#releases-delete" data-target="releases-delete">Delete a release</a></li><li class="ref__sidebar__subitem"><a href="#releases-list" data-target="releases-list">List all releases</a></li><li class="ref__sidebar__subitem"><a href="#releases-download" data-target="releases-download">Download a release</a></li><li class="ref__sidebar__subitem"><a href="#releases-update" data-target="releases-update">Download an update</a></li><li class="ref__sidebar__subitem"><a href="#releases-latest" data-target="releases-latest">Download latest</a></li></ul></li></ul></div><div class="ref__sidebar__section"><h5>Licensing API</h5><ul class="ref__sidebar__list"><li class="ref__sidebar__item"><a href="/docs/api">API Reference</a></li></ul></div><div class="ref__sidebar__section"><h5>Account</h5><ul class="ref__sidebar__list"><li class="ref__sidebar__item"><a href="https://app.keygen.sh">Dashboard</a></li></ul></div></div></nav><div class="ref__background"></div><div class="ref__content"><section class="topic" id="introduction"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#introduction" data-target="introduction"><i class="material-icons">link</i></a>Keygen Dist</h1><p>The Keygen Dist API is a hosted distribution server for your Keygen products. All
+requests <strong>must</strong> be made over TLS/SSL. In addition, all request and response bodies,
+including errors, are encoded in <strong>JSON</strong> format, with the exception of delivering
+actual release files which are delivered as raw files (i.e. the content type will
+be determined from the uploaded file).</p>
+<p>The API has predictable, resource-oriented URLs, and uses standard HTTP response
+codes to indicate API errors. We use built-in HTTP features, like authentication
+and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support
+cross-origin resource sharing, allowing you to interact securely with our API
+from any client-facing software application.</p>
+</div><article class="article" id="pre-populated-examples"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#pre-populated-examples" data-target="pre-populated-examples"><i class="material-icons">link</i></a>Pre-populated Examples</h2><p>Your authentication token is pre-populated in all the examples on this page
+if you&#39;re currently logged in to <a href="https://app.keygen.sh">your dashboard</a>,
+so you can test any example right away. <strong>Only you can see these values.</strong></p>
+<div class="notice notice--warning">
+  <strong>The pre-populated token is an admin token and is not meant to be used
+  in client-facing code, stored in version control, and so forth.</strong> <a href="/docs/api#security">Read
+  more on security</a>.
+</div></div></article></section><section class="topic" id="versioning"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#versioning" data-target="versioning"><i class="material-icons">link</i></a>API Versioning</h1><p>When we introduce breaking changes to the API, we will release a new numbered
+version, e.g. we will go from <code>v1</code> to <code>v2</code>. The current version is <code>v1</code>. All
+changes will be detailed within our <a href="/changelog">changelog</a>.</p>
+</div><article class="article" id="api-stability"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#api-stability" data-target="api-stability"><i class="material-icons">link</i></a>API Stability</h2><p>We <strong>will not</strong> introduce breaking changes into the API without bumping the
+current version. You can rest assured that the endpoints you&#39;re utilizing
+within your product are <em>stable</em>.</p>
+<div class="notice notice--tip">
+  Keep in mind that stable <strong>does not</strong> mean complete. We could potentially add
+  new endpoints, but existing endpoints will remain unchanged.
+</div>
+</div></article><article class="article" id="backwards-compatibility"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#backwards-compatibility" data-target="backwards-compatibility"><i class="material-icons">link</i></a>Backwards Compatibility</h2><p>What do we consider to be “backwards-compatible” changes?</p>
+<ul>
+<li>Adding new API endpoints</li>
+<li>Adding new optional request parameters to existing API endpoints</li>
+</ul>
+</div></article></section><section class="topic" id="distribution"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#distribution" data-target="distribution"><i class="material-icons">link</i></a>Distribution</h1></div><article class="article"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#distribution-links" data-target="distribution-links"><i class="material-icons">link</i></a>Download Links</h3><p>All releases are gated with license validation; meaning, when providing download
+URLs to your users, you <strong>must</strong> provide a valid license key within the request
+or the request will be rejected.</p>
+<p>For example, you may choose to email the user a download link after they purchase
+your product. You should include their new license key as a query parameter
+within the URL.</p>
+<p>The download URL will remain accessible for as long as the license is valid.</p>
+</div><div class="example__wrapper"><div class="example"><h4>Example Download URL</h4><pre><code class="no-highlight">https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/latest/macos/dmg?key=bbec-988f-b52f-5188</code></pre></div></div></article></section><section class="topic" id="auto-updates"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#auto-updates" data-target="auto-updates"><i class="material-icons">link</i></a>Auto Updates</h1><p>The <a href="#releases-update">update endpoint</a> is compatible with Squirrel.Mac,
+NSIS, Sparkle, WordPress for plugin and theme updates, as well as any
+other auto-update system or framework that needs to determine if an
+update is available from the current version number.</p>
+</div><article class="article"><div class="description"><h3 class="anchor__wrapper article__heading"><a class="anchor" href="#auto-updates-electron-example" data-target="auto-updates-electron-example"><i class="material-icons">link</i></a>Example for Electron</h3><p>In addition to what we&#39;ve covered in the distribution section above, if you&#39;re
+providing auto-updates, you&#39;ll also want to make sure to include a license key
+for updates or the request will be rejected.</p>
+<h3 class="anchor__wrapper article__heading"><a class="anchor" href="#auto-updates-other-examples" data-target="auto-updates-other-examples"><i class="material-icons">link</i></a>Other Examples</h3><p>If you&#39;d like to see examples for another framework or in another
+language, <a href="mailto:hello@keygen.sh">please let us know</a>.</p>
+<h3 class="anchor__wrapper article__heading"><a class="anchor" href="#auto-updates-squirrel-windows" data-target="auto-updates-squirrel-windows"><i class="material-icons">link</i></a>Notes for Squirrel.Windows</h3><p>When uploading releases for <a href="https://github.com/Squirrel/Squirrel.Windows">Squirrel.Windows</a>,
+please ensure that the release files within your <code>RELEASES</code> file are <strong>relative
+paths</strong>, not URLs. Keygen Dist will automatically rewrite your release file paths
+to include the provided licensing information (passed via query parameters).</p>
+<p>For example, given a <code>RELEASES</code> file like below,</p>
+<pre><code class="lang-plain">0XFF… your-app-1.0.0-full.nupkg 0123
+0XFF… your-app-2.0.0-delta.nupkg 0123
+0XFF… your-app-2.0.0-full.nupkg 0123
+</code></pre>
+<p>When requested like so,</p>
+<pre><code class="lang-plain">GET https://dist.keygen.sh/v1/&lt;%= account %&gt;/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/win32/RELEASES?key=foobar
+</code></pre>
+<p>The <code>RELEASES</code> file&#39;s contents will automatically be rewritten to,</p>
+<pre><code class="lang-plain">0XFF… https://dist.keygen.sh/v1/&lt;%= account %&gt;/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/win32/your-app-1.0.0-full.nupkg?key=foobar 0123
+0XFF… https://dist.keygen.sh/v1/&lt;%= account %&gt;/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/win32/your-app-2.0.0-delta.nupkg?key=foobar 0123
+0XFF… https://dist.keygen.sh/v1/&lt;%= account %&gt;/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/win32/your-app-2.0.0-full.nupkg?key=foobar 0123
+</code></pre>
+<p>If you wish to opt out of the rewrite behavior, you may supply URLs instead of
+paths for your release files. For example,</p>
+<pre><code class="lang-plain">0XFF… https://dist.example.com/download/win32/your-app-1.0.0-full.nupkg 0123
+0XFF… https://dist.example.com/download/win32/your-app-2.0.0-delta.nupkg 0123
+0XFF… https://dist.example.com/download/win32/your-app-2.0.0-full.nupkg 0123
+</code></pre>
+<div class="notice notice--warning">
+  <strong>Please be aware that there is a 5MB transfer limit for any <code>RELEASES</code> file.</strong>
+  This should not be an issue given a plaintext <code>RELEASES</code> file (which is what
+  it should be), but you may not receive the entire file if it is of another
+  filetype e.g. a zip file, binary file, etc.
+</div>
+</div><div class="example__wrapper"><div class="example"><h4>Example Electron Updater</h4><pre><code class="javascript">const { app, autoUpdater } = require('electron')
+const { platform } = process
+
+const licenseKey = getLicenseKeyForCurrentUser()
+const version = app.getVersion()
+
+const distUrl = `https://dist.keygen.sh/v1/${KEYGEN_ACCOUNT_ID}/${KEYGEN_PRODUCT_ID}`
+let feedUrl
+
+switch (platform) {
+  case 'darwin': // Squirrel.Mac expects a JSON response pointing to the newest version (if available)
+    feedUrl = `${distUrl}/update/${platform}/zip/${version}?key=${licenseKey}`
+    break
+  case 'win32': // Squirrel.Windows expects a base URL which it will use to request your RELEASES file
+    feedUrl = `${distUrl}/releases/${platform}?key=${licenseKey}`
+    break
+}
+
+if (feedUrl) {
+  autoUpdater.setFeedURL(feedUrl)
+  autoUpdater.checkForUpdates()
+}</code></pre></div></div></article></section><section class="topic" id="proxy"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#proxy" data-target="proxy"><i class="material-icons">link</i></a>Proxy Server</h1><p>If you would rather deliver releases over your own domain, you can run
+a proxy server. We have an <a href="https://github.com/keygen-sh/example-dist-proxy">example Node.js proxy server</a>
+available for reference which utilizes this API.</p>
+<p>The Node.js proxy server supports the following endpoints:</p>
+<ul>
+<li><a href="#releases-update"><code>/update/:platform/:extension/:version?license=:key</code></a></li>
+<li><a href="#releases-latest"><code>/latest/:platform/:extension?license=:key</code></a></li>
+<li><a href="#releases-download"><code>/download/:platform/:file?license=:key</code></a></li>
+</ul>
+</div></section><section class="topic" id="storage"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#storage" data-target="storage"><i class="material-icons">link</i></a>Storage</h1><p>Each release has a &quot;platform&quot; and a &quot;key&quot; (i.e. the release&#39;s filename and
+path). Release keys uniquely identify a release for a particular platform.
+The &quot;platform&quot; is a way to scope like-named releases i.e. <code>windows/v1.3.zip</code>
+and <code>macos/v1.3.zip</code> to avoid collisions, and to keep things tidy.</p>
+</div><article class="article" id="file-system"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#file-system" data-target="file-system"><i class="material-icons">link</i></a>Flat File-System</h2><p><strong>Note that the Keygen Dist file-system is a flat structure:</strong> you can
+create releases for any &quot;platform&quot; and may use keys that include the
+&quot;<code>/</code>&quot; delimiter (commonly used within file paths), but there is no
+actual hierarchy of sub-directories</p>
+<p>You can infer logical hierarchy using key &quot;prefixes&quot; and the &quot;<code>/</code>&quot; delimiter
+to give the illusion and functionality of a file-system with sub-directories
+for maximum compatibility with distribution systems which rely on a particular
+hierarchy e.g., Squirrel.Windows, Sparkle, RubyGems, or Composer.</p>
+<p>For example, the following are all valid release keys (including
+the platform for clarity):</p>
+<pre><code class="lang-plain">win32/Releases/MyApp-1.0.0-full.nupkg
+win32/Releases/MyApp-1.1.0-full.nupkg
+win32/Releases/MyApp-1.1.0-delta.nupkg
+win32/Releases/Setup.exe
+win32/Releases/Setup.msi
+win32/Releases/RELEASES
+darwin/.notes/CHANGELOG.md
+darwin/v1.0.0.zip
+darwin/v1.0.0.dmg
+darwin/v1.1.0.zip
+darwin/v1.1.0.dmg
+</code></pre>
+<p>Note that the releases for the <code>darwin</code> platform are all placed within
+the root &quot;directory&quot;, while the releases for the <code>win32</code> platform use
+a sub-directory hierarchy. The above releases are accessible at the
+following URIs:</p>
+<pre><code class="lang-plain">/v1/{ACCOUNT}/{PRODUCT}/win32/Releases/MyApp-1.0.0-full.nupkg
+/v1/{ACCOUNT}/{PRODUCT}/win32/Releases/MyApp-1.1.0-full.nupkg
+/v1/{ACCOUNT}/{PRODUCT}/win32/Releases/MyApp-1.1.0-delta.nupkg
+/v1/{ACCOUNT}/{PRODUCT}/win32/Releases/Setup.exe
+/v1/{ACCOUNT}/{PRODUCT}/win32/Releases/Setup.msi
+/v1/{ACCOUNT}/{PRODUCT}/win32/Releases/RELEASES
+/v1/{ACCOUNT}/{PRODUCT}/darwin/.notes/CHANGELOG.md
+/v1/{ACCOUNT}/{PRODUCT}/darwin/v1.0.0.zip
+/v1/{ACCOUNT}/{PRODUCT}/darwin/v1.0.0.dmg
+/v1/{ACCOUNT}/{PRODUCT}/darwin/v1.1.0.zip
+/v1/{ACCOUNT}/{PRODUCT}/darwin/v1.1.0.dmg
+</code></pre>
+<p>But the following URIs are <strong>not</strong> accessible (because e.g. a release with
+the key <code>Releases</code> does not exist, as our file-system is flat i.e. it has
+no concept of &quot;sub-directories&quot; or partial key matches):</p>
+<pre><code class="lang-plain">/v1/{ACCOUNT}/{PRODUCT}/win32/Releases
+/v1/{ACCOUNT}/{PRODUCT}/darwin/.notes
+</code></pre>
+</div></article><article class="article" id="safe-characters"><div class="content"><h2 class="anchor__wrapper article__heading"><a class="anchor" href="#safe-characters" data-target="safe-characters"><i class="material-icons">link</i></a>Safe Characters</h2><p>The following character sets are generally safe for use in release
+keys:</p>
+<ul>
+<li><strong>Alphanumeric characters:</strong> <code>[0-9a-zA-Z]</code></li>
+<li><strong>Special characters:</strong> <code>/</code>, <code>!</code>, <code>-</code>, <code>_</code>, <code>.</code>, <code>*</code>, <code>&#39;</code>, <code>(</code>, and <code>)</code></li>
+</ul>
+<p>And the following characters are <strong>not</strong> safe for use (or iffy at best):</p>
+<ul>
+<li><strong>Restricted characters:</strong> &quot; &quot; (space character), <code>%</code>, <code>?</code>, <code>&amp;</code>, and other non-URL friendly characters</li>
+</ul>
+<p>Please be sure to follow these guidelines, as while your links may work
+for one platform, it may not work on another if you choose to deviate
+into using any restricted characters.</p>
+</div></article></section><section class="topic" id="semver"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#semver" data-target="semver"><i class="material-icons">link</i></a>Semantic Versioning</h1><p><strong><a href="http://semver.org/">Semantic Versioning</a> (SemVer) naming conventions are required
+in order to utilize certain endpoints.</strong> This is because there is no way for us
+to support arbitrary version naming conventions, so we have chosen to only
+support SemVer. All SemVer release files must reside within the top-level root
+directory <code>/</code>; releases within sub-directories will not be used.</p>
+<div class="notice notice--warning">
+  <strong>SemVer release keys may not contain any prefixes/suffixes, aside from a file
+  extension,</strong> e.g. <code>Cool Product-1.3.0-macOS.dmg</code>, <code>/directory/1.4.dmg</code>; the
+  filename <strong>must</strong> only contain the version, with an optional <code>v</code> prefix e.g.
+  <code>v1.0.zip</code>, <code>2.3.19.zip</code>, etc.
+</div>
+
+<p>The following endpoints require these conventions:</p>
+<ul>
+<li><a href="#releases-update">Downloading an update</a></li>
+<li><a href="#releases-latest">Downloading latest</a></li>
+</ul>
+<p>But please note that these restrictions are scoped per-platform and file-extension,
+so you may e.g. choose to use SemVer for your macOS releases in order to support
+updates using Squirrel.Mac, but not use SemVer naming conventions for your Windows
+releases in order to support the file structure required for providing updates
+using Squirrel.Windows.</p>
+</div></section><section class="resource" id="platforms"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#platforms" data-target="platforms"><i class="material-icons">link</i></a>Platforms</h1></div><article class="object" id="platforms-object"><div class="description"><h2 class="anchor__wrapper object__heading"><a class="anchor" href="#platforms-object" data-target="platforms-object"><i class="material-icons">link</i></a>The platform object</h2><p>Below you will find the various attributes for the platform resource.</p>
+</div><div class="attributes" id="platforms-object-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#platforms-object-attrs" data-target="platforms-object-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="platforms-object-attrs-name"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#platforms-object-attrs-name" data-target="platforms-object-attrs-name"><i class="material-icons">link</i></a>name</h3><span class="attribute__type">string</span><p class="attribute__desc">The platform name. </p></div></li></ul></div><div class="example__wrapper"><div class="example"><h4>Example object</h4><pre><code class="json">{
+  "data": {
+    "type": "platforms",
+    "id": "ebaa3498-0202-40d8-1908-ab208c075806",
+    "attributes": {
+      "name": "windows"
+    }
+  }
+}
+</code></pre></div></div></article><article class="method" id="platforms-list"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#platforms-list" data-target="platforms-list"><i class="material-icons">link</i></a>List platforms</h2><p>List all platforms for the given product.</p>
+</div><div class="authentications" id="platforms-list-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#platforms-list-auths" data-target="platforms-list-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="platforms-list-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#platforms-list-auths-bearer" data-target="platforms-list-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with privileges to manage the resource: either an admin or the product.</p></div></li></ul></div><div class="parameters" id="platforms-list-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#platforms-list-params" data-target="platforms-list-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="platforms-list-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#platforms-list-params-account" data-target="platforms-list-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="platforms-list-params-product"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#platforms-list-params-product" data-target="platforms-list-params-product"><i class="material-icons">link</i></a>product</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the product the release is for.</p></div></li><li class="parameter"><div class="parameter__info" id="platforms-list-params-platform"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#platforms-list-params-platform" data-target="platforms-list-params-platform"><i class="material-icons">link</i></a>platform</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The platform name.</p></div></li></ul></div><div class="returns" id="platforms-list-returns"><h4 class="anchor__wrapper returns__heading"><a class="anchor" href="#platforms-list-returns" data-target="platforms-list-returns"><i class="material-icons">link</i></a>Returns</h4><div class="returns__content"><p>A list of all platforms for the given product along with a <code>200 OK</code> status.</p>
+</div></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="no-highlight" data-method="GET">https://dist.keygen.sh/v1/{ACCOUNT}/{PRODUCT}/platforms
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example requests</h4><pre><code class="bash" data-lang="bash">curl https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/platforms \
+  -H "Authorization: Bearer <%= token %>"
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
+  "data": [
+    {
+      "type": "platforms",
+      "id": "d8bfff5d-fce3-408b-4759-aae8d06d0108",
+      "attributes": {
+        "name": "linux"
+      }
+    },
+    …
+  ]
+}</code></pre></div></div></article></section><section class="resource" id="releases"><div class="resource__content"><h1 class="anchor__wrapper resource__heading"><a class="anchor" href="#releases" data-target="releases"><i class="material-icons">link</i></a>Releases</h1></div><article class="object" id="releases-object"><div class="description"><h2 class="anchor__wrapper object__heading"><a class="anchor" href="#releases-object" data-target="releases-object"><i class="material-icons">link</i></a>The release object</h2><p>Below you will find the various attributes for the release resource. Accessing
+a release directly i.e. a release&#39;s <code>url</code> will download the actual release
+file that was uploaded.</p>
+</div><div class="attributes" id="releases-object-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#releases-object-attrs" data-target="releases-object-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="releases-object-attrs-url"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#releases-object-attrs-url" data-target="releases-object-attrs-url"><i class="material-icons">link</i></a>url</h3><span class="attribute__type">string</span><p class="attribute__desc">The URL to download the release.</p></div></li><li class="attribute"><div class="attribute__info" id="releases-object-attrs-key"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#releases-object-attrs-key" data-target="releases-object-attrs-key"><i class="material-icons">link</i></a>key</h3><span class="attribute__type">string</span><p class="attribute__desc">The key i.e. filename and path for the release.</p></div></li><li class="attribute"><div class="attribute__info" id="releases-object-attrs-platform"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#releases-object-attrs-platform" data-target="releases-object-attrs-platform"><i class="material-icons">link</i></a>platform</h3><span class="attribute__type">string</span><p class="attribute__desc">The platform the release is for. </p></div></li><li class="attribute"><div class="attribute__info" id="releases-object-attrs-checksum"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#releases-object-attrs-checksum" data-target="releases-object-attrs-checksum"><i class="material-icons">link</i></a>checksum</h3><span class="attribute__type">string</span><p class="attribute__desc">The MD5 checksum of the release. </p></div></li><li class="attribute"><div class="attribute__info" id="releases-object-attrs-filesize"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#releases-object-attrs-filesize" data-target="releases-object-attrs-filesize"><i class="material-icons">link</i></a>filesize</h3><span class="attribute__type">integer</span><p class="attribute__desc">The size of the release in bytes. </p></div></li></ul></div><div class="example__wrapper"><div class="example"><h4>Example object</h4><pre><code class="json">{
+  "data": {
+    "type": "releases",
+    "id": "90afc0d2-7343-40f8-abdd-07aed3d6d22b",
+    "attributes": {
+      "url": "https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/1.9.1.zip",
+      "checksum": "487fa2f58bc9ada4dc90e0b3c781f1b5",
+      "filesize": 45095551,
+      "key": "1.9.1.zip",
+      "platform": "macos"
+    }
+  }
+}
+</code></pre></div></div></article><article class="method" id="releases-create"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#releases-create" data-target="releases-create"><i class="material-icons">link</i></a>Create a release</h2><p>Create and upload a new release. This will overwrite any release that
+already exists that shares the same destination.</p>
+<div class="notice notice--tip">
+  <strong>In addition to creating releases through the Keygen Dist API, you can
+  also manage releases for your products from your <a href="https://app.keygen.sh">admin dashboard</a></strong>.
+  Simply navigate to a product page and upload your releases using the
+  provided form.
+</div>
+</div><div class="authentications" id="releases-create-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#releases-create-auths" data-target="releases-create-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="releases-create-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#releases-create-auths-bearer" data-target="releases-create-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with privileges to manage the resource: either an admin or the product.</p></div></li></ul></div><div class="parameters" id="releases-create-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#releases-create-params" data-target="releases-create-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="releases-create-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-create-params-account" data-target="releases-create-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-create-params-product"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-create-params-product" data-target="releases-create-params-product"><i class="material-icons">link</i></a>product</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the product the release is for.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-create-params-platform"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-create-params-platform" data-target="releases-create-params-platform"><i class="material-icons">link</i></a>platform</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The platform the release is for. This can be an arbitrary string.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-create-params-release"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-create-params-release" data-target="releases-create-params-release"><i class="material-icons">link</i></a>release</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The key i.e. path and filename of the new release. This may include one or more &quot;sub-directories&quot;.</p></div></li></ul></div><div class="returns" id="releases-create-returns"><h4 class="anchor__wrapper returns__heading"><a class="anchor" href="#releases-create-returns" data-target="releases-create-returns"><i class="material-icons">link</i></a>Returns</h4><div class="returns__content"><p>Upon successful upload, the request will respond with <code>204 No Content</code>.</p>
+</div></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="no-highlight" data-method="PUT">https://dist.keygen.sh/v1/{ACCOUNT}/{PRODUCT}/releases/{PLATFORM}/{RELEASE}
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl -X PUT https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.0.0.zip \
+  -H "Authorization: Bearer <%= token %>" \
+  -F "file=@dist/v1.0.0.zip"
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 204 No Content</h4><pre><code class="no-highlight">No content
+</code></pre></div></div></article><article class="method" id="releases-delete"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#releases-delete" data-target="releases-delete"><i class="material-icons">link</i></a>Delete a release</h2><p>Permanently delete a release. It cannot be undone. All existing download links
+for the release will cease to function.</p>
+</div><div class="authentications" id="releases-delete-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#releases-delete-auths" data-target="releases-delete-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="releases-delete-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#releases-delete-auths-bearer" data-target="releases-delete-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with privileges to manage the resource: either an admin or the product.</p></div></li></ul></div><div class="parameters" id="releases-delete-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#releases-delete-params" data-target="releases-delete-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="releases-delete-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-delete-params-account" data-target="releases-delete-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-delete-params-product"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-delete-params-product" data-target="releases-delete-params-product"><i class="material-icons">link</i></a>product</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the product the release is for.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-delete-params-platform"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-delete-params-platform" data-target="releases-delete-params-platform"><i class="material-icons">link</i></a>platform</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The platform to scope releases to.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-delete-params-release"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-delete-params-release" data-target="releases-delete-params-release"><i class="material-icons">link</i></a>release</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The key i.e. path and filename of the release to delete.</p></div></li></ul></div><div class="returns" id="releases-delete-returns"><h4 class="anchor__wrapper returns__heading"><a class="anchor" href="#releases-delete-returns" data-target="releases-delete-returns"><i class="material-icons">link</i></a>Returns</h4><div class="returns__content"><p>Upon successful deletion, the request will respond with <code>204 No Content</code>.</p>
+</div></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="no-highlight" data-method="DELETE">https://dist.keygen.sh/v1/{ACCOUNT}/{PRODUCT}/releases/{PLATFORM}/{RELEASE}
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl -X DELETE https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/windows/v1.0.0.zip \
+  -H "Authorization: Bearer <%= token %>"
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 204 No Content</h4><pre><code class="no-highlight">No content
+</code></pre></div></div></article><article class="method" id="releases-list"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#releases-list" data-target="releases-list"><i class="material-icons">link</i></a>List releases</h2><p>List all releases for the given product. A valid license key <strong>must</strong> be
+specified to list releases. The request will be rejected for licenses that
+do not pass validation, and an error will be returned detailing the reason
+for the validation failure.</p>
+</div><div class="authentications" id="releases-list-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#releases-list-auths" data-target="releases-list-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="releases-list-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#releases-list-auths-bearer" data-target="releases-list-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><p class="authentication__desc">To bypass license validation, an authentication token with privileges to manage the resource may be supplied; either an admin or a token that belongs to the product. If a bearer token is not supplied, at a minimum a license key is required to process the request.</p></div></li><li class="authentication"><div class="authentication__info" id="releases-list-auths-basic"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#releases-list-auths-basic" data-target="releases-list-auths-basic"><i class="material-icons">link</i></a>Basic</h3><p class="authentication__desc">Instead of supplying a license key and an optional machine fingerprint as query parameters, you may supply a license key and an optional machine fingerprint as the username and password, respectively, via basic authentication. This is useful for distribution methods that do not accept query parameters, for example, a Rubygems server. Note that when using this method, the license key cannot contain the ':' character.</p></div></li></ul></div><div class="parameters" id="releases-list-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#releases-list-params" data-target="releases-list-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="releases-list-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-list-params-account" data-target="releases-list-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-list-params-product"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-list-params-product" data-target="releases-list-params-product"><i class="material-icons">link</i></a>product</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the product the release is for.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-list-params-platform"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-list-params-platform" data-target="releases-list-params-platform"><i class="material-icons">link</i></a>platform</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The platform to scope releases to.</p></div></li></ul></div><div class="parameters" id="releases-list-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#releases-list-params" data-target="releases-list-params"><i class="material-icons">link</i></a>Query Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="releases-list-params-key"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-list-params-key" data-target="releases-list-params-key"><i class="material-icons">link</i></a>key</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The license key to validate.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-list-params-encrypted"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-list-params-encrypted" data-target="releases-list-params-encrypted"><i class="material-icons">link</i></a>encrypted</h3><span class="parameter__type">boolean</span><span class="parameter__req">, optional</span><span class="parameter__default">, default is<code>false</code></span><p class="parameter__desc">Whether the license implements an encrypted policy. Encrypted licenses will fail validation unless this is specified.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-list-params-fingerprint"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-list-params-fingerprint" data-target="releases-list-params-fingerprint"><i class="material-icons">link</i></a>fingerprint</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><p class="parameter__desc">The machine fingerprint to scope the license validation to.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-list-params-machine"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-list-params-machine" data-target="releases-list-params-machine"><i class="material-icons">link</i></a>machine</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><p class="parameter__desc">The machine identifier (UUID) to scope the license validation to.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-list-params-policy"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-list-params-policy" data-target="releases-list-params-policy"><i class="material-icons">link</i></a>policy</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><p class="parameter__desc">The policy identifier (UUID) to scope the license validation to.</p></div></li></ul></div><div class="returns" id="releases-list-returns"><h4 class="anchor__wrapper returns__heading"><a class="anchor" href="#releases-list-returns" data-target="releases-list-returns"><i class="material-icons">link</i></a>Returns</h4><div class="returns__content"><p>A list of all releases for the given product along with a <code>200 OK</code> status.</p>
+</div></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="no-highlight" data-method="GET">https://dist.keygen.sh/v1/{ACCOUNT}/{PRODUCT}/releases/{PLATFORM}
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example requests</h4><pre><code class="bash" data-lang="bash"># Using bearer authentication
+curl https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/linux \
+  -H "Authorization: Bearer <%= token %>"
+
+# Using basic authentication
+curl https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/linux \
+  -u "bbec-988f-b52f-5188:"
+
+# Using query parameters
+curl https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/linux?key=bbec-988f-b52f-5188
+
+# or…
+curl -G https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/linux \
+  -d "key=bbec-988f-b52f-5188"
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
+  "data": [
+    {
+      "type": "releases",
+      "id": "90afc0d2-7343-40f8-abdd-07aed3d6d22b",
+      "attributes": {
+        "url": "https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/linux/1.9.1.zip",
+        "checksum": "6f5902ac237024bdd0c176cb93063dc4",
+        "filesize": 41082597,
+        "key": "1.9.1.zip",
+        "platform": "linux"
+      }
+    },
+    …
+  ]
+}
+</code></pre></div></div></article><article class="method" id="releases-download"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#releases-download" data-target="releases-download"><i class="material-icons">link</i></a>Download a release</h2><p>Download a release. A valid license key <strong>must</strong> be specified to download a
+release. The download request will be rejected for licenses that do not
+pass validation, and an error will be returned detailing the reason for
+the validation failure.</p>
+</div><div class="authentications" id="releases-download-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#releases-download-auths" data-target="releases-download-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="releases-download-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#releases-download-auths-bearer" data-target="releases-download-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><p class="authentication__desc">To bypass license validation, an authentication token with privileges to manage the resource may be supplied; either an admin or a token that belongs to the product. If a bearer token is not supplied, at a minimum a license key is required to process the request.</p></div></li><li class="authentication"><div class="authentication__info" id="releases-download-auths-basic"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#releases-download-auths-basic" data-target="releases-download-auths-basic"><i class="material-icons">link</i></a>Basic</h3><p class="authentication__desc">Instead of supplying a license key and an optional machine fingerprint as query parameters, you may supply a license key and an optional machine fingerprint as the username and password, respectively, via basic authentication. This is useful for distribution methods that do not accept query parameters, for example, a Rubygems server. Note that when using this method, the license key cannot contain the ':' character.</p></div></li></ul></div><div class="parameters" id="releases-download-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#releases-download-params" data-target="releases-download-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="releases-download-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-download-params-account" data-target="releases-download-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-download-params-product"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-download-params-product" data-target="releases-download-params-product"><i class="material-icons">link</i></a>product</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the product the release is for.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-download-params-platform"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-download-params-platform" data-target="releases-download-params-platform"><i class="material-icons">link</i></a>platform</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The platform to scope releases to.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-download-params-release"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-download-params-release" data-target="releases-download-params-release"><i class="material-icons">link</i></a>release</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The key i.e. path and filename of the release to delete.</p></div></li></ul></div><div class="parameters" id="releases-download-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#releases-download-params" data-target="releases-download-params"><i class="material-icons">link</i></a>Query Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="releases-download-params-key"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-download-params-key" data-target="releases-download-params-key"><i class="material-icons">link</i></a>key</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The license key to validate.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-download-params-encrypted"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-download-params-encrypted" data-target="releases-download-params-encrypted"><i class="material-icons">link</i></a>encrypted</h3><span class="parameter__type">boolean</span><span class="parameter__req">, optional</span><span class="parameter__default">, default is<code>false</code></span><p class="parameter__desc">Whether the license implements an encrypted policy. Encrypted licenses will fail validation unless this is specified.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-download-params-fingerprint"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-download-params-fingerprint" data-target="releases-download-params-fingerprint"><i class="material-icons">link</i></a>fingerprint</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><p class="parameter__desc">The machine fingerprint to scope the license validation to.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-download-params-machine"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-download-params-machine" data-target="releases-download-params-machine"><i class="material-icons">link</i></a>machine</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><p class="parameter__desc">The machine identifier (UUID) to scope the license validation to.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-download-params-policy"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-download-params-policy" data-target="releases-download-params-policy"><i class="material-icons">link</i></a>policy</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><p class="parameter__desc">The policy identifier (UUID) to scope the license validation to.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-download-params-checksum"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-download-params-checksum" data-target="releases-download-params-checksum"><i class="material-icons">link</i></a>checksum</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><p class="parameter__desc">The expected MD5 integrity checksum.</p></div></li></ul></div><div class="returns" id="releases-download-returns"><h4 class="anchor__wrapper returns__heading"><a class="anchor" href="#releases-download-returns" data-target="releases-download-returns"><i class="material-icons">link</i></a>Returns</h4><div class="returns__content"><p>A <code>200 OK</code> response will be returned along with the requested release.</p>
+</div></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="no-highlight" data-method="GET">https://dist.keygen.sh/v1/{ACCOUNT}/{PRODUCT}/releases/{PLATFORM}/{RELEASE}
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example requests</h4><pre><code class="bash" data-lang="bash"># Using bearer authentication
+curl https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.0.0.zip \
+  -H "Authorization: Bearer <%= token %>" \
+  -o "v1.0.0.zip"
+
+# Using basic authentication
+curl https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.0.0.zip \
+  -u "bbec-988f-b52f-5188:" \
+  -o "v1.0.0.zip"
+
+# Using query parameters
+curl https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.0.0.zip?key=bbec-988f-b52f-5188 \
+  -o "v1.0.0.zip"
+
+# or…
+curl -G https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.0.0.zip \
+  -d "key=bbec-988f-b52f-5188" \
+  -o "v1.0.0.zip"
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="no-highlight">The requested release
+</code></pre></div></div></article><article class="method" id="releases-update"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#releases-update" data-target="releases-update"><i class="material-icons">link</i></a>Download an update</h2><p>Download an update. A valid license key <strong>must</strong> be specified to download
+an update. The download request will be rejected for licenses that do not
+pass validation, and an error will be returned detailing the reason for
+the validation failure. This endpoint will only look in the top-level
+root directory <code>/</code> for releases files.</p>
+<div class="notice notice--warning">
+  In order to utilize this endpoint, all release keys <strong>must</strong> follow
+  <a href="#semver">SemVer</a> for the requested file extension. If any release
+  key does not follow SemVer naming conventions, the update request
+  will fail with a <code>422</code> error.
+</div>
+</div><div class="authentications" id="releases-update-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#releases-update-auths" data-target="releases-update-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="releases-update-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#releases-update-auths-bearer" data-target="releases-update-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><p class="authentication__desc">To bypass license validation, an authentication token with privileges to manage the resource may be supplied; either an admin or a token that belongs to the product. If a bearer token is not supplied, at a minimum a license key is required to process the request.</p></div></li><li class="authentication"><div class="authentication__info" id="releases-update-auths-basic"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#releases-update-auths-basic" data-target="releases-update-auths-basic"><i class="material-icons">link</i></a>Basic</h3><p class="authentication__desc">Instead of supplying a license key and an optional machine fingerprint as query parameters, you may supply a license key and an optional machine fingerprint as the username and password, respectively, via basic authentication. This is useful for distribution methods that do not accept query parameters, for example, a Rubygems server. Note that when using this method, the license key cannot contain the ':' character.</p></div></li></ul></div><div class="parameters" id="releases-update-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#releases-update-params" data-target="releases-update-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="releases-update-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-update-params-account" data-target="releases-update-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-update-params-product"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-update-params-product" data-target="releases-update-params-product"><i class="material-icons">link</i></a>product</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the product the release is for.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-update-params-platform"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-update-params-platform" data-target="releases-update-params-platform"><i class="material-icons">link</i></a>platform</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The platform to scope releases to.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-update-params-extension"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-update-params-extension" data-target="releases-update-params-extension"><i class="material-icons">link</i></a>extension</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The file extension to use e.g. zip, dmg, nupkg, tgz, etc.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-update-params-version"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-update-params-version" data-target="releases-update-params-version"><i class="material-icons">link</i></a>version</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The SemVer-compatible version string to check against i.e. the user's current version of the product.</p></div></li></ul></div><div class="parameters" id="releases-update-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#releases-update-params" data-target="releases-update-params"><i class="material-icons">link</i></a>Query Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="releases-update-params-key"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-update-params-key" data-target="releases-update-params-key"><i class="material-icons">link</i></a>key</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The license key to validate.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-update-params-encrypted"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-update-params-encrypted" data-target="releases-update-params-encrypted"><i class="material-icons">link</i></a>encrypted</h3><span class="parameter__type">boolean</span><span class="parameter__req">, optional</span><span class="parameter__default">, default is<code>false</code></span><p class="parameter__desc">Whether the license implements an encrypted policy. Encrypted licenses will fail validation unless this is specified.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-update-params-channel"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-update-params-channel" data-target="releases-update-params-channel"><i class="material-icons">link</i></a>channel</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><span class="parameter__default">, default is<code>stable</code></span><p class="parameter__desc">The release channel. One of: stable or prerelease. The prerelease channel will include release candidates, as well as alpha/beta versions.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-update-params-fingerprint"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-update-params-fingerprint" data-target="releases-update-params-fingerprint"><i class="material-icons">link</i></a>fingerprint</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><p class="parameter__desc">The machine fingerprint to scope the license validation to.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-update-params-machine"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-update-params-machine" data-target="releases-update-params-machine"><i class="material-icons">link</i></a>machine</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><p class="parameter__desc">The machine identifier (UUID) to scope the license validation to.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-update-params-policy"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-update-params-policy" data-target="releases-update-params-policy"><i class="material-icons">link</i></a>policy</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><p class="parameter__desc">The policy identifier (UUID) to scope the license validation to.</p></div></li></ul></div><div class="returns" id="releases-update-returns"><h4 class="anchor__wrapper returns__heading"><a class="anchor" href="#releases-update-returns" data-target="releases-update-returns"><i class="material-icons">link</i></a>Returns</h4><div class="returns__content"><p>If an update is available, a <code>307 Temporary Redirect</code> will be returned pointing to
+the latest update release. Otherwise, <code>204 No Content</code> will be returned.</p>
+<div class="notice notice--tip">
+  <strong>For compatibility with Squirrel.Mac</strong>, when an <code>Accept: application/json</code> header
+  is included in an update request, a <code>200 OK</code> response will be returned instead of
+  a <code>307 Temporary Redirect</code>.
+</div>
+</div></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="no-highlight" data-method="GET">https://dist.keygen.sh/v1/{ACCOUNT}/{PRODUCT}/update/{PLATFORM}/{EXTENSION}/{VERSION}
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example requests</h4><pre><code class="bash" data-lang="bash"># Using bearer authentication
+curl -L https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/update/macos/zip/v1.0.0 \
+  -H "Authorization: Bearer <%= token %>" \
+  -o "v1.3.0.zip"
+
+# Using basic authentication
+curl -L https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/update/macos/zip/v1.0.0 \
+  -u "bbec-988f-b52f-5188:" \
+  -o "v1.3.0.zip"
+
+# Using query parameters
+curl -L https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/update/macos/zip/v1.0.0?key=bbec-988f-b52f-5188 \
+  -o "v1.3.0.zip"
+
+# or…
+curl -GL https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/update/macos/zip/v1.0.0 \
+  -d "key=bbec-988f-b52f-5188" \
+  -o "v1.3.0.zip"
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 307 Temporary Redirect</h4><pre><code class="no-highlight">Location: https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.3.0.zip?key=bbec-988f-b52f-5188</code><code class="json">{
+  "url": "https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.3.0.zip?key=bbec-988f-b52f-5188",
+  "name": "v1.3.0"
+}
+</code></pre></div></div></article><article class="method" id="releases-latest"><div class="description"><h2 class="anchor__wrapper method__heading"><a class="anchor" href="#releases-latest" data-target="releases-latest"><i class="material-icons">link</i></a>Download latest</h2><p>Download the latest release. A valid license key <strong>must</strong> be specified to
+download the release. The download request will be rejected for licenses
+that do not pass validation, and an error will be returned detailing the
+reason for the validation failure. This endpoint will only look in the
+top-level root directory <code>/</code> for releases files.</p>
+<div class="notice notice--warning">
+  In order to utilize this endpoint, all release keys <strong>must</strong> follow
+  <a href="#semver">SemVer</a> for the requested file extension. If any release
+  key does not follow SemVer naming conventions, the update request
+  will fail with a <code>422</code> error.
+</div>
+</div><div class="authentications" id="releases-latest-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#releases-latest-auths" data-target="releases-latest-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="releases-latest-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#releases-latest-auths-bearer" data-target="releases-latest-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><p class="authentication__desc">To bypass license validation, an authentication token with privileges to manage the resource may be supplied; either an admin or a token that belongs to the product. If a bearer token is not supplied, at a minimum a license key is required to process the request.</p></div></li><li class="authentication"><div class="authentication__info" id="releases-latest-auths-basic"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#releases-latest-auths-basic" data-target="releases-latest-auths-basic"><i class="material-icons">link</i></a>Basic</h3><p class="authentication__desc">Instead of supplying a license key and an optional machine fingerprint as query parameters, you may supply a license key and an optional machine fingerprint as the username and password, respectively, via basic authentication. This is useful for distribution methods that do not accept query parameters, for example, a Rubygems server. Note that when using this method, the license key cannot contain the ':' character.</p></div></li></ul></div><div class="parameters" id="releases-latest-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#releases-latest-params" data-target="releases-latest-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="releases-latest-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-latest-params-account" data-target="releases-latest-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-latest-params-product"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-latest-params-product" data-target="releases-latest-params-product"><i class="material-icons">link</i></a>product</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the product the release is for.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-latest-params-platform"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-latest-params-platform" data-target="releases-latest-params-platform"><i class="material-icons">link</i></a>platform</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The platform to scope releases to.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-latest-params-extension"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-latest-params-extension" data-target="releases-latest-params-extension"><i class="material-icons">link</i></a>extension</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The file extension to use e.g. zip, dmg, nupkg, tgz, etc.</p></div></li></ul></div><div class="parameters" id="releases-latest-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#releases-latest-params" data-target="releases-latest-params"><i class="material-icons">link</i></a>Query Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="releases-latest-params-key"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-latest-params-key" data-target="releases-latest-params-key"><i class="material-icons">link</i></a>key</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The license key to validate.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-latest-params-encrypted"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-latest-params-encrypted" data-target="releases-latest-params-encrypted"><i class="material-icons">link</i></a>encrypted</h3><span class="parameter__type">boolean</span><span class="parameter__req">, optional</span><span class="parameter__default">, default is<code>false</code></span><p class="parameter__desc">Whether the license implements an encrypted policy. Encrypted licenses will fail validation unless this is specified.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-latest-params-channel"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-latest-params-channel" data-target="releases-latest-params-channel"><i class="material-icons">link</i></a>channel</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><span class="parameter__default">, default is<code>stable</code></span><p class="parameter__desc">The release channel. One of: stable or prerelease. The prerelease channel will include release candidates, as well as alpha/beta versions.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-latest-params-fingerprint"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-latest-params-fingerprint" data-target="releases-latest-params-fingerprint"><i class="material-icons">link</i></a>fingerprint</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><p class="parameter__desc">The machine fingerprint to scope the license validation to.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-latest-params-machine"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-latest-params-machine" data-target="releases-latest-params-machine"><i class="material-icons">link</i></a>machine</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><p class="parameter__desc">The machine identifier (UUID) to scope the license validation to.</p></div></li><li class="parameter"><div class="parameter__info" id="releases-latest-params-policy"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#releases-latest-params-policy" data-target="releases-latest-params-policy"><i class="material-icons">link</i></a>policy</h3><span class="parameter__type">string</span><span class="parameter__req">, optional</span><p class="parameter__desc">The policy identifier (UUID) to scope the license validation to.</p></div></li></ul></div><div class="returns" id="releases-latest-returns"><h4 class="anchor__wrapper returns__heading"><a class="anchor" href="#releases-latest-returns" data-target="releases-latest-returns"><i class="material-icons">link</i></a>Returns</h4><div class="returns__content"><p>If a download is available, a <code>307 Temporary Redirect</code> will be returned pointing
+to the latest release. Otherwise, <code>204 No Content</code> will be returned.</p>
+<div class="notice notice--tip">
+  <strong>For compatibility with Squirrel.Mac</strong>, when an <code>Accept: application/json</code> header
+  is included in an update request, a <code>200 OK</code> response will be returned instead of
+  a <code>307 Temporary Redirect</code>.
+</div>
+</div></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="no-highlight" data-method="GET">https://dist.keygen.sh/v1/{ACCOUNT}/{PRODUCT}/latest/{PLATFORM}/{EXTENSION}
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example requests</h4><pre><code class="bash" data-lang="bash"># Using bearer authentication
+curl -L https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/latest/macos/dmg \
+  -H "Authorization: Bearer <%= token %>" \
+  -o "v1.3.0.dmg"
+
+# Using basic authentication
+curl -L https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/latest/macos/dmg \
+  -u "bbec-988f-b52f-5188:" \
+  -o "v1.3.0.dmg"
+
+# Using query parameters
+curl -L https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/latest/macos/dmg?key=bbec-988f-b52f-5188 \
+  -o "v1.3.0.dmg"
+
+# or…
+curl -GL https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/latest/macos/dmg \
+  -d "key=bbec-988f-b52f-5188" \
+  -o "v1.3.0.dmg"
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 307 Temporary Redirect</h4><pre><code class="no-highlight">Location: https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.3.0.dmg?key=bbec-988f-b52f-5188</code><code class="json">{
+  "url": "https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.3.0.dmg?key=bbec-988f-b52f-5188",
+  "name": "v1.3.0"
+}</code></pre></div></div></article></section></div></main><div class="zoom__wrapper"><div class="zoom"></div></div><script src="/app.js"></script><script src="https://www.googleadservices.com/pagead/conversion_async.js"></script><script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script>window.intercomSettings = {
+  app_id: "zlzql92y"
+};</script><script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/zlzql92y';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script></body></html>
