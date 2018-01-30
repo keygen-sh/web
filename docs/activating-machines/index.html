@@ -102,9 +102,7 @@ const response = await fetch(&quot;https://api.keygen.sh/v1/accounts/{ACCOUNT}/m
     &quot;data&quot;: {
       &quot;type&quot;: &quot;machines&quot;,
       &quot;attributes&quot;: {
-        &quot;fingerprint&quot;: await getFingerprint(),
-        &quot;platform&quot;: &quot;macOS&quot;,
-        &quot;name&quot;: &quot;Office MacBook Pro&quot;
+        &quot;fingerprint&quot;: await getFingerprint()
       },
       &quot;relationships&quot;: {
         &quot;license&quot;: {
