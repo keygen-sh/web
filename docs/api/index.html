@@ -7220,11 +7220,11 @@ const { promisify } = require("bluebird")
 const { getMac } = require("getmac")
 
 const getMacAddress = promisify(getMac)
-const fingerprint = (platform, macAddress) => {
-  return sha1(platform + macAddress /* + anything else you want to use */)
-           .split(/(.{2})/)
-           .filter(Boolean)
-           .join(":")
+const getFingerprint = async () => {
+  return sha1(process.platform, await getMacAddress() /* + anything else you want to use */)
+          .split(/(.{2})/)
+          .filter(Boolean)
+          .join(":")
 }
 
 const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/machines", {
@@ -7238,7 +7238,7 @@ const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/m
     "data": {
       "type": "machines",
       "attributes": {
-        "fingerprint": fingerprint(process.platform, await getMacAddress()),
+        "fingerprint": await getFingerprint(),
         "platform": "macOS",
         "name": "Office MacBook Pro"
       },

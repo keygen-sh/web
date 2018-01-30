@@ -97,6 +97,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://keygen.sh/docs/activating-machines/</loc>
+    <lastmod>2018-01-30T01:23:45+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://keygen.sh/docs/using-webhooks/</loc>
     <lastmod>2017-08-09T01:23:45+00:00</lastmod>
     <changefreq>daily</changefreq>
