@@ -91,12 +91,12 @@ machine activation limit.</p>
 <h2 id="activating-the-machine">Activating the machine</h2>
 <pre><code class="lang-js">const fetch = require(&quot;node-fetch&quot;)
 
-const response = await fetch(&quot;https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines&quot;, {
+const response = await fetch(&quot;https://api.keygen.sh/v1/accounts/{ACCOUNT}/machines&quot;, {
   method: &quot;POST&quot;,
   headers: {
     &quot;Content-Type&quot;: &quot;application/vnd.api+json&quot;,
     &quot;Accept&quot;: &quot;application/vnd.api+json&quot;,
-    &quot;Authorization&quot;: &quot;Bearer &lt;%= token %&gt;&quot;
+    &quot;Authorization&quot;: &quot;Bearer {TOKEN}&quot;
   },
   body: JSON.stringify({
     &quot;data&quot;: {
