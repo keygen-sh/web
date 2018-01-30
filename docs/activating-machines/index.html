@@ -70,7 +70,7 @@ const { getMac } = require(&quot;getmac&quot;)
 
 const getMacAddress = promisify(getMac)
 const getFingerprint = async () =&gt; {
-  return sha1(process.platform, await getMacAddress())
+  return sha1(await getMacAddress())
 }
 </code></pre>
 <p>Next up, we&#39;ll use our <code>getFingerprint</code> function above while creating a
