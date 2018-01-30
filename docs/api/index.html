@@ -7221,7 +7221,7 @@ const { getMac } = require("getmac")
 
 const getMacAddress = promisify(getMac)
 const getFingerprint = async () => {
-  return sha1(process.platform + await getMacAddress() /* + anything else you want to use */)
+  return sha1(await getMacAddress() /* + anything else you want to use */)
           .split(/(.{2})/)
           .filter(Boolean)
           .join(":")
@@ -7239,8 +7239,8 @@ const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/m
       "type": "machines",
       "attributes": {
         "fingerprint": await getFingerprint(),
-        "platform": process.platform,
-        "name": "Office Computer"
+        "platform": "macOS",
+        "name": "Office MacBook Pro"
       },
       "relationships": {
         "license": {
@@ -7270,8 +7270,8 @@ Alamofire.request("https://api.keygen.sh/v1/accounts/<%= account %>/machines",
       "type": "machines",
       "attributes": [
         "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC",
-        "platform": "darwin",
-        "name": "Office Computer"
+        "platform": "macOS",
+        "name": "Office MacBook Pro"
       ],
       "relationships": [
         "license": [
