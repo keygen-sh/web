@@ -87,7 +87,9 @@ const validation = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/lice
   },
   body: JSON.stringify({
     &quot;meta&quot;: {
-      &quot;fingerprint&quot;: await getFingerprint()
+      &quot;scope&quot;: {
+        &quot;fingerprint&quot;: await getFingerprint()
+      }
     }
   })
 })
