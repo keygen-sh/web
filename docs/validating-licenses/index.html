@@ -66,6 +66,12 @@ if (!license) {
 a license requires an authentication token. We recommend using a token
 that belongs to one of your users, but if you&#39;re validating licenses
 <strong>server-side</strong>, then using an admin or product token also works.</p>
+<div class="notice notice--tip">
+  <strong>You can provide additional information for license validations using
+  <code>meta.scope</code>.</strong> This is useful for providing things such as a <a href="/docs/activating-machines">machine
+  fingerprint</a> for certain licensing models.
+</div>
+
 <p>The response of the validation request will be a <code>meta</code> object containing
 the result of the validation: a <code>meta.valid</code> boolean, a <code>meta.constant</code>
 machine-readable constant, and a <code>meta.detail</code> human-readable description
@@ -73,12 +79,17 @@ of the validation result.</p>
 <pre><code class="lang-js">// … above code
 
 const validation = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/${license.id}/actions/validate`, {
-  method: &quot;GET&quot;,
+  method: &quot;POST&quot;,
   headers: {
     &quot;Content-Type&quot;: &quot;application/vnd.api+json&quot;,
     &quot;Accept&quot;: &quot;application/vnd.api+json&quot;,
     &quot;Authorization&quot;: &quot;Bearer {USER_TOKEN}&quot;
-  }
+  },
+  body: JSON.stringify({
+    &quot;meta&quot;: {
+      &quot;fingerprint&quot;: await getFingerprint()
+    }
+  })
 })
 
 const { meta } = await validation.json()
@@ -94,10 +105,20 @@ if (meta.valid) {
 action. Unlike the earlier <code>validate</code> action, this one does not require an
 authentication token. This action is especially useful if you aren&#39;t using
 Keygen to manage users, and would rather generate and validate license
-keys directly. This is the simplest form of licensing, but is also the
-least flexible—making it difficult for users to have multiple <em>related</em>
-licenses—and it also requires your users to keep track of their keys,
-rather than an email and password.</p>
+keys directly.</p>
+<p>This is the simplest form of licensing, but is also the least flexible—making
+it difficult for users to have multiple <em>related</em> licenses—and it also requires
+your users to keep track of their keys, rather than an email and password. Not
+utilizing Keygen&#39;s user-accounts also requires you to perform things such as
+<a href="/docs/activating-machines">machine activation</a> server-side, since you can&#39;t
+authenticate as one of your users without implementing user-accounts.</p>
+<div class="notice notice--tip">
+  <strong>Did you know that you can require a machine fingerpirnt during a license
+  validation request?</strong> This is incredibly useful when implementing licensing
+  models which require tracking machine usage, e.g. a node-locked model or
+  a floating license model.
+</div>
+
 <p>The response of the validation request will be a <code>meta</code> object containing
 the result of the validation: a <code>meta.valid</code> boolean, and a <code>meta.detail</code>
 human-readable description of the validation result.</p>
@@ -137,6 +158,7 @@ if (meta.valid) {
 <ol>
 <li>Begin a grace period (e.g. 30 days or 5 additional product usages), where you disallow access to the product if a license validation has not been successful after that timeframe. You should clearly tell your users that they should connect to the internet when possible and be upfront about the grace period.</li>
 <li>Immediately disallow access to the product. <strong>This should be used with care, and is not recommended unless your product relies on an active internet connection.</strong></li>
+<li>Fallback to <a href="https://gist.github.com/ezekg/f021009b4c419f2462f3706a4478f200">offline license key validation</a> using e.g. RSA cryptography.</li>
 </ol>
 <hr>
 <h2 id="next-steps">Next steps</h2>
