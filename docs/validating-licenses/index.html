@@ -160,7 +160,7 @@ if (meta.valid) {
 <ol>
 <li>Begin a grace period (e.g. 30 days or 5 additional product usages), where you disallow access to the product if a license validation has not been successful after that timeframe. You should clearly tell your users that they should connect to the internet when possible and be upfront about the grace period.</li>
 <li>Immediately disallow access to the product. <strong>This should be used with care, and is not recommended unless your product relies on an active internet connection.</strong></li>
-<li>Fallback to <a href="https://gist.github.com/ezekg/f021009b4c419f2462f3706a4478f200">offline license key validation</a> using e.g. RSA cryptography.</li>
+<li>Fallback to <a href="https://gist.github.com/ezekg/f021009b4c419f2462f3706a4478f200">offline license key validation</a> using e.g. RSA cryptography, or implement <a href="https://github.com/keygen-sh/air-gapped-activation-example">air-gapped license activation</a>.</li>
 </ol>
 <hr>
 <h2 id="next-steps">Next steps</h2>

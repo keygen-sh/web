@@ -449,13 +449,9 @@ tokens, and offer the ability to hash license keys as well. All network
 traffic is encrypted over TLS with at least 128-bit AES encryption. Have
 additional questions or concerns? <a href="mailto:security@keygen.sh">Get in touch</a>.</p>
 </li><li><h4 id="does-keygen-work-offline-">Does Keygen work offline?</h4>
-<p>Yes, but it requires manual work. Using Keygen&#39;s admin dashboard, you
-can manually create, check-in and verify licenses, allowing you to offer
-phone activation or a similar service. Alternatively, you could generate
-license keys using a private key and validate the key client-side using
-a public key derived from your private key. For automatic license validation
-and to track machine usage, Keygen will require an active (or periodic)
-internet connection.</p>
+<p>Yes, but it requires additional work. We have <a href="https://github.com/keygen-sh/air-gapped-activation-example">an example on GitHub</a>
+of how you could go about implementing license activation for air-gapped
+machines using RSA cryptography, QR codes, and a mobile device.</p>
 </li><li><h4 id="does-keygen-handle-distribution-">Does Keygen handle distribution?</h4>
 <p>Yes! Using <a href="/distribution">Keygen Dist</a>, you can distribute your products
 to licensed users and even provide auto-updates using industry standard
