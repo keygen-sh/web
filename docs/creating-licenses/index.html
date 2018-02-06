@@ -63,12 +63,6 @@ specify a key</a> by including it
 inside of the license resource&#39;s attributes object. When the license
 key is not manually specified, one will automatically be generated
 and included within the response body.</p>
-<div class="notice notice--warning">
-  <strong>If your policy is encrypted, then the license&#39;s key will only be
-  available after this request</strong>, so be sure to e.g. send it to your
-  user via an email or else the key will be lost forever.
-</div>
-
 <p>The response of this request will either be an error (e.g. if a required
 attribute is missing, or the key has already been used), or a license
 resource containing your new license&#39;s information (including the key).</p>
