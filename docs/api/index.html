@@ -11,7 +11,30 @@ codes to indicate API errors. We use built-in HTTP features, like authentication
 and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support
 cross-origin resource sharing, allowing you to interact securely with our API
 from any client-facing software application.</p>
-</div><article class="article" id="jsonapi"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#jsonapi" data-target="jsonapi"><i class="material-icons">link</i></a>Accepted Content Types</h2><p>Our JSON API accepts the following content types specified via the HTTP
+</div><article class="article" id="account-id"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#account-id" data-target="account-id"><i class="material-icons">link</i></a>Your Keygen Account</h2><p>In order to make requests to our licensing API, you will need to use your
+Keygen account&#39;s unique ID, or its <code>slug</code> that you chose during sign up.
+Every API request will utilize your account&#39;s ID or slug within the URL
+path, i.e. <code>/v1/accounts/{ID}</code> or <code>/v1/accounts/{SLUG}</code>.</p>
+<p>You can find your account&#39;s ID and slug in your <a href="https://app.keygen.sh/settings">account settings</a>.</p>
+<h3 id="account-permissions">Account Permissions</h3>
+<p>By default, your Keygen account will allow public user registration, user
+token generation (authentication), and will also allow users to create their
+own licenses and machines while authenticated. This is referred to as an
+<code>unprotected</code> account, allowing client-side resource management (i.e. by
+your users), while you respond to those events using <a href="#webhooks">webhooks</a>.</p>
+<p>For example, you can allow users to create and delete their licenses and machine
+activations, while you respond to those events to handle billing, e.g. charge
+them for new licenses, update their subscription to match their license and
+machine count, etc.</p>
+<p><strong>If you do not want your users to be able to create and manage their own
+licenses and machines client-side</strong> (which necessitates <a href="/docs/using-webhooks">listening for webhook
+events</a>) then you should set your account to <code>protected</code>,
+which will require admin authentication to create and manage all resources.</p>
+<p>Setting your account to <code>protected</code> is the recommended approach when using
+Keygen 100% server-side. You can change your account permissions from your
+<a href="https://app.keygen.sh/settings">account settings page</a>.</p>
+<p>See the <a href="#security">security</a> section for more tips.</p>
+</div></article><article class="article" id="jsonapi"><div class="content"><h2 class="anchor__wrapper topic__heading"><a class="anchor" href="#jsonapi" data-target="jsonapi"><i class="material-icons">link</i></a>Accepted Content Types</h2><p>Our JSON API accepts the following content types specified via the HTTP
 <code>Content-Type</code> header:</p>
 <ul>
 <li><code>application/vnd.api+json</code></li>
@@ -136,6 +159,19 @@ managing e.g. feature licenses without being able to embed policy IDs wouldn&#39
 feasible. With that in mind, it is recommended that you use your account ID over
 your account slug, as unlike your account slug, your ID is unchangable.</p>
 </li>
+<li><p><strong>If you do not want your users to be able to create and manage their own licenses
+and machines</strong> (which necessitates <a href="/docs/using-webhooks">listening for webhook events</a>)
+then you should set your account to <code>protected</code>, which will require admin authentication
+to create and manage all resources, aside from token creation and license validation.
+Setting your account to protected can be done within your <a href="https://app.keygen.sh/settings">account settings</a>.</p>
+<p>Alternatively, you can set individual license policies to <code>protected</code> (which by default
+is inherited from the account&#39;s current <code>protected</code> state), which will only disallow
+users from creating and managing licenses which implement that particular policy and
+their associated machines, rather than all resources e.g. public user creation,
+licenses that implement other unprotected policies, etc.</p>
+<p><strong>By default, your account is <code>unprotected</code>, which allows user registration as
+well as the ability for users to manage their own resources.</strong></p>
+</li>
 <li><p><strong>To validate license keys offline, you will need to <a href="/docs/api#licenses-create-attrs-key">manually generate license keys</a>
 server-side using a public/private keypair.</strong>
 For example, when creating a new license, you would specify the key attribute
@@ -164,19 +200,6 @@ client-side necessitates <a href="/docs/using-webhooks">listening for webhook ev
 unless you&#39;re simply validating license keys directly, as mentioned above.</p>
 <p>When using Keygen client-side, you should utilize webhooks to e.g. keep
 your billing state up to date with recent user actions.</p>
-</li>
-<li><p><strong>If you do not want your users to be able to create and manage their own licenses
-and machines</strong> (which necessitates <a href="/docs/using-webhooks">listening for webhook events</a>)
-then you should set your account to <code>protected</code>, which will require admin authentication
-to create and manage all resources, aside from token creation and license validation.
-Setting your account to protected can be done within your <a href="https://app.keygen.sh/settings">account settings</a>.</p>
-<p>Alternatively, you can set individual license policies to <code>protected</code> (which by default
-is inherited from the account&#39;s current <code>protected</code> state), which will only disallow
-users from creating and managing licenses which implement that particular policy and
-their associated machines, rather than all resources e.g. public user creation,
-licenses that implement other unprotected policies, etc.</p>
-<p><strong>By default, your account is <code>unprotected</code>, which allows user registration as
-well as the ability for users to manage their own resources.</strong></p>
 </li>
 </ol>
 </div></section><section class="topic" id="response-codes"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#response-codes" data-target="response-codes"><i class="material-icons">link</i></a>Response Codes</h1><p>Our API uses conventional HTTP response codes to indicate the success or
