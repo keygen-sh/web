@@ -60,6 +60,8 @@ promotional campaign with my audience.</li>
 upsell premium features.</li>
 <li><strong>I want to require periodic &quot;check-ins&quot; for licenses to remain valid</strong> so that
 I can offer offline support but still require a periodic internet connection.</li>
+<li><strong>I want each license to have a usage limit</strong> so that I can offer plans based
+on usage of a particular feature.</li>
 </ul>
 <h2 id="licensing-models">Licensing models</h2>
 <p>You may create resources directly using Keygen&#39;s API, or you can use your <a href="https://app.keygen.sh">account
@@ -77,6 +79,7 @@ attributes</a>.</p>
 <li><a href="#i-want-to-offer-a-limited-supply-of-special-licenses">I want to offer a limited supply of &quot;special&quot; licenses</a></li>
 <li><a href="#i-want-to-license-individual-features-of-my-software-to-users">I want to license individual features of my software to users</a></li>
 <li><a href="#i-want-to-require-periodic-check-in-for-licenses-to-remain-valid">I want to require periodic &quot;check-in&quot; for licenses to remain valid</a></li>
+<li><a href="#i-want-each-license-to-have-a-usage-limit">I want each license to have a usage limit</a></li>
 </ol>
 <hr>
 <h3 id="i-want-to-limit-access-of-my-software-to-only-licensed-users">I want to limit access of my software to only licensed users</h3>
@@ -411,6 +414,48 @@ validate licenses e.g. to ensure they aren&#39;t expired or suspended.</p>
 <a href="/docs/using-webhooks">webhook event</a> so that you can notify your customer to
 let them know that they need to connect to the internet soon and validate
 their license.</p>
+<h3 id="i-want-each-license-to-have-a-usage-limit">I want each license to have a usage limit</h3>
+<p>You can set up license policies to enforce a usage limit by utilizing the
+<code>maxUses</code> attribute, along with utilizing a license&#39;s usage-related actions,
+such as <a href="/docs/api#licenses-actions-increment-usage">increment-usage</a> and
+<a href="/docs/api#licenses-actions-decrement-usage">decrement-usage</a>.</p>
+<p>Here&#39;s what that policy would look like,</p>
+<pre><code class="lang-js">{
+  data: {
+    type: &quot;policies&quot;,
+    attributes: {
+      name: &quot;Usage License&quot;,
+      maxUses: 25
+    }
+  }
+}
+</code></pre>
+<p>Then you would utilize it by incrementing the license&#39;s <code>uses</code> attribute
+through its increment-usage action when usage occurs (you choose when to
+increment usage),</p>
+<pre><code class="lang-js">const fetch = require(&quot;node-fetch&quot;)
+
+const response = await fetch(&quot;https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/actions/increment-usage&quot;, {
+  method: &quot;POST&quot;,
+  headers: {
+    &quot;Accept&quot;: &quot;application/vnd.api+json&quot;,
+    &quot;Authorization&quot;: &quot;Bearer {TOKEN}&quot;
+  }
+})
+
+const { data, errors } = await response.json()
+if (errors) {
+  if (response.status === 422) {
+    // … handle case where they&#39;ve reached their usage limit
+  }
+
+  return
+}
+
+// … allow usage
+</code></pre>
+<p>You can reset a license&#39;s usage count from your admin dashboard, or via
+the licensing API.</p>
 <hr>
 <p>Don&#39;t see the licensing model you&#39;re looking for? <a href="mailto:support@keygen.sh">Reach out and let us know</a>,
 and we&#39;ll get it added here plus answer any questions you have about implementation.</p>
