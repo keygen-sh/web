@@ -7023,7 +7023,7 @@ client.request(req)
 policy&#39;s <code>maxUses</code> attribute. When the policy&#39;s <code>maxUses</code> limit is exceeded,
 the increment attempt will fail. When the policy&#39;s <code>maxUses</code> is set to <code>null</code>,
 there is no limit on usage.</p>
-</div><div class="authentications" id="licenses-increment-usage-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#licenses-increment-usage-auths" data-target="licenses-increment-usage-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="licenses-increment-usage-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#licenses-increment-usage-auths-bearer" data-target="licenses-increment-usage-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with privileges to increment the resource's usage: either an admin, the product it belongs to, or if the license's policy is unprotected, the user it belongs to.</p></div></li></ul></div><div class="parameters" id="licenses-increment-usage-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#licenses-increment-usage-params" data-target="licenses-increment-usage-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="licenses-increment-usage-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#licenses-increment-usage-params-account" data-target="licenses-increment-usage-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) or slug of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="licenses-increment-usage-params-id"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#licenses-increment-usage-params-id" data-target="licenses-increment-usage-params-id"><i class="material-icons">link</i></a>id</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the license to increment usage for.</p></div></li></ul></div><div class="returns" id="licenses-increment-usage-returns"><h4 class="anchor__wrapper returns__heading"><a class="anchor" href="#licenses-increment-usage-returns" data-target="licenses-increment-usage-returns"><i class="material-icons">link</i></a>Returns</h4><div class="returns__content"><p>A <code>200 OK</code> response will be returned along with the incremented <code>uses</code> count
+</div><div class="authentications" id="licenses-increment-usage-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#licenses-increment-usage-auths" data-target="licenses-increment-usage-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="licenses-increment-usage-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#licenses-increment-usage-auths-bearer" data-target="licenses-increment-usage-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with privileges to increment the resource's usage: either an admin, the product it belongs to, or if the license's policy is unprotected, the user it belongs to.</p></div></li></ul></div><div class="parameters" id="licenses-increment-usage-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#licenses-increment-usage-params" data-target="licenses-increment-usage-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="licenses-increment-usage-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#licenses-increment-usage-params-account" data-target="licenses-increment-usage-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) or slug of the account.</p></div></li><li class="parameter"><div class="parameter__info" id="licenses-increment-usage-params-id"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#licenses-increment-usage-params-id" data-target="licenses-increment-usage-params-id"><i class="material-icons">link</i></a>id</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) of the license to increment usage for.</p></div></li></ul></div><div class="metas" id="licenses-increment-usage-meta"><h4 class="anchor__wrapper metas__heading"><a class="anchor" href="#licenses-increment-usage-meta" data-target="licenses-increment-usage-meta"><i class="material-icons">link</i></a>Meta</h4><ul class="metas__list"><li class="meta"><div class="meta__info" id="licenses-increment-usage-metas-increment"><h3 class="anchor__wrapper meta__name"><a class="anchor" href="#licenses-increment-usage-meta-increment" data-target="licenses-increment-usage-meta-increment"><i class="material-icons">link</i></a>increment</h3><span class="meta__type">integer</span><span class="meta__req">, optional</span><span class="meta__default">, default is<code>1</code></span><p class="meta__desc">The amount to increment the license's usage by.</p></div></li></ul></div><div class="returns" id="licenses-increment-usage-returns"><h4 class="anchor__wrapper returns__heading"><a class="anchor" href="#licenses-increment-usage-returns" data-target="licenses-increment-usage-returns"><i class="material-icons">link</i></a>Returns</h4><div class="returns__content"><p>A <code>200 OK</code> response will be returned along with the incremented <code>uses</code> count
 within the license object. A <code>422 Unprocessable Entity</code> will be returned in
 the case where the policy&#39;s <code>maxUses</code> count has been exceeded.</p>
 </div></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="no-highlight" data-method="POST">https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/{ID}/actions/increment-usage
@@ -7032,21 +7032,34 @@ the case where the policy&#39;s <code>maxUses</code> count has been exceeded.</p
 const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/actions/increment-usage", {
   method: "POST",
   headers: {
+    "Content-Type": "application/vnd.api+json",
     "Accept": "application/vnd.api+json",
     "Authorization": "Bearer <%= token %>"
-  }
+  },
+  body: JSON.stringify({
+    "meta": {
+      "increment": 25
+    }
+  })
 })
 
-const { data, errors } = await response.json()
+const { meta, data, errors } = await response.json()
 </code><code class="swift" data-lang="swift">import SwiftyJSON
 import Alamofire
 
 Alamofire.request("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/actions/increment-usage",
   method: .post,
   headers: [
+    "Content-Type": "application/vnd.api+json",
     "Accept": "application/vnd.api+json",
     "Authorization": "Bearer <%= token %>"
-  ]
+  ],
+  parameters: [
+    "meta": [
+      "increment": 25
+    ]
+  ],
+  encoding: JSONEncoding.default
 ).responseJSON { response in
   let json = JSON(data: response.data!)
 }
@@ -7058,23 +7071,51 @@ var request = new RestRequest(
   Method.POST
 );
 
+request.AddHeader("Content-Type", "application/vnd.api+json");
 request.AddHeader("Accept", "application/vnd.api+json");
 request.AddHeader("Authorization", "Bearer <%= token %>");
+
+request.AddJsonBody(new {
+  meta = new {
+    increment = 25
+  }
+});
 
 var response = client.Execute(request);
 </code><code class="kotlin" data-lang="kotlin">import com.mashape.unirest.http.exceptions.*
 import com.mashape.unirest.http.*
+import org.json.*
+
+val body = JSONObject(mapOf(
+  "meta" to mapOf(
+    "increment" to 25
+  )
+))
 
 val res = Unirest.post("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/actions/increment-usage")
   .header("Authorization", "Bearer <%= token %>")
+  .header("Content-Type", "application/vnd.api+json")
   .header("Accept", "application/vnd.api+json")
+  .body(body)
   .asJson()
 </code><code class="java" data-lang="java">import com.mashape.unirest.http.exceptions.*;
 import com.mashape.unirest.http.*;
+import org.json.*;
+
+import static java.util.Map.ofEntries;
+import static java.util.Map.entry;
+
+JSONObject body = new JSONObject(ofEntries(
+  entry("meta", ofEntries(
+    entry("increment", 25)
+  ))
+));
 
 HttpResponse&lt;JsonNode&gt; res = Unirest.post("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/actions/increment-usage")
   .header("Authorization", "Bearer <%= token %>")
+  .header("Content-Type", "application/vnd.api+json")
   .header("Accept", "application/vnd.api+json")
+  .body(body)
   .asJson();
 </code><code class="cpp" data-lang="cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
@@ -7085,16 +7126,25 @@ using namespace std;
 using namespace web;
 using namespace web::http;
 using namespace web::http::client;
+using namespace web::json;
 using namespace utility;
 
 http_client client("https://api.keygen.sh/v1/accounts/<%= account %>");
 http_request req;
 
+value meta;
+meta["increment"] = value::int(25);
+
+value body;
+body["meta"] = meta;
+
 req.headers().add("Authorization", "Bearer <%= token %>");
+req.headers().add("Content-Type", "application/vnd.api+json");
 req.headers().add("Accept", "application/json");
 
 req.set_request_uri("/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/actions/increment-usage");
 req.set_method(methods::POST);
+req.set_body(body.serialize());
 
 client.request(req)
   .then([](http_response res) {
@@ -7102,8 +7152,14 @@ client.request(req)
   })
   .wait();
 </code><code class="bash" data-lang="bash">curl -X POST https://api.keygen.sh/v1/accounts/<%= account %>/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/actions/increment-usage \
+  -H 'Content-Type: application/vnd.api+json' \
   -H 'Accept: application/vnd.api+json' \
-  -H 'Authorization: Bearer <%= token %>'
+  -H 'Authorization: Bearer <%= token %>' \
+  -d '{
+        "meta": {
+          "increment": 25
+        }
+      }'
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "data": {
     "id": "b18e3f3a-330c-4d8d-ae2e-014db21fa827",
@@ -7114,14 +7170,14 @@ client.request(req)
     "attributes": {
       "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v1",
       "expiry": "2020-01-01T00:00:00.000Z",
-      "uses": 1,
+      "uses": 25,
       "suspended": false,
       "encrypted": false,
       "floating": true,
       "concurrent": true,
       "strict": false,
       "maxMachines": 5,
-      "maxUses": 5,
+      "maxUses": 100,
       "requireCheckIn": true,
       "lastCheckIn": "<%= lastCheckIn %>",
       "nextCheckIn": "<%= nextCheckIn %>",
