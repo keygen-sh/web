@@ -15,10 +15,12 @@ ga('send', 'pageview');</script></head><body><div class="container"><header clas
 
 <hr>
 </div><div class="faqs__content"><h3>FAQs</h3><ul class="faqs__questions"><li><h4 id="what-is-a-licensed-user-">What is a &quot;licensed user&quot;?</h4>
-<p>A &quot;licensed user&quot; is an end-user or licensee of your product, either through a user
-resource or through a license resource. For example, a user account which has 3
-associated licenses with it will count as a single licensed user. Likewise,
-3 licenses without user associations will count as 3 licensed users.</p>
+<p>A &quot;licensed user&quot; is a licensee of your product, either through a <a href="/docs/api#users">user resource</a>
+or through a <a href="/docs/api#licenses">license resource</a>. We determine your licensed user
+count through your API resource consumption alone. For example, a user resource which
+has 3 associated license resources with it will count as a single licensed user.
+Likewise, 3 license resources without user associations will count as 3 licensed
+users.</p>
 </li><li><h4 id="what-if-i-go-over-my-resource-limits-">What if I go over my resource limits?</h4>
 <p>Account limits are &quot;soft&quot; limits for all plans Tier 1 and higher—meaning they are
 not strictly enforced. That is, we won&#39;t immediately throttle future requests to your
