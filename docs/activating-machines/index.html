@@ -46,16 +46,34 @@ to implement e.g. a <a href="/docs/choosing-a-licensing-model#i-want-to-limit-ac
 Although Keygen doesn&#39;t use the term &quot;activation&quot; much in our resource
 documentation, machine creation accomplishes the same thing, while
 machine deletion would be &quot;deactivation.&quot;</p>
+<p>Implementing a node-locked or node-limited license model consists of 3
+separate steps, each done in a separate API request:</p>
+<ol>
+<li><strong>Create the license</strong> - this is the step where you create the user&#39;s
+license resource, typically done server-side after you&#39;ve received a payment,
+or after they&#39;ve registered for an account.</li>
+<li><strong>Activate their machine</strong> - this step should be initiated from within your
+software, so you have access to the underlying machine to be able to query
+information such as MAC address, HDD ID, etc. for use in fingerprinting
+the user&#39;s machine.</li>
+<li><strong>Validate their license</strong> - this step should be initiated from within your
+software, and can be done before and after activation, so you can be sure
+the newest activation didn&#39;t invalidate the license.</li>
+</ol>
 <p>Activation can either be done client- or server-side, and depending on
 which one of those you choose, the tokens you use to make the request will
 be different i.e. product tokens vs. user tokens, for server-side vs.
 client-side machine activation, respectively.</p>
+<p>We have examples of server-side implementations that you can use as a reference for
+implementing your own license activation system. We have example servers written
+in <a href="https://github.com/keygen-sh/example-node-activation-server">Node</a>, as well
+as in <a href="https://github.com/keygen-sh/example-php-activation-server">PHP</a>.</p>
 <div class="notice notice--tip">
   <strong>If you&#39;re not using Keygen to manage users, all machine activations
   will need to be done server-side.</strong> In order to perform activation
   client-side, you will need to be authenticated as a user, because
-  embedding your own authentication tokens within your app is
-  <a href="/docs/api#security">not secure</a>.
+  <a href="/docs/api#security">embedding your own authentication tokens within your app is
+  not secure</a>.
 </div>
 
 <p>When activating a machine, you will at minimum need a <strong>license ID</strong> for
@@ -139,7 +157,7 @@ console.log(`Machine activated: ${machine.attributes.fingerprint}`)
 
 <hr>
 <h2 id="next-steps">Next steps</h2>
-<p>Congrats! You&#39;ve activated your first machine using Keygen. Next up,
+<p>That&#39;s that! You&#39;ve activated your first machine using Keygen. Next up,
 we could update a license&#39;s policy to require a machine fingerprint
 during validating using the <a href="/docs/api/#policies-object-attrs-requireFingerprintScope"><code>requireFingerprintScope</code> setting</a>.
 If you have any questions about what you&#39;ve learned today, <a href="mailto:support@keygen.sh">be sure
