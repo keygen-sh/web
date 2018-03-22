@@ -16,26 +16,80 @@ directly through the API, check out the <a href="/docs/api#tokens-generate">code
 the <strong>New Product</strong> button. You will be presented with a form consisting
 of a few attributes for your product. If you&#39;re curious what a particular
 attribute is for, be sure to check out the <a href="/docs/api/#products"><strong>Product</strong> resource in the API reference</a>.</p>
-<p><img src="/new-product.gif" alt=""></p>
+<p>The <strong>product</strong> resource is used to segment policies and licenses (which we&#39;ll
+get into below) by product (in the case where you sell multiple products),
+allowing you to keep licenses and policies for multiple products organized. If
+you don&#39;t sell more than 1 product, this will be a one-time step.</p>
+<details>
+  <summary>View example of creating a product</summary>
+  <br>
+  <img src="/new-product.gif" alt="Gif of creating a product resource">
+</details>
+
 <hr>
 <h2 id="policies">Policies</h2>
-<p>Next, we&#39;re going to add a <strong>license policy</strong> for your product. A license
-policy defines the different <strong>types</strong> of licenses that your product offers.
-Policies can be for a number of different things, from different <em>plans</em>
-for your product to fine-grained <em>feature policies</em>.</p>
+<p>Next, we&#39;re going to add a <strong>license policy</strong> for your product. License
+policies define the different <strong>types</strong> of licenses that your product offers.
+Policies can be for a number of different things, from different <em>tiers</em>
+for your product (e.g. Basic vs Pro) to fine-grained <em>feature policies</em>.</p>
 <p>To add a new policy, go to the <strong>Policies</strong> resource and click on the
-<strong>New Policy</strong> button.</p>
+<strong>New Policy</strong> button. To figure out how to properly set up your policy,
+check out our guide on <a href="/docs/choosing-a-licensing-model">choosing a license model</a>,
+where we go in-depth on a lot of popular licensing models and how to
+configure a policy to implement each one.</p>
+<div class="notice notice--tip">
+  <strong>Can&#39;t figure out how to implement  the licensing model you&#39;re looking for?</strong>
+  <a title="Open chat" onclick="Intercom('show')" style="cursor:pointer">Reach out and let us know</a>,
+  and we&#39;ll help answer any questions you have about implementation.
+</div>
+
 <p>Curious about what each of the attributes are used for? Check out the
-<a href="/docs/api/#policies"><strong>Policy</strong> resource in the API reference</a>.</p>
-<p><img src="/new-policy.gif" alt=""></p>
+<a href="/docs/api/#policies"><strong>Policy</strong> resource in API reference</a> for all of
+the available options (there&#39;s a lot—we know).</p>
+<details>
+  <summary>View example of creating a policy</summary>
+  <br>
+  <img src="/new-policy.gif" alt="Gif of creating a policy resource">
+</details>
+
 <hr>
 <h2 id="users">Users</h2>
-<p>Add a new <strong>user</strong> for your product by going to the <strong>Users</strong> resource
+<p>Add a new <strong>user</strong> to your Keygen account by going to the <strong>Users</strong> resource
 and clicking on the <strong>New User</strong> button. You will see all of your users
 under the users listing as well as all <strong>admin</strong> users. (Normally, you
 would create users through the API using a sign up form, but for the
 purpose of this guide we&#39;re creating them manually.)</p>
-<p><img src="/new-user.gif" alt=""></p>
+<p>The <strong>user</strong> resource allows you to authenticate your users and interact with
+Keygen&#39;s API client-side. This is super useful if you&#39;d prefer to allow your
+users the ability to manage their own licenses and machines, i.e. a self-serve
+licensing system.</p>
+<p><strong>Utilization of Keygen&#39;s user-account resources is completely optional</strong>—if
+you&#39;d rather skip user-accounts and simply validate license keys and handle
+the rest server-side, feel free to do that. Our user resources are designed
+to help make client-side API integration easier, allowing your users to manage
+their own resources, while you respond to their actions via webhooks.</p>
+<div class="notice notice--tip">
+  <p>
+    <strong>Please note that user resources are shared between products</strong>—meaning, when your account has
+    multiple products, your users are signing up for a user account for <em>all</em> of your products, not
+    just a single product. Your registration verbiage should reflect that. They will be able to
+    login across all of your products with a single user account, <em>but are licensed are per-product.</em>
+  </p>
+  <p>
+    <small>
+      <strong>For example, a user signs up for a &quot;Blizzard&quot; account, not for a &quot;World of Warcraft&quot; account.</strong>
+      And with their &quot;Blizzard&quot; account, they will be able to login and buy licenses for &quot;World of Warcraft&quot;,
+      &quot;Overwatch&quot;, &quot;Starcraft&quot;, and for other products which &quot;Blizzard&quot; provides.
+    </small>
+  </p>
+</div>
+
+<details>
+  <summary>View example of creating a user</summary>
+  <br>
+  <img src="/new-user.gif" alt="Gif of creating a user resource">
+</details>
+
 <hr>
 <h2 id="licenses">Licenses</h2>
 <p>Next up, we&#39;re going to give the new user a <strong>license</strong> to use your
@@ -43,21 +97,44 @@ product. To add a new license, go to the <strong>Licenses</strong> resource and
 click on the <strong>New License</strong> button. You will be presented with a form
 allowing you to select the <strong>policy</strong> to implement, as well as the
 <strong>user</strong> to create the license for.</p>
-<p>When creating a new license, you have the option to manually specify a
-<strong>license key</strong>. When the <strong>key</strong> field is left blank, a key will automatically
-be generated for you whenever the license is created.</p>
-<p><img src="/new-license.gif" alt=""></p>
+<p>The <strong>license</strong> resource is what you&#39;d expect—licenses are used to grant
+access to your software. Each license resource will implement a <strong>policy</strong>,
+which will define the <em>rules</em> which that license must follow to remain valid.
+Each license can be associated with a user, but that&#39;s optional; this is useful
+when you&#39;re associating multiple licenses with a single user.</p>
+<div class="notice notice--tip">
+  When creating a new license, you have the option to manually specify a
+  <strong>license key</strong>. When the <strong>key</strong> field is left blank, a key will automatically
+  be generated for you whenever the license is created.
+</div>
+
+<details>
+  <summary>View example of creating a license</summary>
+  <br>
+  <img src="/new-license.gif" alt="Gif of creating a license resource">
+</details>
+
 <hr>
 <h2 id="next-steps">Next steps</h2>
 <p>That&#39;s it! Now that you&#39;ve got a <strong>product</strong> all set up with a <strong>license
-policy</strong>, you&#39;re all set to start integrating Keygen into your product!</p>
+policy</strong>, you&#39;re all set to start integrating Keygen into your product! We
+have a collection of examples on <a href="https://github.com/keygen-sh">our GitHub</a>, which covers:</p>
+<ul>
+<li><a href="https://github.com/keygen-sh/basic-example-electron-app">How to integrate Keygen within an Electron app</a></li>
+<li><a href="https://github.com/keygen-sh/example-node-activation-server">How to build a license activation server with Node</a></li>
+<li><a href="https://github.com/keygen-sh/example-wordpress-plugin">How to use Keygen to license a WordPress plugin</a></li>
+<li><a href="https://github.com/keygen-sh/air-gapped-activation-example">How to set up license activation for air-gapped/offline nodes</a></li>
+<li><a href="https://github.com/keygen-sh/example-php-activation-server">How to write a license activation server in PHP</a></li>
+<li><a href="https://github.com/keygen-sh">And lots more!</a></li>
+</ul>
 <p>Next up, you could…</p>
 <ol>
+<li>Learn <a href="/docs/validating-licences">how to validate licenses</a> both server-side and client-side</li>
 <li>Create a registration form for your product to <a href="/docs/creating-users">accept new users</a></li>
 <li>Create a login form in your product to <a href="/docs/authenticating-users">authenticate your users</a></li>
 <li>Add a conditional feature within your product based on a user&#39;s licenses</li>
-<li>Start keeping track of each of your user&#39;s <a href="/docs/api#machines">machines</a></li>
-<li>Integrate Stripe and Keygen together using <a href="/docs/api#webhooks">webhooks</a></li>
+<li>Start keeping track of each of your user&#39;s <a href="/docs/activating-machines">machines</a></li>
+<li>Integrate your payment provider and Keygen together using <a href="/docs/api#webhooks">webhooks</a></li>
 </ol>
 <p>Questions? Reach out at <a href="mailto:support@keygen.sh">support@keygen.sh</a>.</p>
 </div></div><div class="zoom__wrapper"><div class="zoom"></div></div></main><script src="/app.js"></script><script src="https://www.googleadservices.com/pagead/conversion_async.js"></script><script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script>if (!window.intercomSettings) {
