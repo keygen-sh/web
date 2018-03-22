@@ -63,11 +63,20 @@ purpose of this guide we&#39;re creating them manually.)</p>
 Keygen&#39;s API client-side. This is super useful if you&#39;d prefer to allow your
 users the ability to manage their own licenses and machines, i.e. a self-serve
 licensing system.</p>
-<p><strong>Utilization of Keygen&#39;s user-account resources is completely optional</strong>—if
-you&#39;d rather skip user-accounts and simply validate license keys and handle
-the rest server-side, feel free to do that. Our user resources are designed
-to help make client-side API integration easier, allowing your users to manage
-their own resources, while you respond to their actions via webhooks.</p>
+<div class="notice notice--tip">
+  <strong>Utilization of Keygen&#39;s user-account resources is completely optional</strong>—if
+  you&#39;d rather skip user-accounts and simply validate license keys and handle
+  the rest server-side, feel free to do that. Our user resources are designed
+  to help make client-side API integration easier, allowing your users to manage
+  their own resources, while you respond to their actions via webhooks.
+</div>
+
+<details>
+  <summary>View example of creating a user</summary>
+  <br>
+  <img src="/new-user.gif" alt="Gif of creating a user resource">
+</details>
+
 <div class="notice notice--tip">
   <p>
     <strong>Please note that user resources are shared between products</strong>—meaning, when your account has
@@ -83,12 +92,6 @@ their own resources, while you respond to their actions via webhooks.</p>
     </small>
   </p>
 </div>
-
-<details>
-  <summary>View example of creating a user</summary>
-  <br>
-  <img src="/new-user.gif" alt="Gif of creating a user resource">
-</details>
 
 <hr>
 <h2 id="licenses">Licenses</h2>
