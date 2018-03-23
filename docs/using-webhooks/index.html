@@ -101,13 +101,15 @@ must use the HTTPS protocol.</strong></p>
 on your website. With PHP, you might create a new <code>.php</code> file on your server; with Node and a
 framework like Express, you would add a new route with the desired endpoint URL.</p>
 <p>Webhook data is sent as JSON in the <code>POST</code> request body. The full event details are included and
-can be used directly, though if security is a concern, or if it&#39;s important to confirm that Keygen
-sent the webhook, you should use <strong>ONLY</strong> the event ID sent within the webhook to then retrieve
+can be used directly, when required. Each event contains a <code>payload</code> attribute, which contains
+the subject data at the time of the event.</p>
+<p>For added security, you should <strong>ONLY</strong> use the event ID sent within the webhook to then retrieve
 the remaining details from Keygen. If the event doesn&#39;t exist, then it wasn&#39;t from us. The example
-below will be taking such a precaution.</p>
+below will be taking such a precaution. Also see <a href="/docs/api#signatures">signature verification</a>
+for more advanced use-cases.</p>
 <div class="notice notice--warning">
-  When delivering webhook events to your endpoint, an event is considered
-  failed if the endpoint responds with a non-<code>2xx</code> status code. It will
+  <strong>When delivering webhook events to your endpoint, an event is considered
+  failed if the endpoint responds with a non-<code>2xx</code> status code.</strong> It will
   automatically be retried with an exponential backoff. We will perform
   15 retries over approximately 3 days or until your server responds
   with a <code>2xx</code> status.
@@ -142,18 +144,34 @@ app.post(&quot;/my/webhook/url&quot;, async (req, res) =&gt; {
   }
 
   switch (data.attributes.event) {
-    case &quot;user.created&quot;:
+    case &quot;user.created&quot;: {
       const user = JSON.parse(data.attributes.payload)
 
       // … do something when a user is created e.g. create a Stripe customer
 
       break
-    case &quot;license.created&quot;:
+    }
+    case &quot;license.created&quot;: {
       const license = JSON.parse(data.attributes.payload)
 
-      // … do something when a license is created e.g. charge a user
+      // … do something when a license is created e.g. charge the licensee
 
       break
+    }
+    case &quot;license.expiring-soon&quot;: {
+      const license = JSON.parse(data.attributes.payload)
+
+      // … do something when a license is expiring soon e.g. email the licensee
+
+      break
+    }
+    case &quot;license.expired&quot;: {
+      const license = JSON.parse(data.attributes.payload)
+
+      // … do something when a license is expired e.g. cancel their subscription
+
+      break
+    }
   }
 
   // Let Keygen know the event was received successfully
