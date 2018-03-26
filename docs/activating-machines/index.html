@@ -46,22 +46,25 @@ to implement e.g. a <a href="/docs/choosing-a-licensing-model#i-want-to-limit-ac
 Although Keygen doesn&#39;t use the term &quot;activation&quot; much in our resource
 documentation, machine creation accomplishes the same thing, while
 machine deletion would be &quot;deactivation.&quot;</p>
-<p>Implementing a node-locked or node-limited license model consists of 3
+<p>Implementing a node-locked or node-limited license model consists of 3 to 4
 separate steps, each done in a separate API request:</p>
 <ol>
 <li><strong>Create the license</strong> - this is the step where you create the user&#39;s
 license resource, typically done server-side after you&#39;ve received a payment,
 or after they&#39;ve registered for an account.</li>
+<li><strong>Validate their license</strong> - this step should be initiated client-side from
+within your software (e.g. prompt them for a license key after starting your
+software), and can be performed both before and after activation. Validating
+before activation so you can be sure the license supports another machine;
+validating after activation to ensure the newest activation didn&#39;t
+invalidate the license.</li>
 <li><strong>Activate their machine</strong> - this step should be initiated from within your
-software, so you have access to the underlying machine to be able to query
-information such as MAC address, HDD ID, etc. for use in fingerprinting
-the user&#39;s machine.</li>
-<li><strong>Validate their license</strong> - this step should be initiated from within your
-software, and can be done before and after activation, so you can be sure
-the newest activation didn&#39;t invalidate the license.</li>
+software, so you can have access to the underlying machine to be able to query
+information such as MAC address, HDD ID, etc. for use in fingerprinting the
+user&#39;s current machine.</li>
 </ol>
-<p>Activation can either be done client- or server-side, and depending on
-which one of those you choose, the tokens you use to make the request will
+<p>Activation requests can either be performed client- or server-side, and depending
+on which one of those you choose, the tokens you use to make the request will
 be different i.e. product tokens vs. user tokens, for server-side vs.
 client-side machine activation, respectively.</p>
 <p>We have examples of server-side implementations that you can use as a reference for
@@ -76,6 +79,7 @@ as in <a href="https://github.com/keygen-sh/example-php-activation-server">PHP</
   not secure</a>.
 </div>
 
+<hr>
 <p>When activating a machine, you will at minimum need a <strong>license ID</strong> for
 the license the activation is for, a <strong>fingerprint</strong> for the current device,
 as well as an optional <strong>user ID</strong> for client-side activation. Other
@@ -114,6 +118,8 @@ relationship. These can be useful for managing UI state, e.g. not
 showing an &quot;activate machine&quot; action if the user is already at their
 machine activation limit.</p>
 <h2 id="activating-the-machine">Activating the machine</h2>
+<p>Below is an example of performing the <a href="/docs/api#machines-create">machine activation</a>
+request.</p>
 <pre><code class="lang-js">const fetch = require(&quot;node-fetch&quot;)
 
 const response = await fetch(&quot;https://api.keygen.sh/v1/accounts/{ACCOUNT}/machines&quot;, {
@@ -154,6 +160,116 @@ console.log(`Machine activated: ${machine.attributes.fingerprint}`)
   activation for air-gapped machines</a>
   using Keygen, Node.js, React, RSA crypto, QR codes, and a mobile device.
 </div>
+
+<h2 id="example-activation-flow">Example Activation Flow</h2>
+<p>Below is a full example of how to implement a robust machine activation flow,
+following the above mentioned steps. You may of course choose to implement
+a different flow if needed - this only serves as an example implementation.</p>
+<details>
+  <summary>View example of activation flow</summary>
+<pre><code>async function activateLicense(key, fingerprint) {
+  // Validate the license key before activation, so we can be sure it supports
+  // another machine. Notice that this validation is scoped to the current
+  // machine via its fingerprint - this ensures that license activation is
+  // not performed for machines that are already activated.
+  const validation = await fetch(&#39;https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/actions/validate-key&#39;, {
+    method: &#39;POST&#39;,
+    headers: {
+      &#39;Content-Type&#39;: &#39;application/vnd.api+json&#39;,
+      &#39;Accept&#39;: &#39;application/vnd.api+json&#39;
+    },
+    body: JSON.stringify({
+      meta: {
+        scope: { fingerprint },
+        key
+      }
+    })
+  })
+
+  const { meta, data: license } = await validation.json()
+
+  // If the license is valid, that means the current machine is already
+  // activated. We can safely return.
+  if (meta.valid) {
+    return null
+  }
+
+  // If we&#39;ve gotten this far, our license is not valid for the current
+  // machine and we should attempt to activate it.
+  switch (meta.constant) {
+    // This means the license already has at least 1 machine associated with
+    // it, but none match the current machine&#39;s fingerprint. We&#39;re breaking
+    // on this case because, for this example, we want to support activating
+    // more than 1 machine.
+    case &#39;FINGERPRINT_SCOPE_MISMATCH&#39;:
+    // You will receive a NO_MACHINES status when the license IS floating,
+    // and when it does not currently have any associated machines.
+    case &#39;NO_MACHINES&#39;:
+    // You will receive a NO_MACHINE status when the license IS NOT floating
+    // i.e. it&#39;s node-locked, and when it does not currently have any
+    // associated machines.
+    case &#39;NO_MACHINE&#39;: {
+      break
+    }
+    default: {
+      throw new Error(`Activation failed: ${meta.detail} (${meta.constant})`)
+    }
+  }
+
+  // Attempt to activate the current machine for the license, using the
+  // license ID that we received from the validation response and the
+  // current machine&#39;s fingerprint.
+  const activation = await fetch(&#39;https://api.keygen.sh/v1/accounts/{ACCOUNT}/machines&#39;, {
+    method: &#39;POST&#39;,
+    headers: {
+      &#39;Authorization&#39;: &#39;Bearer {PRODUCT_TOKEN}&#39;,
+      &#39;Content-Type&#39;: &#39;application/vnd.api+json&#39;,
+      &#39;Accept&#39;: &#39;application/vnd.api+json&#39;
+    },
+    body: JSON.stringify({
+      data: {
+        type: &#39;machines&#39;,
+        attributes: {
+          fingerprint
+        },
+        relationships: {
+          license: {
+            data: { type: &#39;licenses&#39;, id: license.id }
+          }
+        }
+      }
+    })
+  })
+
+  const { data: machine, errors } = await activation.json()
+  if (errors) {
+    throw new Error(errors.map(e =&gt; `${e.title}: ${e.detail}`).join(&#39;, &#39;))
+  }
+
+  // All is good - the machine was successfully activated.
+  return machine
+}
+
+async function main() {
+  const fingerprint = await getFingerprint()
+  const key = await getLicenseKey()
+
+  try {
+    const machine = await activateLicense(key, fingerprint)
+    if (machine == null) {
+      console.log(&#39;The current machine has already been activated!&#39;)
+
+      return
+    }
+
+    console.log(&#39;The current machine was successfully activated!&#39;, machine)
+  } catch(err) {
+    console.error(&#39;Activating the current machine failed&#39;, err)
+  }
+}
+
+main()</code></pre>
+</details>
 
 <hr>
 <h2 id="next-steps">Next steps</h2>
