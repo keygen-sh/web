@@ -7279,7 +7279,7 @@ within the license object.</p>
 <div class="notice notice--warning">
   <strong>Though rare, a <code>409 Conflict</code> will be returned in the case where a previous
   decrement operation has not yet completed.</strong> This is likely due to you firing
-  off too many decrement requests in parallel. Increase time the between requests
+  off too many decrement requests in parallel. Increase the time between requests
   or decrement in larger batches by utilizing the <code>meta.decrement</code> parameter.
 </div>
 </div></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="no-highlight" data-method="POST">https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/{ID}/actions/decrement-usage
