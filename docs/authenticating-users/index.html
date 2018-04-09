@@ -17,6 +17,11 @@ want to authenticate them so that future requests such as license creation
 and license validation can be done without using your secret product
 or admin tokens, but rather using an authentication token that belongs
 to them.</p>
+<p>Authenticating your users also allows you to integrate Keygen 100% client-side,
+as opposed to doing <a href="https://github.com/keygen-sh/example-node-activation-server">a server-side integration</a>
+using a product token. This can be especially useful if you&#39;d also like to
+allow your users the ability to manage their own resources, e.g. a
+&quot;self-serve&quot; licensing system.</p>
 <div class="notice notice--warning">
   <strong>Your admin and product tokens carry many privileges and should always
   be kept secret. Do not share your secret API tokens in publicly accessible
