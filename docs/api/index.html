@@ -292,7 +292,11 @@ our servers (these are rare).</p>
     },
     …
   ]
-}</code></pre></div></div></section><section class="topic" id="authentication"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#authentication" data-target="authentication"><i class="material-icons">link</i></a>Authentication</h1><p>Requests are authenticated using a bearer token in an <code>Authorization</code> header.</p>
+}</code></pre></div></div></section><section class="topic" id="authentication"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#authentication" data-target="authentication"><i class="material-icons">link</i></a>Authentication</h1><p>Requests are authenticated using a bearer token in an <code>Authorization</code> header.
+Within the header, you will utilize a <a href="#tokens">Token</a> resource&#39;s <a href="#tokens-object-attrs-token"><code>token</code>
+attribute</a>, like so,</p>
+<pre><code class="lang-plain">Authorization: Bearer {TOKEN}
+</code></pre>
 <div class="notice notice--tip">
   Your authentication token is pre-populated in all the examples on this page
   if you&#39;re currently logged in to <a href="https://app.keygen.sh">your dashboard</a>,
