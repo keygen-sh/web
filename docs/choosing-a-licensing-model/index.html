@@ -99,6 +99,7 @@ number of machines.</p>
 <p>Licenses that implement this policy will never expire and will be valid on an
 unlimited number of machines. The only way for a license implementing this
 policy to fail validation is for it to be suspended or revoked.</p>
+<hr>
 <h3 id="i-want-to-offer-timed-licenses-to-each-of-my-users">I want to offer timed licenses to each of my users</h3>
 <p>To offer licenses which have an expiration date, we&#39;ll need to create a policy similar
 to the above one, but one which also has a value for the <code>duration</code> attribute.</p>
@@ -119,6 +120,7 @@ expiration will be <code>1503520001 + 1209600</code>, which is 09/06/2017 at 8:2
 <p>When a license&#39;s expiration gets close, we will fire off an <code>license.expiring-soon</code>
 <a href="/docs/using-webhooks">webhook event</a> so that you can notify your customer and even
 automate <a href="/docs/api#licenses-actions-renew">renewing the license</a> server-side.</p>
+<hr>
 <h3 id="i-want-to-offer-a-limited-trial-version-of-my-software-to-unlicensed-users">I want to offer a limited trial version of my software to unlicensed users</h3>
 <p>This is similar to the above implementation, but instead of only having a single
 policy, we&#39;ll have 2. The first one will be our &quot;full&quot; policy, while the second
@@ -147,6 +149,7 @@ will be our &quot;trial&quot; policy.</p>
 </code></pre>
 <p>The only difference is the <code>duration</code> of each policy, i.e. the &quot;trial&quot; version will
 expire in 2 weeks, while the &quot;full&quot; version will be valid for 1 year.</p>
+<hr>
 <h3 id="i-want-to-offer-a-premium-version-of-my-free-software">I want to offer a premium version of my free software</h3>
 <p>This particular model is usually referred to as &quot;freemium&quot; or &quot;in-app purchases&quot;, and
 it&#39;s one of the models that Keygen was originally built around. For reference, we
@@ -175,8 +178,11 @@ form of this type of licensing.</p>
 <p>You can then store each policy&#39;s ID within your product to determine if the current
 user is allowed to use the &quot;premium&quot; features of your product. You can find a policy&#39;s
 ID by viewing the policy from your account dashboard.</p>
-<p>For example,</p>
-<pre><code class="lang-js">// Policies representing our product editions. You can get this information
+<details>
+  <summary>View example implementation</summary>
+<pre><code>const fetch = require(&quot;node-fetch&quot;)
+
+// Policies representing our product editions. You can get this information
 // from your dashboard: https://app.keygen.sh/policies
 const KEYGEN_PREMIUM_POLICY = &quot;f4eb56fa-cd4d-4060-b9fe-66fb70d875d9&quot;
 const KEYGEN_BASE_POLICY = &quot;35900395-c0e6-4fda-b174-a440ef58dd12&quot;
@@ -185,34 +191,45 @@ const PRIVILEGES = {
   base: false
 }
 
-const licenses = /* fetch user&#39;s licenses */
+const licenses = [/* fetch user&#39;s licenses */]
 
 for (let license of licenses) {
   const { id, relationships: { policy: { data: policy } } } = license
 
   switch (policy.id) {
     case KEYGEN_PREMIUM_POLICY: {
-      // Validate the current license
-      const { meta: validation, errors } = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/${id}/actions/validate`, {
-        headers: { &quot;Accept&quot;: &quot;application/vnd.api+json&quot;, &quot;Authorization&quot;: &quot;Bearer {TOKEN}&quot; },
-      }).then(r =&gt; r.json())
+      const res = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/${id}/actions/validate`, {
+        method: &quot;POST&quot;,
+        headers: {
+          &quot;Accept&quot;: &quot;application/vnd.api+json&quot;,
+          &quot;Authorization&quot;: &quot;Bearer {TOKEN}&quot;
+        }
+      })
+
+      const { meta, errors } = await res.json()
       if (errors) {
         continue
       }
 
-      PRIVILEGES.premium = validation.valid
+      PRIVILEGES.premium = meta.valid
 
       break
     }
     case KEYGEN_BASE_POLICY: {
-      const { meta: validation, errors } = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/${id}/actions/validate`, {
-        headers: { &quot;Accept&quot;: &quot;application/vnd.api+json&quot;, &quot;Authorization&quot;: &quot;Bearer {TOKEN}&quot; },
-      }).then(r =&gt; r.json())
+      const res = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/${id}/actions/validate`, {
+        method: &quot;POST&quot;,
+        headers: {
+          &quot;Accept&quot;: &quot;application/vnd.api+json&quot;,
+          &quot;Authorization&quot;: &quot;Bearer {TOKEN}&quot;
+        }
+      })
+
+      const { meta, errors } = await res.json()
       if (errors) {
         continue
       }
 
-      PRIVILEGES.base = validation.valid
+      PRIVILEGES.base = meta.valid
 
       break
     }
@@ -223,8 +240,10 @@ for (let license of licenses) {
 
 if (PRIVILEGES.premium) {
   // … do something
-}
-</code></pre>
+}</code></pre>
+</details>
+
+<hr>
 <h3 id="i-want-to-limit-access-of-my-software-to-a-single-machine">I want to limit access of my software to a single machine</h3>
 <p>To limit access to a single machine (also called <em>node-locked</em> licensing), we&#39;ll take
 advantage of a few other policy attributes. Node-locked is a fancy way to say &quot;I want
@@ -257,6 +276,7 @@ machine fingerprint scope, which will be used to determine whether or not the
 machine is valid for the given license. Whenever a user goes over their single
 machine limit, their license will be invalidated until the additional machines
 are removed.</p>
+<hr>
 <h3 id="i-want-to-limit-access-of-my-software-to-only-_-x-_-number-of-machines">I want to limit access of my software to only <em><code>x</code></em> number of machines</h3>
 <p>Similar to implementing &quot;node-locked&quot; licenses, we can also implement &quot;floating&quot;
 licenses. Floating is a term used to describe the opposite of &quot;node-locked&quot; i.e.
@@ -293,6 +313,7 @@ are removed.</p>
 at any given time. If you do not want the user to be able to exceed the machine
 limit (even though it would still invaliate their license), you can set
 <code>concurrent = false</code>.</p>
+<hr>
 <h3 id="i-want-to-offer-a-limited-supply-of-special-licenses">I want to offer a limited supply of &quot;special&quot; licenses</h3>
 <p>In order to implement a &quot;limited supply&quot; of licenses, we&#39;ll need to create a <strong>pooled
 policy</strong>. Before we start, let&#39;s go over a little bit of terminology:</p>
@@ -320,6 +341,7 @@ pooled policy, a key is taken from the top of the pool and is used for the new l
 an error saying that our policy&#39;s pool is empty. So before we can allow license creation, we
 need to add <a href="/docs/api#keys-create">keys</a> to our policy&#39;s pool. Once a policy&#39;s pool is
 depleted, you must add additional keys in order to continue to create new licenses.</p>
+<hr>
 <h3 id="i-want-to-license-individual-features-of-my-software-to-users">I want to license individual features of my software to users</h3>
 <p>This particular model is called &quot;feature licensing&quot;, and it&#39;s one of the models that Keygen
 was originally built around. For reference, we even have <a href="/integrate/electron">an example application</a>
@@ -356,8 +378,11 @@ which implements feature licensing.</p>
 <p>You can then store each policy&#39;s ID within your product to determine if the current
 user is allowed to use each particular feature of your product. You can find a policy&#39;s
 ID by viewing the policy from your account dashboard.</p>
-<p>For example,</p>
-<pre><code class="lang-js">// Policies representing our product&#39;s features. You can get this information
+<details>
+  <summary>View example implementation</summary>
+<pre><code>const fetch = require(&quot;node-fetch&quot;)
+
+// Policies representing our product&#39;s features. You can get this information
 // from your dashboard: https://app.keygen.sh/policies
 const KEYGEN_FEATURE_X = &quot;aac4905c-84d0-41a3-af6e-1026e28c04d3&quot;
 const KEYGEN_FEATURE_Y = &quot;dd025847-42fb-49b0-b898-80c34d7734b4&quot;
@@ -368,7 +393,7 @@ const ALLOWED_FEATURES = {
   [KEYGEN_FEATURE_Z]: false
 }
 
-const licenses = /* fetch user&#39;s licenses */
+const licenses = [/* fetch user&#39;s licenses */]
 
 for (let license of licenses) {
   const { id, relationships: { policy: { data: policy } } } = license
@@ -378,20 +403,26 @@ for (let license of licenses) {
     case KEYGEN_FEATURE_Y:
     case KEYGEN_FEATURE_Z: {
       // Validate the current license
-      const { meta: validation, errors } = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/${id}/actions/validate`, {
-        headers: { &quot;Accept&quot;: &quot;application/vnd.api+json&quot;, &quot;Authorization&quot;: &quot;Bearer {TOKEN}&quot; },
-      }).then(r =&gt; r.json())
+      const res = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/${id}/actions/validate`, {
+        method: &quot;POST&quot;,
+        headers: {
+          &quot;Accept&quot;: &quot;application/vnd.api+json&quot;,
+          &quot;Authorization&quot;: &quot;Bearer {TOKEN}&quot;
+        }
+      })
+
+      const { meta, errors } = await res.json()
       if (errors) {
         continue
       }
 
-      ALLOWED_FEATURES[policy.id] = validation.valid
+      ALLOWED_FEATURES[policy.id] = meta.valid
 
       break
     }
     default: {
       // This version of our product doesn&#39;t use this policy so it&#39;s okay to skip
-      // it (we can implement new features without breaking old versions)
+      // it (so we can implement new features without breaking old versions)
       break
     }
   }
@@ -401,8 +432,10 @@ for (let license of licenses) {
 
 if (ALLOWED_FEATURES[KEYGEN_FEATURE_X]) {
   // … do something
-}
-</code></pre>
+}</code></pre>
+</details>
+
+<hr>
 <h3 id="i-want-to-require-periodic-check-in-for-licenses-to-remain-valid">I want to require periodic &quot;check-in&quot; for licenses to remain valid</h3>
 <p>You can require licenses to periodically &quot;check-in&quot; using the <a href="/docs/api#licenses-actions-check-in">check-in action</a>.
 Below is a policy which requires licenses to check in every 2 weeks in
@@ -426,6 +459,7 @@ validate licenses e.g. to ensure they aren&#39;t expired or suspended.</p>
 <a href="/docs/using-webhooks">webhook event</a> so that you can notify your customer to
 let them know that they need to connect to the internet soon and validate
 their license.</p>
+<hr>
 <h3 id="i-want-each-license-to-have-a-usage-limit">I want each license to have a usage limit</h3>
 <p>You can set up license policies to enforce a usage limit by utilizing the
 <code>maxUses</code> attribute, along with utilizing a license&#39;s usage-related actions,
@@ -445,9 +479,11 @@ such as <a href="/docs/api#licenses-actions-increment-usage">increment-usage</a>
 <p>Then you would utilize it by incrementing the license&#39;s <code>uses</code> attribute
 through its increment-usage action when usage occurs (you choose when to
 increment usage),</p>
-<pre><code class="lang-js">const fetch = require(&quot;node-fetch&quot;)
+<details>
+  <summary>View example implementation</summary>
+<pre><code>const fetch = require(&quot;node-fetch&quot;)
 
-const response = await fetch(&quot;https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/actions/increment-usage&quot;, {
+const res = await fetch(&quot;https://api.keygen.sh/v1/accounts/{ACCOUNT}/licenses/b18e3f3a-330c-4d8d-ae2e-014db21fa827/actions/increment-usage&quot;, {
   method: &quot;POST&quot;,
   headers: {
     &quot;Accept&quot;: &quot;application/vnd.api+json&quot;,
@@ -455,17 +491,18 @@ const response = await fetch(&quot;https://api.keygen.sh/v1/accounts/{ACCOUNT}/l
   }
 })
 
-const { data, errors } = await response.json()
+const { data, errors } = await res.json()
 if (errors) {
-  if (response.status === 422) {
+  if (res.status === 422) {
     // … handle case where they&#39;ve reached their usage limit
   }
 
   return
 }
 
-// … allow usage
-</code></pre>
+// … allow usage</code></pre>
+</details>
+
 <p>You can reset a license&#39;s usage count from your admin dashboard, or via
 the licensing API.</p>
 <hr>
