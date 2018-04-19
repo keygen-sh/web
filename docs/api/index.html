@@ -297,29 +297,34 @@ Within the header, you will utilize a <a href="#tokens">Token</a> resource&#39;s
 attribute</a>, like so,</p>
 <pre><code class="lang-plain">Authorization: Bearer {TOKEN}
 </code></pre>
-<div class="notice notice--tip">
-  Your authentication token is pre-populated in all the examples on this page
-  if you&#39;re currently logged in to <a href="https://app.keygen.sh">your dashboard</a>,
-  so you can test any example right away. <strong>Only you can see these values.</strong>
-  The pre-populated token is an <strong>admin token</strong> and is <strong>not</strong> meant to be
-  used in client-facing code, stored in version control, and so forth.
+<p>If you want to interact with Keygen&#39;s API client-side, then you should do so
+using our user resources, which we created for this purpose. You can create
+users with email and password credentials, which can be used during token
+generation to authenticate a user. After a user is authenticated, they can
+interact with our API in a way that is limited to only their account.</p>
+<p>Along with admins and users, a product can also authenticate using product
+tokens; to create a new product token, please see the <a href="#products-tokens">Product token relationship</a>.
+All user tokens have a <strong>2 week</strong> expiry and can be <a href="#tokens-regenerate">regenerated</a>
+as needed during that timeframe. Admin and product tokens do not expire, but
+should <strong>only</strong> be used server-side.</p>
+<div class="notice notice--warning">
+  <strong>Admin and product tokens should only be used server-side</strong>, this is because
+  they allow full near management of your Keygen account. This means that if an
+  attack were to obtain a product token from within your code, no matter how
+  obfuscated, they will be able to create and management licenses at-will—including
+  those of your other customers.
 </div>
 
-<p>You can manage your tokens using the <a href="#tokens">Tokens</a> resource. Along
-with users, a product can also authenticate using product tokens; to
-create a new product token, please see the <a href="#products-tokens">Product token relationship</a>.
-All user tokens have a <strong>2 week</strong> expiry and can be <a href="#tokens-regenerate">regenerated</a>
-as needed during that timeframe. Admin and product tokens do not expire, and
-<strong>should only be used server-side.</strong></p>
 <p>Most API endpoints will <strong>require</strong> authentication, and access to resources
 depends on the token bearer&#39;s <a href="#authorization">authorization and role</a>.</p>
-<div class="notice notice--warning">
-  <strong>Tokens should be treated as passwords.</strong> Different tokens carry different
-  privileges depending on the bearer of the token, so be sure to keep them
-  secret! Do not share your secret API tokens in publicly accessible areas
-  such as GitHub, client-facing code, and so forth. If in doubt, please reset
-  or revoke the offending authentication token(s).
-</div></div></section><section class="topic" id="authorization"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#authorization" data-target="authorization"><i class="material-icons">link</i></a>Authorization</h1><p>Access to certain resources is dependent upon a token bearer&#39;s role. Most
+<p>You can manage tokens using the <a href="#tokens">Tokens</a> resource.</p>
+<h3 id="security-warning">Security Warning</h3>
+<p>Tokens should be treated as passwords. Different tokens carry different
+privileges depending on the bearer of the token, so be sure to keep them
+secret! Do not share your admin or product API tokens in publicly accessible
+areas such as GitHub, client-facing code, and so forth. If in doubt, please
+reset or revoke the offending authentication token(s).</p>
+</div></section><section class="topic" id="authorization"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#authorization" data-target="authorization"><i class="material-icons">link</i></a>Authorization</h1><p>Access to certain resources is dependent upon a token bearer&#39;s role. Most
 of the time you will be authenticating as one of your users, which will allow
 access to a small subset of resources available to your account. In other
 cases, as when you are using the <a href="#architecture">middleman architecture</a>,
