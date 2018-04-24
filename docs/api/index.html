@@ -762,9 +762,10 @@ and webhooks, originated from Keygen. This is useful in preventing man-in-the-mi
 attacks, where an attacker will redirect requests to a local server under their
 control which defaults to sending &quot;valid&quot; license responses.</p>
 <div class='notice notice--warning'>
-  <strong>We do not sign error payloads - please keep this in mind during implementation.</strong>
-  We will only sign successful responses (<code>2xx–3xx</code>) using your account&#39;s private key. Error
-  responses will <em>not</em> include the <code>X-Signature</code> header.
+  <strong>We do not sign certain error payloads - please keep this in mind during implementation.</strong>
+  We will <em>always</em> sign successful responses (<code>2xx–3xx</code>) and errors that occur while authenticated
+  using your account&#39;s private key. Certain error responses, such as authentication errors,
+  will <em>not</em> include the <code>X-Signature</code> header.
 </div>
 
 <table>
