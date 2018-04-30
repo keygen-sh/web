@@ -42,6 +42,21 @@ or the request will be rejected.</p>
 your product. You should include their new license key as a query parameter
 within the URL.</p>
 <p>The download URL will remain accessible for as long as the license is valid.</p>
+<div class="notice notice--warning">
+  <p>
+    <strong>For some licensing models e.g. one which requires a machine fingerprint scope,
+    this may introduce a catch-22</strong>, where a license needs a machine associated with
+    it for the download to be allowed, but at the same time the product needs to be
+    downloaded to be able to perform a machine activation (i.e. you need access to the
+    machine&#39;s MAC address, etc. to fingerprint the device).
+  </p>
+  <p>
+    In these situations, you should create a separate license policy that doesn&#39;t require
+    a fingerprint scope, used solely for the initial download. You can also give it a short
+    <code>duration</code> e.g. 1 day. This would result in your customer receiving 2 license
+    keys—a temporary &quot;download key&quot;, and a &quot;normal&quot; license key.
+  </p>
+</div>
 </div><div class="example__wrapper"><div class="example"><h4>Example Download URL</h4><pre><code class="no-highlight">https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/latest/macos/dmg?key=bbec-988f-b52f-5188</code></pre></div></div></article></section><section class="topic" id="auto-updates"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#auto-updates" data-target="auto-updates"><i class="material-icons">link</i></a>Auto Updates</h1><p>The <a href="#releases-update">update endpoint</a> is compatible with Squirrel.Mac,
 NSIS, Sparkle, WordPress for plugin and theme updates, as well as any
 other auto-update system or framework that needs to determine if an
