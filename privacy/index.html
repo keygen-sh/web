@@ -129,9 +129,18 @@ ga('send', 'pageview');</script></head><body><div class="container"><header clas
 </li>
 <li>Any other PII stored within a resource&#39;s <code>metadata</code> attribute, e.g. tokenized CC information, billing address, Stripe customer ID, PayPal transaction ID, etc. (keep in mind that you as a <strong>Controller</strong> are responsible for this data)</li>
 </ul>
-<p>_* These attributes are for our <code>User</code> resources, which is an optional feature. You <em>do not</em> have to utilize this feature if it is not required for licensing your products.<em>
-</em>** These attributes are for our <code>Machine</code> resources, which is an optional feature.<em>
-</em>*** The <code>fingerprint</code> attribute is for our <code>Machine</code> resources, and can be anonymized to not store any PII by hashing the data using a cryptographically secure algorithm such as <code>sha256</code> or <code>sha512</code>._</p>
+<ol style='list-style: none; padding: 0'>
+  <li>
+    <small>* These attributes are for our <code>User</code> resources, which is an optional feature. You do not have to utilize this feature if it is not required for licensing your products.</small>
+  </li>
+  <li>
+    <small>** These attributes are for our <code>Machine</code> resources, which is an optional feature.</small>
+  </li>
+  <li>
+    <small>*** The <code>fingerprint</code> attribute is for our <code>Machine</code> resources, and can be anonymized to not store any PII by hashing the data using a cryptographically secure algorithm such as <code>sha256</code> or <code>sha512</code>.</small>
+  </li>
+</ol>
+
 <h3 id="1-12-data-retention">1.12. Data retention</h3>
 <p><strong>All of the above data for both our customers and your customers <em>could</em> be included within our logs (e.g. within database query logs, request logs, etc.), backups, and within temporary storage (e.g. caching systems, our Redis datastores, etc.), which we keep for up to 30 days.</strong></p>
 <p>Before the maximum 30 day retention period, all archived logs, backups, and temporary storage are permanently deleted – this means that after a user has been &quot;forgotten&quot; i.e. erased upon request, the user will be completely erased from our systems within 30 days.</p>
