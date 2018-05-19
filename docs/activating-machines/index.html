@@ -19,19 +19,11 @@ via the API. To create a token directly through the API, check out the
 <a href="/docs/api#tokens-generate">code examples in the API reference</a> or check
 out our guide on <a href="/docs/authenticating-users">authenticating users</a>.</p>
 <div class="notice notice--warning">
-  <p>
-    If you are using <strong>product tokens</strong>, the code for this tutorial <strong>should
-    not</strong> be written client-side. If you are wanting to allow users to activate
-    machines for themselves <strong>client-side</strong>, then you should <a href="/docs/authenticating-users">authenticate
-    them</a> and use an authentication token
-    which belongs to them; <strong>otherwise, all code should be server-side.</strong>
-  </p>
-  <p>
-    <strong>Your admin and product tokens carry many privileges and should always
-    be kept secret. Do not share your secret API tokens in publicly accessible
-    areas such GitHub, embed them in client-facing code e.g. inside of your
-    product, and so forth.</strong> <a href="/docs/api#authentication">Learn more.</a>
-  </p>
+  <strong>Admin and product tokens should not be included in any client-facing
+  code</strong>, as they offer full access to all of your account&#39;s resources.
+  You can authenticate as one of your users or use an activation token
+  to perform client-side machine activation. Admin and product tokens
+  should only be used server-side.
 </div>
 
 <hr>
@@ -60,18 +52,21 @@ user&#39;s current machine.</li>
 </ol>
 <p>Activation requests can either be performed client- or server-side, and depending
 on which one of those you choose, the tokens you use to make the request will
-be different i.e. product tokens vs. user tokens, for server-side vs.
-client-side machine activation, respectively.</p>
+be different i.e. product tokens vs. user tokens vs. activation tokens, for
+server-side and client-side machine activations.</p>
 <p>We have examples of server-side implementations that you can use as a reference for
 implementing your own license activation system. We have example servers written
 in <a href="https://github.com/keygen-sh/example-node-activation-server">Node</a>, as well
 as in <a href="https://github.com/keygen-sh/example-php-activation-server">PHP</a>.</p>
 <div class="notice notice--tip">
-  <strong>If you&#39;re not using Keygen to manage users, all machine activations
-  will need to be done server-side.</strong> In order to perform activation
-  client-side, you will need to be authenticated as a user, because
-  <a href="/docs/api#security">embedding your own authentication tokens within your app is
-  not secure</a>.
+  <p>
+    <strong>In order to perform machine activation client-side</strong>, you will need to be authenticated
+    as a user or use <a href="/docs/api#licenses-relationships-activation-tokens">an activation token</a>
+    which belongs to the license you&#39;re activating a machine for.
+  </p>
+  <p>
+    Embedding your admin or product tokens within your software <a href="/docs/api#security">is not secure</a>.
+  </p>
 </div>
 
 <hr>
@@ -79,22 +74,33 @@ as in <a href="https://github.com/keygen-sh/example-php-activation-server">PHP</
 the license the activation is for, a <strong>fingerprint</strong> for the current device,
 as well as an optional <strong>user ID</strong> for client-side activation. Other
 machine attributes, such as IP or hostname, are completely optional.</p>
-<p>In the example below, we&#39;ll be using a <code>SHA1</code> hash of the current device&#39;s
+<div class="notice notice--tip">
+  The easiest way to obtain a license&#39;s ID is to perform a license validation
+  before the machine activation. The license&#39;s ID will be included within the
+  validation response.
+</div>
+
+<p>In the example below, we&#39;ll be using a <code>SHA256</code> hash of the current device&#39;s
 <code>MAC</code> address as a <strong>fingerprint</strong>. We&#39;re hashing the user&#39;s <code>MAC</code> address
 as a simple way to anonymize it, since we have no real use in knowing its
-actual value.</p>
+actual value. Using an <code>HMAC</code> digest (i.e. <code>HMAC-SHA256</code>) might be an even
+better way to anonymize the user&#39;s <code>MAC</code> address.</p>
 <p>Although we&#39;re using the <code>MAC</code> address in this example, a fingerprint can
 be any unique string able to be reproducibly queried from the device, e.g. you
 could write a secure random string to a file on disk or to a registry and use
 that, but for example purposes the device&#39;s <code>MAC</code> address works well enough.</p>
 <h2 id="fingerprinting-the-device">Fingerprinting the device</h2>
-<pre><code class="lang-js">const sha1 = require(&quot;sha1&quot;)
+<pre><code class="lang-js">const crypto = require(&quot;crypto&quot;)
 const { promisify } = require(&quot;bluebird&quot;)
 const { getMac } = require(&quot;getmac&quot;)
 
 const getMacAddress = promisify(getMac)
 const getFingerprint = async () =&gt; {
-  return sha1(await getMacAddress())
+  const macAddr = await getMacAddress()
+
+  return crypto.createHash(&#39;sha256&#39;)
+               .update(macAddr)
+               .digest(&#39;hex&#39;)
 }
 </code></pre>
 <p>Next up, we&#39;ll use our <code>getFingerprint</code> function above while creating a
