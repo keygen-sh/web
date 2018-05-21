@@ -187,9 +187,8 @@ For example, when creating a new license, you would specify the key attribute
 with a value generated from your private key. You would then validate the
 license key client-side by embedding a derived public key within your
 software. <a href="https://gist.github.com/ezekg/f021009b4c419f2462f3706a4478f200">Here&#39;s an example of doing so using Node</a>.</p>
-<p>Alternatively, you can set up &quot;air-gapped&quot; license activation using
-RSA cryptography, QR codes, and a mobile device. View <a href="https://github.com/keygen-sh/air-gapped-activation-example">our example
-implementation</a>.</p>
+<p>Alternatively, you can set up &quot;air-gapped&quot; license activation using TOTP,
+QR codes, and a mobile device. View <a href="https://github.com/keygen-sh/air-gapped-activation-example">our example implementation</a>.</p>
 <p><strong>Offline license validation cannot use metrics outside of simple expiry
 validation</strong>, as it would require an internet connection to e.g. validate
 against a license&#39;s machine requirements, etc. Keep that in mind.</p>
