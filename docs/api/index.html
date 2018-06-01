@@ -474,6 +474,10 @@ existing data on your end when performing updates.</p>
   look up their information server-side when required.
 </div>
 
+<p>Please note: all keys will be transformed into camelcase (<code>exampleKey</code>), so we
+recommend using camelcase when possible. For example, <code>example_key</code> will be
+transformed into <code>exampleKey</code>, <code>ExampleKey</code> will also be transformed
+into <code>exampleKey</code>, etc.</p>
 <p>You can specify up to 64 keys, with key names up to 256 characters long and
 values up to 512 characters long.</p>
 </div></section><section class="topic" id="pagination"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#pagination" data-target="pagination"><i class="material-icons">link</i></a>Pagination</h1><p>All top-level API resources have support for bulk fetches via &quot;list&quot; API
