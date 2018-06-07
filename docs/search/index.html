@@ -1,0 +1,251 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="initial-scale=1"><title>Performing Searches in the Dashboard - Documentation</title><link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII" type="image/x-icon"><link rel="icon" href="/favicon-192x192.png" sizes="192x192"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link href="https://keygen.sh/media.jpg" rel="image_src"><meta content="Keygen - a dead-simple product and app licensing API built for developers" property="og:title"><meta content="https://keygen.sh/" property="og:url"><meta content="Keygen is a simple app and product licensing API, allowing developers to easily implement various licensing types into any online or desktop software product." property="og:description"><meta content="https://keygen.sh/media.jpg" property="og:image"><meta content="Keygen" property="og:site_name"><meta content="website" property="og:type"><link rel="stylesheet" href="/app.css"></head><body><main class="guide" id="guide"><header class="guide__header"><div class="guide__sidebar-toggle" id="sidebar-toggle"><i class="material-icons">menu</i></div><div class="guide__header__background">&nbsp;</div></header><nav class="guide__sidebar"><div class="guide__sidebar__logo"><a class="logo" href="/"><canvas class="logo__logomark" width="64" height="64"></canvas><span class="logo__logotype effect--shuffle">Keygen</span></a></div><div class="guide__sidebar__content"><div class="guide__sidebar__section"><h5>Introduction</h5><ul class="guide__sidebar__list"><li class="guide__sidebar__item"><a href="/docs/getting-started">Getting Started</a></li></ul></div><div class="guide__sidebar__section"><h5>Guides</h5><ul class="guide__sidebar__list"><li class="guide__sidebar__item"><a href="/docs/choosing-a-licensing-model">Choosing a Licensing Model</a></li><li class="guide__sidebar__item"><a href="/docs/creating-users">Creating Users</a></li><li class="guide__sidebar__item"><a href="/docs/authenticating-users">Authenticating Users</a></li><li class="guide__sidebar__item"><a href="/docs/creating-licenses">Creating Licenses</a></li><li class="guide__sidebar__item"><a href="/docs/validating-licenses">Validating Licenses</a></li><li class="guide__sidebar__item"><a href="/docs/activating-machines">Activating Machines</a></li><li class="guide__sidebar__item"><a href="/docs/storing-metadata">Storing Metadata</a></li><li class="guide__sidebar__item"><a href="/docs/using-webhooks">Using Webhooks</a></li></ul></div><div class="guide__sidebar__section"><h5>Integrate</h5><ul class="guide__sidebar__list"><li class="guide__sidebar__item"><a href="/integrate/electron">Electron</a></li><li class="guide__sidebar__item"><a href="/integrate/stripe">Stripe</a></li><li class="guide__sidebar__item"><a href="/integrate/paddle">Paddle</a></li><li class="guide__sidebar__item"><a href="/integrate/fastspring">FastSpring</a></li><li class="guide__sidebar__item"><a href="/integrate/sendowl">SendOwl</a></li><li class="guide__sidebar__item"><a href="/integrate/gumroad">Gumroad</a></li><li class="guide__sidebar__item"><a href="/integrate/moonclerk">MoonClerk</a></li></ul></div><div class="guide__sidebar__section"><h5>Docs & References</h5><ul class="guide__sidebar__list"><li class="guide__sidebar__item"><a href="/docs/api">Licensing API</a></li><li class="guide__sidebar__item"><a href="/docs/dist">Distribution API</a></li><li class="guide__sidebar__item"><a href="/docs/search">Search</a></li></ul></div><div class="guide__sidebar__section"><h5>Account</h5><ul class="guide__sidebar__list"><li class="guide__sidebar__item"><a href="https://app.keygen.sh">Dashboard</a></li></ul></div></div></nav><div class="guide__content__wrapper"><div class="guide__content"><h1 id="performing-searches-in-the-dashboard">Performing Searches in the Dashboard</h1>
+<p>Use your admin Dashboard to search for licenses, users, machines, and more. You can use the advanced
+search mechanism available in the Dashboard to look up information about:</p>
+<ul>
+<li><strong>Products</strong></li>
+<li><strong>Policies</strong></li>
+<li><strong>Licenses</strong></li>
+<li><strong>Users</strong></li>
+<li><strong>Machines</strong></li>
+<li><strong>Keys</strong></li>
+</ul>
+<p>You can use different pieces of information as search terms. Examples include: a user&#39;s email address
+(<code>email:john@example.com</code>), the first 4 characters of a license key (e.g., <code>key:1ff0</code>), first and last
+name of a particular user (e.g., <code>fullName:&#39;John Doe&#39;</code>), or a metadata value, such as a customer&#39;s ID
+within your payment provider (<code>metadata:{customerId:cust_foo}</code>).</p>
+<p>When you perform a search, the top results will appear immediately. Results will be sorted by
+relevance according to your search query. All searches are case-insenstive.</p>
+<h2 id="search-fields-and-operators">Search fields and operators</h2>
+<p>You can use specific search fields and operators to further refine your searches. The more terms you
+provide in your search query, the fewer the number of results, and the more relevant the results.</p>
+<p>A typical search will follow this syntax:</p>
+<pre><code class="lang-plain">type:{TYPE} {FIELD}:{VALUE} {FIELD}:{VALUE} …
+</code></pre>
+<p>All searches must include a <code>type</code> field. When field values contain a space or a colon, you will
+need to surround the value with quotes, e.g. <code>name:&#39;Cool App&#39;</code> or <code>fingerprint:&#39;ab:cd:ef&#39;</code>.</p>
+<p>Below you can find the types which are searchable within your admin Dashboard, and the fields
+which you can use within a search query:</p>
+<h3 id="products-type-product-">Products (<code>type:product</code>)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Field</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>id</code></td>
+<td style="text-align:left">The full or partial ID of the product</td>
+<td style="text-align:left"><code>type:product id:c2a62d53</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>name</code></td>
+<td style="text-align:left">The name of the product</td>
+<td style="text-align:left"><code>type:product name:&#39;Cool App&#39;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="policies-type-policy-">Policies (<code>type:policy</code>)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Field</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>id</code></td>
+<td style="text-align:left">The full or partial ID of the policy</td>
+<td style="text-align:left"><code>type:policy id:7f9353cd</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>name</code></td>
+<td style="text-align:left">The name of the policy</td>
+<td style="text-align:left"><code>type:policy name:&#39;Professional Edition&#39;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>product</code></td>
+<td style="text-align:left">The ID or name of the product the policy belongs to</td>
+<td style="text-align:left"><code>type:policy product:&#39;awesome product&#39;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="users-type-user-">Users (<code>type:user</code>)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Field</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>id</code></td>
+<td style="text-align:left">The full or partial ID of the user</td>
+<td style="text-align:left"><code>type:user id:ca25e7a4</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>email</code></td>
+<td style="text-align:left">The email of the user</td>
+<td style="text-align:left"><code>type:user email:admin@example.com</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>firstName</code></td>
+<td style="text-align:left">The first name of the user</td>
+<td style="text-align:left"><code>type:user firstName:john</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>lastName</code></td>
+<td style="text-align:left">The last name of the user</td>
+<td style="text-align:left"><code>type:user lastName:doe</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>fullName</code></td>
+<td style="text-align:left">The full name of the user</td>
+<td style="text-align:left"><code>type:user fullName:&#39;John Doe&#39;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>role</code></td>
+<td style="text-align:left">The role of the user</td>
+<td style="text-align:left"><code>type:user role:admin</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="licenses-type-license-">Licenses (<code>type:license</code>)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Field</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>id</code></td>
+<td style="text-align:left">The full or partial ID of the license</td>
+<td style="text-align:left"><code>type:license id:3cec6aff</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>key</code></td>
+<td style="text-align:left">The full or partial key of the license</td>
+<td style="text-align:left"><code>type:license key:42dd-4de0-94fe-6c4f</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>product</code></td>
+<td style="text-align:left">The ID or name of the product the license belongs to</td>
+<td style="text-align:left"><code>type:license product:awesome</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>policy</code></td>
+<td style="text-align:left">The ID or name of the policy the license belongs to</td>
+<td style="text-align:left"><code>type:license policy:pro</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>user</code></td>
+<td style="text-align:left">The ID or email of the user the license belongs to</td>
+<td style="text-align:left"><code>type:license user:jdoe@example.com</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="machines-type-machine-">Machines (<code>type:machine</code>)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Field</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>id</code></td>
+<td style="text-align:left">The full or partial ID of the machine</td>
+<td style="text-align:left"><code>type:machine id:d9c2</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>fingerprint</code></td>
+<td style="text-align:left">The full or partial fingerprint of the machine</td>
+<td style="text-align:left"><code>type:machine fingerprint:&#39;42:dd:4d&#39;</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>name</code></td>
+<td style="text-align:left">The name of the machine</td>
+<td style="text-align:left"><code>type:machine name:laptop</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>product</code></td>
+<td style="text-align:left">The ID or name of the product the machine belongs to</td>
+<td style="text-align:left"><code>type:machine product:awesome</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>policy</code></td>
+<td style="text-align:left">The ID or name of the policy the machine belongs to</td>
+<td style="text-align:left"><code>type:machine policy:pro</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>user</code></td>
+<td style="text-align:left">The ID or email of the user the machine belongs to</td>
+<td style="text-align:left"><code>type:machine user:jdoe@example.com</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>license</code></td>
+<td style="text-align:left">The ID or key of the license the machine belongs to</td>
+<td style="text-align:left"><code>type:machine license:42dd-4de0</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="keys-type-key-">Keys (<code>type:key</code>)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Field</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>id</code></td>
+<td style="text-align:left">The full or partial ID of the key</td>
+<td style="text-align:left"><code>type:key id:bfefa133</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>key</code></td>
+<td style="text-align:left">The full or partial key of the key</td>
+<td style="text-align:left"><code>type:key key:a5e9e01</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>product</code></td>
+<td style="text-align:left">The ID or name of the product the key belongs to</td>
+<td style="text-align:left"><code>type:key product:Awesome</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>policy</code></td>
+<td style="text-align:left">The ID or name of the policy the key belongs to</td>
+<td style="text-align:left"><code>type:key policy:Pro</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="metadata-searches">Metadata searches</h2>
+<p>You can perform searches on metadata that you have added to resources that support it (e.g., licenses).
+You can use the <code>metadata:</code> field so the search looks up specific metadata key-values. To search for a
+specific metadata key-value pair, use the metadata key name within the query. For example:</p>
+<pre><code class="lang-plain">metadata:{key1:value-1,key2:&#39;2value&#39;}
+</code></pre>
+<p>Depending on the search, you can omit the quotes around the value of each key-value pair within the
+<code>metadata</code> query. Usually, it&#39;s perfectly fine to omit the quotes, but values that begin with a number
+may need to be surrounded with quotes to disambiguate the value&#39;s type.</p>
+<h2 id="best-practices">Best practices</h2>
+<p>Many searches can be performed with a single search term. Use something that would be fairly atypical,
+such as a license key, or an email address. If you are seeing too few results, make the search term
+less specific. If there are too many results, include additional terms, one at a time.</p>
+<h2 id="questions-">Questions?</h2>
+<p>We&#39;re always happy to help with code or other questions you might have! If you have any questions
+about what you&#39;ve learned today, <a href="mailto:support@keygen.sh">be sure to reach out</a>!</p>
+</div></div><div class="zoom__wrapper"><div class="zoom"></div></div></main><script src="/app.js"></script></body></html>
