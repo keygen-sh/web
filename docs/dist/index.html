@@ -306,8 +306,7 @@ a <code>PUT</code> request to the given location.</p>
 </div></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="no-highlight" data-method="POST">https://dist.keygen.sh/v1/{ACCOUNT}/{PRODUCT}/releases/{PLATFORM}/{RELEASE}
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="bash" data-lang="bash">curl -X POST https://dist.keygen.sh/v1/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.0.0.zip \
   -H "Authorization: Bearer <%= token %>"
-</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 307 Temporary Redirect</h4><pre><code class="no-highlight">Location: https://keygen-dist.s3.us-east-2.amazonaws.com/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.0.0.zip
-{
+</code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 307 Temporary Redirect</h4><pre><code class="no-highlight">Location: https://keygen-dist.s3.us-east-2.amazonaws.com/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.0.0.zip</code><code class="json">{
   "url": "https://keygen-dist.s3.us-east-2.amazonaws.com/<%= account %>/31339351-f7f5-4bdd-8346-5d8399a1ac07/releases/macos/v1.0.0.zip",
   "name": "v1.0.0.zip"
 }
