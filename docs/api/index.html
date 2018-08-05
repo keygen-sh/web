@@ -470,7 +470,7 @@ for billing purposes.</p>
 operations will <strong>overwrite</strong> the entire hash, so be sure to <strong>merge</strong>
 existing data on your end when performing updates.</p>
 <div class="notice notice--warning">
-  <strong>Do not attach sensitive billing information directly to your users using the <code>metadata</code>
+  <strong>Do not attach sensitive billing information directly to resources using the <code>metadata</code>
   attribute. Doing so is a violation of our <a href="/terms">terms of use</a>.</strong> If you&#39;re using
   Stripe, you need only attach their Stripe <code>customer_id</code>, or a temporary <em>secure
   representation</em> of a card (such as a <code>stripe_token</code>), which can then be used to
@@ -483,7 +483,177 @@ transformed into <code>exampleKey</code>, <code>ExampleKey</code> will also be t
 into <code>exampleKey</code>, etc.</p>
 <p>You can specify up to 64 keys, with key names up to 256 characters long and
 values up to 512 characters long.</p>
-</div></section><section class="topic" id="pagination"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#pagination" data-target="pagination"><i class="material-icons">link</i></a>Pagination</h1><p>All top-level API resources have support for bulk fetches via &quot;list&quot; API
+</div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="javascript" data-lang="javascript">const fetch = require("node-fetch")
+
+const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/a5a154d2-f026-40fa-bc8d-a7e3ca415298", {
+  method: "PATCH",
+  headers: {
+    "Content-Type": "application/vnd.api+json",
+    "Accept": "application/vnd.api+json",
+    "Authorization": "Bearer <%= token %>"
+  },
+  body: JSON.stringify({
+    "data": {
+      "type": "licenses",
+      "attributes": {
+        "metadata": {
+          "customerEmail": "foobar@example.com"
+        }
+      }
+    }
+  })
+})
+
+const { data, errors } = await response.json()
+</code><code class="swift" data-lang="swift">import SwiftyJSON
+import Alamofire
+
+Alamofire.request("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/a5a154d2-f026-40fa-bc8d-a7e3ca415298",
+  method: .patch,
+  headers: [
+    "Content-Type": "application/vnd.api+json",
+    "Accept": "application/vnd.api+json",
+    "Authorization": "Bearer <%= token %>"
+  ],
+  parameters: [
+    "data": [
+      "type": "licenses",
+      "attributes": [
+        "metadata": [
+          "customerEmail": "foobar@example.com"
+        ]
+      ]
+    ]
+  ],
+  encoding: JSONEncoding.default
+).responseJSON { response in
+  let json = JSON(data: response.data!)
+}
+</code><code class="csharp" data-lang="csharp">using RestSharp;
+
+var client = new RestClient("https://api.keygen.sh/v1/accounts/<%= account %>");
+var request = new RestRequest(
+  "licenses/a5a154d2-f026-40fa-bc8d-a7e3ca415298",
+  Method.PATCH
+);
+
+request.AddHeader("Content-Type", "application/vnd.api+json");
+request.AddHeader("Accept", "application/vnd.api+json");
+request.AddHeader("Authorization", "Bearer <%= token %>");
+
+request.AddJsonBody(new {
+  data = new {
+    type = "licenses",
+    attributes = new {
+      metadata = new {
+        customerEmail = "foobar@example.com"
+      }
+    }
+  }
+});
+
+var response = client.Execute(request);
+</code><code class="kotlin" data-lang="kotlin">import com.mashape.unirest.http.exceptions.*
+import com.mashape.unirest.http.*
+import org.json.*
+
+val body = JSONObject(mapOf(
+  "data" to mapOf(
+    "type" to "licenses",
+    "attributes" to mapOf(
+      "metadata" to mapOf(
+        "customerEmail" to "foobar@example.com"
+      )
+    )
+  )
+))
+
+val res = Unirest.patch("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/a5a154d2-f026-40fa-bc8d-a7e3ca415298")
+  .header("Authorization", "Bearer <%= token %>")
+  .header("Content-Type", "application/vnd.api+json")
+  .header("Accept", "application/vnd.api+json")
+  .body(body)
+  .asJson()
+</code><code class="java" data-lang="java">import com.mashape.unirest.http.exceptions.*;
+import com.mashape.unirest.http.*;
+import org.json.*;
+
+import static java.util.Map.ofEntries;
+import static java.util.Map.entry;
+
+JSONObject body = new JSONObject(ofEntries(
+  entry("data", ofEntries(
+    entry("type", "licenses"),
+    entry("attributes", ofEntries(
+      entry("metadata", ofEntries(
+        entry("customerEmail", "foobar@example.com")
+      ))
+    ))
+  ))
+));
+
+HttpResponse&lt;JsonNode&gt; res = Unirest.patch("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/a5a154d2-f026-40fa-bc8d-a7e3ca415298")
+  .header("Authorization", "Bearer <%= token %>")
+  .header("Content-Type", "application/vnd.api+json")
+  .header("Accept", "application/vnd.api+json")
+  .body(body)
+  .asJson();
+</code><code class="cpp" data-lang="cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;cpprest/http_client.h&gt;
+#include &lt;cpprest/filestream.h&gt;
+
+using namespace std;
+using namespace web;
+using namespace web::http;
+using namespace web::http::client;
+using namespace web::json;
+using namespace utility;
+
+http_client client("https://api.keygen.sh/v1/accounts/<%= account %>");
+http_request req;
+
+value metadata;
+metadata["customerEmail"] = value::string("foobar@example.com");
+
+value attrs;
+attrs["metadata"] = metadata;
+
+value data;
+data["type"] = value::string("licenses");
+data["attributes"] = attrs;
+
+value body;
+body["data"] = data;
+
+req.headers().add("Authorization", "Bearer <%= token %>");
+req.headers().add("Content-Type", "application/vnd.api+json");
+req.headers().add("Accept", "application/json");
+
+req.set_request_uri("/licenses/a5a154d2-f026-40fa-bc8d-a7e3ca415298");
+req.set_method(methods::PATCH);
+req.set_body(body.serialize());
+
+client.request(req)
+  .then([](http_response res)
+  {
+    auto data = res.extract_json().get();
+  })
+  .wait();
+</code><code class="bash" data-lang="bash">curl -X PATCH https://api.keygen.sh/v1/accounts/<%= account %>/licenses/a5a154d2-f026-40fa-bc8d-a7e3ca415298 \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Accept: application/vnd.api+json' \
+  -H 'Authorization: Bearer <%= token %>' \
+  -d '{
+        "data": {
+          "type": "licenses",
+          "attributes": {
+            "metadata": {
+              "customerEmail": "foobar@example.com"
+            }
+          }
+        }
+      }'</code></pre></div></div></section><section class="topic" id="pagination"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#pagination" data-target="pagination"><i class="material-icons">link</i></a>Pagination</h1><p>All top-level API resources have support for bulk fetches via &quot;list&quot; API
 methods. For instance you can <a href="#users-list">list users</a>, <a href="#licenses-list">list licenses</a>,
 and <a href="#machines-list">list machines</a>. These list API methods share a common
 format, taking an optional <code>page</code> query parameter.</p>
