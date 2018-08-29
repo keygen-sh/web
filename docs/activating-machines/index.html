@@ -80,26 +80,24 @@ machine attributes, such as IP or hostname, are completely optional.</p>
   validation response.
 </div>
 
-<p>In the example below, we&#39;ll be using a <code>SHA256</code> hash of the current device&#39;s
-<code>MAC</code> address as a <strong>fingerprint</strong>. We&#39;re hashing the user&#39;s <code>MAC</code> address
-as a simple way to anonymize it, since we have no real use in knowing its
-actual value. Using an <code>HMAC</code> digest (i.e. <code>HMAC-SHA256</code>) might be an even
+<p>In the example below, we&#39;ll be using a <code>SHA512</code> hash of the current device&#39;s
+unique identifer as a <strong>fingerprint</strong>. We&#39;re hashing the user&#39;s device ID as a
+simple way to anonymize it, since we have no real use in knowing its actual
+value. Using an <code>HMAC</code> digest (i.e. <code>HMAC-SHA512</code>) might be an even
 better way to anonymize the user&#39;s <code>MAC</code> address.</p>
-<p>Although we&#39;re using the <code>MAC</code> address in this example, a fingerprint can
-be any unique string able to be reproducibly queried from the device, e.g. you
+<p>Although we&#39;re using a device&#39;s unique machine ID in this example, a fingerprint
+can be any unique string able to be reproducibly queried from the device, e.g. you
 could write a secure random string to a file on disk or to a registry and use
-that, but for example purposes the device&#39;s <code>MAC</code> address works well enough.</p>
+that, but for example purposes the device&#39;s ID works well enough.</p>
 <h2 id="fingerprinting-the-device">Fingerprinting the device</h2>
-<pre><code class="lang-js">const crypto = require(&quot;crypto&quot;)
-const { promisify } = require(&quot;bluebird&quot;)
-const { getMac } = require(&quot;getmac&quot;)
+<pre><code class="lang-js">const { machineId } = require(&#39;node-machine-id&#39;)
+const crypto = require(&#39;crypto&#39;)
 
-const getMacAddress = promisify(getMac)
 const getFingerprint = async () =&gt; {
-  const macAddr = await getMacAddress()
+  const id = await machineId({ original: true })
 
-  return crypto.createHash(&#39;sha256&#39;)
-               .update(macAddr)
+  return crypto.createHash(&#39;sha512&#39;)
+               .update(id)
                .digest(&#39;hex&#39;)
 }
 </code></pre>
