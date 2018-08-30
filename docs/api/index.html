@@ -407,11 +407,12 @@ with a <a href="#response-codes"><code>403 forbidden</code> error</a>.</p>
 </tr>
 </tbody>
 </table>
-</div></section><section class="topic" id="rate-limiting"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#rate-limiting" data-target="rate-limiting"><i class="material-icons">link</i></a>Rate Limiting</h1><p>A single IP address can make maximum bursts of 50 requests per 10 second
-window, and 300 requests per 5 minute window (which allows for 1 request/sec),
-regardless of authentication. If we see patterns of abuse, this limit may be
-lowered or the IP may be temporarily blacklisted. In rare cases of significant
-abuse, the IP may be permanently blacklisted from our API.</p>
+</div></section><section class="topic" id="rate-limiting"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#rate-limiting" data-target="rate-limiting"><i class="material-icons">link</i></a>Rate Limiting</h1><p>A single IP address can make a maximum burst of 50 requests per 10 second
+window and 300 requests per 5 minute window, which allows for 1 request/sec
+with short bursts of up to 3-5 requests/sec, regardless of authentication.
+If we see patterns of abuse, this limit may be lowered or the IP may be
+temporarily blacklisted. In rare cases of significant abuse, the IP may
+be permanently blacklisted from our API.</p>
 <p>You can check the returned HTTP headers of any API request to see your
 current rate limit status for the burst window:</p>
 <table>
