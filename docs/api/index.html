@@ -970,7 +970,11 @@ scheme that the particular policy implements.</p>
 <p>You can find your account&#39;s <strong>public key</strong> within your <a href="https://app.keygen.sh/settings">dashboard settings page</a>,
 which you can use to <code>verify</code> response payloads and license keys. Private keys
 are kept securely encrypted on our servers.</p>
-</div></section><section class="topic" id="signatures"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#signatures" data-target="signatures"><i class="material-icons">link</i></a>Signatures</h1><p>You may utilize your account&#39;s public key to verify that <strong>successful</strong> requests,
+<div class='notice notice--tip'>
+  To see an example of cryptographic validation, check out <a href="https://github.com/keygen-sh/example-cryptographic-verification">our example on GitHub</a>.
+  It will show you how to utilize your account&#39;s public key to validate various
+  cryptographic license key schemes.
+</div></div></section><section class="topic" id="signatures"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#signatures" data-target="signatures"><i class="material-icons">link</i></a>Signatures</h1><p>You may utilize your account&#39;s public key to verify that <strong>successful</strong> requests,
 and webhooks, originated from Keygen. This is useful in preventing man-in-the-middle (MITM)
 attacks, where an attacker will redirect requests to a local server under their
 control which defaults to sending &quot;valid&quot; license responses.</p>
