@@ -57,6 +57,8 @@ upsell premium features.</li>
 I can offer offline support but still require a periodic internet connection.</li>
 <li><strong>I want each license to have a usage limit</strong> so that I can offer plans based
 on usage of a particular feature.</li>
+<li><strong>I want to cryptographically sign or encrypt license keys</strong> so that I can validate
+license keys when the customer is offline.</li>
 </ul>
 <h2 id="licensing-models">Licensing models</h2>
 <p>You may create resources directly using Keygen&#39;s API, or you can use your <a href="https://app.keygen.sh">account
@@ -75,6 +77,7 @@ attributes</a>.</p>
 <li><a href="#i-want-to-license-individual-features-of-my-software-to-users">I want to license individual features of my software to users</a></li>
 <li><a href="#i-want-to-require-periodic-check-in-for-licenses-to-remain-valid">I want to require periodic &quot;check-in&quot; for licenses to remain valid</a></li>
 <li><a href="#i-want-each-license-to-have-a-usage-limit">I want each license to have a usage limit</a></li>
+<li><a href="#i-want-to-cryptographically-sign-or-encrypt-license-keys">I want to cryptographically sign or encrypt license keys</a></li>
 </ol>
 <hr>
 <h3 id="i-want-to-limit-access-of-my-software-to-only-licensed-users">I want to limit access of my software to only licensed users</h3>
@@ -500,6 +503,61 @@ if (errors) {
 
 <p>You can reset a license&#39;s usage count from your admin dashboard, or via
 the licensing API.</p>
+<h3 id="i-want-to-cryptographically-sign-or-encrypt-license-keys">I want to cryptographically sign or encrypt license keys</h3>
+<p>To allow offline license key validation, you can cryptographically sign
+or encrypt license keys, which can be verfied using your account&#39;s public
+key (available in <a href="https://app.keygen.sh/settings">your Dashboard&#39;s settings page</a>).</p>
+<p>Here&#39;s a policy which signs license keys using RSA&#39;s PKCS1-PSS scheme:</p>
+<pre><code class="lang-js">{
+  data: {
+    type: &quot;policies&quot;,
+    attributes: {
+      name: &quot;Cryptographically Signed License&quot;,
+      scheme: &quot;RSA_2048_PKCS1_PSS_SIGN&quot;
+    }
+  }
+}
+</code></pre>
+<p>Using the <code>RSA_2048_PKCS1_PSS_SIGN</code> scheme, when a license is created which
+implements this policy, the provided key will be cryptographically signed
+and that signature will be appended onto the end of the key. You can then
+cryptographically verify the entire key in offline environments.</p>
+<p>The resulting license key will resemble the following:</p>
+<pre><code class="lang-plain">eyJmb28iOiJiYXIiLCJiYXoiOiJxdXoiLCJyYW5kIjpbNDgsMTAxLDU2LDk5LDQ5LDQ5LDk3LDUzLDU3LDU0LDQ5LDEwMSw1MCw0OSw1Miw1MCwxMDIsMTAyLDQ5LDU0LDUyLDEwMiw1Miw1NSw1Niw1MCw5Nyw0OCw0OSw1Myw1MywxMDFdfQ==.Dqw0N_14L0v-a-cQPkTM_X6_vN-tSoEWEt2Zu5SreeS_-Zn6Fsyr2EwpnOXWkWHhmcPJWSfboCrOjh73y-Q9I3aLbpTg5M_9bQmt2PjwG0l7A7T2PUreAA-8xftK0-_quQchsv73JDhrst8O1oh2dHBs6fB1EPXzKKCyIXKWIniHjEP-nqGGYXUzPQjoMI7JQCySZKtXmgV4rVRoY1E9kxywlc0Lia9OfHH2uDnBPjIpR_4U_QFLzoUKZnG5qmTC9PtgGbdsN5e01hk53ZvDA9sEdzUerk_34O6qBy203mt_4NvVbegIcS49IzyGtfn_a4OLbEGnz-gOnS2ee0Js6g==
+</code></pre>
+<p>The key contains a base64 encoded version of the key specified at the time
+of creation, along with a cryptographic signature, delimited by the <code>.</code>
+character. You can split the key by the <code>.</code> character to verify its
+contents using RSA&#39;s signature verification methods.</p>
+<p>The exact behavior of each <code>scheme</code> is detailed in our <a href="/docs/api#policies-create-attrs-scheme">API reference</a>.</p>
+<details>
+  <summary>View example implementation</summary>
+<pre><code class='javascript'>const crypto = require(&#39;crypto&#39;)
+const {
+  KEYGEN_PUBLIC_KEY,
+  LICENSE_KEY
+} = process.env
+
+// Extract key and signature from the license key payload
+const [encodedKey, encodedSignature] = LICENSE_KEY.split(&#39;.&#39;)
+
+// Decode the base64 encoded key
+const key = Buffer.from(encodedKey, &#39;base64&#39;).toString()
+
+// Verify the signature
+const verifier = crypto.createVerify(&#39;sha256&#39;)
+verifier.write(key)
+verifier.end()
+
+const ok = verifier.verify({ key: KEYGEN_PUBLIC_KEY, padding: crypto.constants.RSA_PKCS1_PSS_PADDING }, encodedSignature, &#39;base64&#39;)
+if (ok) {
+  console.log(&#39;License key is valid!&#39;)
+} else {
+  console.log(&#39;License key is invalid!&#39;)
+}
+</code></pre>
+</details>
+
 <hr>
 <p>Don&#39;t see the licensing model you&#39;re looking for? <a href="mailto:support@keygen.sh">Reach out and let us know</a>,
 and we&#39;ll get it added here plus answer any questions you have about implementation.</p>

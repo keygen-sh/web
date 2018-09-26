@@ -141,6 +141,56 @@ if (meta.valid) {
   // … do something else
 }
 </code></pre>
+<hr>
+<h2 id="validate-key-offline">Validate key offline</h2>
+<p>To allow offline license key validation, you can cryptographically sign
+or encrypt license keys, which can be verfied using your account&#39;s public
+key, available in <a href="https://app.keygen.sh/settings">your Dashboard&#39;s settings page</a>.
+You can configure licenses to utilize a cryptographic scheme at the policy
+level through the <a href="/docs/api#policies-create-attrs-scheme"><code>scheme</code></a> attribute.</p>
+<p>For example, when using the <code>RSA_2048_PKCS1_SIGN</code> scheme, when a license is
+created which implements this policy, the provided key will be cryptographically
+signed and that signature will be appended onto the end of the key. You can
+then cryptographically verify the entire key in offline environments.</p>
+<p>The resulting license key will resemble the following:</p>
+<pre><code class="lang-plain">eyJmb28iOjEsImJhciI6MiwiYmF6IjozLCJxdXgiOjR9.hHcoGH0EzjVzWOJ_p79cP-wUC5XoB-NiR72ZmU3iiQXIJSBZ91A3rxS9QeqYifnZTHNvi9RhzsXk5yM3p1VMHGkAmjQw-Rd-LwqtNyuKKydt3LsCXY61K15aJw8j84YYejQaNXCJPRitskCsoOtG5XTrQ6x8LmS9vtAxgGAq11GRmtIgxdDcdSQPFwothSjCD4w2l-oMUYSY4JFjFVFvqVOjqmjPxJAbUcNzoLtP85jVDBhfiVqSBzvRjmwFaASWwivMb6BfGxYR_lCLDkPaKtFQeo2C2kwhlMzXL2Pv7Qd9RBbjn8YPbPALLIBk5XZ6l7-3EGYwTaM3etUDeDqIMw==
+</code></pre>
+<p>The key contains a base64 encoded version of the key specified at the time
+of creation, along with a cryptographic signature, delimited by the <code>.</code>
+character. You can split the key by the <code>.</code> character to verify its
+contents using RSA&#39;s signature verification methods.</p>
+<p>In this case, our <code>key</code> is an encoded JSON object which contains additional
+information on the license. After verification, we can parse it and use
+this information in our software. For example, you could specify how long
+the license is allowed to be offline, its offline usage limits, etc.</p>
+<pre><code class="lang-js">const crypto = require(&#39;crypto&#39;)
+const {
+  KEYGEN_PUBLIC_KEY,
+  LICENSE_KEY
+} = process.env
+
+// Extract key and signature from the license key payload
+const [encodedKey, encodedSignature] = LICENSE_KEY.split(&#39;.&#39;)
+
+// Decode the base64 encoded key
+const key = Buffer.from(encodedKey, &#39;base64&#39;).toString()
+
+// Verify the signature
+const verifier = crypto.createVerify(&#39;sha256&#39;)
+verifier.write(key)
+verifier.end()
+
+const ok = verifier.verify(KEYGEN_PUBLIC_KEY, encodedSignature, &#39;base64&#39;)
+if (ok) {
+  const payload = JSON.parse(key)
+
+  console.log(&#39;License key is valid!&#39;, { payload })
+} else {
+  console.log(&#39;License key is invalid!&#39;)
+}
+</code></pre>
+<p>The exact behavior of each <code>scheme</code> is detailed in our <a href="/docs/api#policies-create-attrs-scheme">API reference</a>.</p>
+<hr>
 <h2 id="handling-failures">Handling failures</h2>
 <p>Depending on your product and business requirements, you may want to implement additional logic when, for example, your user does not have an active internet connection, or their license fails validation for some reason or another. Below are a few license validation failure scenarios:</p>
 <h4 id="validation-request-was-successful-but-license-is-not-valid">Validation request was successful, but license is not valid</h4>
@@ -155,7 +205,7 @@ if (meta.valid) {
 <ol>
 <li>Begin a grace period (e.g. 30 days or 5 additional product usages), where you disallow access to the product if a license validation has not been successful after that timeframe. You should clearly tell your users that they should connect to the internet when possible and be upfront about the grace period.</li>
 <li>Immediately disallow access to the product. <strong>This should be used with care, and is not recommended unless your product relies on an active internet connection.</strong></li>
-<li>Fallback to <a href="https://gist.github.com/ezekg/f021009b4c419f2462f3706a4478f200">offline license key validation</a> using e.g. RSA cryptography, or implement <a href="https://github.com/keygen-sh/air-gapped-activation-example">air-gapped license activation</a>.</li>
+<li>Fallback to offline license key validation if you&#39;re utilizing cryptographically signed or encrypted license keys (see the <a href="/docs/api#policies-create-attrs-scheme">API reference</a> for more information).</li>
 </ol>
 <hr>
 <h2 id="next-steps">Next steps</h2>
