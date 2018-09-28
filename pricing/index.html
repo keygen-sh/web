@@ -1,58 +1,42 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="initial-scale=1"><meta name="referrer" content="no-referrer"><title>Pricing</title><link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII" type="image/x-icon"><link rel="icon" href="/favicon-192x192.png" sizes="192x192"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link href="https://keygen.sh/media.jpg" rel="image_src"><meta content="Keygen - a dead-simple product and app licensing API built for developers" property="og:title"><meta content="https://keygen.sh/" property="og:url"><meta content="Keygen is a simple app and product licensing API, allowing developers to easily implement various licensing types into any online or desktop software product." property="og:description"><meta content="https://keygen.sh/media.jpg" property="og:image"><meta content="Keygen" property="og:site_name"><meta content="website" property="og:type"><link rel="stylesheet" href="/app.css"></head><body><div class="container"><header class="header__wrapper"><div class="header"><a class="logo" href="/"><canvas class="logo__logomark" width="64" height="64"></canvas><span class="logo__logotype effect--shuffle">Keygen</span></a><nav class="navigation" id="nav"><div class="navigation__hamburger" id="nav-toggle"><i class="material-icons">menu</i></div><ul class="navigation__list"><li onclick=""><span>Products<i class="material-icons">expand_more</i></span><ul class="navigation__sublist"><li><a href="/licensing">Software Licensing</a></li><li><a href="/distribution">Distribution</a></li></ul></li><li><a href="/pricing" data-conversion="r_ssCOKoynMQw8CikwM">Pricing</a></li><li><a href="/docs" data-conversion="smILCPbF13MQw8CikwM">Documentation</a></li><li><a href="https://app.keygen.sh/login">Log in</a></li><li><a class="button button--size-small" href="https://app.keygen.sh/register" data-conversion="iInYCL2A0HMQw8CikwM">Sign Up</a></li></ul></nav></div></header><main class="main"><div class="main__title"><h1>Pricing</h1></div><div class="main__content__wrapper"><div class="main__content"><div class="plans__wrapper"><h2 class="plans__heading">All plans include a <strong>14-day free trial</strong>, no credit card required
 <small>Dead-simple pricing based on how many licensed users you have</small>
-</h2><div class="plans__pricing-range"><input class="plans__pricing-range__input" type="range"></div><h3 class="plans__pricing-metric"></h3><small class="plans__pricing-instructions">Drag the slider to determine the best tier for you
+</h2><div class="plans__pricing-range"><input class="plans__pricing-range__input" type="range"></div><h3 class="plans__pricing-metric"></h3><small class="plans__pricing-instructions"><i class="material-icons">compare_arrows</i> Drag the slider to determine the best tier for you
 </small><div class="plans__pricing-tier"><div class="plans__pricing-tier__loading">Loading plans…</div></div><div class="plans__additional"><h3>
   <strong>Haven&#39;t released your product yet?</strong> If you&#39;re still in development stages,
   reach out via <a href="mailto:sales@keygen.sh">email</a> or our
   <a title="Open chat" onclick="Intercom('show')" style="cursor:pointer">in-app chat</a>!
-  We&#39;d love to hook you up with an extended trial until you&#39;re ready to launch.
+  We&#39;d love to hook you up with an extended trial.
 </h3>
 
 <hr>
 </div><div class="faqs__content"><h3>FAQs</h3><ul class="faqs__questions"><li><h4 id="what-is-a-licensed-user-">What is a &quot;licensed user&quot;?</h4>
-<p>A &quot;licensed user&quot; is a licensee of your product, either through a <a href="/docs/api#users">user resource</a>,
-or through a <a href="/docs/api#licenses">license resource</a> if you&#39;re not using our user
-management features, that has been active within the last 90 days. We determine
-your &quot;licensed user&quot; count through your API resource consumption alone.</p>
+<p>A &quot;licensed user&quot; is somebody you license to use your product, identified through a
+<a href="/docs/api#users">user resource</a>, or through a <a href="/docs/api#licenses">license resource</a>
+if you&#39;re not using our identity management features, that has been active within
+the last 90 days.</p>
 <p><small>
   For example, a user resource which has 3 associated license resources with it
   will count as a single licensed user, while 3 license resources without user
   associations will count as 3 individual licensed users.
 </small></p>
 </li><li><h4 id="what-if-i-go-over-my-resource-limits-">What if I go over my resource limits?</h4>
-<p>Account limits are &quot;soft&quot; limits for all plans Tier 1 and higher—meaning they are
-not strictly enforced. That is, we won&#39;t immediately throttle future requests to your
-account (outside of our <a href="/docs/api#rate-limiting">standard rate limiting</a>), or stop
-allowing new users from signing up for your product, or immediately stop licenses or
-machines from being validated or created if you go over your account limits.</p>
+<p>We have a simple and fair policy for this: if you go over your monthly limits, we won’t
+suspend your account or throttle requests. Instead, we look at a 90 day rolling average,
+and we&#39;ll email you when it’s time to upgrade based on consistent overages, not just
+occasional traffic spikes.</p>
 <p><small>
-  However, we will send you a polite email with our recommended upgrade path from your
-  current plan. An account will be auto-upgraded if its plan&#39;s resource limits are
-  exceeded for a sustained period of time after our attempted outreach.
+  An account will be auto-upgraded if its plan&#39;s resource limits are exceeded for a
+  sustained period of time after our attempted outreach.
 </small></p>
 </li><li><h4 id="how-are-requests-counted-">How are requests counted?</h4>
-<p>Requests are any API request made to our licensing and distribution services for your
-account. Both client- and server-side requests will be counted, regardless of authentication.
-Duplicate requests will also be counted.</p>
-</li><li><h4 id="can-i-see-how-many-requests-i-have-left-">Can I see how many requests I have left?</h4>
-<p>No, not at this time. We may allow this to be viewed in the future. The daily request
-limit is implemented so that a single account does not make an excessive number of API
-requests, e.g. validating a license every 30 seconds for 5,000 users.</p>
-<p><small>
-  Please note: these limits are purposefully high numbers, so don&#39;t worry about request
-  overages unless we directly contact you about an issue. We will likely not contact
-  you unless you&#39;ve gone over your limit by an order of magnitude.
-</small></p>
+<p>Requests are any API request made to our licensing and distribution services from your
+Keygen account.</p>
 </li><li><h4 id="can-i-upgrade-downgrade-my-plan-">Can I upgrade/downgrade my plan?</h4>
 <p>Yes! You can upgrade or downgrade your plan at anytime from your account dashboard.
 You can even pause your subscription if you ever need to!</p>
 </li><li><h4 id="can-i-cancel-anytime-">Can I cancel anytime?</h4>
 <p>We hate to see you go, but yes, you can cancel your account at anytime from your
 account dashboard.</p>
-<p><small>
-  Alternatively, you can also &quot;pause&quot; your account&#39;s subscription at anytime,
-  which will allow you to pick back up where you left off at a later time.
-</small></p>
 </li><li><h4 id="do-you-offer-yearly-billing-">Do you offer yearly billing?</h4>
 <p>Yes! If you&#39;re interested in being billed yearly, <a href="mailto:sales@keygen.sh">reach out</a>!
 We offer <strong>2 months off your plan</strong> for any yearly billing contract on our
