@@ -964,9 +964,10 @@ client.request(req)
   }
 }</code></pre></div></div></article></section><section class="topic" id="cryptography"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#cryptography" data-target="cryptography"><i class="material-icons">link</i></a>Cryptography</h1><p>Each Keygen account is equipped with its own unique <strong>RSA 2048-bit public/private
 keypair</strong>, which is used in signing response payloads using RSA-SHA256, and which
-can also be used to sign or encrypt license keys for offline license verification.
-The scheme used for license key signing and encryption will depend on the cryptographic
-scheme that the particular policy implements.</p>
+can also be used to sign or encrypt license keys for offline license verification
+using <a href="/docs/api#policies-create-attrs-scheme">schemes</a>. The scheme used for license
+key signing and encryption will depend on the cryptographic scheme that the
+particular policy implements.</p>
 <p>You can find your account&#39;s <strong>public key</strong> within your <a href="https://app.keygen.sh/settings">dashboard settings page</a>,
 which you can use to <code>verify</code> response payloads and license keys. Private keys
 are kept securely encrypted on our servers.</p>
