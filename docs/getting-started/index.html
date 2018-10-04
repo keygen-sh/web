@@ -7,6 +7,18 @@ or <strong>generate</strong> an <strong>authentication token</strong> via the AP
 directly through the API, check out the <a href="/docs/api#tokens-generate">code examples in the API reference</a>,
 which includes examples in popular languages like Swift, C# and JavaScript.</p>
 <hr>
+<h2 id="your-keygen-account">Your Keygen Account</h2>
+<p>In order to make requests to our licensing API, you will need to use your
+Keygen account&#39;s unique ID, or its <code>slug</code> that you chose during sign up.
+Every API request will utilize your account&#39;s ID or slug within the URL
+path, i.e. <code>/v1/accounts/{ID}</code> or <code>/v1/accounts/{SLUG}</code>. Your account&#39;s
+ID and slug can be used interchangably as URL params.</p>
+<div class="notice notice--warning">
+  You can find your account&#39;s ID and slug in your <a href="https://app.keygen.sh/settings">account settings</a>,
+  under the &quot;Current Account&quot; section.
+</div>
+
+<hr>
 <h2 id="products">Products</h2>
 <p>Add your first product by going to the <strong>Products</strong> resource and clicking
 the <strong>New Product</strong> button. You will be presented with a form consisting
