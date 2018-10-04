@@ -68,7 +68,7 @@ under the users listing as well as all <strong>admin</strong> users. (Normally, 
 would create users through the API using a sign up form, but for the
 purpose of this guide we&#39;re creating them manually.)</p>
 <div class="notice notice--tip">
-  <strong>Utilization of Keygen&#39;s user-account resources is completely optional</strong>—if
+  <strong>Utilization of Keygen&#39;s user identity management is completely optional</strong>—if
   you&#39;d rather skip user-accounts and simply validate license keys and handle
   the rest server-side, feel free to do that. Our user resources are designed
   to help make client-side API integration easier, allowing your users to manage
@@ -85,7 +85,7 @@ licensing system.</p>
   <img src="/new-user.gif" alt="Gif of creating a user resource">
 </details>
 
-<div class="notice notice--tip">
+<div class="notice notice--warning">
   <p>
     <strong>Please note that user resources are shared between products</strong>—meaning, when your account has
     multiple products, your users are signing up for a user account for <em>all</em> of your products, not
@@ -107,7 +107,7 @@ licensing system.</p>
 product. To add a new license, go to the <strong>Licenses</strong> resource and
 click on the <strong>New License</strong> button. You will be presented with a form
 allowing you to select the <strong>policy</strong> to implement, as well as the
-<strong>user</strong> to create the license for.</p>
+optional <strong>user</strong> to create the license for.</p>
 <p>The <strong>license</strong> resource is what you&#39;d expect—licenses are used to grant
 access to your software. Each license resource will implement a <strong>policy</strong>,
 which will define the <em>rules</em> which that license must follow to remain valid.
@@ -115,8 +115,9 @@ Each license can be associated with a user, but that&#39;s optional; this is use
 when you&#39;re associating multiple licenses with a single user.</p>
 <div class="notice notice--tip">
   When creating a new license, you have the option to manually specify a
-  <strong>license key</strong>. When the <strong>key</strong> field is left blank, a key will automatically
-  be generated for you whenever the license is created.
+  <strong>license key</strong> (except for <em>schemed</em> licenses). When the <strong>key</strong> field
+  is left blank, a key will automatically be generated for you whenever
+  the license is created.
 </div>
 
 <details>
