@@ -10596,30 +10596,20 @@ with a POST request containing an <a href="#webhook-events-object">event object<
 </tr>
 </tbody>
 </table>
-</div><div class="example__wrapper"><div class="example"><h4>Example webhook handler using Node and Express</h4><pre><code class="javascript">const fetch = require("node-fetch")
+</div><div class="example__wrapper"><div class="example"><h4>Example webhook handler using Node and Express</h4><pre><code class="javascript">const bodyParser = require("body-parser")
 const express = require("express")
-const bodyParser = require("body-parser")
 const app = express()
 
 app.use(bodyParser.json({ type: "application/vnd.api+json" }))
 app.use(bodyParser.json({ type: "application/json" }))
 
 app.post("/my/webhook/url", async (req, res) => {
-  const { data: { id } } = req.body
-
-  // Fetch the webhook to validate it and get its most up-to-date state
-  const event = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/webhook-events/${id}`, {
-    method: "GET",
-    headers: {
-      "Accept": "application/vnd.api+json",
-      "Authorization": "Bearer {PRODUCT_TOKEN}"
-    }
-  })
-
-  const { data, errors } = await event.json()
-  if (errors) {
-    return res.sendStatus(200) // Webhook event does not exist
+  const { data } = req.body
+  if (!data) {
+    return res.sendStatus(400)
   }
+
+  // TODO: Verify webhook's signature (https://keygen.sh/docs/api/#signatures)
 
   switch (data.attributes.event) {
     case "user.password-reset":

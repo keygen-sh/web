@@ -113,30 +113,20 @@ for more advanced use-cases.</p>
 <h4 id="example-webhook-handler-using-node-and-express">Example webhook handler using Node and Express</h4>
 <p>To see a full working example of webhook integration, check out our <a href="https://keygen.sh/integrate/stripe">example Node.js app</a>
 which integrates Keygen and <a href="https://stripe.com">Stripe</a> together.</p>
-<pre><code class="lang-javascript">const fetch = require(&quot;node-fetch&quot;)
+<pre><code class="lang-javascript">const bodyParser = require(&quot;body-parser&quot;)
 const express = require(&quot;express&quot;)
-const bodyParser = require(&quot;body-parser&quot;)
 const app = express()
 
 app.use(bodyParser.json({ type: &quot;application/vnd.api+json&quot; }))
 app.use(bodyParser.json({ type: &quot;application/json&quot; }))
 
 app.post(&quot;/my/webhook/url&quot;, async (req, res) =&gt; {
-  const { data: { id } } = req.body
-
-  // Fetch the webhook to validate it and get its most up-to-date state
-  const event = await fetch(`https://api.keygen.sh/v1/accounts/{ACCOUNT}/webhook-events/${id}`, {
-    method: &quot;GET&quot;,
-    headers: {
-      &quot;Accept&quot;: &quot;application/vnd.api+json&quot;,
-      &quot;Authorization&quot;: &quot;Bearer {PRODUCT_TOKEN}&quot;
-    }
-  })
-
-  const { data, errors } = await event.json()
-  if (errors) {
-    return res.sendStatus(200) // Webhook event does not exist
+  const { data } = req.body
+  if (!data) {
+    return res.sendStatus(400)
   }
+
+  // TODO: Verify webhook&#39;s signature (https://keygen.sh/docs/api/#signatures)
 
   switch (data.attributes.event) {
     case &quot;user.created&quot;: {
