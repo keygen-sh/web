@@ -29,7 +29,7 @@ resource including your user&#39;s updated metadata.</p>
   headers: {
     &quot;Content-Type&quot;: &quot;application/vnd.api+json&quot;,
     &quot;Accept&quot;: &quot;application/vnd.api+json&quot;,
-    &quot;Authorization&quot;: &quot;Bearer {USER_TOKEN}&quot;
+    &quot;Authorization&quot;: &quot;Bearer {PRODUCT_TOKEN}&quot;
   },
   body: JSON.stringify({
     &quot;data&quot;: {
@@ -45,6 +45,11 @@ resource including your user&#39;s updated metadata.</p>
 
 const { data, errors } = await response.json()
 </code></pre>
+<div class="notice notice--tip">
+  When storing initial <code>metadata</code> (via a <code>POST</code> request), a user or activation token
+  may be used. However, updating <code>metadata</code> requires an admin or product token.
+</div>
+
 <hr>
 <h2 id="next-steps">Next steps</h2>
 <p>Congrats! You&#39;ve stored metadata on one of your users using Keygen. Next
