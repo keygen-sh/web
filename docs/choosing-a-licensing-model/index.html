@@ -456,7 +456,56 @@ validate licenses e.g. to ensure they aren&#39;t expired or suspended.</p>
 <p>When a license&#39;s check-in gets close, we will fire off a <code>license.check-in-required-soon</code>
 <a href="/docs/using-webhooks">webhook event</a> so that you can notify your customer to
 let them know that they need to connect to the internet soon and validate
-their license.</p>
+their license. Likewise, when a license becomes overdue, we will send a
+<code>license.check-in-overdue</code> event.</p>
+<div class="notice notice--tip">
+  The license <a href="/docs/api#licenses-actions-check-in">check-in action</a> requires certain
+  authorization. You may need set up a proxy server if you need to perform a check-in
+  from a client-side machine.
+</div>
+
+<p>One major caveat to this system is that the offline machine doesn&#39;t have access to Keygen&#39;s servers
+to check if it&#39;s overdue, which poses a challenge when it comes to enforcing the check-in
+requirement. For example, when a license becomes overdue, you will receive a webhook event,
+but the offline machine will never see that, since it has no way of communicating with the
+outside world over the internet. Because of this, they could continue using your product,
+even when you don&#39;t want them to.</p>
+<p>One solution would be to store the allowed offline usage duration within the license&#39;s
+<a href="/docs/api#metadata">metadata</a> attribute. For example, the following:</p>
+<pre><code class="lang-js">{
+  offlineUsageDuration: 7 days
+}
+</code></pre>
+<p>This metadata value will be included within all validation responses for the license, under
+the <code>data.attributes.metadata</code> property. This value, along with the value from <code>meta.ts</code>, which
+is the timestamp at which the license was validated, can be used to determine when the offline
+machine will be required to connect to the internet.</p>
+<p>Succinctly, such a system could resemble the following:</p>
+<ol>
+<li>When the machine is connected to the internet, you perform a license validation request.</li>
+<li>You store the response of that validation request locally, along with the crytographic signature
+of the data (available in the <code>X-Signature</code> header), somewhere on the machine (e.g. a secure
+registry, the local filesystem, etc.)</li>
+<li>When the machine is offline, you query the stored data, along with the signature.</li>
+<li>You verify that the data&#39;s signature is valid using <a href="/docs/api/#cryptography">your account&#39;s public key</a>.</li>
+<li>You utilize the offline usage duration that you stored within the license&#39;s metadata, and
+the timestamp of the last validation, to calculate the time at which an internet connection
+will be required.</li>
+</ol>
+<p>You can then calculate the date at which an internet connection is required like so:</p>
+<pre><code class="lang-js">if (current timestamp &lt; validation timestamp + offline usage duration) {
+  // Allow usage - they are within the allotted offline duration
+} else {
+  // The machine needs to be connected to the internet
+}
+</code></pre>
+<p>Since the locally stored data is stored alongside a cryptographic signature, you can
+rest assured that your licensing system cannot easily be tampered with by modifying the
+local data, since that would invalidate the signature.</p>
+<p>With this system, you could even forego the check-in action entirely, since the bulk
+of the logic could be handled within your product itself. (You could simply utilize
+the <code>nextCheckIn</code> attribute, instead of performing the calculation manually using
+metadata, but that decision is left up to you.)</p>
 <hr>
 <h3 id="i-want-each-license-to-have-a-usage-limit">I want each license to have a usage limit</h3>
 <p>You can set up license policies to enforce a usage limit by utilizing the
