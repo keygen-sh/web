@@ -5960,6 +5960,7 @@ client.request(req)
   -H 'Authorization: Bearer <%= token %>'
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "meta": {
+    "ts": "<%= now %>",
     "valid": true,
     "detail": "is valid",
     "constant": "VALID"
@@ -6242,6 +6243,7 @@ client.request(req)
       }'
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "meta": {
+    "ts": "<%= now %>",
     "valid": false,
     "detail": "fingerprint scope does not match",
     "constant": "FINGERPRINT_SCOPE_MISMATCH"
@@ -6535,6 +6537,7 @@ client.request(req)
       }'
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
   "meta": {
+    "ts": "<%= now %>",
     "valid": false,
     "detail": "is expired",
     "constant": "EXPIRED"
