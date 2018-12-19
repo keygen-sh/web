@@ -94,22 +94,27 @@ normal Squirrel release server. Because of this, electron-builder&#39;s auto-upd
 electron-updater, will not utilize the <code>/update</code> endpoint. Rather, you will
 utilize the <code>/releases</code> endpoint for all platforms. In this way, Keygen Dist
 will act as a license-gated static file store.</p>
+<p>Your <code>feedURL</code> should look something like this:</p>
+<pre><code class="lang-plain">https://dist.keygen.sh/v1/${accountId}/${productId}/releases/${platform}?key=${licenseKey}
+</code></pre>
 <p>How electron-updater performs an update is like this:</p>
 <ol>
-<li>For macOS, it will request <code>/latest-mac.yml</code> from the release server.
-For Windows, it will request <code>/RELEASES</code>.</li>
+<li>For macOS, it will request <code>latest-mac.yml</code> from the release server.
+For Windows, it will request <code>RELEASES</code>. It does so by <em>appending</em> either
+<code>/latest-mac.yml</code> or <code>/RELEASES</code> to the <code>feedURL</code> path.</li>
 <li>It will check the latest version in the returned file against the
 the current version of the app.</li>
 <li>It will request the newer version if one is available.</li>
 </ol>
 <p>Using the electron-builder code example, and assuming we&#39;re on the <code>macos</code>
-platform, electron-updater will automatically use the provided <code>feedURL</code>
+platform, electron-updater will automatically use the above <code>feedURL</code>
 as a &quot;base URL&quot; to request the following <code>latest-mac.yml</code> file, as
 explained above:</p>
 <pre><code class="lang-plain">https://dist.keygen.sh/v1/${accountId}/${productId}/releases/${platform}/latest-mac.yml?key=${licenseKey}
 </code></pre>
 <p>That <code>yml</code> file will then be downloaded and read, and then used to request the
-latest app version, if there is one available.</p>
+latest app version, if there is one available. It will use similar logic to
+request the app version, by appending the version to the <code>feedURL</code> path.</p>
 <h3 class="anchor__wrapper article__heading"><a class="anchor" href="#auto-updates-other-examples" data-target="auto-updates-other-examples"><i class="material-icons">link</i></a>Other Examples</h3><p>If you&#39;d like to see examples for another framework or in another
 language, <a href="mailto:hello@keygen.sh">please let us know</a>.</p>
 </div><div class="example__wrapper"><div class="example"><h4>Example Using Electron's Native Auto-Updater</h4><p>If you're using electron-builder, please see the other example below.</p><pre><code class="javascript">const { app, autoUpdater } = require('electron')
