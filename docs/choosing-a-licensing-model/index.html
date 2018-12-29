@@ -344,7 +344,12 @@ depleted, you must add additional keys in order to continue to create new licens
 <p>This particular model is called &quot;feature licensing&quot;, and it&#39;s one of the models that Keygen
 was originally built around. For reference, we even have <a href="/integrate/electron">an example application</a>
 which implements feature licensing.</p>
-<p>The feature policies would end up looking like,</p>
+<p>There are 2 different ways that you could implement this model:</p>
+<ol>
+<li>Create feature licenses per-customer i.e. if customer A has access to feature X and feature Y, they should get a license for Y and another license for X, a &quot;feature license.&quot; If customer B has access to only feature Y, they should only have a license for Y. Each feature license would have its own policy, referred to as a &quot;feature policy.&quot; This has the side-effect of a high number of licenses, each with their own validity rules, which may not be what you’re looking for and may be harder to manage. If you utilize our <a href="/docs/api#users">identity management features</a> (i.e. user accounts), you can make sure all of a customer’s licenses are associated with their user account, which can be queried as-needed.</li>
+<li>Create a single license per-user and store the allowed features within the license’s <a href="/docs/api#metadata">metadata attribute</a> i.e. <code>{ &quot;featureX&quot;: true, &quot;featureY&quot;: false }</code>. You can store arbitrary data within the metadata attribute, so it may be a better fit for your use case. This has the benefit of a lower number of licenses per-customer, since all the feature entitlement data is consolidated into a single license resource.</li>
+</ol>
+<p>Going with the first one, feature policies would end up looking like,</p>
 <pre><code class="lang-js">// Feature &quot;X&quot;
 {
   data: {
