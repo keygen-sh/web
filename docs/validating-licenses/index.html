@@ -147,7 +147,7 @@ if (meta.valid) {
 or encrypt license keys, which can be verfied using your account&#39;s public
 key, available in <a href="https://app.keygen.sh/settings">your Dashboard&#39;s settings page</a>.
 You can configure licenses to utilize a cryptographic scheme at the policy
-level through the <a href="/docs/api#policies-create-attrs-scheme"><code>scheme</code></a> attribute.</p>
+level through the <a href="/docs/api#policies-object-attrs-scheme"><code>scheme</code></a> attribute.</p>
 <p>For example, when using the <code>RSA_2048_PKCS1_SIGN</code> scheme, when a license is
 created which implements this policy, the provided key will be cryptographically
 signed and that signature will be appended onto the end of the key. You can
@@ -189,7 +189,7 @@ if (ok) {
   console.log(&#39;License key is invalid!&#39;)
 }
 </code></pre>
-<p>The exact behavior of each <code>scheme</code> is detailed in our <a href="/docs/api#policies-create-attrs-scheme">API reference</a>.</p>
+<p>The exact behavior of each <code>scheme</code> is detailed in our <a href="/docs/api#policies-object-attrs-scheme">API reference</a>.</p>
 <hr>
 <h2 id="handling-failures">Handling failures</h2>
 <p>Depending on your product and business requirements, you may want to implement additional logic when, for example, your user does not have an active internet connection, or their license fails validation for some reason or another. Below are a few license validation failure scenarios:</p>
@@ -205,7 +205,7 @@ if (ok) {
 <ol>
 <li>Begin a grace period (e.g. 30 days or 5 additional product usages), where you disallow access to the product if a license validation has not been successful after that timeframe. You should clearly tell your users that they should connect to the internet when possible and be upfront about the grace period.</li>
 <li>Immediately disallow access to the product. <strong>This should be used with care, and is not recommended unless your product relies on an active internet connection.</strong></li>
-<li>Fallback to offline license key validation if you&#39;re utilizing cryptographically signed or encrypted license keys (see the <a href="/docs/api#policies-create-attrs-scheme">API reference</a> for more information).</li>
+<li>Fallback to offline license key validation if you&#39;re utilizing cryptographically signed or encrypted license keys (see the <a href="/docs/api#policies-object-attrs-scheme">API reference</a> for more information).</li>
 </ol>
 <hr>
 <h2 id="next-steps">Next steps</h2>
