@@ -807,7 +807,9 @@ client.request(req)
     "prev": "/v1/accounts/<%= account %>/users?page[size]=25&page[number]=1",
     "next": "/v1/accounts/<%= account %>/users?page[size]=25&page[number]=3",
     "first": "/v1/accounts/<%= account %>/users?page[size]=25&page[number]=1",
-    "last": "/v1/accounts/<%= account %>/users?page[size]=25&page[number]=4"
+    "last": "/v1/accounts/<%= account %>/users?page[size]=25&page[number]=4",
+    "pages": 4,
+    "total": 98
   }
 }</code></pre></div></div></section><section class="topic" id="idempotency"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#idempotency" data-target="idempotency"><i class="material-icons">link</i></a>Idempotency</h1><p>Some resources, such as <a href="#webhooks-events">webhook events</a> may contain an
 idempotency token inside of a meta hash. In the case of webhook events,
