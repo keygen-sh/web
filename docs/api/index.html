@@ -173,7 +173,7 @@ feasible. With that in mind, it is recommended that you use your account ID over
 your account slug, as unlike your account slug, your ID is unchangable.</p>
 </li>
 <li><p><strong>If you do not want your users to be able to create and manage their own licenses
-and machines</strong> (which necessitates <a href="/docs/using-webhooks">listening for webhook events</a>)
+and machines</strong> (which could necessitate <a href="/docs/using-webhooks">listening for webhook events</a>)
 then you should set your account to <code>protected</code>, which will require admin authentication
 to create and manage all resources, aside from token creation and license validation.
 Setting your account to protected can be done within your <a href="https://app.keygen.sh/settings">account settings</a>.</p>
@@ -202,10 +202,11 @@ would require an internet connection. Keep that in mind.</p>
 user authentication.</strong> The license <a href="/docs/api#licenses-actions-validate-key"><code>validate-key</code></a>
 action does not require authentication. If you&#39;re doing anything else e.g. validating
 multiple license resources per-user, tracking machines, etc., <a href="/docs/authenticating-users">user authentication</a>
-will be required in order to communicate with Keygen&#39;s API client-side.</p>
-<p>You can add required scopes to your policies to e.g. require a machine
-fingerprint, etc., which helps implement certain license models without
-the need for any additional server-side logic such as a webhook handler.</p>
+or <a href="/docs/api#licenses-relationships-activation-tokens">activation tokens</a> will be
+required in order to communicate with Keygen&#39;s API client-side.</p>
+<p>You can add required validation scopes to your policies to e.g. require a machine
+fingerprint, etc., which helps implement certain license models without the need
+for any additional server-side logic such as a webhook handler.</p>
 </li>
 <li><p><strong>If you do not want the overhead of implementing webhooks, then you should only
 use Keygen server-side</strong> alongside your payment provider. Implementing Keygen
