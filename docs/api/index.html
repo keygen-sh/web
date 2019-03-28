@@ -491,6 +491,29 @@ transformed into <code>exampleKey</code>, <code>ExampleKey</code> will also be t
 into <code>exampleKey</code>, etc.</p>
 <p>You can specify up to 64 keys, with key names up to 256 characters long and
 values up to 512 characters long.</p>
+<p>Here&#39;s a few example <code>metadata</code> use cases:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Link IDs</td>
+<td style="text-align:left">Attach your system&#39;s unique IDs to a Keygen object, for easy lookups. For example, add an order number for a license, Stripe customer and subscription IDs, or the customer&#39;s user ID in your system.</td>
+</tr>
+<tr>
+<td style="text-align:left">License entitlements</td>
+<td style="text-align:left">Store information about what features or actions a license is allowed to perform.</td>
+</tr>
+<tr>
+<td style="text-align:left">Customer details</td>
+<td style="text-align:left">Annotate a user by storing additional details such as company name for later use.</td>
+</tr>
+</tbody>
+</table>
 </div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="javascript" data-lang="javascript">const fetch = require("node-fetch")
 
 const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/a5a154d2-f026-40fa-bc8d-a7e3ca415298", {
@@ -505,7 +528,9 @@ const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/l
       "type": "licenses",
       "attributes": {
         "metadata": {
-          "customerEmail": "foobar@example.com"
+          "customerEmail": "foobar@example.com",
+          "customerId": "cust_a7e3ca415298f0",
+          "isPro": true
         }
       }
     }
@@ -528,7 +553,9 @@ Alamofire.request("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/a5a
       "type": "licenses",
       "attributes": [
         "metadata": [
-          "customerEmail": "foobar@example.com"
+          "customerEmail": "foobar@example.com",
+          "customerId": "cust_a7e3ca415298f0",
+          "isPro": true
         ]
       ]
     ]
@@ -554,7 +581,9 @@ request.AddJsonBody(new {
     type = "licenses",
     attributes = new {
       metadata = new {
-        customerEmail = "foobar@example.com"
+        customerEmail = "foobar@example.com",
+        customerId = "cust_a7e3ca415298f0",
+        isPro = true
       }
     }
   }
@@ -570,7 +599,9 @@ val body = JSONObject(mapOf(
     "type" to "licenses",
     "attributes" to mapOf(
       "metadata" to mapOf(
-        "customerEmail" to "foobar@example.com"
+        "customerEmail" to "foobar@example.com",
+        "customerId" to "cust_a7e3ca415298f0",
+        "isPro" to true
       )
     )
   )
@@ -594,7 +625,9 @@ JSONObject body = new JSONObject(ofEntries(
     entry("type", "licenses"),
     entry("attributes", ofEntries(
       entry("metadata", ofEntries(
-        entry("customerEmail", "foobar@example.com")
+        entry("customerEmail", "foobar@example.com"),
+        entry("customerId", "cust_a7e3ca415298f0"),
+        entry("isPro", true)
       ))
     ))
   ))
@@ -623,6 +656,8 @@ http_request req;
 
 value metadata;
 metadata["customerEmail"] = value::string("foobar@example.com");
+metadata["customerId"] = "cust_a7e3ca415298f0";
+metadata["isPro"] = true;
 
 value attrs;
 attrs["metadata"] = metadata;
@@ -657,7 +692,9 @@ client.request(req)
           "type": "licenses",
           "attributes": {
             "metadata": {
-              "customerEmail": "foobar@example.com"
+              "customerEmail": "foobar@example.com",
+              "customerId": "cust_a7e3ca415298f0",
+              "isPro": true
             }
           }
         }
