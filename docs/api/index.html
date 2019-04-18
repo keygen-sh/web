@@ -485,12 +485,14 @@ existing data on your end when performing updates.</p>
   look up their information server-side when required.
 </div>
 
-<p>Please note: all keys will be transformed into camelcase (<code>exampleKey</code>), so we
-recommend using camelcase when possible. For example, <code>example_key</code> will be
-transformed into <code>exampleKey</code>, <code>ExampleKey</code> will also be transformed
+<p><strong>You may specify up to 64 <code>metadata</code> keys, with key names up to 256 characters in
+length and with values up to 512 characters in length.</strong></p>
+<h3 id="key-transformation">Key Transformation</h3>
+<p>Please note: all keys will be transformed into lower camelcase (<code>exampleKey</code>),
+so we recommend using lower camelcase when possible. For example, <code>example_key</code>
+will be transformed into <code>exampleKey</code>, <code>ExampleKey</code> will also be transformed
 into <code>exampleKey</code>, etc.</p>
-<p>You can specify up to 64 keys, with key names up to 256 characters long and
-values up to 512 characters long.</p>
+<h3 id="example-use-cases">Example Use Cases</h3>
 <p>Here&#39;s a few example <code>metadata</code> use cases:</p>
 <table>
 <thead>
@@ -6525,7 +6527,10 @@ const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/l
   },
   body: JSON.stringify({
     "meta": {
-      "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+      "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+      "scope": {
+        "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
+      }
     }
   })
 })
@@ -6542,7 +6547,10 @@ Alamofire.request("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/act
   ],
   parameters: [
     "meta": [
-      "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+      "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+      "scope": [
+        "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
+      ]
     ]
   ],
   encoding: JSONEncoding.default
@@ -6562,7 +6570,10 @@ request.AddHeader("Accept", "application/vnd.api+json");
 
 request.AddJsonBody(new {
   meta = new {
-    key = "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+    key = "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+    scope = new {
+      fingerprint = "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
+    }
   }
 });
 
@@ -6573,7 +6584,10 @@ import org.json.*
 
 val body = JSONObject(mapOf(
   "meta" to mapOf(
-    "key" to "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+    "key" to "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+    "scope" to mapOf(
+      "fingerprint" to "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
+    )
   )
 ))
 
@@ -6591,7 +6605,10 @@ import static java.util.Map.entry;
 
 JSONObject body = new JSONObject(ofEntries(
   entry("meta", ofEntries(
-    entry("key", "B8A5-91D7-CB9A-DAE4-4F6E-1128")
+    entry("key", "B8A5-91D7-CB9A-DAE4-4F6E-1128"),
+    entry("scope", ofEntries(
+      entry("fingerprint", "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC")
+    ))
   ))
 ));
 
@@ -6615,8 +6632,12 @@ using namespace utility;
 http_client client("https://api.keygen.sh/v1/accounts/<%= account %>");
 http_request req;
 
+value scope;
+scope["fingerprint"] = value::string("4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC");
+
 value meta;
 meta["key"] = value::string("B8A5-91D7-CB9A-DAE4-4F6E-1128");
+meta["scope"] = scope;
 
 value body;
 body["meta"] = meta;
@@ -6638,7 +6659,10 @@ client.request(req)
   -H 'Accept: application/vnd.api+json' \
   -d '{
         "meta": {
-          "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+          "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+          "scope": {
+            "fingerprint": "9a:Eq:Uv:p3:yZ:tL:lC:Bz:mA:Eg:E6:Mk:YX:dK:NC"
+          }
         }
       }'
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example response / 200 OK</h4><pre><code class="json">{
