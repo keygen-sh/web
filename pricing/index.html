@@ -19,19 +19,14 @@ the last 90 days.</p>
   will count as a single licensed user, while 3 license resources without user
   associations will count as 3 individual licensed users.
 </small></p>
-</li><li><h4 id="what-if-i-go-over-my-resource-limits-">What if I go over my resource limits?</h4>
-<p>We have a simple and fair policy for this: if you go over your monthly limits, we won’t
-suspend your account or throttle requests. Instead, we look at a 90 day rolling average,
-and we&#39;ll email you when it’s time to upgrade based on consistent overages, not just
-occasional traffic spikes.</p>
-<p><small>
-  An account will be auto-upgraded if its plan&#39;s resource limits are exceeded for a
-  sustained period of time after our attempted outreach. Free and trialing accounts
-  have a hard daily API request limit of up to 1,000 requests.
-</small></p>
-</li><li><h4 id="how-are-requests-counted-">How are requests counted?</h4>
-<p>Requests are any API request made to our licensing and distribution services from your
-Keygen account.</p>
+</li><li><h4 id="how-can-i-keep-an-eye-on-my-request-volume-">How can I keep an eye on my request volume?</h4>
+<p>Your admin Dashboard includes a graph of your account&#39;s request volume. You can also view
+individual request logs from your Dashboard, which includes additional information.</p>
+</li><li><h4 id="what-happens-if-i-exceed-my-request-limit-">What happens if I exceed my request limit?</h4>
+<p>Free and trialing account&#39;s have a hard request limit, and we&#39;ll return a <code>402</code> status code
+when your limit is reached. All paid tiers have a soft request limit, so we&#39;ll continue to
+return the standard response to you and send you an email notification that you&#39;ve gone over
+your limit. If it happens regularly, we&#39;ll ask you to upgrade to a larger tier.</p>
 </li><li><h4 id="can-i-upgrade-downgrade-my-plan-">Can I upgrade/downgrade my plan?</h4>
 <p>Yes! You can upgrade or downgrade your plan at anytime from your account dashboard.
 You can even pause your subscription if you ever need to!</p>
