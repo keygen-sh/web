@@ -11192,6 +11192,21 @@ with a POST request containing an <a href="#webhook-events-object">event object<
 <td style="text-align:left">When a key is deleted</td>
 <td style="text-align:left">The deleted key object</td>
 </tr>
+<tr>
+<td style="text-align:left"><code>token.generated</code></td>
+<td style="text-align:left">When a token is generated</td>
+<td style="text-align:left">The generated token object</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>token.regenerated</code></td>
+<td style="text-align:left">When a token is regenerated</td>
+<td style="text-align:left">The regenerated token object</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>token.revoked</code></td>
+<td style="text-align:left">When a token is revoked</td>
+<td style="text-align:left">The revoked token object</td>
+</tr>
 </tbody>
 </table>
 </div><div class="example__wrapper"><div class="example"><h4>Example webhook handler using Node and Express</h4><pre><code class="javascript">const bodyParser = require("body-parser")
