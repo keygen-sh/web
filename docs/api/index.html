@@ -412,7 +412,7 @@ with a <a href="#response-codes"><code>403 forbidden</code> error</a>.</p>
 </tbody>
 </table>
 </div></section><section class="topic" id="rate-limiting"><div class="topic__content"><h1 class="anchor__wrapper topic__heading"><a class="anchor" href="#rate-limiting" data-target="rate-limiting"><i class="material-icons">link</i></a>Rate Limiting</h1><p>A single IP address can make a maximum burst of 50 requests per 30 second
-window and 300 requests per 5 minute window, which allows for 1 request/sec
+window and 500 requests per 5 minute window, which allows for 1 request/sec
 with short bursts of up to 3-5 requests/sec, regardless of authentication.
 We may add additional rate limit windows in the future, which will be included
 within the <code>X-RateLimit-Window</code> header with a specific name, e.g. <code>30s</code>.</p>
@@ -452,8 +452,8 @@ current rate limit status for the closest window:</p>
 </tbody>
 </table>
 </div><div class="example__wrapper"><div class="example"><h4>Example error</h4><pre><code class="json">X-RateLimit-Window: 5m
-X-RateLimit-Count: 301
-X-RateLimit-Limit: 300
+X-RateLimit-Count: 501
+X-RateLimit-Limit: 500
 X-RateLimit-Remaining: 0
 X-RateLimit-Reset: 1490973281
 {
