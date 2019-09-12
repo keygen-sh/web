@@ -419,8 +419,9 @@ within the <code>X-RateLimit-Window</code> header with a specific name, e.g. <co
 <p>If we see patterns of abuse, this limit may be lowered or the IP may be
 temporarily blacklisted. In rare cases of significant abuse, the IP may
 be permanently blacklisted from our API.</p>
-<p>You can check the returned HTTP headers of any API request to see your
-current rate limit status for the closest window:</p>
+<p>When rate limited, a <code>429</code> HTTP status code will be given. You can also
+check the returned HTTP headers of any API request to see your current
+rate limit status for the closest window:</p>
 <table>
 <thead>
 <tr>
@@ -451,7 +452,7 @@ current rate limit status for the closest window:</p>
 </tr>
 </tbody>
 </table>
-</div><div class="example__wrapper"><div class="example"><h4>Example error</h4><pre><code class="json">X-RateLimit-Window: 5m
+</div><div class="example__wrapper"><div class="example"><h4>Example response / 429 Too Many Requests</h4><pre><code class="json">X-RateLimit-Window: 5m
 X-RateLimit-Count: 501
 X-RateLimit-Limit: 500
 X-RateLimit-Remaining: 0
