@@ -6253,7 +6253,8 @@ const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/l
   body: JSON.stringify({
     "meta": {
       "scope": {
-        "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
+        "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC",
+        "nonce": 1574265297
       }
     }
   })
@@ -6273,7 +6274,8 @@ Alamofire.request("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/b18
   parameters: [
     "meta": [
       "scope": [
-        "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
+        "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC",
+        "nonce": 1574265297
       ]
     ]
   ],
@@ -6296,7 +6298,8 @@ request.AddHeader("Authorization", "Bearer <%= token %>");
 request.AddJsonBody(new {
   meta = new {
     scope = new {
-      fingerprint = "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
+      fingerprint = "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC",
+      nonce = 1574265297
     }
   }
 });
@@ -6309,7 +6312,8 @@ import org.json.*
 val body = JSONObject(mapOf(
   "meta" to mapOf(
     "scope" to mapOf(
-      "fingerprint" to "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
+      "fingerprint" to "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC",
+      "nonce" to 1574265297
     )
   )
 ))
@@ -6330,7 +6334,8 @@ import static java.util.Map.entry;
 JSONObject body = new JSONObject(ofEntries(
   entry("meta", ofEntries(
     entry("scope", ofEntries(
-      entry("fingerprint", "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC")
+      entry("fingerprint", "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"),
+      entry("nonce", 1574265297)
     ))
   ))
 ));
@@ -6358,6 +6363,7 @@ http_request req;
 
 value scope;
 scope["fingerprint"] = value::string("4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC");
+scope["nonce"] = value::number(1574265297);
 
 value meta;
 meta["scope"] = scope;
@@ -6385,7 +6391,8 @@ client.request(req)
   -d '{
         "meta": {
           "scope": {
-            "fingerprint": "9a:Eq:Uv:p3:yZ:tL:lC:Bz:mA:Eg:E6:Mk:YX:dK:NC"
+            "fingerprint": "9a:Eq:Uv:p3:yZ:tL:lC:Bz:mA:Eg:E6:Mk:YX:dK:NC",
+            "nonce": 1574265297
           }
         }
       }'
@@ -6394,7 +6401,8 @@ client.request(req)
     "ts": "<%= now %>",
     "valid": false,
     "detail": "fingerprint scope does not match",
-    "constant": "FINGERPRINT_SCOPE_MISMATCH"
+    "constant": "FINGERPRINT_SCOPE_MISMATCH",
+    "nonce": 1574265297
   },
   "data": {
     "id": "b18e3f3a-330c-4d8d-ae2e-014db21fa827",
