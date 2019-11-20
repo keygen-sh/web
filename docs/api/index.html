@@ -6252,9 +6252,9 @@ const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/l
   },
   body: JSON.stringify({
     "meta": {
+      "nonce": 1574265297,
       "scope": {
-        "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC",
-        "nonce": 1574265297
+        "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
       }
     }
   })
@@ -6273,9 +6273,9 @@ Alamofire.request("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/b18
   ],
   parameters: [
     "meta": [
+      "nonce": 1574265297,
       "scope": [
-        "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC",
-        "nonce": 1574265297
+        "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
       ]
     ]
   ],
@@ -6297,9 +6297,9 @@ request.AddHeader("Authorization", "Bearer <%= token %>");
 
 request.AddJsonBody(new {
   meta = new {
+    nonce = 1574265297,
     scope = new {
-      fingerprint = "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC",
-      nonce = 1574265297
+      fingerprint = "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
     }
   }
 });
@@ -6311,9 +6311,9 @@ import org.json.*
 
 val body = JSONObject(mapOf(
   "meta" to mapOf(
+    "nonce" to 1574265297,
     "scope" to mapOf(
-      "fingerprint" to "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC",
-      "nonce" to 1574265297
+      "fingerprint" to "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
     )
   )
 ))
@@ -6333,9 +6333,9 @@ import static java.util.Map.entry;
 
 JSONObject body = new JSONObject(ofEntries(
   entry("meta", ofEntries(
+    entry("nonce", 1574265297),
     entry("scope", ofEntries(
-      entry("fingerprint", "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"),
-      entry("nonce", 1574265297)
+      entry("fingerprint", "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC")
     ))
   ))
 ));
@@ -6363,9 +6363,9 @@ http_request req;
 
 value scope;
 scope["fingerprint"] = value::string("4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC");
-scope["nonce"] = value::number(1574265297);
 
 value meta;
+meta["nonce"] = value::number(1574265297);
 meta["scope"] = scope;
 
 value body;
@@ -6390,9 +6390,9 @@ client.request(req)
   -H 'Authorization: Bearer <%= token %>' \
   -d '{
         "meta": {
+          "nonce": 1574265297,
           "scope": {
-            "fingerprint": "9a:Eq:Uv:p3:yZ:tL:lC:Bz:mA:Eg:E6:Mk:YX:dK:NC",
-            "nonce": 1574265297
+            "fingerprint": "9a:Eq:Uv:p3:yZ:tL:lC:Bz:mA:Eg:E6:Mk:YX:dK:NC"
           }
         }
       }'
