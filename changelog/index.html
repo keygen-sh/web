@@ -1,0 +1,172 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="initial-scale=1"><meta name="referrer" content="no-referrer"><title>Changelog</title><link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII" type="image/x-icon"><link rel="icon" href="/favicon-192x192.png" sizes="192x192"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180"><link href="https://keygen.sh/media.jpg" rel="image_src"><meta content="Keygen - a dead-simple product and app licensing API built for developers" property="og:title"><meta content="https://keygen.sh/" property="og:url"><meta content="Keygen is a simple app and product licensing API, allowing developers to easily implement various licensing types into any online or desktop software product." property="og:description"><meta content="https://keygen.sh/media.jpg" property="og:image"><meta content="Keygen" property="og:site_name"><meta content="website" property="og:type"><link rel="stylesheet" href="/app.css"></head><body><div class="container"><header class="header__wrapper"><div class="header"><div class="header__logo"><a class="logo" href="/"><canvas class="logo__logomark" width="64" height="64"></canvas><span class="logo__logotype effect--shuffle">Keygen</span></a><a class="header__logo__badge" href="mailto:hello@keygen.sh">We're Hiring!</a></div><div class="header__nav"><nav class="navigation" id="nav"><div class="navigation__hamburger" id="nav-toggle"><i class="material-icons">menu</i></div><ul class="navigation__list"><li onclick=""><span>Products<i class="material-icons">expand_more</i></span><ul class="navigation__sublist"><li><a href="/licensing"><i class="material-icons">lock_open</i> Software Licensing API</a></li><li><a href="/distribution"><i class="material-icons">cloud_queue</i> Distribution API</a></li></ul></li><li><a href="/pricing" data-conversion="r_ssCOKoynMQw8CikwM">Pricing</a></li><li><a href="/docs" data-conversion="smILCPbF13MQw8CikwM">Documentation</a></li><li><a href="https://app.keygen.sh/login">Log in</a></li><li><a class="button button--secondary button--size-small" href="https://app.keygen.sh/register?plan=b8199947-c7db-4c77-8217-af2ac73c9efb" data-conversion="iInYCL2A0HMQw8CikwM">Sign Up</a></li></ul></nav></div></div></header><main class="main"><div class="main__title"><h1>Changelog</h1><p></p></div><div class="main__content__wrapper"><div class="main__content main__content--legal"><h2 id="2019">2019</h2>
+<h3 id="dec">DEC</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Update activation token permissions to be able to increment license usage (useful for incrementing usage in a client-side environment without an intermediary server).</li>
+</ul>
+<h3 id="nov">NOV</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add <code>nonce</code> parameter to license validation endpoints (which is then echoed back within the signed response body).</li>
+</ul>
+<h3 id="jul">JUL</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add additional rate limit headers: <code>X-RateLimit-Window</code> for the closest rate limiting window to being reached, <code>X-RateLimit-Count</code> for the request count within the current rate limiting window.</li>
+<li><span class='tag tag--red'>FIX</span> Fix issue where machine activation was queued and performed asynchronously, which sometimes caused subsequent requests to the machines list endpoint to include the aforementioned deactivated machine (due to the deactivation process being async).</li>
+</ul>
+<h3 id="jun">JUN</h3>
+<ul>
+<li><span class='tag tag--red'>FIX</span> Fix issue where the <code>expired</code> filter for the license list endpoint would not include licenses without an expiry when <code>expired=false</code>.</li>
+<li><span class='tag'>FEATURE</span> Add ability to use a machine&#39;s <code>fingerprint</code> attribute within URL params in place of its ID (grated the <code>fingerprint</code> is a valid URL param).</li>
+</ul>
+<h3 id="may">MAY</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add machine heartbeat system.</li>
+<li><span class='tag'>FEATURE</span> Add <code>active</code> filter to users list endpoint.</li>
+</ul>
+<h3 id="apr">APR</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add license validation <code>meta</code>, which includes the validation result, to payloads of <code>license.validation.*</code> webhook events.</li>
+<li><span class='tag'>FEATURE</span> Add <code>expired</code> filter to licenses list endpoint.</li>
+</ul>
+<h3 id="mar">MAR</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add ability for admins to manually update a user&#39;s password.</li>
+<li><span class='tag'>FEATURE</span> Add total pages and resource count to pagination meta.</li>
+</ul>
+<h2 id="2018">2018</h2>
+<h3 id="dec">DEC</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add current timestamp to validation response: <code>meta.ts</code>.</li>
+<li><span class='tag'>FEATURE</span> Add <code>/v1/ping</code> endpoint. Useful for testing if the Keygen API is reachable, e.g. firewall issues, lack of internet access, etc.</li>
+<li><span class='tag'>FEATURE</span> Add support for webhook endpoints to subscribe to specific webhook events.</li>
+</ul>
+<h3 id="nov">NOV</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add request logging.</li>
+</ul>
+<h3 id="oct">OCT</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add support for named licenses.</li>
+</ul>
+<h3 id="sep">SEP</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add support for offline licensing using cryptographically signed/encrypted license keys.</li>
+<li><span class='tag tag--red'>FIX</span> Fix issue causing some <code>Accept</code> headers to result in an <code>HTTP 400 Bad Request</code> response code.</li>
+<li><span class='tag'>FEATURE</span> Add helpful error response and specific error code for requests containing: invalid JSON, invalid tokens, invalid encodings.</li>
+<li><span class='tag tag--red'>FIX</span> Fix issue where machines without a user associated with it could contain invalid <code>relationships.user</code> linkage.</li>
+<li><span class='tag'>FEATURE</span> Add <code>ip</code> and <code>hostname</code> filters to machines list endpoint.</li>
+</ul>
+<h3 id="aug">AUG</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add &quot;protected&quot; permission system to licenses.</li>
+<li><span class='tag'>FEATURE</span> Add better debugging tools for webhook event delivery failures.</li>
+</ul>
+<h3 id="jul">JUL</h3>
+<ul>
+<li><span class='tag tag--red'>FIX</span> Update license validation precedences, resolving an issue where machine-related validation-result codes would sometimes take precedence over invalid license state, such as the license being expired or suspended.</li>
+<li><span class='tag'>FEATURE</span> Add <code>policy</code> filter to machines list endpoint.</li>
+<li><span class='tag'>FEATURE</span> Add machine count to license payloads: <code>relationships.machines.meta.count</code>.</li>
+</ul>
+<h3 id="jun">JUN</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add permission for activation tokens to read machines of the license it belongs to.</li>
+<li><span class='tag'>FEATURE</span> Add permission for activation tokens to validate the license it belongs to.</li>
+<li><span class='tag tag--red'>FIX</span> Fix issue where password reset expiration date was incorrect within the email delivered to the user.</li>
+</ul>
+<h3 id="may">MAY</h3>
+<ul>
+<li><span class='tag tag--red'>FIX</span> Fix issue where regenerated tokens had an incorrect <code>expiry</code> value (was adding 2 weeks to the current <code>expiry</code>, when it should have been adding 2 weeks from the current datetime).</li>
+<li><span class='tag tag--red'>FIX</span> Fix issue where license <code>expiry</code> could not be removed.</li>
+<li><span class='tag'>FEATURE</span> Add ability to limit machine activation and deactivation counts for activation tokens.</li>
+<li><span class='tag'>FEATURE</span> Update API token algorithm to <code>v2</code>.</li>
+<li><span class='tag'>FEATURE</span> Add support for more detailed error pointers for resource relationship-related errors.</li>
+<li><span class='tag tag--red'>FIX</span> Fix issue where a machine could be activated even after reaching the activation token&#39;s activation limit.</li>
+<li><span class='tag tag--red'>FIX</span> Fix issue where <code>nextCheckIn</code> would display a non-<code>null</code> value for non-check-in licenses.</li>
+</ul>
+<h3 id="apr">APR</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add activation token support, allowing client-side machine activation workflows.</li>
+<li><span class='tag'>FEATURE</span> Add search feature to the Dashboard.</li>
+<li><span class='tag'>FEATURE</span> Add ability to delete webhook events for compliance.</li>
+<li><span class='tag'>FEATURE</span> Add last response body and code to webhook events to aid in developer debugging.</li>
+<li><span class='tag'>FEATURE</span> Add additional error codes to failed webhook events, e.g. DNS issues, request timeout, etc. to aid in developer debugging.</li>
+<li><span class='tag'>FEATURE</span> Add ability to use a user&#39;s <code>email</code> attribute within URL params in place of their ID.</li>
+</ul>
+<h3 id="mar">MAR</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add <code>X-Signature</code> header to all API responses (signed using RSA cryptography).</li>
+<li><span class='tag'>FEATURE</span> Add <code>X-Signature</code> header to webhook event delivery requests.</li>
+<li><span class='tag'>FEATURE</span> Add webhook events for license expiration lifecycle: <code>license.expiring-soon</code>, <code>license.expired</code>.</li>
+<li><span class='tag'>FEATURE</span> Add license usage count system.</li>
+<li><span class='tag'>FEATURE</span> Add <code>meta.increment</code> and <code>meta.decrement</code> params for adjusting increment/decrement amount.</li>
+<li><span class='tag'>FEATURE</span> Add ability for a license to transfer between users.</li>
+</ul>
+<h3 id="jan">JAN</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Update behavior around <code>Accept</code> header to respond with a <code>application/json</code> content-type when requested, rather than always responding with <code>application/vnd.api+json</code>.</li>
+<li><span class='tag'>FEATURE</span> Add ability for a license to transfer between policies.</li>
+<li><span class='tag'>FEATURE</span> Add concurrent license support.</li>
+<li><span class='tag tag--teal'>LAUNCH</span> Add our distribution API, Keygen Dist, to the interwebs. 🎊</li>
+</ul>
+<h2 id="2017">2017</h2>
+<h3 id="dec">DEC</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add support for <code>meta.scope</code> to license validation endpoints.</li>
+<li><span class='tag'>FEATURE</span> Add ability to use a license&#39;s <code>key</code> attribute within URL params in place of its ID (grated the <code>key</code> is a valid URL param).</li>
+</ul>
+<h3 id="nov">NOV</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add webhook event for password resets (for manual fulfillment).</li>
+</ul>
+<h3 id="oct">OCT</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add <code>maxMachines</code> attribute to license payload.</li>
+<li><span class='tag'>FEATURE</span> Add validation result code to license validation payload <code>meta</code>.</li>
+</ul>
+<h3 id="may">MAY</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add license check-in system.</li>
+<li><span class='tag'>FEATURE</span> Add webhook events for license validations: <code>license.validation.succeeded</code>, <code>license.validation.failed</code>.</li>
+</ul>
+<h3 id="apr">APR</h3>
+<ul>
+<li><span class='tag tag--red'>FIX</span> Fix issue where a duplicate license key could be created for an account (i.e. 2 licenses with the same key).</li>
+<li><span class='tag'>FEATURE</span> Update product token permissions to read all users and webhook events to aid in server-side integrations.</li>
+<li><span class='tag'>FEATURE</span> Add <code>strict</code> attribute to policies to remove the &quot;hard&quot; machine limit.</li>
+<li><span class='tag'>FEATURE</span> Update <code>floating</code> attribute default value to <code>false</code> for policies.</li>
+<li><span class='tag'>FEATURE</span> Update <code>maxMachines</code> attribute default value to <code>1</code> for policies.</li>
+<li><span class='tag'>FEATURE</span> Add &quot;protected&quot; permission system to policies.</li>
+</ul>
+<h3 id="feb">FEB</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add validation detail message to license validation payload <code>meta</code>.</li>
+<li><span class='tag'>FEATURE</span> Add <code>events[]</code> filter to webhook events list endpoint.</li>
+</ul>
+<h3 id="jan">JAN</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add action to suspend and reinstate licenses.</li>
+<li><span class='tag'>FEATURE</span> Add <code>suspended</code> filter to licenses list endpoint.</li>
+<li><span class='tag'>FEATURE</span> Add account-related webhook events, e.g. <code>account.updated</code>, <code>account.billing.updated</code>, etc.</li>
+<li><span class='tag'>FEATURE</span> Add JSON-API linkage to singular relationships within response payloads.</li>
+<li><span class='tag tag--red'>FIX</span> Fix issue where rate limited response used incorrect JSON content type.</li>
+<li><span class='tag'>FEATURE</span> Add <code>product</code> filter to keys list endpoint.</li>
+<li><span class='tag'>FEATURE</span> Allow user <code>metadata</code> attribute to be specified during user creation for non-authenticated requests.</li>
+<li><span class='tag'>FEATURE</span> Add support for specifying your own license key attribute during license creation.</li>
+<li><span class='tag'>FEATURE</span> Add <code>v1</code> version suffix to API tokens.</li>
+<li><span class='tag'>FEATURE</span> Add &quot;protected&quot; permission system to accounts.</li>
+</ul>
+<h2 id="2016">2016</h2>
+<h3 id="dec">DEC</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add idempotency token to webhook events.</li>
+<li><span class='tag'>FEATURE</span> Add <code>status</code> to webhook events.</li>
+</ul>
+<h3 id="nov">NOV</h3>
+<ul>
+<li><span class='tag'>FEATURE</span> Add webhook system.</li>
+</ul>
+<h3 id="oct">OCT</h3>
+<ul>
+<li><span class='tag tag--teal'>LAUNCH</span> Add our licensing API, Keygen, to the interwebs. 🎉</li>
+</ul>
+</div></div></main></div><div class="footer__content">© 2019 Keygen LLC – All Rights Reserved – hello@keygen.sh
+</div><ul class="footer__links"><li><a href="https://status.keygen.sh">Status</a></li><li><a href="/changelog">Changelog</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li><li><a href="/integrate">Integrate</a></li><li><a href="/compare">Compare</a></li></ul><script src="/app.js"></script></body></html>
