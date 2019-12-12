@@ -2,6 +2,14 @@
 <h3 id="dec">DEC</h3>
 <ul>
 <li><span class='tag'>FEATURE</span> Update activation token permissions to be able to increment license usage (useful for incrementing usage in a client-side environment without an intermediary server).</li>
+<li><span class='tag'>FEATURE</span> Add <code>unassigned</code> filter to licenses list endpoint.</li>
+<li><span class='tag'>FEATURE</span> Add <code>meta.tokenId</code> to the profile endpoint, containing the current API token&#39;s ID.</li>
+<li><span class='tag'>FEATURE</span> Add &quot;whoami&quot; headers to all responses:<ul>
+<li><code>X-Keygen-Account-Id</code>, representing the current account&#39;s ID.</li>
+<li><code>X-Keygen-Bearer-Id</code>, the ID of the bearer making the request, e.g. the current user, or license if using an activation token.</li>
+<li><code>X-Keygen-Token-Id</code>, the ID of the API token being used for the request.</li>
+</ul>
+</li>
 </ul>
 <h3 id="nov">NOV</h3>
 <ul>
