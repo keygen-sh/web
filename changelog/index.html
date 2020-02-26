@@ -18,7 +18,7 @@
 <h3 id="jul">JUL</h3>
 <ul>
 <li><span class='tag'>FEATURE</span> Add additional rate limit headers: <code>X-RateLimit-Window</code> for the closest rate limiting window to being reached, <code>X-RateLimit-Count</code> for the request count within the current rate limiting window.</li>
-<li><span class='tag tag--red'>FIX</span> Fix issue where machine activation was queued and performed asynchronously, which sometimes caused subsequent requests to the machines list endpoint to include the aforementioned deactivated machine (due to the deactivation process being async).</li>
+<li><span class='tag tag--red'>FIX</span> Fix issue where machine deactivation was queued and performed asynchronously, which sometimes caused subsequent requests to the machines list endpoint to include the aforementioned deactivated machine (due to the deactivation process being async).</li>
 </ul>
 <h3 id="jun">JUN</h3>
 <ul>
