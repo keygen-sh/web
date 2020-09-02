@@ -417,6 +417,11 @@ within the <code>X-RateLimit-Window</code> header with a specific name, e.g. <co
 <p>If we see patterns of abuse, this limit may be lowered or the IP may be
 temporarily blacklisted. In rare cases of significant abuse, the IP may
 be permanently blacklisted from our API.</p>
+<div class="notice notice--tip">
+  <strong>Need a custom rate limit?</strong> Reach out to our support team and we can discuss
+  a custom rate limit that will work with your requirements.
+</div>
+
 <p>When rate limited, a <code>429</code> HTTP status code will be given. You can also
 check the returned HTTP headers of any API request to see your current
 rate limit status for the closest window:</p>
