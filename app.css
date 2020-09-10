@@ -156,7 +156,8 @@ code {
 
 code {
   color: #5f6e86;
-  overflow: scroll; }
+  overflow: scroll;
+  scrollbar-width: none; }
   td code, li code, p code {
     padding: 1px 4px;
     border: 1px solid rgba(95, 110, 134, 0.15);
@@ -1185,8 +1186,8 @@ main__feature,
         @media (min-width: 60rem) {
           .not-found__content h1:before {
             display: none;
-            -webkit-animation: glitch-u9vjdbe9c-before-lg 3s infinite linear alternate-reverse;
-                    animation: glitch-u9vjdbe9c-before-lg 3s infinite linear alternate-reverse;
+            -webkit-animation: glitch-utkc1pxfr-before-lg 3s infinite linear alternate-reverse;
+                    animation: glitch-utkc1pxfr-before-lg 3s infinite linear alternate-reverse;
             display: initial; }
             body.firefox .not-found__content h1:before, body.safari .not-found__content h1:before, body.ios .not-found__content h1:before {
               display: none !important; }
@@ -1195,128 +1196,128 @@ main__feature,
                 -webkit-clip-path: inset(0);
                         clip-path: inset(0);
                 display: initial; } }
-          @-webkit-keyframes glitch-u9vjdbe9c-before-lg {
+          @-webkit-keyframes glitch-utkc1pxfr-before-lg {
             100% {
-              -webkit-clip-path: inset(145px 0 8px 0);
-                      clip-path: inset(145px 0 8px 0); }
+              -webkit-clip-path: inset(93px 0 100px 0);
+                      clip-path: inset(93px 0 100px 0); }
             95% {
-              -webkit-clip-path: inset(136px 0 59px 0);
-                      clip-path: inset(136px 0 59px 0); }
+              -webkit-clip-path: inset(114px 0 56px 0);
+                      clip-path: inset(114px 0 56px 0); }
             90% {
-              -webkit-clip-path: inset(116px 0 39px 0);
-                      clip-path: inset(116px 0 39px 0); }
+              -webkit-clip-path: inset(50px 0 141px 0);
+                      clip-path: inset(50px 0 141px 0); }
             85% {
-              -webkit-clip-path: inset(57px 0 144px 0);
-                      clip-path: inset(57px 0 144px 0); }
+              -webkit-clip-path: inset(39px 0 115px 0);
+                      clip-path: inset(39px 0 115px 0); }
             80% {
-              -webkit-clip-path: inset(13px 0 149px 0);
-                      clip-path: inset(13px 0 149px 0); }
+              -webkit-clip-path: inset(135px 0 27px 0);
+                      clip-path: inset(135px 0 27px 0); }
             75% {
-              -webkit-clip-path: inset(44px 0 116px 0);
-                      clip-path: inset(44px 0 116px 0); }
+              -webkit-clip-path: inset(86px 0 115px 0);
+                      clip-path: inset(86px 0 115px 0); }
             70% {
-              -webkit-clip-path: inset(133px 0 53px 0);
-                      clip-path: inset(133px 0 53px 0); }
+              -webkit-clip-path: inset(55px 0 146px 0);
+                      clip-path: inset(55px 0 146px 0); }
             65% {
-              -webkit-clip-path: inset(2px 0 167px 0);
-                      clip-path: inset(2px 0 167px 0); }
+              -webkit-clip-path: inset(96px 0 86px 0);
+                      clip-path: inset(96px 0 86px 0); }
             60% {
-              -webkit-clip-path: inset(84px 0 88px 0);
-                      clip-path: inset(84px 0 88px 0); }
+              -webkit-clip-path: inset(19px 0 160px 0);
+                      clip-path: inset(19px 0 160px 0); }
             55% {
-              -webkit-clip-path: inset(118px 0 45px 0);
-                      clip-path: inset(118px 0 45px 0); }
+              -webkit-clip-path: inset(143px 0 45px 0);
+                      clip-path: inset(143px 0 45px 0); }
             50% {
-              -webkit-clip-path: inset(134px 0 26px 0);
-                      clip-path: inset(134px 0 26px 0); }
+              -webkit-clip-path: inset(79px 0 104px 0);
+                      clip-path: inset(79px 0 104px 0); }
             45% {
-              -webkit-clip-path: inset(57px 0 122px 0);
-                      clip-path: inset(57px 0 122px 0); }
+              -webkit-clip-path: inset(111px 0 86px 0);
+                      clip-path: inset(111px 0 86px 0); }
             40% {
-              -webkit-clip-path: inset(74px 0 114px 0);
-                      clip-path: inset(74px 0 114px 0); }
+              -webkit-clip-path: inset(87px 0 105px 0);
+                      clip-path: inset(87px 0 105px 0); }
             35% {
-              -webkit-clip-path: inset(78px 0 86px 0);
-                      clip-path: inset(78px 0 86px 0); }
+              -webkit-clip-path: inset(69px 0 118px 0);
+                      clip-path: inset(69px 0 118px 0); }
             30% {
-              -webkit-clip-path: inset(107px 0 79px 0);
-                      clip-path: inset(107px 0 79px 0); }
+              -webkit-clip-path: inset(88px 0 76px 0);
+                      clip-path: inset(88px 0 76px 0); }
             25% {
-              -webkit-clip-path: inset(108px 0 91px 0);
-                      clip-path: inset(108px 0 91px 0); }
+              -webkit-clip-path: inset(11px 0 171px 0);
+                      clip-path: inset(11px 0 171px 0); }
             20% {
-              -webkit-clip-path: inset(76px 0 120px 0);
-                      clip-path: inset(76px 0 120px 0); }
+              -webkit-clip-path: inset(10px 0 149px 0);
+                      clip-path: inset(10px 0 149px 0); }
             15% {
-              -webkit-clip-path: inset(81px 0 105px 0);
-                      clip-path: inset(81px 0 105px 0); }
+              -webkit-clip-path: inset(34px 0 154px 0);
+                      clip-path: inset(34px 0 154px 0); }
             10% {
-              -webkit-clip-path: inset(65px 0 94px 0);
-                      clip-path: inset(65px 0 94px 0); }
+              -webkit-clip-path: inset(77px 0 79px 0);
+                      clip-path: inset(77px 0 79px 0); }
             5% {
-              -webkit-clip-path: inset(98px 0 86px 0);
-                      clip-path: inset(98px 0 86px 0); } }
-          @keyframes glitch-u9vjdbe9c-before-lg {
+              -webkit-clip-path: inset(23px 0 157px 0);
+                      clip-path: inset(23px 0 157px 0); } }
+          @keyframes glitch-utkc1pxfr-before-lg {
             100% {
-              -webkit-clip-path: inset(145px 0 8px 0);
-                      clip-path: inset(145px 0 8px 0); }
+              -webkit-clip-path: inset(93px 0 100px 0);
+                      clip-path: inset(93px 0 100px 0); }
             95% {
-              -webkit-clip-path: inset(136px 0 59px 0);
-                      clip-path: inset(136px 0 59px 0); }
+              -webkit-clip-path: inset(114px 0 56px 0);
+                      clip-path: inset(114px 0 56px 0); }
             90% {
-              -webkit-clip-path: inset(116px 0 39px 0);
-                      clip-path: inset(116px 0 39px 0); }
+              -webkit-clip-path: inset(50px 0 141px 0);
+                      clip-path: inset(50px 0 141px 0); }
             85% {
-              -webkit-clip-path: inset(57px 0 144px 0);
-                      clip-path: inset(57px 0 144px 0); }
+              -webkit-clip-path: inset(39px 0 115px 0);
+                      clip-path: inset(39px 0 115px 0); }
             80% {
-              -webkit-clip-path: inset(13px 0 149px 0);
-                      clip-path: inset(13px 0 149px 0); }
+              -webkit-clip-path: inset(135px 0 27px 0);
+                      clip-path: inset(135px 0 27px 0); }
             75% {
-              -webkit-clip-path: inset(44px 0 116px 0);
-                      clip-path: inset(44px 0 116px 0); }
+              -webkit-clip-path: inset(86px 0 115px 0);
+                      clip-path: inset(86px 0 115px 0); }
             70% {
-              -webkit-clip-path: inset(133px 0 53px 0);
-                      clip-path: inset(133px 0 53px 0); }
+              -webkit-clip-path: inset(55px 0 146px 0);
+                      clip-path: inset(55px 0 146px 0); }
             65% {
-              -webkit-clip-path: inset(2px 0 167px 0);
-                      clip-path: inset(2px 0 167px 0); }
+              -webkit-clip-path: inset(96px 0 86px 0);
+                      clip-path: inset(96px 0 86px 0); }
             60% {
-              -webkit-clip-path: inset(84px 0 88px 0);
-                      clip-path: inset(84px 0 88px 0); }
+              -webkit-clip-path: inset(19px 0 160px 0);
+                      clip-path: inset(19px 0 160px 0); }
             55% {
-              -webkit-clip-path: inset(118px 0 45px 0);
-                      clip-path: inset(118px 0 45px 0); }
+              -webkit-clip-path: inset(143px 0 45px 0);
+                      clip-path: inset(143px 0 45px 0); }
             50% {
-              -webkit-clip-path: inset(134px 0 26px 0);
-                      clip-path: inset(134px 0 26px 0); }
+              -webkit-clip-path: inset(79px 0 104px 0);
+                      clip-path: inset(79px 0 104px 0); }
             45% {
-              -webkit-clip-path: inset(57px 0 122px 0);
-                      clip-path: inset(57px 0 122px 0); }
+              -webkit-clip-path: inset(111px 0 86px 0);
+                      clip-path: inset(111px 0 86px 0); }
             40% {
-              -webkit-clip-path: inset(74px 0 114px 0);
-                      clip-path: inset(74px 0 114px 0); }
+              -webkit-clip-path: inset(87px 0 105px 0);
+                      clip-path: inset(87px 0 105px 0); }
             35% {
-              -webkit-clip-path: inset(78px 0 86px 0);
-                      clip-path: inset(78px 0 86px 0); }
+              -webkit-clip-path: inset(69px 0 118px 0);
+                      clip-path: inset(69px 0 118px 0); }
             30% {
-              -webkit-clip-path: inset(107px 0 79px 0);
-                      clip-path: inset(107px 0 79px 0); }
+              -webkit-clip-path: inset(88px 0 76px 0);
+                      clip-path: inset(88px 0 76px 0); }
             25% {
-              -webkit-clip-path: inset(108px 0 91px 0);
-                      clip-path: inset(108px 0 91px 0); }
+              -webkit-clip-path: inset(11px 0 171px 0);
+                      clip-path: inset(11px 0 171px 0); }
             20% {
-              -webkit-clip-path: inset(76px 0 120px 0);
-                      clip-path: inset(76px 0 120px 0); }
+              -webkit-clip-path: inset(10px 0 149px 0);
+                      clip-path: inset(10px 0 149px 0); }
             15% {
-              -webkit-clip-path: inset(81px 0 105px 0);
-                      clip-path: inset(81px 0 105px 0); }
+              -webkit-clip-path: inset(34px 0 154px 0);
+                      clip-path: inset(34px 0 154px 0); }
             10% {
-              -webkit-clip-path: inset(65px 0 94px 0);
-                      clip-path: inset(65px 0 94px 0); }
+              -webkit-clip-path: inset(77px 0 79px 0);
+                      clip-path: inset(77px 0 79px 0); }
             5% {
-              -webkit-clip-path: inset(98px 0 86px 0);
-                      clip-path: inset(98px 0 86px 0); } } }
+              -webkit-clip-path: inset(23px 0 157px 0);
+                      clip-path: inset(23px 0 157px 0); } } }
       .not-found__content h1:after {
         display: none;
         content: attr(data-text);
@@ -1330,8 +1331,8 @@ main__feature,
         @media (min-width: 60rem) {
           .not-found__content h1:after {
             display: none;
-            -webkit-animation: glitch-u9vjdbe9c-after-lg 2s infinite linear alternate-reverse;
-                    animation: glitch-u9vjdbe9c-after-lg 2s infinite linear alternate-reverse;
+            -webkit-animation: glitch-utkc1pxfr-after-lg 2s infinite linear alternate-reverse;
+                    animation: glitch-utkc1pxfr-after-lg 2s infinite linear alternate-reverse;
             display: initial; }
             body.firefox .not-found__content h1:after, body.safari .not-found__content h1:after, body.ios .not-found__content h1:after {
               display: none !important; }
@@ -1340,128 +1341,128 @@ main__feature,
                 -webkit-clip-path: inset(0);
                         clip-path: inset(0);
                 display: initial; } }
-          @-webkit-keyframes glitch-u9vjdbe9c-after-lg {
+          @-webkit-keyframes glitch-utkc1pxfr-after-lg {
             100% {
-              -webkit-clip-path: inset(109px 0 50px 0);
-                      clip-path: inset(109px 0 50px 0); }
+              -webkit-clip-path: inset(64px 0 124px 0);
+                      clip-path: inset(64px 0 124px 0); }
             95% {
-              -webkit-clip-path: inset(69px 0 85px 0);
-                      clip-path: inset(69px 0 85px 0); }
+              -webkit-clip-path: inset(60px 0 126px 0);
+                      clip-path: inset(60px 0 126px 0); }
             90% {
-              -webkit-clip-path: inset(42px 0 155px 0);
-                      clip-path: inset(42px 0 155px 0); }
+              -webkit-clip-path: inset(82px 0 102px 0);
+                      clip-path: inset(82px 0 102px 0); }
             85% {
-              -webkit-clip-path: inset(49px 0 137px 0);
-                      clip-path: inset(49px 0 137px 0); }
+              -webkit-clip-path: inset(48px 0 149px 0);
+                      clip-path: inset(48px 0 149px 0); }
             80% {
-              -webkit-clip-path: inset(3px 0 158px 0);
-                      clip-path: inset(3px 0 158px 0); }
+              -webkit-clip-path: inset(62px 0 101px 0);
+                      clip-path: inset(62px 0 101px 0); }
             75% {
-              -webkit-clip-path: inset(19px 0 141px 0);
-                      clip-path: inset(19px 0 141px 0); }
+              -webkit-clip-path: inset(132px 0 68px 0);
+                      clip-path: inset(132px 0 68px 0); }
             70% {
-              -webkit-clip-path: inset(76px 0 107px 0);
-                      clip-path: inset(76px 0 107px 0); }
+              -webkit-clip-path: inset(51px 0 102px 0);
+                      clip-path: inset(51px 0 102px 0); }
             65% {
-              -webkit-clip-path: inset(134px 0 55px 0);
-                      clip-path: inset(134px 0 55px 0); }
+              -webkit-clip-path: inset(109px 0 52px 0);
+                      clip-path: inset(109px 0 52px 0); }
             60% {
-              -webkit-clip-path: inset(22px 0 173px 0);
-                      clip-path: inset(22px 0 173px 0); }
+              -webkit-clip-path: inset(23px 0 173px 0);
+                      clip-path: inset(23px 0 173px 0); }
             55% {
-              -webkit-clip-path: inset(36px 0 136px 0);
-                      clip-path: inset(36px 0 136px 0); }
+              -webkit-clip-path: inset(122px 0 78px 0);
+                      clip-path: inset(122px 0 78px 0); }
             50% {
-              -webkit-clip-path: inset(31px 0 169px 0);
-                      clip-path: inset(31px 0 169px 0); }
+              -webkit-clip-path: inset(105px 0 50px 0);
+                      clip-path: inset(105px 0 50px 0); }
             45% {
-              -webkit-clip-path: inset(121px 0 65px 0);
-                      clip-path: inset(121px 0 65px 0); }
+              -webkit-clip-path: inset(118px 0 78px 0);
+                      clip-path: inset(118px 0 78px 0); }
             40% {
-              -webkit-clip-path: inset(28px 0 140px 0);
-                      clip-path: inset(28px 0 140px 0); }
+              -webkit-clip-path: inset(120px 0 80px 0);
+                      clip-path: inset(120px 0 80px 0); }
             35% {
-              -webkit-clip-path: inset(132px 0 59px 0);
-                      clip-path: inset(132px 0 59px 0); }
+              -webkit-clip-path: inset(129px 0 66px 0);
+                      clip-path: inset(129px 0 66px 0); }
             30% {
-              -webkit-clip-path: inset(123px 0 43px 0);
-                      clip-path: inset(123px 0 43px 0); }
+              -webkit-clip-path: inset(33px 0 161px 0);
+                      clip-path: inset(33px 0 161px 0); }
             25% {
-              -webkit-clip-path: inset(112px 0 60px 0);
-                      clip-path: inset(112px 0 60px 0); }
+              -webkit-clip-path: inset(146px 0 33px 0);
+                      clip-path: inset(146px 0 33px 0); }
             20% {
-              -webkit-clip-path: inset(116px 0 83px 0);
-                      clip-path: inset(116px 0 83px 0); }
+              -webkit-clip-path: inset(133px 0 69px 0);
+                      clip-path: inset(133px 0 69px 0); }
             15% {
-              -webkit-clip-path: inset(98px 0 64px 0);
-                      clip-path: inset(98px 0 64px 0); }
+              -webkit-clip-path: inset(57px 0 121px 0);
+                      clip-path: inset(57px 0 121px 0); }
             10% {
-              -webkit-clip-path: inset(117px 0 42px 0);
-                      clip-path: inset(117px 0 42px 0); }
+              -webkit-clip-path: inset(133px 0 63px 0);
+                      clip-path: inset(133px 0 63px 0); }
             5% {
-              -webkit-clip-path: inset(40px 0 122px 0);
-                      clip-path: inset(40px 0 122px 0); } }
-          @keyframes glitch-u9vjdbe9c-after-lg {
+              -webkit-clip-path: inset(148px 0 11px 0);
+                      clip-path: inset(148px 0 11px 0); } }
+          @keyframes glitch-utkc1pxfr-after-lg {
             100% {
-              -webkit-clip-path: inset(109px 0 50px 0);
-                      clip-path: inset(109px 0 50px 0); }
+              -webkit-clip-path: inset(64px 0 124px 0);
+                      clip-path: inset(64px 0 124px 0); }
             95% {
-              -webkit-clip-path: inset(69px 0 85px 0);
-                      clip-path: inset(69px 0 85px 0); }
+              -webkit-clip-path: inset(60px 0 126px 0);
+                      clip-path: inset(60px 0 126px 0); }
             90% {
-              -webkit-clip-path: inset(42px 0 155px 0);
-                      clip-path: inset(42px 0 155px 0); }
+              -webkit-clip-path: inset(82px 0 102px 0);
+                      clip-path: inset(82px 0 102px 0); }
             85% {
-              -webkit-clip-path: inset(49px 0 137px 0);
-                      clip-path: inset(49px 0 137px 0); }
+              -webkit-clip-path: inset(48px 0 149px 0);
+                      clip-path: inset(48px 0 149px 0); }
             80% {
-              -webkit-clip-path: inset(3px 0 158px 0);
-                      clip-path: inset(3px 0 158px 0); }
+              -webkit-clip-path: inset(62px 0 101px 0);
+                      clip-path: inset(62px 0 101px 0); }
             75% {
-              -webkit-clip-path: inset(19px 0 141px 0);
-                      clip-path: inset(19px 0 141px 0); }
+              -webkit-clip-path: inset(132px 0 68px 0);
+                      clip-path: inset(132px 0 68px 0); }
             70% {
-              -webkit-clip-path: inset(76px 0 107px 0);
-                      clip-path: inset(76px 0 107px 0); }
+              -webkit-clip-path: inset(51px 0 102px 0);
+                      clip-path: inset(51px 0 102px 0); }
             65% {
-              -webkit-clip-path: inset(134px 0 55px 0);
-                      clip-path: inset(134px 0 55px 0); }
+              -webkit-clip-path: inset(109px 0 52px 0);
+                      clip-path: inset(109px 0 52px 0); }
             60% {
-              -webkit-clip-path: inset(22px 0 173px 0);
-                      clip-path: inset(22px 0 173px 0); }
+              -webkit-clip-path: inset(23px 0 173px 0);
+                      clip-path: inset(23px 0 173px 0); }
             55% {
-              -webkit-clip-path: inset(36px 0 136px 0);
-                      clip-path: inset(36px 0 136px 0); }
+              -webkit-clip-path: inset(122px 0 78px 0);
+                      clip-path: inset(122px 0 78px 0); }
             50% {
-              -webkit-clip-path: inset(31px 0 169px 0);
-                      clip-path: inset(31px 0 169px 0); }
+              -webkit-clip-path: inset(105px 0 50px 0);
+                      clip-path: inset(105px 0 50px 0); }
             45% {
-              -webkit-clip-path: inset(121px 0 65px 0);
-                      clip-path: inset(121px 0 65px 0); }
+              -webkit-clip-path: inset(118px 0 78px 0);
+                      clip-path: inset(118px 0 78px 0); }
             40% {
-              -webkit-clip-path: inset(28px 0 140px 0);
-                      clip-path: inset(28px 0 140px 0); }
+              -webkit-clip-path: inset(120px 0 80px 0);
+                      clip-path: inset(120px 0 80px 0); }
             35% {
-              -webkit-clip-path: inset(132px 0 59px 0);
-                      clip-path: inset(132px 0 59px 0); }
+              -webkit-clip-path: inset(129px 0 66px 0);
+                      clip-path: inset(129px 0 66px 0); }
             30% {
-              -webkit-clip-path: inset(123px 0 43px 0);
-                      clip-path: inset(123px 0 43px 0); }
+              -webkit-clip-path: inset(33px 0 161px 0);
+                      clip-path: inset(33px 0 161px 0); }
             25% {
-              -webkit-clip-path: inset(112px 0 60px 0);
-                      clip-path: inset(112px 0 60px 0); }
+              -webkit-clip-path: inset(146px 0 33px 0);
+                      clip-path: inset(146px 0 33px 0); }
             20% {
-              -webkit-clip-path: inset(116px 0 83px 0);
-                      clip-path: inset(116px 0 83px 0); }
+              -webkit-clip-path: inset(133px 0 69px 0);
+                      clip-path: inset(133px 0 69px 0); }
             15% {
-              -webkit-clip-path: inset(98px 0 64px 0);
-                      clip-path: inset(98px 0 64px 0); }
+              -webkit-clip-path: inset(57px 0 121px 0);
+                      clip-path: inset(57px 0 121px 0); }
             10% {
-              -webkit-clip-path: inset(117px 0 42px 0);
-                      clip-path: inset(117px 0 42px 0); }
+              -webkit-clip-path: inset(133px 0 63px 0);
+                      clip-path: inset(133px 0 63px 0); }
             5% {
-              -webkit-clip-path: inset(40px 0 122px 0);
-                      clip-path: inset(40px 0 122px 0); } } }
+              -webkit-clip-path: inset(148px 0 11px 0);
+                      clip-path: inset(148px 0 11px 0); } } }
 
 /**
  * Plans
@@ -2967,7 +2968,8 @@ main__feature,
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; }
+    z-index: 1000;
+    scrollbar-width: none; }
     .ref--sidebar-open .ref__header, .ref--sidebar-open .guide__header {
       -webkit-transform: translateX(15rem);
               transform: translateX(15rem); }
@@ -3022,7 +3024,8 @@ main__feature,
     padding: 0.75rem 1rem;
     background-color: #001331;
     border-bottom: 1px solid rgba(95, 110, 134, 0.25);
-    pointer-events: all; }
+    pointer-events: all;
+    scrollbar-width: none; }
     @media (min-width: 60rem) {
       .ref__languages, .guide__header__background {
         margin-left: 45%; } }
@@ -3089,7 +3092,8 @@ main__feature,
       overflow: scroll;
       padding-top: 6.5rem !important;
       padding-bottom: 5rem;
-      -webkit-overflow-scrolling: touch; }
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; }
     .ref__sidebar__section, .guide__sidebar__section {
       margin-left: 1.25rem; }
     .ref__sidebar__item, .guide__sidebar__item, .guide__sidebar__subitem, .ref__sidebar__subitem, .guide__sidebar__subitem {
@@ -3548,7 +3552,8 @@ main__feature,
   margin-top: 1rem !important;
   background-color: #f7f8fb; }
   .filter__example code {
-    overflow: scroll; }
+    overflow: scroll;
+    scrollbar-width: none; }
 
 /**
  * Return value
