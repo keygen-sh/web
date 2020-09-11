@@ -353,66 +353,32 @@ if ($data->meta->valid) {
     </g>
 </svg></a></article></div><div class="integrate__actions"><a class="button button--size-small button--fill-solid button--on-light" href="/docs/api">Explore the API</a></div></div></section><section class="faqs"><div class="faqs__content"><div class="faqs__testimonial"><p class="quote">"Saved <strong>time</strong>, <strong>money</strong> and <strong>made our customers happy</strong>. My staff are able to manage licenses with ease." <em>– Anthony O. </em></p><hr></div><h3>FAQs</h3><ul class="faqs__questions"><li><h4 id="what-licensing-models-are-supported-">What licensing models are supported?</h4>
 <p>Keygen supports <a href="/docs/choosing-a-licensing-model">almost any licensing model</a>:
-perpetual licenses, machine leasing, subscription-based models, concurrency models,
-single machine-locked licenses, floating licenses with and without machine limits,
-feature-based licenses, limited pre-determined pool-based licenses, licenses
-that require periodic check-in, and even a combination of most of those.</p>
-</li><li><h4 id="does-keygen-prevent-sharing-licenses-">Does Keygen prevent sharing licenses?</h4>
-<p>Yes! Keygen offers API endpoints to help you track user <a href="/docs/api#machines">machine usage</a>,
-and license policies can be configured to <code>strict</code>, invalidating licenses
-that go over any configured machine limit. You can also set license
-policies to <code>floating</code> to allow licenses to be valid across multiple
-machines.</p>
-</li><li><h4 id="does-keygen-prevent-cracking-">Does Keygen prevent cracking?</h4>
-<p>Not entirely. Keygen provides tools to help prevent attempts to crack your
-software. We provide tools such as request signatures to prevent man-in-the-middle
-attacks, but most crack prevention will fall on your team and will depend on
-many factors such as the platform and programming language your software uses.</p>
+perpetual licenses, machine and VM leasing, subscription-based models, concurrency-based
+models, single machine-locked licenses, floating licenses with and without strict
+machine limits, feature-based licensing, and even a combination of most of those.</p>
+</li><li><h4 id="is-data-within-keygen-secure-">Is data within Keygen secure?</h4>
+<p>Yes. We strive to ensure that the data stored within Keygen is as secure as
+possible. We never store passwords as plain text—they are always hashed and
+salted securely using <code>bcrypt</code>. All API access tokens are securily hashed before
+being stored. We use 256-bit encryption at all levels of our software. All connections
+to our APIs are encrypted over TLS (i.e. we encrypt &quot;in transit&quot;), our databases
+are encrypted (i.e. we encrypt &quot;at rest&quot;), and all of our data backups are
+encrypted. Have additional questions or concerns? <a href="mailto:security@keygen.sh">Get in touch</a>.</p>
 </li><li><h4 id="where-can-i-monitor-keygen-s-uptime-">Where can I monitor Keygen&#39;s uptime?</h4>
 <p>We strive to provide the highest uptime possible for our customers through
 a distributed system hosted on battle-tested infrastructure. You can monitor
 uptime and average response time for each of Keygen&#39;s services from our
 <a href="https://status.keygen.sh">status page</a>.</p>
-</li><li><h4 id="is-data-within-keygen-secure-">Is data within Keygen secure?</h4>
-<p>Yes. We strive to ensure that the data stored within Keygen is as secure as
-possible. We never store passwords as plain text—they are always hashed and
-salted securely using <code>bcrypt</code>. We also do the same with all access tokens.
-We use 256-bit encryption at all levels of our software. All connections to
-our APIs are encrypted over TLS (i.e. we encrypt &quot;in transit&quot;), our databases
-are encrypted (i.e. we encrypt &quot;at rest&quot;), and all of our data backups are
-encrypted. Have additional questions or concerns? <a href="mailto:security@keygen.sh">Get in touch</a>.</p>
-</li><li><h4 id="does-keygen-work-offline-">Does Keygen work offline?</h4>
-<p>Yes, we support several methods of cryptographically signing or encrypting license keys,
-which can be verified in offline environments. For more information, check out our <a href="/docs/api#cryptography">API
-reference</a>.</p>
 </li><li><h4 id="does-keygen-handle-distribution-">Does Keygen handle distribution?</h4>
 <p>Yes! Using <a href="/distribution">Keygen Dist</a>, you can distribute your products
 to licensed users and even provide auto-updates using industry standard
 frameworks such as Sparkle, NSIS, Squirrel.Mac, Squirrel.Windows, and
 even updates for WordPress plugins and themes.</p>
-</li><li><h4 id="does-keygen-handle-payments-">Does Keygen handle payments?</h4>
-<p>No—only licensing. Since products handle payments in a variety of ways
-(and we don&#39;t want to become a payment platform), we have created a webhook
-system so that you can easily integrate your payment system with our API.
-Implementation is similar to how you would implement Stripe&#39;s webhook
-system. <a href="/docs/using-webhooks">Learn more about webhooks</a>.</p>
-</li><li><h4 id="can-i-use-keygen-for-an-ios-app-">Can I use Keygen for an iOS app?</h4>
-<p>Yes and no. Unfortunately, it isn&#39;t possible at this time to use Keygen
-for in-app license purchases. <a href="https://developer.apple.com/app-store/review/guidelines/">Apple’s developer terms</a>
-require that in-app purchases, such as premium content and add-ons are
-done through their native <a href="https://developer.apple.com/in-app-purchase/">In-App Purchase API</a>.
-But it is possible to use Keygen as a secondary licensing system, as long
-as it is not advertised in-app (i.e. purchases will need to be done
-via a web site, outside of the app).</p>
-</li><li><h4 id="can-i-use-keygen-for-an-android-app-">Can I use Keygen for an Android app?</h4>
-<p>Yes and no. If you&#39;re selling outside of the Google Play Store, then yes, you can
-use Keygen to handle licensing. But if you&#39;re selling within the Google Play Store,
-then unfortunately it isn&#39;t possible at this time to use Keygen for in-app license
-purchases. <a href="https://play.google.com/about/developer-content-policy/">Google&#39;s developer policy</a>
-requires that in-app purchases, such as premium features and add-ons
-are managed via their native <a href="https://developer.android.com/google/play/billing/api.html">In-App Billing API</a>.
-But it is possible to use Keygen as a secondary licensing system, as long
-as it is not advertised in-app (i.e. purchases will need to be done
-via a web site, outside of the app).</p>
+</li><li><h4 id="does-keygen-work-offline-">Does Keygen work offline?</h4>
+<p>Yes, we support several methods of cryptographically signing or encrypting license keys,
+which can be verified in offline environments. For more information, check out our <a href="/docs/api#cryptography">API
+reference</a>, or reach out to our <a href="mailto:support@keygen.sh">techinical support</a>.</p>
+</li><li><h4 id="can-i-ask-a-question-">Can I ask a question?</h4>
+<p>Of course. <a title="Open chat" onclick="Intercom('show')" style="cursor:pointer">Ask away</a>.</p>
 </li></ul><div class="faqs__testimonial"><hr><p class="quote">"Keygen has <strong>flexible license management options</strong> backed by <strong>great customer support</strong>. Keygen is enabling us to very quickly get licensing off the ground for a reasonable price." <em>– Mining &amp; Metals</em></p></div></div></section><footer class="footer"><section class="cta"><div class="cta__content"><h2>Ready to get started?</h2><h3>Sign up today, or schedule a call.</h3><hr><p class="quote">"Awesome... simply awesome. Features work great, no hassle setting things up and we got going within a few hours. This service is highly recommended!" <em>– Ranorex</em></p><a class="button" href="https://app.keygen.sh/register?plan=b8199947-c7db-4c77-8217-af2ac73c9efb" data-event="RegisterIntent">Sign Up</a><a class="button button--secondary" href="https://calendly.com/keygen" target="_blank" data-event="BookCall">Schedule a Call</a></div></section><div class="footer__content">© 2020 Keygen LLC – All Rights Reserved – hello@keygen.sh
 </div><ul class="footer__links"><li><a href="https://status.keygen.sh">Status</a></li><li><a href="/changelog">Changelog</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li><li><a href="/integrate">Integrate</a></li><li><a href="/compare">Compare</a></li></ul></footer></div><script src="/app.js"></script><script async defer data-domain="keygen.sh" src="https://stats.keygen.sh/js/index.js"></script><script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script></body></html>
