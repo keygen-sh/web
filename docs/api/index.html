@@ -1174,13 +1174,13 @@ after generating/regenerating a token.</p>
   to perform client-side machine activations. Admin and product tokens
   should only be used server-side.
 </div>
-</div><div class="attributes" id="tokens-object-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#tokens-object-attrs" data-target="tokens-object-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-kind"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-kind" data-target="tokens-object-attrs-kind"><i class="material-icons">link</i></a>kind</h3><span class="attribute__type">string</span><span class="bubble attribute__perm attribute__perm--type-readonly"><span class="bubble__text">read only</span></span><div class="attribute__desc"><p>The kind of token, based on its bearer. One of: admin-token, product-token, user-token, or activation-token.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-token"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-token" data-target="tokens-object-attrs-token"><i class="material-icons">link</i></a>token</h3><span class="attribute__type">string</span><span class="bubble attribute__perm attribute__perm--type-readonly"><span class="bubble__text">read only</span></span><div class="attribute__desc"><p>The raw token of the token. This attribute is only available to read directly after token generation. This is the value you will use to authenticate with when sending requests to our API.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-expiry"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-expiry" data-target="tokens-object-attrs-expiry"><i class="material-icons">link</i></a>expiry</h3><span class="attribute__type">timestamp (ISO8601 format)</span><span class="bubble attribute__perm attribute__perm--type-readonly"><span class="bubble__text">read only</span></span><div class="attribute__desc"><p>The timestamp for when the token expires. Requests using an expired token will be rejected.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-maxActivations"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-maxActivations" data-target="tokens-object-attrs-maxActivations"><i class="material-icons">link</i></a>maxActivations</h3><span class="attribute__type">integer</span><div class="attribute__desc"><p>The maximum amount of machine activations this token may perform. This attribute is only applicable to activation tokens.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-activations"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-activations" data-target="tokens-object-attrs-activations"><i class="material-icons">link</i></a>activations</h3><span class="attribute__type">integer</span><span class="bubble attribute__perm attribute__perm--type-readonly"><span class="bubble__text">read only</span></span><div class="attribute__desc"><p>The number of machine activations that have been performed by this token. This attribute is only applicable to activation tokens.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-maxDeactivations"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-maxDeactivations" data-target="tokens-object-attrs-maxDeactivations"><i class="material-icons">link</i></a>maxDeactivations</h3><span class="attribute__type">integer</span><div class="attribute__desc"><p>The maximum amount of machine deactivations this token may perform. This attribute is only applicable to activation tokens.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-deactivations"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-deactivations" data-target="tokens-object-attrs-deactivations"><i class="material-icons">link</i></a>deactivations</h3><span class="attribute__type">integer</span><span class="bubble attribute__perm attribute__perm--type-readonly"><span class="bubble__text">read only</span></span><div class="attribute__desc"><p>The number of machine deactivations that have been performed by this token. This attribute is only applicable to activation tokens.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-created"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-created" data-target="tokens-object-attrs-created"><i class="material-icons">link</i></a>created</h3><span class="attribute__type">timestamp (ISO8601 format)</span><span class="bubble attribute__perm attribute__perm--type-readonly"><span class="bubble__text">read only</span></span><div class="attribute__desc"><p>When the token was created.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-updated"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-updated" data-target="tokens-object-attrs-updated"><i class="material-icons">link</i></a>updated</h3><span class="attribute__type">timestamp (ISO8601 format)</span><span class="bubble attribute__perm attribute__perm--type-readonly"><span class="bubble__text">read only</span></span><div class="attribute__desc"><p>When the token was last updated.</p></div></div></li></ul></div><div class="relationships" id="tokens-object-relationships"><h4 class="anchor__wrapper relationships__heading"><a class="anchor" href="#tokens-object-relationships" data-target="tokens-object-relationships"><i class="material-icons">link</i></a>Relationships</h4><ul class="relationships__list"><li class="relationship"><div class="relationship__info" id="tokens-object-relationships-account"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#tokens-object-relationships-account" data-target="tokens-object-relationships-account"><i class="material-icons">link</i></a>account</h3><span class="relationship__type">individual</span><p class="relationship__desc">The account that the token belongs to.</p></div></li><li class="relationship"><div class="relationship__info" id="tokens-object-relationships-bearer"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#tokens-object-relationships-bearer" data-target="tokens-object-relationships-bearer"><i class="material-icons">link</i></a>bearer</h3><span class="relationship__type">individual</span><p class="relationship__desc">The bearer of the token.</p></div></li></ul></div><div class="example__wrapper"><div class="example"><h4>Example object</h4><pre><code class="json">{
+</div><div class="attributes" id="tokens-object-attrs"><h4 class="anchor__wrapper attributes__heading"><a class="anchor" href="#tokens-object-attrs" data-target="tokens-object-attrs"><i class="material-icons">link</i></a>Attributes</h4><ul class="attributes__list"><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-kind"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-kind" data-target="tokens-object-attrs-kind"><i class="material-icons">link</i></a>kind</h3><span class="attribute__type">string</span><span class="bubble attribute__perm attribute__perm--type-readonly"><span class="bubble__text">read only</span></span><div class="attribute__desc"><p>The kind of token, based on its bearer.</p><h4>Options</h4><ul><li><strong>activation-token</strong>: <span>An activation token with permission to activate and deactivate the machines for a given license.</span></li><li><strong>product-token</strong>: <span>An internal administrative token with permission to manage the entire product and its resources, usually for server-side use.</span></li><li><strong>user-token</strong>: <span>A normal user of one or more of your products, with limited permission to manage their own resources.</span></li><li><strong>support-token</strong>: <span>An internal administrative user of your Keygen account, with a limited subset of permissions.</span></li><li><strong>sales-token</strong>: <span>An internal administrative user of your Keygen account, with a limited subset of permissions.</span></li><li><strong>developer-token</strong>: <span>An internal administrative user of your Keygen account, with permission to manage most resources.</span></li><li><strong>admin-token</strong>: <span>An internal administrative user of your Keygen account, with permission to manage the entire account.</span></li></ul></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-token"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-token" data-target="tokens-object-attrs-token"><i class="material-icons">link</i></a>token</h3><span class="attribute__type">string</span><span class="bubble attribute__perm attribute__perm--type-readonly"><span class="bubble__text">read only</span></span><div class="attribute__desc"><p>The raw token of the token. This attribute is only available to read directly after token generation. This is the value you will use to authenticate with when sending requests to our API.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-expiry"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-expiry" data-target="tokens-object-attrs-expiry"><i class="material-icons">link</i></a>expiry</h3><span class="attribute__type">timestamp (ISO8601 format)</span><span class="bubble attribute__perm attribute__perm--type-readonly"><span class="bubble__text">read only</span></span><div class="attribute__desc"><p>The timestamp for when the token expires. Requests using an expired token will be rejected.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-maxActivations"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-maxActivations" data-target="tokens-object-attrs-maxActivations"><i class="material-icons">link</i></a>maxActivations</h3><span class="attribute__type">integer</span><div class="attribute__desc"><p>The maximum amount of machine activations this token may perform. This attribute is only applicable to activation tokens.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-activations"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-activations" data-target="tokens-object-attrs-activations"><i class="material-icons">link</i></a>activations</h3><span class="attribute__type">integer</span><span class="bubble attribute__perm attribute__perm--type-readonly"><span class="bubble__text">read only</span></span><div class="attribute__desc"><p>The number of machine activations that have been performed by this token. This attribute is only applicable to activation tokens.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-maxDeactivations"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-maxDeactivations" data-target="tokens-object-attrs-maxDeactivations"><i class="material-icons">link</i></a>maxDeactivations</h3><span class="attribute__type">integer</span><div class="attribute__desc"><p>The maximum amount of machine deactivations this token may perform. This attribute is only applicable to activation tokens.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-deactivations"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-deactivations" data-target="tokens-object-attrs-deactivations"><i class="material-icons">link</i></a>deactivations</h3><span class="attribute__type">integer</span><span class="bubble attribute__perm attribute__perm--type-readonly"><span class="bubble__text">read only</span></span><div class="attribute__desc"><p>The number of machine deactivations that have been performed by this token. This attribute is only applicable to activation tokens.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-created"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-created" data-target="tokens-object-attrs-created"><i class="material-icons">link</i></a>created</h3><span class="attribute__type">timestamp (ISO8601 format)</span><span class="bubble attribute__perm attribute__perm--type-readonly"><span class="bubble__text">read only</span></span><div class="attribute__desc"><p>When the token was created.</p></div></div></li><li class="attribute"><div class="attribute__info" id="tokens-object-attrs-updated"><h3 class="anchor__wrapper attribute__name"><a class="anchor" href="#tokens-object-attrs-updated" data-target="tokens-object-attrs-updated"><i class="material-icons">link</i></a>updated</h3><span class="attribute__type">timestamp (ISO8601 format)</span><span class="bubble attribute__perm attribute__perm--type-readonly"><span class="bubble__text">read only</span></span><div class="attribute__desc"><p>When the token was last updated.</p></div></div></li></ul></div><div class="relationships" id="tokens-object-relationships"><h4 class="anchor__wrapper relationships__heading"><a class="anchor" href="#tokens-object-relationships" data-target="tokens-object-relationships"><i class="material-icons">link</i></a>Relationships</h4><ul class="relationships__list"><li class="relationship"><div class="relationship__info" id="tokens-object-relationships-account"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#tokens-object-relationships-account" data-target="tokens-object-relationships-account"><i class="material-icons">link</i></a>account</h3><span class="relationship__type">individual</span><p class="relationship__desc">The account that the token belongs to.</p></div></li><li class="relationship"><div class="relationship__info" id="tokens-object-relationships-bearer"><h3 class="anchor__wrapper relationship__name"><a class="anchor" href="#tokens-object-relationships-bearer" data-target="tokens-object-relationships-bearer"><i class="material-icons">link</i></a>bearer</h3><span class="relationship__type">individual</span><p class="relationship__desc">The bearer of the token.</p></div></li></ul></div><div class="example__wrapper"><div class="example"><h4>Example object</h4><pre><code class="json">{
   "data": {
     "id": "6a7562be-b302-43d2-a550-30d6026247aa",
     "type": "tokens",
     "attributes": {
       "kind": "user-token",
-      "token": "user-edc19321739951dc8fe9ce7d27c703a74faabd7dee8228b8ad4ec6e69692d6959449d9694fd93eca48b33f023bd1319f14b90de1cba5001945dea6b66f5986v2",
+      "token": "user_57c1cdc2a084f0ebd46850e5742b1f0bca47d1ca5f5262f6c5969fec8dbd530dv3",
       "expiry": "<%= expiry %>",
       "created": "<%= created %>",
       "updated": "<%= created %>"
@@ -1310,7 +1310,7 @@ client.request(req)
     "type": "tokens",
     "attributes": {
       "kind": "user-token",
-      "token": "user-edc19321739951dc8fe9ce7d27c703a74faabd7dee8228b8ad4ec6e69692d6959449d9694fd93eca48b33f023bd1319f14b90de1cba5001945dea6b66f598dv2",
+      "token": "user_f4869386e3b6b39d1f42949131f97a39b42f9a74c553ba7244bbed9d1f79f106v3",
       "expiry": "<%= expiry %>",
       "created": "<%= created %>",
       "updated": "<%= created %>"
@@ -1533,8 +1533,8 @@ client.request(req)
     "id": "6a7562be-b302-43d2-a550-30d6026247aa",
     "type": "tokens",
     "attributes": {
-      "kind": "admin-token",
-      "token": "admi-0e00ffa203dcc6871c010c7d85ce13556c7ff70abcc0df4287b40dab8ade4a5fc4d4eb7bf1ccdef2dc892ad21bb57c451191c3061296c417eaf590d6ae640bv2",
+      "kind": "user-token",
+      "token": "user_72abcf7e9bce107df746fab6751f875aad7801d8edc7b9b9afb2f97ee53b59e7v3",
       "expiry": "<%= expiry %>",
       "created": "<%= created %>",
       "updated": "<%= updated %>"
@@ -2710,7 +2710,7 @@ client.request(req)
     "type": "tokens",
     "attributes": {
       "kind": "product-token",
-      "token": "prod-4TzUcN9xMV2cUVT3AuDbPx8XWXnDRF4TzUcN9xMV2cUVT3AuDbPx8XWXnDRFnReibxxgBxXaY2gpb7DRDkUmZpyYi2sXzYfyVL4buWtbgyFD9zbd1319f14b90de1cv2",
+      "token": "prod_2ddd064509b6bcaa356958dcce6da3a538919e13ddbc26b359fb374ff89dfacav3",
       "expiry": "<%= expiry %>",
       "created": "<%= created %>",
       "updated": "<%= created %>"
@@ -5034,7 +5034,7 @@ a product&#39;s policy.</p>
     },
     "attributes": {
       "name": null,
-      "key": "9581b92724204b63bb00d7652ef4b95b-b4fdedeb77a5dc2b57154ac881771867-1b6653b4a9f0ba7c7ce5f4d38430101a-84d547067f848e5ca6cdce667ccaf9v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "<%= expiry %>",
       "uses": 0,
       "protected": false,
@@ -5320,7 +5320,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "<%= expiry %>",
       "uses": 0,
       "protected": false,
@@ -5479,7 +5479,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "9581b92724204b63bb00d7652ef4b95b-b4fdedeb77a5dc2b57154ac881771867-1b6653b4a9f0ba7c7ce5f4d38430101a-84d547067f848e5ca6cdce667ccaf9v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "<%= expiry %>",
       "uses": 0,
       "protected": false,
@@ -5719,7 +5719,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "2020-01-01T00:00:00.000Z",
       "uses": 0,
       "protected": false,
@@ -5965,7 +5965,7 @@ client.request(req)
       },
       "attributes": {
         "name": null,
-        "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+        "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
         "expiry": "<%= expiry %>",
         "uses": 0,
         "protected": false,
@@ -6142,7 +6142,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "2020-01-01T00:00:00.000Z",
       "uses": 0,
       "protected": false,
@@ -6444,7 +6444,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "<%= expired %>",
       "uses": 0,
       "protected": false,
@@ -6771,7 +6771,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "<%= expired %>",
       "uses": 0,
       "protected": false,
@@ -7010,7 +7010,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "2020-01-01T00:00:00.000Z",
       "uses": 0,
       "protected": false,
@@ -7171,7 +7171,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "2020-01-01T00:00:00.000Z",
       "uses": 0,
       "protected": false,
@@ -7332,7 +7332,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "2020-01-01T00:00:00.000Z",
       "uses": 0,
       "protected": false,
@@ -7575,7 +7575,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "2020-01-01T00:00:00.000Z",
       "uses": 0,
       "protected": false,
@@ -7808,7 +7808,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "2020-01-01T00:00:00.000Z",
       "uses": 25,
       "protected": false,
@@ -7977,7 +7977,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "2020-01-01T00:00:00.000Z",
       "uses": 0,
       "protected": false,
@@ -8139,7 +8139,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "2020-01-01T00:00:00.000Z",
       "uses": 0,
       "protected": false,
@@ -8396,7 +8396,7 @@ client.request(req)
     "type": "tokens",
     "attributes": {
       "kind": "activation-token",
-      "token": "acti-e99edec2881658404927cced218d4178d917ea75a4858a2ceab28f3e24040de5d8b4cfaecbd806952075dc2d0239bc7cbc4a393e9e36fa8ecda3e8d3b0111cv2",
+      "token": "activ_70c5a0266f9f47423454d6ba1e4faeb1v3",
       "expiry": null,
       "maxActivations": 2,
       "activations": 0,
@@ -8588,7 +8588,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "2020-01-01T00:00:00.000Z",
       "uses": 0,
       "protected": false,
@@ -8814,7 +8814,7 @@ client.request(req)
     },
     "attributes": {
       "name": null,
-      "key": "024e1ec7440f43b0b1ecc51c40897931-9fc2bb9d3cbd3d207fb713227737b637-1788b9572a82ce14166227a8d4db5b6d-904064d3432be2ab0088d60d09fca7v2",
+      "key": "6DFB15-6597FC-B7DBB6-E34DAB-9D77C0-V3",
       "expiry": "2020-01-01T00:00:00.000Z",
       "uses": 0,
       "protected": false,
