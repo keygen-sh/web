@@ -24,6 +24,7 @@
  in the case where you sell multiple products. This allows you to keep licenses
  and policies between multiple products organized. If you don&#39;t sell more than
  1 product, this will be a one-time step.</p>
+<h3 id="request">Request</h3>
 <pre><code class="lang-bash"> curl -X POST https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/products \
    -H &#39;Authorization: Bearer &lt;%= token %&gt;&#39; \
    -H &#39;Content-Type: application/vnd.api+json&#39; \
@@ -37,6 +38,61 @@
          }
        }&#39;
 </code></pre>
+ <details>
+   <summary>View Example Response</summary>
+ <pre><code>{
+   &quot;data&quot;: {
+     &quot;id&quot;: &quot;6b5bb5a3-0e32-4226-88fd-86a97ecd0678&quot;,
+     &quot;type&quot;: &quot;products&quot;,
+     &quot;attributes&quot;: {
+       &quot;name&quot;: &quot;Example Product&quot;,
+       &quot;metadata&quot;: {},
+       &quot;created&quot;: &quot;&lt;%= created %&gt;&quot;,
+       &quot;updated&quot;: &quot;&lt;%= created %&gt;&quot;
+     },
+     &quot;relationships&quot;: {
+       &quot;account&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;&quot;
+         },
+         &quot;data&quot;: {
+           &quot;type&quot;: &quot;accounts&quot;,
+           &quot;id&quot;: &quot;&lt;%= account %&gt;&quot;
+         }
+       },
+       &quot;policies&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/products/6b5bb5a3-0e32-4226-88fd-86a97ecd0678/policies&quot;
+         }
+       },
+       &quot;licenses&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/products/6b5bb5a3-0e32-4226-88fd-86a97ecd0678/licenses&quot;
+         }
+       },
+       &quot;machines&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/products/6b5bb5a3-0e32-4226-88fd-86a97ecd0678/machines&quot;
+         }
+       },
+       &quot;users&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/products/6b5bb5a3-0e32-4226-88fd-86a97ecd0678/users&quot;
+         }
+       },
+       &quot;tokens&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/products/6b5bb5a3-0e32-4226-88fd-86a97ecd0678/tokens&quot;
+         }
+       }
+     },
+     &quot;links&quot;: {
+       &quot;self&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/products/6b5bb5a3-0e32-4226-88fd-86a97ecd0678&quot;
+     }
+   }
+ }</code></pre>
+ </details>
+
 <p> <small>
    <a href="/docs/api/#products">View <strong>Product</strong> resource in the API reference</a>
  </small></p>
@@ -51,6 +107,7 @@
    by reviewing our guide <a href="/docs/choosing-a-licensing-model">on choosing a licensing model</a>.
  </div>
 
+<h3 id="request">Request</h3>
 <pre><code class="lang-bash"> curl -X POST https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/policies \
    -H &#39;Authorization: Bearer &lt;%= token %&gt;&#39; \
    -H &#39;Content-Type: application/vnd.api+json&#39; \
@@ -65,13 +122,66 @@
              &quot;product&quot;: {
                &quot;data&quot;: {
                  &quot;type&quot;: &quot;product&quot;,
-                 &quot;id&quot;: &quot;ef6e0993-70d6-42c4-a0e8-846cb2e3fa54&quot;
+                 &quot;id&quot;: &quot;6b5bb5a3-0e32-4226-88fd-86a97ecd0678&quot;
                }
              }
            }
          }
        }&#39;
 </code></pre>
+ <details>
+   <summary>View Example Response</summary>
+ <pre><code>{
+   &quot;data&quot;: {
+     &quot;id&quot;: &quot;d888f7db-ad63-44f2-aa62-a7f2936d65d3&quot;,
+     &quot;type&quot;: &quot;policies&quot;,
+     &quot;attributes&quot;: {
+       &quot;name&quot;: &quot;Example Policy&quot;,
+       &quot;duration&quot;: null,
+       &quot;floating&quot;: false,
+       &quot;maxMachines&quot;: 1,
+       &quot;maxUses&quot;: null,
+       &quot;metadata&quot;: {},
+       &quot;created&quot;: &quot;&lt;%= created %&gt;&quot;,
+       &quot;updated&quot;: &quot;&lt;%= created %&gt;&quot;
+     },
+     &quot;relationships&quot;: {
+       &quot;account&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;&quot;
+         },
+         &quot;data&quot;: {
+           &quot;type&quot;: &quot;accounts&quot;,
+           &quot;id&quot;: &quot;&lt;%= account %&gt;&quot;
+         }
+       },
+       &quot;product&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/policies/d888f7db-ad63-44f2-aa62-a7f2936d65d3/product&quot;
+         },
+         &quot;data&quot;: {
+           &quot;type&quot;: &quot;products&quot;,
+           &quot;id&quot;: &quot;6b5bb5a3-0e32-4226-88fd-86a97ecd0678&quot;
+         }
+       },
+       &quot;pool&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/policies/d888f7db-ad63-44f2-aa62-a7f2936d65d3/pool&quot;
+         }
+       },
+       &quot;licenses&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/policies/d888f7db-ad63-44f2-aa62-a7f2936d65d3/licenses&quot;
+         }
+       }
+     },
+     &quot;links&quot;: {
+       &quot;self&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/policies/d888f7db-ad63-44f2-aa62-a7f2936d65d3&quot;
+     }
+   }
+ }</code></pre>
+ </details>
+
 <p> <small>
    <a href="/docs/api/#policies">View <strong>Policy</strong> resource in the API reference</a>
  </small></p>
@@ -89,6 +199,7 @@
    the license is created.
  </div>
 
+<h3 id="request">Request</h3>
 <pre><code class="lang-bash"> curl -X POST https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/licenses \
    -H &#39;Authorization: Bearer &lt;%= token %&gt;&#39; \
    -H &#39;Content-Type: application/vnd.api+json&#39; \
@@ -103,13 +214,86 @@
              &quot;policy&quot;: {
                &quot;data&quot;: {
                  &quot;type&quot;: &quot;policy&quot;,
-                 &quot;id&quot;: &quot;37b632f4-8e1e-4af9-8717-634765364628&quot;
+                 &quot;id&quot;: &quot;d888f7db-ad63-44f2-aa62-a7f2936d65d3&quot;
                }
              }
            }
          }
        }&#39;
 </code></pre>
+ <details>
+   <summary>View Example Response</summary>
+ <pre><code>{
+   &quot;data&quot;: {
+     &quot;id&quot;: &quot;5948271a-28b9-4615-96e9-9363282cab58&quot;,
+     &quot;type&quot;: &quot;licenses&quot;,
+     &quot;attributes&quot;: {
+       &quot;name&quot;: null,
+       &quot;key&quot;: &quot;C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3&quot;,
+       &quot;expiry&quot;: &quot;&lt;%= expiry %&gt;&quot;,
+       &quot;uses&quot;: 0,
+       &quot;suspended&quot;: false,
+       &quot;floating&quot;: false,
+       &quot;maxMachines&quot;: 1,
+       &quot;metadata&quot;: {},
+       &quot;created&quot;: &quot;&lt;%= created %&gt;&quot;,
+       &quot;updated&quot;: &quot;&lt;%= created %&gt;&quot;
+     },
+     &quot;relationships&quot;: {
+       &quot;account&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;&quot;
+         },
+         &quot;data&quot;: {
+           &quot;type&quot;: &quot;accounts&quot;,
+           &quot;id&quot;: &quot;&lt;%= account %&gt;&quot;
+         }
+       },
+       &quot;product&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/licenses/5948271a-28b9-4615-96e9-9363282cab58/product&quot;
+         },
+         &quot;data&quot;: {
+           &quot;type&quot;: &quot;products&quot;,
+           &quot;id&quot;: &quot;6b5bb5a3-0e32-4226-88fd-86a97ecd0678&quot;
+         }
+       },
+       &quot;policy&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/licenses/5948271a-28b9-4615-96e9-9363282cab58/policy&quot;
+         },
+         &quot;data&quot;: {
+           &quot;type&quot;: &quot;policies&quot;,
+           &quot;id&quot;: &quot;d888f7db-ad63-44f2-aa62-a7f2936d65d3&quot;
+         }
+       },
+       &quot;user&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/licenses/5948271a-28b9-4615-96e9-9363282cab58/user&quot;
+         },
+         &quot;data&quot;: null
+       },
+       &quot;machines&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/licenses/5948271a-28b9-4615-96e9-9363282cab58/machines&quot;
+         },
+         &quot;meta&quot;: {
+           &quot;count&quot;: 0
+         }
+       },
+       &quot;tokens&quot;: {
+         &quot;links&quot;: {
+           &quot;related&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/licenses/5948271a-28b9-4615-96e9-9363282cab58/tokens&quot;
+         }
+       }
+     },
+     &quot;links&quot;: {
+       &quot;self&quot;: &quot;/v1/accounts/&lt;%= account %&gt;/licenses/5948271a-28b9-4615-96e9-9363282cab58&quot;
+     }
+   }
+ }</code></pre>
+ </details>
+
 <p> <small>
    <a href="/docs/api/#licenses">View <strong>License</strong> resource in the API reference</a>
  </small></p>
