@@ -3713,7 +3713,7 @@ client.request(req)
       "self": "/v1/accounts/<%= account %>/keys/6331bcae-73c1-4a7e-bf02-bbf77cbb81d7"
     },
     "attributes": {
-      "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+      "key": "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3",
       "created": "<%= created %>",
       "updated": "<%= created %>"
     },
@@ -6576,7 +6576,7 @@ const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/l
   },
   body: JSON.stringify({
     "meta": {
-      "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+      "key": "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3",
       "scope": {
         "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
       }
@@ -6596,7 +6596,7 @@ Alamofire.request("https://api.keygen.sh/v1/accounts/<%= account %>/licenses/act
   ],
   parameters: [
     "meta": [
-      "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+      "key": "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3",
       "scope": [
         "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
       ]
@@ -6619,7 +6619,7 @@ request.AddHeader("Accept", "application/vnd.api+json");
 
 request.AddJsonBody(new {
   meta = new {
-    key = "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+    key = "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3",
     scope = new {
       fingerprint = "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
     }
@@ -6633,7 +6633,7 @@ import org.json.*
 
 val body = JSONObject(mapOf(
   "meta" to mapOf(
-    "key" to "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+    "key" to "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3",
     "scope" to mapOf(
       "fingerprint" to "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
     )
@@ -6654,7 +6654,7 @@ import static java.util.Map.entry;
 
 JSONObject body = new JSONObject(ofEntries(
   entry("meta", ofEntries(
-    entry("key", "B8A5-91D7-CB9A-DAE4-4F6E-1128"),
+    entry("key", "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3"),
     entry("scope", ofEntries(
       entry("fingerprint", "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC")
     ))
@@ -6685,7 +6685,7 @@ value scope;
 scope["fingerprint"] = value::string("4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC");
 
 value meta;
-meta["key"] = value::string("B8A5-91D7-CB9A-DAE4-4F6E-1128");
+meta["key"] = value::string("C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3");
 meta["scope"] = scope;
 
 value body;
@@ -6708,7 +6708,7 @@ client.request(req)
   -H 'Accept: application/vnd.api+json' \
   -d '{
         "meta": {
-          "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+          "key": "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3",
           "scope": {
             "fingerprint": "4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC"
           }
@@ -9641,7 +9641,7 @@ client.request(req)
 with the most recent machines appearing first. Resources are automatically
 scoped to the authenticated bearer e.g. when authenticated as a user,
 only machines of that specific user will be listed.</p>
-</div><div class="authentications" id="machines-list-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#machines-list-auths" data-target="machines-list-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="machines-list-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#machines-list-auths-bearer" data-target="machines-list-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with privileges to view the resources: either an admin, a product which the owning license belongs to, the license which the machines belong to (via an activation token), or the user which the machines belong to.</p></div></li></ul></div><div class="parameters" id="machines-list-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#machines-list-params" data-target="machines-list-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="machines-list-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#machines-list-params-account" data-target="machines-list-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) or slug of your Keygen account.</p></div></li></ul></div><div class="filters" id="machines-list-filters"><h4 class="anchor__wrapper filters__heading"><a class="anchor" href="#machines-list-filters" data-target="machines-list-filters"><i class="material-icons">link</i></a>Filters</h4><ul class="filters__list"><li class="filter"><div class="filter__info" id="machines-list-filters-limit"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-limit" data-target="machines-list-filters-limit"><i class="material-icons">link</i></a>limit</h3><span class="filter__type">integer</span><span class="filter__default">, default is<code>10</code></span><p class="filter__desc">A limit on the number of machines to be returned. Limit must be a number between 1 and 100.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?limit=25</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-page"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-page" data-target="machines-list-filters-page"><i class="material-icons">link</i></a>page</h3><span class="filter__type">hash&lt;string, integer&gt;</span><p class="filter__desc">Hash containing page size and page number. Page size must be a number between 1 and 100</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?page[size]=15&amp;page[number]=2</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-fingerprint"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-fingerprint" data-target="machines-list-filters-fingerprint"><i class="material-icons">link</i></a>fingerprint</h3><span class="filter__type">string</span><p class="filter__desc">The machine fingerprint to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?fingerprint=4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-ip"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-ip" data-target="machines-list-filters-ip"><i class="material-icons">link</i></a>ip</h3><span class="filter__type">string</span><p class="filter__desc">The machine IP address to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?ip=192.168.1.1</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-hostname"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-hostname" data-target="machines-list-filters-hostname"><i class="material-icons">link</i></a>hostname</h3><span class="filter__type">string</span><p class="filter__desc">The machine hostname to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?hostname=CoolHostname</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-product"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-product" data-target="machines-list-filters-product"><i class="material-icons">link</i></a>product</h3><span class="filter__type">string</span><p class="filter__desc">The identifier (UUID) of the product to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?product=3ab38aae-bbf7-4846-9c32-af9d94bf5ad4</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-policy"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-policy" data-target="machines-list-filters-policy"><i class="material-icons">link</i></a>policy</h3><span class="filter__type">string</span><p class="filter__desc">The identifier (UUID) of the policy to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?policy=f2a336e8-85c0-49bd-85f6-ffc15b4ac679</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-license"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-license" data-target="machines-list-filters-license"><i class="material-icons">link</i></a>license</h3><span class="filter__type">string</span><p class="filter__desc">The identifier (UUID) of the license to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?license=3fd7ff1c-e778-4030-a81c-d2242d909258</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-key"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-key" data-target="machines-list-filters-key"><i class="material-icons">link</i></a>key</h3><span class="filter__type">string</span><p class="filter__desc">The license key to filter by. Cannot be an encrypted key.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?key=B8A5-91D7-CB9A-DAE4-4F6E-1128</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-user"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-user" data-target="machines-list-filters-user"><i class="material-icons">link</i></a>user</h3><span class="filter__type">string</span><p class="filter__desc">The identifier (UUID) of the user to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?user=a5a154d2-f026-40fa-bc8d-a7e3ca415298</code></pre></div></li></ul></div><div class="returns" id="machines-list-returns"><h4 class="anchor__wrapper returns__heading"><a class="anchor" href="#machines-list-returns" data-target="machines-list-returns"><i class="material-icons">link</i></a>Returns</h4><div class="returns__content"><p>A <code>200 OK</code> response will be returned along with a list of machine objects.</p>
+</div><div class="authentications" id="machines-list-auths"><h4 class="anchor__wrapper authentications__heading"><a class="anchor" href="#machines-list-auths" data-target="machines-list-auths"><i class="material-icons">link</i></a>Authentication</h4><ul class="authentications__list"><li class="authentication"><div class="authentication__info" id="machines-list-auths-bearer"><h3 class="anchor__wrapper authentication__name"><a class="anchor" href="#machines-list-auths-bearer" data-target="machines-list-auths-bearer"><i class="material-icons">link</i></a>Bearer</h3><span class="authentication__req">required</span><p class="authentication__desc">An authentication token with privileges to view the resources: either an admin, a product which the owning license belongs to, the license which the machines belong to (via an activation token), or the user which the machines belong to.</p></div></li></ul></div><div class="parameters" id="machines-list-params"><h4 class="anchor__wrapper parameters__heading"><a class="anchor" href="#machines-list-params" data-target="machines-list-params"><i class="material-icons">link</i></a>Parameters</h4><ul class="parameters__list"><li class="parameter"><div class="parameter__info" id="machines-list-params-account"><h3 class="anchor__wrapper parameter__name"><a class="anchor" href="#machines-list-params-account" data-target="machines-list-params-account"><i class="material-icons">link</i></a>account</h3><span class="parameter__type">string</span><span class="parameter__req">, required</span><p class="parameter__desc">The identifier (UUID) or slug of your Keygen account.</p></div></li></ul></div><div class="filters" id="machines-list-filters"><h4 class="anchor__wrapper filters__heading"><a class="anchor" href="#machines-list-filters" data-target="machines-list-filters"><i class="material-icons">link</i></a>Filters</h4><ul class="filters__list"><li class="filter"><div class="filter__info" id="machines-list-filters-limit"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-limit" data-target="machines-list-filters-limit"><i class="material-icons">link</i></a>limit</h3><span class="filter__type">integer</span><span class="filter__default">, default is<code>10</code></span><p class="filter__desc">A limit on the number of machines to be returned. Limit must be a number between 1 and 100.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?limit=25</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-page"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-page" data-target="machines-list-filters-page"><i class="material-icons">link</i></a>page</h3><span class="filter__type">hash&lt;string, integer&gt;</span><p class="filter__desc">Hash containing page size and page number. Page size must be a number between 1 and 100</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?page[size]=15&amp;page[number]=2</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-fingerprint"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-fingerprint" data-target="machines-list-filters-fingerprint"><i class="material-icons">link</i></a>fingerprint</h3><span class="filter__type">string</span><p class="filter__desc">The machine fingerprint to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?fingerprint=4d:Eq:UV:D3:XZ:tL:WN:Bz:mA:Eg:E6:Mk:YX:dK:NC</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-ip"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-ip" data-target="machines-list-filters-ip"><i class="material-icons">link</i></a>ip</h3><span class="filter__type">string</span><p class="filter__desc">The machine IP address to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?ip=192.168.1.1</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-hostname"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-hostname" data-target="machines-list-filters-hostname"><i class="material-icons">link</i></a>hostname</h3><span class="filter__type">string</span><p class="filter__desc">The machine hostname to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?hostname=CoolHostname</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-product"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-product" data-target="machines-list-filters-product"><i class="material-icons">link</i></a>product</h3><span class="filter__type">string</span><p class="filter__desc">The identifier (UUID) of the product to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?product=3ab38aae-bbf7-4846-9c32-af9d94bf5ad4</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-policy"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-policy" data-target="machines-list-filters-policy"><i class="material-icons">link</i></a>policy</h3><span class="filter__type">string</span><p class="filter__desc">The identifier (UUID) of the policy to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?policy=f2a336e8-85c0-49bd-85f6-ffc15b4ac679</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-license"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-license" data-target="machines-list-filters-license"><i class="material-icons">link</i></a>license</h3><span class="filter__type">string</span><p class="filter__desc">The identifier (UUID) of the license to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?license=3fd7ff1c-e778-4030-a81c-d2242d909258</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-key"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-key" data-target="machines-list-filters-key"><i class="material-icons">link</i></a>key</h3><span class="filter__type">string</span><p class="filter__desc">The license key to filter by. Cannot be an encrypted key.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?key=C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3</code></pre></div></li><li class="filter"><div class="filter__info" id="machines-list-filters-user"><h3 class="anchor__wrapper filter__name"><a class="anchor" href="#machines-list-filters-user" data-target="machines-list-filters-user"><i class="material-icons">link</i></a>user</h3><span class="filter__type">string</span><p class="filter__desc">The identifier (UUID) of the user to filter by.</p><pre class="filter__example"><code class="no-highlight">https://api.keygen.sh/v1/accounts/&lt;%= account %&gt;/machines?user=a5a154d2-f026-40fa-bc8d-a7e3ca415298</code></pre></div></li></ul></div><div class="returns" id="machines-list-returns"><h4 class="anchor__wrapper returns__heading"><a class="anchor" href="#machines-list-returns" data-target="machines-list-returns"><i class="material-icons">link</i></a>Returns</h4><div class="returns__content"><p>A <code>200 OK</code> response will be returned along with a list of machine objects.</p>
 </div></div><div class="definition__wrapper"><div class="definition"><h4>Definition</h4><pre><code class="no-highlight" data-method="GET">https://api.keygen.sh/v1/accounts/{ACCOUNT}/machines{FILTERS}
 </code></pre></div></div><div class="example__wrapper"><div class="example"><h4>Example request</h4><pre><code class="javascript" data-lang="javascript">const fetch = require("node-fetch")
 
@@ -10114,7 +10114,7 @@ used for limited betas or promotion deals for the first <em><code>x</code></em> 
       "self": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7"
     },
     "attributes": {
-      "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+      "key": "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3",
       "created": "<%= created %>",
       "updated": "<%= created %>"
     },
@@ -10164,7 +10164,7 @@ const response = await fetch("https://api.keygen.sh/v1/accounts/<%= account %>/k
     "data": {
       "type": "keys",
       "attributes": {
-        "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+        "key": "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3"
       },
       "relationships": {
         "policy": {
@@ -10193,7 +10193,7 @@ Alamofire.request("https://api.keygen.sh/v1/accounts/<%= account %>/keys",
     "data": [
       "type": "keys",
       "attributes": [
-        "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+        "key": "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3"
       ],
       "relationships": [
         "policy": [
@@ -10222,7 +10222,7 @@ request.AddJsonBody(new {
   data = new {
     type = "keys",
     attributes = new {
-      key = "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+      key = "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3"
     },
     relationships = new {
       policy = new {
@@ -10244,7 +10244,7 @@ val body = JSONObject(mapOf(
   "data" to mapOf(
     "type" to "keys",
     "attributes" to mapOf(
-      "key" to "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+      "key" to "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3"
     ),
     "relationships" to mapOf(
       "policy" to mapOf(
@@ -10274,7 +10274,7 @@ JSONObject body = new JSONObject(ofEntries(
   entry("data", ofEntries(
     entry("type", "keys"),
     entry("attributes", ofEntries(
-      entry("key", "B8A5-91D7-CB9A-DAE4-4F6E-1128")
+      entry("key", "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3")
     )),
     entry("relationships", ofEntries(
       entry("policy", ofEntries(
@@ -10309,7 +10309,7 @@ http_client client("https://api.keygen.sh/v1/accounts/<%= account %>");
 http_request req;
 
 value attrs;
-attrs["key"] = value::string("B8A5-91D7-CB9A-DAE4-4F6E-1128");
+attrs["key"] = value::string("C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3");
 
 value policy_;
 policy_["type"] = value::string("policies");
@@ -10351,7 +10351,7 @@ client.request(req)
         "data": {
           "type": "keys",
           "attributes": {
-            "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+            "key": "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3"
           },
           "relationships": {
             "policy": {
@@ -10371,7 +10371,7 @@ client.request(req)
       "self": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7"
     },
     "attributes": {
-      "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+      "key": "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3",
       "created": "<%= created %>",
       "updated": "<%= created %>"
     },
@@ -10492,7 +10492,7 @@ client.request(req)
       "self": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7"
     },
     "attributes": {
-      "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+      "key": "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3",
       "created": "<%= created %>",
       "updated": "<%= created %>"
     },
@@ -10901,7 +10901,7 @@ client.request(req)
         "self": "/v1/accounts/<%= account %>/keys/6e936a61-94ad-44d1-88ac-88da9f10eca7"
       },
       "attributes": {
-        "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128",
+        "key": "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3",
         "created": "<%= created %>",
         "updated": "<%= created %>"
       },

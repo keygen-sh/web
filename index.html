@@ -3,21 +3,19 @@
 </a></li></ul></li><li><a href="/pricing">Pricing</a></li><li><a href="https://app.keygen.sh/login">Log in</a></li><li><a class="button button--secondary button--size-small" href="https://app.keygen.sh/register?plan=b8199947-c7db-4c77-8217-af2ac73c9efb" data-event="RegisterIntent">Sign Up</a></li></ul></nav></div></div></header><main class="main--home"><div class="hero"><div class="hero__background"></div><div class="hero__content"><h1>A dead-simple software licensing API built for developers</h1><h2>License and protect your business's desktop apps, on-premise software, and other digital products.</h2><hr><p class="quote">"Using Keygen saved me the trouble of building and maintaining my own licensing server and strategy. It is easy to work with, reliable, and affordable." <em>– GuideGuide</em></p><a class="button" href="https://app.keygen.sh/register?plan=b8199947-c7db-4c77-8217-af2ac73c9efb" data-event="RegisterIntent">Get Started for Free</a><a class="button button--secondary" href="https://calendly.com/keygen" target="_blank" data-event="BookDemo">Book a Demo</a></div></div><div class="pitch"><div class="pitch__content"><h2>Developer time is <strong>expensive</strong></h2><h3>Making it more productive is a <strong>no-brainer</strong></h3><ul class="checklist"><li><i class="material-icons">check</i>Skip the expensive up-front and ongoing costs of building an in-house licensing solution. Save your business development time and money with our software licensing API.</li><li><i class="material-icons">check</i>Get to market faster. Quickly and securely integrate with our developer APIs in any OS to manage the licensing and distribution of your software products.</li></ul><a class="pitch__button" href="https://app.keygen.sh/register?plan=b8199947-c7db-4c77-8217-af2ac73c9efb" data-event="RegisterIntent">Get Started for Free
 </a><div class="pitch__terminal" data-title="Bash"><pre><code class="bash"># Create a new license for a user of the “ecorp” account
 curl https://api.keygen.sh/v1/accounts/ecorp/licenses -X POST \
-  -H 'Authorization: Bearer a9f93c31b41642248db99fc04f4e8482.ebbe297ffbed4ccc837733e335bd8181' \
+  -H 'Authorization: Bearer prod-2ddd064509b6bcaa356958dcce6da3a538919e13ddbc26b359fb374ff89dfacav3' \
   -H 'Content-Type: application/vnd.api+json' \
   -H 'Accept: application/vnd.api+json' \
   -d '{
         "data": {
           "type": "licenses",
           "attributes": {
-            "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+            "key": "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3",
+            "expiry": "2021-10-31T00:00:00.000Z"
           },
           "relationships": {
             "policy": {
-              "data: { "type": "policies", "id": "fbc29532" }
-            },
-            "user": {
-              "data: { "type": "users", "id": "592032dd" }
+              "data: { "type": "policies", "id": "0b4b1a9a-e25a-4f14-a95e-d9dd378d6065" }
             }
           }
         }
@@ -35,7 +33,7 @@ const res = await fetch('https://api.keygen.sh/v1/accounts/demo/licenses/actions
   },
   body: JSON.stringify({
     meta: {
-      key: 'B8A5-91D7-CB9A-DAE4-4F6E-1128'
+      key: 'C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3'
     }
   })
 })
@@ -58,7 +56,7 @@ Alamofire.request("https://api.keygen.sh/v1/accounts/demo/licenses/actions/valid
   ],
   parameters: [
     "meta": [
-      "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+      "key": "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3"
     ]
   ],
   encoding: JSONEncoding.default
@@ -86,7 +84,7 @@ request.AddHeader("Content-Type", "application/vnd.api+json");
 request.AddHeader("Accept", "application/vnd.api+json");
 request.AddJsonBody(new {
   meta = new {
-    key = "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+    key = "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3"
   }
 });
 
@@ -107,7 +105,7 @@ import org.json.*
 
 val body = JSONObject(mapOf(
   "meta" to mapOf(
-    "key" to "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+    "key" to "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3"
   )
 ))
 
@@ -134,7 +132,7 @@ import static java.util.Map.entry;
 
 JSONObject body = new JSONObject(ofEntries(
   entry("meta", ofEntries(
-    entry("key", "B8A5-91D7-CB9A-DAE4-4F6E-1128")
+    entry("key", "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3")
   ))
 ));
 
@@ -171,7 +169,7 @@ http_client client("https://api.keygen.sh/v1/accounts/demo");
 http_request req;
 
 value meta;
-meta["key"] = value::string("B8A5-91D7-CB9A-DAE4-4F6E-1128");
+meta["key"] = value::string("C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3");
 
 value body;
 body["meta"] = meta;
@@ -210,7 +208,7 @@ data = requests.post(
   },
   data=json.dumps({
     "meta": {
-      "key": "B8A5-91D7-CB9A-DAE4-4F6E-1128"
+      "key": "C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3"
     }
   })
 ).json()
@@ -229,7 +227,7 @@ data = HTTParty.post(
   },
   body: {
     meta: {
-      key: 'B8A5-91D7-CB9A-DAE4-4F6E-1128'
+      key: 'C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3'
     }
   }
 )
@@ -246,7 +244,7 @@ $ch = curl_init($url);
 
 $body = json_encode([
   'meta' => [
-    'key' => 'B8A5-91D7-CB9A-DAE4-4F6E-1128'
+    'key' => 'C1B6DE-39A6E3-DE1529-8559A0-4AF593-V3'
   ]
 ]);
 
@@ -362,11 +360,10 @@ machine limits, feature-based licensing, and even a combination of most of those
 </li><li><h4 id="is-data-within-keygen-secure-">Is data within Keygen secure?</h4>
 <p>Yes. We strive to ensure that the data stored within Keygen is as secure as
 possible. We never store passwords as plain text—they are always hashed and
-salted securely using <code>bcrypt</code>. All API access tokens are securily hashed before
-being stored. We use 256-bit encryption at all levels of our software. All connections
-to our APIs are encrypted over TLS (i.e. we encrypt &quot;in transit&quot;), our databases
-are encrypted (i.e. we encrypt &quot;at rest&quot;), and all of our data backups are
-encrypted. Have additional questions or concerns? <a href="mailto:security@keygen.sh">Get in touch</a>.</p>
+salted securely using <code>bcrypt</code>.  All connections to our APIs are encrypted
+over TLS, i.e. we encrypt &quot;in transit&quot;, our databases are encrypted, i.e. we
+encrypt &quot;at rest&quot;, and all of our data backups are encrypted. Want to learn
+more? Check out <a href="/security">our security page</a>.</p>
 </li><li><h4 id="where-can-i-monitor-keygen-s-uptime-">Where can I monitor Keygen&#39;s uptime?</h4>
 <p>We strive to provide the highest uptime possible for our customers through
 a distributed system hosted on battle-tested infrastructure. You can monitor
@@ -380,7 +377,8 @@ even updates for WordPress plugins and themes.</p>
 </li><li><h4 id="does-keygen-work-offline-">Does Keygen work offline?</h4>
 <p>Yes, we support several methods of cryptographically signing or encrypting license keys,
 which can be verified in offline environments. For more information, check out our <a href="/docs/api#cryptography">API
-reference</a>, or reach out to our <a href="mailto:support@keygen.sh">techinical support</a>.</p>
+reference</a>, or reach out to our
+<a title="Open chat" onclick="Intercom('show')" style="cursor:pointer">technical support</a>.</p>
 </li><li><h4 id="can-i-ask-a-question-">Can I ask a question?</h4>
 <p>Of course. <a title="Open chat" onclick="Intercom('show')" style="cursor:pointer">Ask away</a>.</p>
 </li></ul><div class="faqs__testimonial"><hr><p class="quote">"Keygen has <strong>flexible license management options</strong> backed by <strong>great customer support</strong>. Keygen is enabling us to very quickly get licensing off the ground for a reasonable price." <em>– Mining &amp; Metals</em></p></div></div></section><footer class="footer"><section class="cta"><div class="cta__content"><h2>Ready to get started?</h2><h3>Sign up today, or schedule a call.</h3><hr><p class="quote">"Awesome... simply awesome. Features work great, no hassle setting things up and we got going within a few hours. This service is highly recommended!" <em>– Ranorex</em></p><a class="button" href="https://app.keygen.sh/register?plan=b8199947-c7db-4c77-8217-af2ac73c9efb" data-event="RegisterIntent">Sign Up</a><a class="button button--secondary" href="https://calendly.com/keygen" target="_blank" data-event="BookCall">Schedule a Call</a></div></section><div class="footer__content">© 2020 Keygen LLC – All Rights Reserved – Reach out &lt;hello@keygen.sh&gt;
