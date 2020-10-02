@@ -567,17 +567,17 @@ key (available in <a href="https://app.keygen.sh/settings">your Dashboard&#39;s 
     type: &quot;policies&quot;,
     attributes: {
       name: &quot;Cryptographically Signed License&quot;,
-      scheme: &quot;RSA_2048_PKCS1_PSS_SIGN&quot;
+      scheme: &quot;RSA_2048_PKCS1_PSS_SIGN_V2&quot;
     }
   }
 }
 </code></pre>
-<p>Using the <code>RSA_2048_PKCS1_PSS_SIGN</code> scheme, when a license is created which
+<p>Using the <code>RSA_2048_PKCS1_PSS_SIGN_V2</code> scheme, when a license is created which
 implements this policy, the provided key will be cryptographically signed
 and that signature will be appended onto the end of the key. You can then
 cryptographically verify the entire key in offline environments.</p>
 <p>The resulting license key will resemble the following:</p>
-<pre><code class="lang-plain">eyJmb28iOiJiYXIiLCJiYXoiOiJxdXoiLCJyYW5kIjpbNDgsMTAxLDU2LDk5LDQ5LDQ5LDk3LDUzLDU3LDU0LDQ5LDEwMSw1MCw0OSw1Miw1MCwxMDIsMTAyLDQ5LDU0LDUyLDEwMiw1Miw1NSw1Niw1MCw5Nyw0OCw0OSw1Myw1MywxMDFdfQ==.Dqw0N_14L0v-a-cQPkTM_X6_vN-tSoEWEt2Zu5SreeS_-Zn6Fsyr2EwpnOXWkWHhmcPJWSfboCrOjh73y-Q9I3aLbpTg5M_9bQmt2PjwG0l7A7T2PUreAA-8xftK0-_quQchsv73JDhrst8O1oh2dHBs6fB1EPXzKKCyIXKWIniHjEP-nqGGYXUzPQjoMI7JQCySZKtXmgV4rVRoY1E9kxywlc0Lia9OfHH2uDnBPjIpR_4U_QFLzoUKZnG5qmTC9PtgGbdsN5e01hk53ZvDA9sEdzUerk_34O6qBy203mt_4NvVbegIcS49IzyGtfn_a4OLbEGnz-gOnS2ee0Js6g==
+<pre><code class="lang-plain">key/dGVzdA==.EHaQFZ8cOGZhWytcWsZeoxO_61z00DwEGojbgDm80CI9U2P2PRTU93keqt8IMpOijGmQe96nxa9drxzuXbQT1D5xVzBmZ4u0Z6afGogn5jH-vEEMJYd_C0TnLZNJklKdfYAjPW5KVksbX7pVdxvfasMKvSFZcz3QuhX2Tq-p8t295CMPh3TJ7_4zVBK-x4ffUviEjRKfqdPzoQZmQFvUm3vl7Yw9EVltotRZ3QlxsAD7Ox6ishhSS4cyoco2iSwS6kBrgPbhR1aJPck2SjWuPPWeF6PC_MZSqqoP8Q4opKosrR6nj-H1QbARBr-MK1bOEIS2oFU5Yu7nhKCOR3r4pA==
 </code></pre>
 <p>The key contains a base64 encoded version of the key specified at the time
 of creation, along with a cryptographic signature, delimited by the <code>.</code>
@@ -593,14 +593,15 @@ const {
 } = process.env
 
 // Extract key and signature from the license key payload
-const [encodedKey, encodedSignature] = LICENSE_KEY.split(&#39;.&#39;)
+const [signingData, encodedSignature] = LICENSE_KEY.split(&#39;.&#39;)
+const [signingPrefix, encodedKey] = signingData.split(&#39;/&#39;)
 
 // Decode the base64 encoded key
 const key = Buffer.from(encodedKey, &#39;base64&#39;).toString()
 
 // Verify the signature
 const verifier = crypto.createVerify(&#39;sha256&#39;)
-verifier.write(key)
+verifier.write(<code>key/${key}</code>)
 verifier.end()
 
 const ok = verifier.verify({ key: KEYGEN_PUBLIC_KEY, padding: crypto.constants.RSA_PKCS1_PSS_PADDING }, encodedSignature, &#39;base64&#39;)
