@@ -148,12 +148,12 @@ or encrypt license keys, which can be verfied using your account&#39;s public
 key, available in <a href="https://app.keygen.sh/settings">your Dashboard&#39;s settings page</a>.
 You can configure licenses to utilize a cryptographic scheme at the policy
 level through the <a href="/docs/api#policies-object-attrs-scheme"><code>scheme</code></a> attribute.</p>
-<p>For example, when using the <code>RSA_2048_PKCS1_SIGN</code> scheme, when a license is
+<p>For example, when using the <code>RSA_2048_PKCS1_SIGN_V2</code> scheme, when a license is
 created which implements this policy, the provided key will be cryptographically
 signed and that signature will be appended onto the end of the key. You can
 then cryptographically verify the entire key in offline environments.</p>
 <p>The resulting license key will resemble the following:</p>
-<pre><code class="lang-plain">eyJmb28iOjEsImJhciI6MiwiYmF6IjozLCJxdXgiOjR9.hHcoGH0EzjVzWOJ_p79cP-wUC5XoB-NiR72ZmU3iiQXIJSBZ91A3rxS9QeqYifnZTHNvi9RhzsXk5yM3p1VMHGkAmjQw-Rd-LwqtNyuKKydt3LsCXY61K15aJw8j84YYejQaNXCJPRitskCsoOtG5XTrQ6x8LmS9vtAxgGAq11GRmtIgxdDcdSQPFwothSjCD4w2l-oMUYSY4JFjFVFvqVOjqmjPxJAbUcNzoLtP85jVDBhfiVqSBzvRjmwFaASWwivMb6BfGxYR_lCLDkPaKtFQeo2C2kwhlMzXL2Pv7Qd9RBbjn8YPbPALLIBk5XZ6l7-3EGYwTaM3etUDeDqIMw==
+<pre><code class="lang-plain">key/dGVzdA==.TrtLt-NTwwWSpAoFxewg8OoCoGNq2ifZx0gGTaresI1U8SU8vyF5HTbZKtli8WOsXeACjQBYMqxj5POPGVddEej8gfgiZULySomLbweZWJkQ_EKyKgtz0M_MN7Y7w2QWVW-ug-ES4ekOA8mLda4Ue4MYj3tEBftmMyooZPwhTQt70Mv5w-AmxPqtoZI76qI6ZZ6dV9aJGGs2ixqy3ozUkC0ZFVSgXutX2Eo2gnyPTCMCJEtTR9IymZXxaQCJo-tGWF9rvCewnn-YsMcGsD7Uz9eGLBbi-scEKFOVr_EqMm_veCR_piH3WkRaaEVXO4esevLvs7EsbksyWyFiUbN5ug==
 </code></pre>
 <p>The key contains a base64 encoded version of the key specified at the time
 of creation, along with a cryptographic signature, delimited by the <code>.</code>
@@ -170,14 +170,15 @@ const {
 } = process.env
 
 // Extract key and signature from the license key payload
-const [encodedKey, encodedSignature] = LICENSE_KEY.split(&#39;.&#39;)
+const [signingData, encodedSignature] = LICENSE_KEY.split(&#39;.&#39;)
+const [signingPrefix, encodedKey] = signingData.split(&#39;/&#39;)
 
 // Decode the base64 encoded key
 const key = Buffer.from(encodedKey, &#39;base64&#39;).toString()
 
 // Verify the signature
 const verifier = crypto.createVerify(&#39;sha256&#39;)
-verifier.write(key)
+verifier.write(`key/${key}`)
 verifier.end()
 
 const ok = verifier.verify(KEYGEN_PUBLIC_KEY, encodedSignature, &#39;base64&#39;)

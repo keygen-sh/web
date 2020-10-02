@@ -1067,15 +1067,18 @@ vwIDAQAB
 LICENSE_KEY = \
 """Zm9vLmJhci5iYXo=.O_VmJxh9LB4GyzNO6gKQiBMpUw5RbwHLVoq2I27tnU7--8qVhT3AfoXU0Xp1yQbLK4WRSQrcveB0yg18q11__7CueL8sNbxdsz8hA3W2BaznUy4GWir-sqLpcHDzYHmhTB-md5m_D05b-BY3Myz2dCKBusu7plPkHhDM3fXTn4Yy6k39BUgIZnYvMzSUSyme62csFqFNU0F8MRiqADDK-QBu6lkcVjGtzvQ30tIiMp1klfUJX9fJJJ3218UZjrhqiMEuRKFfPGfVmQxKwurx4x6bnIfhht29dkA312fFZ88Rv7JWrXqIfLVq6zfdQjCPrYXPJhH3qM0OXYm-2Scf4g=="""
 
-# Split license key to obtain key and signature, then decode base64url encoded values
-enc_key, enc_sig = LICENSE_KEY.split(".")
+# Split license key to obtain signing data and signature, then parse data and
+# decode base64url encoded values
+signing_data, enc_sig = LICENSE_KEY.split(".")
+signing_prefix, enc_key = signing_data.split("/")
+
 key = base64.urlsafe_b64decode(enc_key)
 sig = base64.urlsafe_b64decode(enc_sig)
 
 # Verify the key's signature
 pub_key = RSA.importKey(PUBLIC_KEY)
 verifier = PKCS1_v1_5.new(pub_key)
-digest = SHA256.new(data=key)
+digest = SHA256.new(data="key/" + enc_key)
 
 print(
   verifier.verify(digest, sig)
