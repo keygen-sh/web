@@ -9805,7 +9805,15 @@ client.request(req)
 </div><article class="article" id="machines-actions-generate-offline-proof"><div class="description"><h3 class="anchor__wrapper article__heading" data-method="POST"><a class="anchor" href="#machines-actions-generate-offline-proof" data-target="machines-actions-generate-offline-proof"><i class="material-icons">link</i></a>Offline activation proofs</h3><p>Action to generate a cryptographically signed offline activation proof. This can be used
 to implement an offline license activation system. See <a href="https://github.com/keygen-sh/air-gapped-activation-example">our example client/server app
 on GitHub</a>.</p>
-<p>Below is a sample dataset included within the offline activation proof:</p>
+<p>Activation proofs are signed with your account&#39;s 2048-bit RSA private key, using RSA PKCS1
+v1.5 padding, with a SHA256 digest. The proof dataset will be base64url encoded and then
+prefixed with <code>proof/</code> before signing, and the signing data&#39;s signature will be base64url
+encoded and then appended onto the end of the signing data, delimited by the <code>.</code> character,
+e.g. <code>proof/{URLBASE64_DATASET}.{URLBASE64_SIGNATURE}</code>.</p>
+<p>Here is an example proof:</p>
+<pre><code class="lang-plain">proof/eyJhY2NvdW50Ijp7ImlkIjoiNjI0NzBkNjctNDgzNy00YjVhLWFjYzItN2FmYjgwZDBhM2JmIn0sInByb2R1Y3QiOnsiaWQiOiJhNzZiM2NhMi1hZGVlLTRiY2YtOTdhMS0xNzkyNDAzMWNlY2QifSwicG9saWN5Ijp7ImlkIjoiN2Y4OTlhMTUtNDU1My00YjkwLWI3MzAtNmUxZjgwMzEyYzcwIn0sImxpY2Vuc2UiOnsiaWQiOiIzMWZhMzU1MS1kYjJmLTRmN2UtYjEzMS0yZGZiNTViZmJmNzMiLCJrZXkiOiJERkU1NzktNzUzQzI1LUEzQjY2Ny0yNEUzRUMtMzI4QTU3LVYzIiwiZXhwaXJ5IjoiMjAyMS0wMy0yOVQyMjo0NzowOS4xMDhaIn0sIm1hY2hpbmUiOnsiaWQiOiJkZWMwNmE5YS1kZTVjLTQ1M2MtYTAyMy1jOTMwMjlkZjMzMjMiLCJmaW5nZXJwcmludCI6ImRjMTY0MmI5NjcyMTFlODVmMTRmNjRjZmE4NjdjODZjIiwiY3JlYXRlZCI6IjIwMjAtMTAtMDFUMTc6MTM6MTkuNzI1WiJ9LCJwcm9vZiI6eyJjcmVhdGVkIjoiMjAyMC0xMC0wNVQyMDo0MDozMi4xNDNaIn19.QpyUpB2PMXC4QmQfKvStoafV5F4WIvzaF3IJ8SEd2YVfhicbRxZp4EiJRkKt_la4TaBF7MzWeqaXfbMVDk_LAKAWlTFgeFNBF0B9pXyCWHgFc01AKeiz6l3Cwi-PsC-DP6yfMgQqZ2LKOruIbkuWHL8yrTBw9n5_LSRldR8OAxVY51o0bdWRiYHO1jtkq2MFbn8t3tS8p0bJacuHRrWJSl6WAYZYb3iLXLiuftSrX6cZuB_ZlVifWvXXl3Am_ebOBnZ7WQBsTfJ0xxHFKbIpn24s9LGlIf0kJOEk4zr8vc9mxxyIFh1HwbGKTQzpj9sW6rFiVY5a9zMQLKh3ciDjRQ==
+</code></pre>
+<p>Below is the decoded dataset from the above example proof:</p>
 <pre><code class="lang-plain">{
   &quot;account&quot;: {
     &quot;id&quot;: &quot;62470d67-4837-4b5a-acc2-7afb80d0a3bf&quot;
