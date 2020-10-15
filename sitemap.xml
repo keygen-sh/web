@@ -127,6 +127,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://keygen.sh/docs/search/</loc>
+    <lastmod>2020-09-15T01:20:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://keygen.sh/integrate/</loc>
     <lastmod>2017-05-05T01:23:45+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -239,5 +245,17 @@
     <lastmod>2020-09-17T11:11:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://keygen.sh/privacy/</loc>
+    <lastmod>2020-10-15T01:20:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>https://keygen.sh/terms/</loc>
+    <lastmod>2020-10-15T01:20:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.1</priority>
   </url>
 </urlset>
