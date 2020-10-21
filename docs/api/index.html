@@ -11417,6 +11417,26 @@ with a POST request containing an <a href="#webhook-events-object">event object<
 <td style="text-align:left">When a token is revoked</td>
 <td style="text-align:left">The revoked token object</td>
 </tr>
+<tr>
+<td style="text-align:left"><code>second-factor.created</code></td>
+<td style="text-align:left">When a second factor is created</td>
+<td style="text-align:left">The second factor object</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>second-factor.enabled</code></td>
+<td style="text-align:left">When a second factor is enabled</td>
+<td style="text-align:left">The enabled second factor object</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>second-factor.disabled</code></td>
+<td style="text-align:left">When a second factor is disabled</td>
+<td style="text-align:left">The disabled second factor object</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>second-factor.deleted</code></td>
+<td style="text-align:left">When a second factor is deleted</td>
+<td style="text-align:left">The deleted second factor object</td>
+</tr>
 </tbody>
 </table>
 </div><div class="example__wrapper"><div class="example"><h4>Example webhook handler using Node and Express</h4><pre><code class="javascript">const bodyParser = require("body-parser")
