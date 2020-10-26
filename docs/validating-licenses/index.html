@@ -178,7 +178,7 @@ const key = Buffer.from(encodedKey, &#39;base64&#39;).toString()
 
 // Verify the signature
 const verifier = crypto.createVerify(&#39;sha256&#39;)
-verifier.write(`key/${key}`)
+verifier.write(`key/${encodedKey}`)
 verifier.end()
 
 const ok = verifier.verify(KEYGEN_PUBLIC_KEY, encodedSignature, &#39;base64&#39;)
