@@ -259,6 +259,12 @@
     <priority>0.1</priority>
   </url>
   <url>
+    <loc>https://keygen.sh/terms/sla/</loc>
+    <lastmod>2021-01-28T01:20:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
     <loc>https://keygen.sh/blog/</loc>
     <lastmod>2021-03-01T01:20:00+00:00</lastmod>
     <changefreq>daily</changefreq>
