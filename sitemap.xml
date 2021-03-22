@@ -73,38 +73,8 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://keygen.sh/docs/creating-users/</loc>
-    <lastmod>2017-06-28T01:23:45+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://keygen.sh/docs/authenticating-users/</loc>
-    <lastmod>2017-06-28T01:23:45+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://keygen.sh/docs/storing-metadata/</loc>
     <lastmod>2017-08-09T01:23:45+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://keygen.sh/docs/creating-licenses/</loc>
-    <lastmod>2017-06-28T01:23:45+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://keygen.sh/docs/validating-licenses/</loc>
-    <lastmod>2017-06-28T01:23:45+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://keygen.sh/docs/activating-machines/</loc>
-    <lastmod>2018-01-30T01:23:45+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
