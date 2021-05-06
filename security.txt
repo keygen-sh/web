@@ -1,6 +1,6 @@
 Contact: mailto:security@keygen.sh
 Expires: Sat, 31 Dec 2025 11:59:59 -0500
-Encryption: https://keybase.io/ezekg/pgp_keys.asc
+Encryption: https://keygen.sh/pgp-key.txt
 Acknowledgments: https://keygen.sh/humans.txt
 Preferred-Languages: en
 Canonical: https://keygen.sh/security.txt
